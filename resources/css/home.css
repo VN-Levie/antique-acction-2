@@ -1,0 +1,171 @@
+/* Màu chủ đạo: ec8a49 */
+
+.nav-text {
+
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    color: #292929;
+    text-decoration: none;
+    border-color: transparent;
+    padding: 6px 0;
+    padding: 5px 15px;
+    font-size: 15px;
+    line-height: 17px;
+    position: relative;
+    display: block;
+    /* text-align: left; */
+    transition: .3s;
+    z-index: 1;
+    letter-spacing: 2.6px;
+    /* all cap */
+    text-transform: uppercase;
+}
+
+/* giảm font0size khi màn hình mở mức trung bình */
+@media (min-width: 768px) {
+    * {
+        font-size: 1rem;
+    }
+}
+
+.nav-icon {
+
+    /* font-family: 'Raleway', sans-serif; */
+    /* font-weight: 700; */
+    font-style: normal;
+    color: #292929;
+    text-decoration: none;
+    border-color: transparent;
+    /* padding: 6px 0; */
+    padding: 5px 15px;
+    font-size: 15px;
+    /* line-height: 17px; */
+    /* position: relative; */
+    display: inline !important;
+    /* text-align: left; */
+    transition: .3s;
+    z-index: 1;
+    letter-spacing: 0.6px;
+    /* all cap */
+    text-transform: uppercase;
+}
+
+#primary span {
+    margin: 0 20px;
+    position: relative;
+}
+
+#primary span a {
+    text-decoration: none;
+    display: block;
+    padding: 5px 0;
+    /* font-family: "Open Sans"; */
+    /* font-size: 26px; */
+    line-height: 1;
+    /* font-weight: bold; */
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(to right, #ec8a49, #e47846 50%, #292929 50%);
+    background-size: 200% 100%;
+    background-position: -100%;
+    transition: all 0.3s ease-in-out;
+}
+
+#primary span a:before {
+    display: block;
+    content: "";
+    width: 0;
+    height: 3px;
+    bottom: 5px;
+    left: 0;
+    bottom: -3px;
+    z-index: 0;
+    position: absolute;
+    background: #ec8a49;
+    transition: all 0.3s ease-in-out;
+}
+
+.active {
+
+    color: #e47846;
+
+}
+
+#primary span a:hover {
+    background-position: 0%;
+}
+
+#primary span a:hover:before {
+    width: 100%;
+}
+
+.navbar-toggler-customs {
+    border: 1px solid #ec8a49;
+    background: white;
+    /* color: #23abd4; */
+    outline: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 10px;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s;
+}
+
+nav {
+    width: 100%;
+    min-height: 95px;
+}
+
+.dropdown-menu-custom {
+    position: relative;
+    border: 1px solid #ec8a49;
+    border-radius: 7px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    /* padding: 10px; */
+    width: 50% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+
+}
+
+.dropdown-item-custom {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    padding: 20px;
+    font-size: 13px;
+    line-height: 10px;
+}
+
+.active {
+    color: #f8f5f3 !important;
+    /* background-color: #e47846; */
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.logo-footer-center {
+    width: 100%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.eff-menu{
+    transition: all 1s ease-in-out !important;
+    box-shadow: #e47846 0px 0px 1px 0px;
+}
+.eff-menu-btn{
+    transition: all 1s ease;
+}
