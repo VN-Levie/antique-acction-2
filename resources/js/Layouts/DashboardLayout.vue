@@ -228,7 +228,7 @@ const logout = () => {
                     </DropdownLink>
 
                     <div class="border-t border-gray-200" />
-                    <DropdownLink :href="route('profile.show')">
+                    <DropdownLink :href="route('home')">
                       <i class="fa fa-home" aria-hidden="true"></i> Back to Home
                     </DropdownLink>
 
@@ -329,6 +329,11 @@ const logout = () => {
                 :active="route().current('profile.show')"
               >
                 Profile
+              </ResponsiveNavLink>
+              <ResponsiveNavLink
+                :href="route('home')"
+              >
+                Back to Home
               </ResponsiveNavLink>
 
               <ResponsiveNavLink
