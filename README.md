@@ -24,3 +24,5 @@ php artisan migrate
 npm run dev
 php artisan serve
 ```
+
+### Tạo Tài Khoảng / Đăng Nhập bình thường nha
