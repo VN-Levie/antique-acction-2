@@ -1,25 +1,25 @@
 <template>
-  <div id="About" class="spacing-bottom ">
-    <div class="">
-      <div class="row">
+  <div class="container-fluid-About">
+    <div id="About" class="spacing-bottom ">
+      <div class="">
         <p class="text-center moto-text_system_8">
           RESTORERS, SPECIALISTS
         </p>
         <h2 class="text-center moto-text_system_5">
           We Are Professional
         </h2>
-        <div class="">
-          <div class="moto-widget-image moto-preset-default moto-align-center moto-spacing-top-small">
-            <span class="moto-widget-image-link">
-              <img src="/img/mt-1804-home-divider2.png" class="" />
-            </span>
-          </div>
-          <div class=" container-fluid moto-spacing-top-medium col-sm-1 col-sm-10">
-            <h3 class="text-about-center moto-text_system_9">
-              {{ title }}
-            </h3>
-          </div>
+
+        <div class="moto-widget-image moto-preset-default moto-align-center moto-spacing-top-small">
+          <span class="moto-widget-image-link">
+            <img src="/img/mt-1804-home-divider2.png" class="" />
+          </span>
         </div>
+        <div class=" container-fluid moto-spacing-top-medium1 col-sm-1 col-sm-10">
+          <h3 class="text-about-center moto-text_system_9">
+            {{ title }}
+          </h3>
+        </div>
+
       </div>
     </div>
   </div>
@@ -45,6 +45,10 @@ export default {
   background-size: contain;
 }
 
+.moto-spacing-top-medium1 {
+  padding-top: 90px;
+}
+
 .moto-spacing-bottom-large1 {
   padding-bottom: 95px;
 }
@@ -61,8 +65,14 @@ export default {
 }
 
 .spacing-bottom {
-  padding-bottom: 266px;
+  padding-bottom: 250px;
+  margin-top: -90px;
   padding-top: 158px;
+  margin-bottom: -20px;
 
+}
+
+.container-fluid-About {
+  background-color: white;
 }
 </style>
