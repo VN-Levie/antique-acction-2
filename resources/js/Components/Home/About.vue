@@ -2,10 +2,10 @@
   <div id="About" class="spacing-bottom ">
     <div class="">
       <div class="row">
-        <p class="text moto-text_system_8">
+        <p class="text-center moto-text_system_8">
           RESTORERS, SPECIALISTS
         </p>
-        <h2 class="text moto-text_system_5">
+        <h2 class="text-center moto-text_system_5">
           We Are Professional
         </h2>
         <div class="">
@@ -15,7 +15,7 @@
             </span>
           </div>
           <div class=" container-fluid moto-spacing-top-medium col-sm-1 col-sm-10">
-            <h3 class="text1 moto-text_system_9">
+            <h3 class="text-about-center moto-text_system_9">
               {{ title }}
             </h3>
           </div>
@@ -49,12 +49,12 @@ export default {
   padding-bottom: 95px;
 }
 
-.text1 {
+.text-center {
   text-align: center;
 
 }
 
-.text1 {
+.text-about-center {
   text-align: center;
   font-weight: 700;
   color: rgb(132, 132, 132);
