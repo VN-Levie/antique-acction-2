@@ -19,10 +19,10 @@
 
           <div class="form">
             <div class="contact-info">
-              <h3 class="title">Let's get in touch</h3>
+              <h3 class="title">Đấu giá - Khám phá giá trị thật của mọi vật</h3>
               <p class="text-form">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
-                dolorum adipisci recusandae praesentium dicta!
+                If you have any questions related to our antique restoration services, please, don`t hesitate to contact
+                us using the information below.
               </p>
 
 
@@ -295,7 +295,9 @@ textarea.input {
 }
 
 .contact-info .title {
-  color: #1abc9c;
+  color: #000000;
+  font-weight: bold;
+  font-size: 25px;
 }
 
 .text-form {
