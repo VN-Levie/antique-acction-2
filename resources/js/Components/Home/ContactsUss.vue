@@ -64,25 +64,24 @@
               <span class="circle one"></span>
               <span class="circle two"></span>
 
-              <form action="index.html" autocomplete="off">
+              <form action="#" autocomplete="off">
                 <div class="input-container">
-                  <input type="text" name="name" class="input" />
-                  <label for="">Name</label>
+                  <input type="text" name="name" class="input" placeholder="Name" />
                   <span>Name</span>
                 </div>
                 <div class="input-container">
-                  <input type="email" name="email" class="input" />
-                  <label for="">Email</label>
+                  <input type="email" name="email" class="input" placeholder="Email" />
+
                   <span>Email</span>
                 </div>
                 <div class="input-container">
-                  <input type="tel" name="phone" class="input" />
-                  <label for="">Phone</label>
+                  <input type="tel" name="phone" class="input" placeholder="Phone" />
+
                   <span>Phone</span>
                 </div>
                 <div class="input-container textarea">
-                  <textarea name="message" class="input"></textarea>
-                  <label for="">Message</label>
+                  <textarea name="message" placeholder="Message" class="input"></textarea>
+
                   <span>Message</span>
                 </div>
                 <input type="submit" value="Send" class="btn" />
@@ -97,24 +96,6 @@
 </template>
 
 <script>
-const inputs = document.querySelectorAll(".input");
-
-function focusFunc() {
-  let parent = this.parentNode;
-  parent.classList.add("focus");
-}
-
-function blurFunc() {
-  let parent = this.parentNode;
-  if (this.value == "") {
-    parent.classList.remove("focus");
-  }
-}
-
-inputs.forEach((input) => {
-  input.addEventListener("focus", focusFunc);
-  input.addEventListener("blur", blurFunc);
-});
 
 </script>
 
@@ -135,6 +116,18 @@ inputs.forEach((input) => {
 
 .margin-top-logo-about {
   margin-top: 30px;
+}
+
+input::placeholder {
+  font-weight: bold;
+
+  color: rgb(255, 255, 255);
+}
+
+textarea::placeholder {
+  font-weight: bold;
+
+  color: rgb(255, 255, 255);
 }
 
 .form {
@@ -216,6 +209,7 @@ textarea.input {
 .input-container.textarea label {
   top: 1rem;
   transform: translateY(0);
+
 }
 
 .btn {
@@ -235,7 +229,8 @@ textarea.input {
 
 .btn:hover {
   background-color: transparent;
-  color: #fff;
+  color: #ffffff;
+  border: 2px solid #fafafa;
 }
 
 .input-container span {
@@ -248,6 +243,7 @@ textarea.input {
   color: transparent;
   pointer-events: fill;
   z-index: 500;
+
 }
 
 .input-container span:before,
@@ -261,6 +257,7 @@ textarea.input {
   background-color: #939643;
   top: 50%;
   transform: translateY(-50%);
+
 }
 
 .input-container span:before {
@@ -276,12 +273,16 @@ textarea.input {
   transform: translateY(-50%);
   left: 25px;
   font-size: 0.8rem;
+
+
 }
 
 .input-container.focus span:before,
 .input-container.focus span:after {
   width: 50%;
   opacity: 1;
+
+
 }
 
 .contact-info {
@@ -290,9 +291,11 @@ textarea.input {
 }
 
 .contact-info .title {
-  color: #000000;
+
   font-weight: bold;
   font-size: 25px;
+
+
 }
 
 .text-form {
