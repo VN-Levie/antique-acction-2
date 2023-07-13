@@ -1,8 +1,7 @@
 <template>
-  <div id="contactUs"
-    class="container-fluid-About moto-widget moto-spacing-top-large moto-spacing-bottom-large moto-widget-row row-fixed ">
+  <div id="contactUs" class="container-fluid-About  moto-spacing-top-large  moto-spacing-bottom-large ">
 
-    <div class="spacing-bottom-contact ">
+    <div class="">
       <div>
         <p class="text-center moto-text_system_8">
           OUT COMPANY
@@ -10,12 +9,12 @@
         <h2 class="text-center moto-text_system_5">
           Contact Us
         </h2>
-        <div class="moto-widget-image moto-preset-default moto-align-center moto-spacing-top-small">
+        <div class="moto-widget-image moto-preset-default moto-align-center moto-spacing-top-small top-spacing-marin">
           <span class="moto-widget-image-link margin-top-logo-about">
             <img src="/img/mt-1804-home-divider2.png" />
           </span>
         </div>
-        <div class=" container-fluid moto-spacing-top-medium1 col-sm-1 col-sm-10">
+        <div class=" container-fluid col-sm-1 col-sm-10">
 
           <div class="form">
             <div class="contact-info">
@@ -68,8 +67,8 @@
               <form action="index.html" autocomplete="off">
                 <div class="input-container">
                   <input type="text" name="name" class="input" />
-                  <label for="">Username</label>
-                  <span>Username</span>
+                  <label for="">Name</label>
+                  <span>Name</span>
                 </div>
                 <div class="input-container">
                   <input type="email" name="email" class="input" />
@@ -130,12 +129,8 @@ inputs.forEach((input) => {
   letter-spacing: 0px;
 }
 
-.spacing-bottom-contact {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: -82px;
+.top-spacing-marin {
+  margin-top: -12px;
 }
 
 .margin-top-logo-about {
@@ -144,7 +139,7 @@ inputs.forEach((input) => {
 
 .form {
   width: 100%;
-  max-width: 1076px;
+  margin-top: 38px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
