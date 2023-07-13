@@ -1,25 +1,37 @@
 <template>
-  <div class="container-fluid-About">
-    <div id="About" class="spacing-bottom ">
-      <div class="">
-        <p class="text-center moto-text_system_8">
-          RESTORERS, SPECIALISTS
-        </p>
-        <h2 class="text-center moto-text_system_5">
-          We Are Professional
-        </h2>
+  <div id="About" class="container-fluid-About  moto-spacing-top-large  moto-spacing-bottom-large ">
+    <div class="container-fluid">
+      <p class="text moto-text_system_8">
+        RESTORERS, SPECIALISTS
+      </p>
+      <h2 class="text moto-text_system_5">
+        We Are Professional
+      </h2>
 
-        <div class="moto-widget-image moto-preset-default moto-align-center moto-spacing-top-small">
-          <span class="moto-widget-image-link">
-            <img src="/img/mt-1804-home-divider2.png" class="" />
-          </span>
+      <div class="moto-widget moto-widget-image moto-preset-default moto-align-center moto-spacing-top-small  ">
+        <span class="moto-widget-image-link">
+          <img src="/img/mt-1804-home-divider2.png"
+            class="moto-widget-image-picture moto-widget-deferred-content lazyload" />
+        </span>
+      </div>
+      <div
+        class="moto-widget moto-widget-row row-fixed moto-spacing-top-medium moto-spacing-right-auto moto-spacing-bottom-auto moto-spacing-left-auto">
+        <div class="container-fluid">
+          <div class="row">
+            <div
+              class="moto-widget moto-widget-row__column moto-cell col-sm-1 moto-spacing-top-auto moto-spacing-right-auto moto-spacing-bottom-auto moto-spacing-left-auto">
+            </div>
+            <div class="moto-widget moto-widget-row__column moto-cell col-sm-10 ">
+              <div class="">
+                <div class="moto-widget-text-content moto-widget-text-editable">
+                  <p class="text moto-text_system_9">
+                    {{ title }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class=" container-fluid moto-spacing-top-medium1 col-sm-1 col-sm-10">
-          <h3 class="text-about-center moto-text_system_9">
-            {{ title }}
-          </h3>
-        </div>
-
       </div>
     </div>
   </div>
@@ -45,31 +57,12 @@ export default {
   background-size: contain;
 }
 
-.moto-spacing-top-medium1 {
-  padding-top: 90px;
-}
-
-.moto-spacing-bottom-large1 {
-  padding-bottom: 95px;
-}
-
-.text-center {
+.text {
   text-align: center;
-
 }
 
-.text-about-center {
-  text-align: center;
-  font-weight: 700;
-  color: rgb(132, 132, 132);
-}
-
-.spacing-bottom {
-  padding-bottom: 250px;
-  margin-top: -90px;
-  padding-top: 158px;
-  margin-bottom: -20px;
-
+.text_css_1 {
+  padding-top: 50px;
 }
 
 .container-fluid-About {
