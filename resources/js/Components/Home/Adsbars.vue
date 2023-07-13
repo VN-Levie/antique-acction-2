@@ -3,8 +3,6 @@
     id="adsbar"
     class="slider3 moto-widget moto-widget-block moto-spacing-top-large  moto-spacing-bottom-large moto-spacing-left-auto"
   >
- 
-
     <div class="container-fluid">
       <div class="row">
         <div class="moto-cell col-sm-12">
@@ -14,7 +12,7 @@
             <div class="container-fluid">
               <div class="row">
                 <div
-                  class="moto-cell col-sm-5   "
+                  class="moto-cell col-sm-5"
                 ></div>
                 <div
                   class=" moto-cell col-sm-7 moto-spacing-right-auto  moto-spacing-left-auto"
