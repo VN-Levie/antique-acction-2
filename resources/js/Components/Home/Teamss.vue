@@ -15,7 +15,7 @@
                 <div class="img-container">
                     <img src="/img/team1.jpg" alt="" />
                 </div>
-                <h3>Tlee</h3>F
+                <h3>Tlee</h3>
                 <p>Design</p>
                 <div class="icons">
                     <a href="#"> <font-awesome-icon :icon="['fab', 'facebook']" /> </a>
@@ -34,7 +34,7 @@
                 <p>Design</p>
                 <div class="icons">
                     <a href="#"> <font-awesome-icon :icon="['fab', 'facebook']" /> </a>
-                    <a href="#"> <font-awesome-icon :icon="['fab', 'github']" /> </a>
+                    <a href="#"> <font-awesome-icon :icon="['fab', 'github']" /></a>
                     <a href="#"> <font-awesome-icon :icon="['fass', 'envelope']" /></a>
                 </div>
             </div>
@@ -108,7 +108,7 @@ export default {
     box-shadow: 0 0 2.2em rgba(25, 0, 58, 0.1);
     padding: 3.5em 1em;
     border-radius: 0.6em;
-    color: #1f003b;
+    color: #10ddc2;
     cursor: pointer;
     transition: 0.3s;
     background-color: #ffffff;
@@ -117,7 +117,7 @@ export default {
 .card-team .img-container {
     width: 8em;
     height: 8em;
-    background-color: #a993ff;
+    background-color: #1de0a6;
     padding: 0.5em;
     border-radius: 50%;
     margin: 0 auto 2em auto;
@@ -154,7 +154,7 @@ export default {
 }
 
 .card-team:hover {
-    background: linear-gradient(#6045ea, #8567f7);
+    background: linear-gradient(#bae718, #c8f309);
     color: #ffffff;
 }
 

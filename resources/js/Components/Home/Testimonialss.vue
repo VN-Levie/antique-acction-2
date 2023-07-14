@@ -108,6 +108,16 @@ export default {
 
 .content {
   line-height: 28px;
+  color: antiquewhite;
+  justify-content: center;
+}
+
+.manage {
+  color: antiquewhite;
+}
+
+.username {
+  color: antiquewhite;
 }
 
 .person {
@@ -125,9 +135,9 @@ export default {
 .divider {
   height: 5px;
   width: 100%;
-  background-color: #fff;
+  /* background-color: #fff; */
   transform-origin: left;
-  animation: rise 10s linear infinite;
+  animation: 8s linear infinite;
 }
 
 @keyframes rise {
