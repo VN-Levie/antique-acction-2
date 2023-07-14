@@ -1,115 +1,64 @@
 <template>
-  <div
-    id="services"
-    class="moto-widget moto-widget-block moto-spacing-top-large moto-spacing-right-auto moto-spacing-bottom-large moto-spacing-left-auto"
-  >
-    <a class="moto-anchor" name="services"></a>
-    <div class="container-fluid">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 d-flex justify-content-center">
+        <span class="title_services">WHAT WE OFFER</span>
+      </div>
+      <div class="col-12 d-flex justify-content-center">
+        <h2 class="title_services_2">Our Services</h2>
+      </div>
+
+      <div class="col-12 d-flex justify-content-center">
+        <img
+          src=""
+          alt="divider1"
+        />
+      </div>
+
+      <div class="container mb-5">
+        <div class="row pt-5">
+          <div class="col-12 d-flex justify-content-center">
+            <p style="text-align: center" class="content_services">
+              Our services include furniture refinishing and restoration; oil
+              painting cleaning, touch up and varnishing; antique conservation;
+              restoration of family heirlooms.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container mb-5">
       <div class="row">
-        <div class="moto-cell col-sm-12">
-          <div
-            class="moto-widget moto-widget-row row-fixed moto-spacing-top-auto moto-spacing-right-auto moto-spacing-bottom-auto moto-spacing-left-auto"
-          >
-            <div class="container-fluid">
-              <div class="row" data-container="container">
-                <div
-                  class="moto-widget moto-widget-row__column moto-cell col-sm-12 moto-spacing-top-auto moto-spacing-right-auto moto-spacing-bottom-auto moto-spacing-left-auto"
-                >
-                  <div
-                    class="moto-widget moto-widget-text moto-preset-default moto-spacing-top-auto moto-spacing-right-auto moto-spacing-bottom-small moto-spacing-left-auto"
-                  >
-                    <div
-                      class="moto-widget-text-content moto-widget-text-editable"
-                    >
-                      <p style="text-align: center" class="moto-text_system_8">
-                        WHAT WE OFFER
-                      </p>
-                      <h2 style="text-align: center" class="moto-text_system_5">
-                        Our Services
-                      </h2>
-                    </div>
-                  </div>
-
-                  <div
-                    class="moto-widget moto-widget-image moto-widget_with-deferred-content moto-preset-default moto-align-center moto-spacing-top-small moto-spacing-right-auto moto-spacing-bottom-auto moto-spacing-left-auto"
-                  >
-                    <span class="moto-widget-image-link">
-                      <img
-                        src="/img/mt-1804-home-divider2.png"
-                        class="moto-widget-image-picture moto-widget-deferred-content lazyload"
-                      />
-                    </span>
-                  </div>
-                </div>
-              </div>
+        <div class="col-sm-3 col-12">
+          <div class="card">
+            <img src="" alt="" />
+            <div class="card-title d-flex justify-content-center">
+              <h4>Custom Finishing</h4>
             </div>
           </div>
-
-          <div
-            class="moto-widget moto-widget-row row-fixed moto-spacing-top-medium moto-spacing-right-auto moto-spacing-bottom-auto moto-spacing-left-auto"
-          >
-            <div class="container-fluid">
-              <div class="row">
-                <div
-                  class="moto-widget moto-widget-row__column moto-cell col-sm-1 moto-spacing-top-auto moto-spacing-right-auto moto-spacing-bottom-auto moto-spacing-left-auto"
-                ></div>
-
-                <div
-                  class="moto-widget moto-widget-row__column moto-cell col-sm-10 moto-spacing-top-auto moto-spacing-right-auto moto-spacing-bottom-auto moto-spacing-left-auto"
-                >
-                  <div
-                    class="moto-widget moto-widget-text moto-preset-default moto-spacing-top-auto moto-spacing-right-auto moto-spacing-bottom-auto moto-spacing-left-auto"
-                  >
-                    <div
-                      class="moto-widget-text-content moto-widget-text-editable"
-                    >
-                      <p style="text-align: center" class="moto-text_system_9">
-                        Our services include furniture refinishing and
-                        restoration; oil painting cleaning, touch up and
-                        varnishing; antique conservation; restoration of family
-                        heirlooms.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div
-                  class="moto-widget moto-widget-row__column moto-cell col-sm-1 moto-spacing-top-auto moto-spacing-right-auto moto-spacing-bottom-auto moto-spacing-left-auto"
-                ></div>
-              </div>
+        </div>
+        <div class="col-sm-3 col-12">
+          <div class="card">
+            <img src="" alt="" />
+            <div class="card-title d-flex justify-content-center">
+              <h4>Furniture Refinishing</h4>
             </div>
           </div>
-          <div
-            class="moto-widget moto-widget-row row-fixed moto-spacing-top-auto moto-spacing-right-auto moto-spacing-bottom-auto moto-spacing-left-auto"
-          >
-            <div class="container-fluid">
-              <div class="row">
-                <div
-                  class="moto-widget moto-widget-row__column moto-cell col-sm-3 moto-spacing-top-auto moto-spacing-right-auto moto-spacing-bottom-auto moto-spacing-left-auto"
-                >
-                  <div
-                    class="moto-widget moto-widget-image moto-widget_with-deferred-content moto-preset-default moto-align-center moto-spacing-top-medium moto-spacing-right-auto moto-spacing-bottom-auto moto-spacing-left-auto"
-                  >
-                    <span class="moto-widget-image-link">
-                      <img
-                        src="/img/mt-1804-home-services1.jpg"
-                        class="moto-widget-image-picture moto-widget-deferred-content lazyload"
-                      />
-                    </span>
-                  </div>
-                  <div
-                    class="moto-widget moto-widget-text moto-preset-default moto-spacing-top-small moto-spacing-right-auto moto-spacing-bottom-auto moto-spacing-left-auto"
-                  >
-                    <div
-                      class="moto-widget-text-content moto-widget-text-editable"
-                    >
-                      <h3 style="text-align: center" class="moto-text_system_7">
-                        Custom Finishing
-                      </h3>
-                    </div>
-                  </div>
-                </div>
-              </div>
+        </div>
+        <div class="col-sm-3 col-12">
+          <div class="card">
+            <img src="" alt="" />
+            <div class="card-title d-flex justify-content-center">
+              <h4>Reproductions</h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3 col-12">
+          <div class="card">
+            <img src="" alt="" />
+            <div class="card-title d-flex justify-content-center">
+              <h4>Furniture Repair</h4>
             </div>
           </div>
         </div>
@@ -120,7 +69,6 @@
 
 <script>
 export default {
-  name: "#services",
   setup() {
     return {};
   },
@@ -128,4 +76,45 @@ export default {
 </script>
 
 <style>
+* {
+  padding: 0;
+  margin: 0;
+}
+.title_services {
+  font-weight: 600;
+  font-style: normal;
+  font-family: "Montserrat", sans-serif;
+  color: #292929;
+  font-size: 18px;
+  line-height: 1.4;
+  letter-spacing: 4px;
+}
+
+.title_services_2 {
+  font-weight: 700;
+  font-style: normal;
+  font-family: "Libre Baskerville", serif;
+  color: #292929;
+  font-size: 55px;
+  line-height: 1.4;
+  letter-spacing: 0px;
+}
+
+.content_services {
+  font-weight: 400;
+  font-style: normal;
+  font-family: "Raleway", sans-serif;
+  color: #7c7b7b;
+  font-size: 20px;
+  line-height: 1.6;
+  letter-spacing: 0px;
+  padding: 0 30px;
+  margin: 0 50px;
+}
+
+.card-image {
+  width: 100%;
+  height: 370px;
+  object-fit: cover;
+}
 </style>

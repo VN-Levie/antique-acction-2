@@ -7,7 +7,7 @@
 
       <div class="col-12 d-flex justify-content-center">
         <img
-          src="../../../../public/img/mt-1804-home-divider1.png"
+          src="/img/mt-1804-home-divider1.png"
           alt="divider1"
         />
       </div>
@@ -16,8 +16,6 @@
     <div class="Testimonial">
       <div class="container">
         <div class="divider"></div>
-        <div class="fas fa-quote-left fa-quote"></div>
-        <div class="fas fa-quote-right fa-quote"></div>
         <p class="content">{{ currentMessage.text }}</p>
         <div class="person">
           <div class="user-details">
@@ -74,6 +72,15 @@ export default {
 </script>
 
 <style>
+.title_team {
+  font-weight: 700;
+  font-style: normal;
+  font-family: "Libre Baskerville", serif;
+  color: #292929;
+  font-size: 55px;
+  line-height: 1.4;
+  letter-spacing: 0px;
+}
 .Testimonial-backgroud {
   background-image: url(/img/mt-1804-home-parallax1.jpg);
   background-position: top;
@@ -97,20 +104,6 @@ export default {
   margin: 20px auto;
   padding: 50px 80px;
   position: relative;
-}
-
-.fa-quote {
-  position: absolute;
-  font-size: 30px;
-  top: 70px;
-}
-
-.fa-quote-left {
-  left: 40px;
-}
-
-.fa-quote-right {
-  right: 40px;
 }
 
 .content {
@@ -146,10 +139,6 @@ export default {
 @media (max-width: 768px) {
   .container {
     padding: 20px 30px;
-  }
-
-  .fa-quote {
-    display: none;
   }
 }
 </style>

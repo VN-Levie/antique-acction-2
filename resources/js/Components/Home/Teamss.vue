@@ -5,7 +5,7 @@
         </div>
 
         <div class="col-12 d-flex justify-content-center">
-            <img src="../../../../public/img/mt-1804-home-divider1.png" alt="divider1" />
+            <img src="/img/mt-1804-home-divider1.png" alt="divider1" />
         </div>
     </div>
 
@@ -13,14 +13,14 @@
         <div class="column-team">
             <div class="card-team">
                 <div class="img-container">
-                    <img src="../../../../public/img/team1.jpg" alt="" />
+                    <img src="/img/team1.jpg" alt="" />
                 </div>
-                <h3>Tlee</h3>
+                <h3>Tlee</h3>F
                 <p>Design</p>
                 <div class="icons">
-                    <a href="#"> <font-awesome-icon :icon="['fab', 'facebook']" /> </a><a href="#"> <font-awesome-icon
-                            :icon="['fab', 'github']" /> </a><a href="#"> <font-awesome-icon :icon="['fass', 'envelope']" />
-                    </a>
+                    <a href="#"> <font-awesome-icon :icon="['fab', 'facebook']" /> </a>
+                    <a href="#"> <font-awesome-icon :icon="['fab', 'github']" /> </a>
+                    <a href="#"> <font-awesome-icon :icon="['fass', 'envelope']" /></a>
                 </div>
             </div>
         </div>
@@ -28,14 +28,14 @@
         <div class="column-team">
             <div class="card-team">
                 <div class="img-container">
-                    <img src="../../../../public/img/team1.jpg" alt="" />
+                    <img src="/img/team1.jpg" alt="" />
                 </div>
                 <h3>Chuong</h3>
                 <p>Design</p>
                 <div class="icons">
-                    <a href="#"> <font-awesome-icon :icon="['fab', 'facebook']" /> </a><a href="#"> <font-awesome-icon
-                            :icon="['fab', 'github']" /> </a><a href="#"> <font-awesome-icon :icon="['fass', 'envelope']" />
-                    </a>
+                    <a href="#"> <font-awesome-icon :icon="['fab', 'facebook']" /> </a>
+                    <a href="#"> <font-awesome-icon :icon="['fab', 'github']" /> </a>
+                    <a href="#"> <font-awesome-icon :icon="['fass', 'envelope']" /></a>
                 </div>
             </div>
         </div>
@@ -43,14 +43,14 @@
         <div class="column-team">
             <div class="card-team">
                 <div class="img-container">
-                    <img src="../../../../public/img/team1.jpg" alt="" />
+                    <img src="/img/team1.jpg" alt="" />
                 </div>
                 <h3>Duong</h3>
                 <p>Leader</p>
                 <div class="icons">
-                    <a href="#"> <font-awesome-icon :icon="['fab', 'facebook']" /> </a><a href="#"> <font-awesome-icon
-                            :icon="['fab', 'github']" /> </a><a href="#"> <font-awesome-icon :icon="['fass', 'envelope']" />
-                    </a>
+                    <a href="#"> <font-awesome-icon :icon="['fab', 'facebook']" /> </a>
+                    <a href="#"> <font-awesome-icon :icon="['fab', 'github']" /> </a>
+                    <a href="#"> <font-awesome-icon :icon="['fass', 'envelope']" /></a>
                 </div>
             </div>
         </div>
@@ -58,14 +58,14 @@
         <div class="column-team">
             <div class="card-team">
                 <div class="img-container">
-                    <img src="../../../../public/img/team1.jpg" alt="" />
+                    <img src="/img/team1.jpg" alt="" />
                 </div>
                 <h3>Vi</h3>
                 <p>VJ</p>
                 <div class="icons">
-                    <a href="#"> <font-awesome-icon :icon="['fab', 'facebook']" /> </a><a href="#"> <font-awesome-icon
-                            :icon="['fab', 'github']" /> </a><a href="#"> <font-awesome-icon :icon="['fass', 'envelope']" />
-                    </a>
+                    <a href="#"> <font-awesome-icon :icon="['fab', 'facebook']" /> </a>
+                    <a href="#"> <font-awesome-icon :icon="['fab', 'github']" /> </a>
+                    <a href="#"> <font-awesome-icon :icon="['fass', 'envelope']" /></a>
                 </div>
             </div>
         </div>
