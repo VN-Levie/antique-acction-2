@@ -1,22 +1,28 @@
 <template>
   <div class="Testimonial-backgroud">
-    <div class="row">
-      <div class="col-12 d-flex justify-content-center">
-        <span class="title_team">Testimonial</span>
-      </div>
-
-      <div class="col-12 d-flex justify-content-center">
-        <img
-          src="/img/mt-1804-home-divider1.png"
-          alt="divider1"
-        />
-      </div>
-    </div>
-
     <div class="Testimonial">
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+          <span class="title_team">Testimonial</span>
+        </div>
+
+        <div class="col-12 d-flex justify-content-center">
+          <img
+            src="../../../../public/img/mt-1804-home-divider1.png"
+            alt="divider1"
+          />
+        </div>
+      </div>
       <div class="container">
-        <div class="divider"></div>
-        <p class="content">{{ currentMessage.text }}</p>
+        <div class="quote-left">
+          <i class="fas fa-angle-left fa-quote" @click="rotateMessageleft()"></i>
+        </div>
+        <div class="quote-right">
+          <i class="fas fa-angle-right fa-quote" @click="rotateMessageright()"></i>
+        </div>
+        <div class="content-wrapper">
+          <p class="content">{{ currentMessage.text }}</p>
+        </div>
         <div class="person">
           <div class="user-details">
             <h4 class="username">{{ currentMessage.name }}</h4>
@@ -61,8 +67,14 @@ export default {
     setInterval(this.rotateMessage, 5000);
   },
   methods: {
-    rotateMessage() {
+    rotateMessageright() {
       this.currentIndex++;
+      if (this.currentIndex >= this.message.length) {
+        this.currentIndex = 0;
+      }
+    },
+    rotateMessageleft() {
+      this.currentIndex--;
       if (this.currentIndex >= this.message.length) {
         this.currentIndex = 0;
       }
@@ -72,15 +84,6 @@ export default {
 </script>
 
 <style>
-.title_team {
-  font-weight: 700;
-  font-style: normal;
-  font-family: "Libre Baskerville", serif;
-  color: #292929;
-  font-size: 55px;
-  line-height: 1.4;
-  letter-spacing: 0px;
-}
 .Testimonial-backgroud {
   background-image: url(/img/mt-1804-home-parallax1.jpg);
   background-position: top;
@@ -104,20 +107,36 @@ export default {
   margin: 20px auto;
   padding: 50px 80px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center; /* Center the content horizontally */
+}
+
+.quote-left {
+  position: absolute;
+  left: 40px;
+  top: 70px;
+  font-size: 30px;
+}
+
+.quote-right {
+  position: absolute;
+  right: 40px;
+  top: 70px;
+  font-size: 30px;
+}
+
+.content-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
 }
 
 .content {
   line-height: 28px;
-  color: antiquewhite;
-  justify-content: center;
-}
-
-.manage {
-  color: antiquewhite;
-}
-
-.username {
-  color: antiquewhite;
 }
 
 .person {
@@ -132,23 +151,13 @@ export default {
   margin: 12px 0;
 }
 
-.divider {
-  height: 5px;
-  width: 100%;
-  /* background-color: #fff; */
-  transform-origin: left;
-  animation: 8s linear infinite;
-}
-
-@keyframes rise {
-  0% {
-    transform: scaleX(0);
-  }
-}
-
 @media (max-width: 768px) {
   .container {
     padding: 20px 30px;
+  }
+  .quote-left,
+  .quote-right {
+    display: none;
   }
 }
 </style>

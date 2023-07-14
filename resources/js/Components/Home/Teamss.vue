@@ -1,185 +1,91 @@
 <template>
+  <div class="team">
     <div class="row">
-        <div class="col-12 d-flex justify-content-center">
-            <span class="title_team">Team</span>
-        </div>
+      <div class="col-12 d-flex justify-content-center">
+        <span class="title_team">Team</span>
+      </div>
 
-        <div class="col-12 d-flex justify-content-center">
-            <img src="/img/mt-1804-home-divider1.png" alt="divider1" />
-        </div>
+      <div class="col-12 d-flex justify-content-center">
+        <img
+          src="../../../../public/img/mt-1804-home-divider1.png"
+          alt="divider1"
+        />
+      </div>
     </div>
-
-    <div class="row-team">
-        <div class="column-team">
-            <div class="card-team">
-                <div class="img-container">
-                    <img src="/img/team1.jpg" alt="" />
-                </div>
-                <h3>Tlee</h3>
-                <p>Design</p>
-                <div class="icons">
-                    <a href="#"> <font-awesome-icon :icon="['fab', 'facebook']" /> </a>
-                    <a href="#"> <font-awesome-icon :icon="['fab', 'github']" /> </a>
-                    <a href="#"> <font-awesome-icon :icon="['fass', 'envelope']" /></a>
-                </div>
-            </div>
-        </div>
-        <!-- 2 -->
-        <div class="column-team">
-            <div class="card-team">
-                <div class="img-container">
-                    <img src="/img/team1.jpg" alt="" />
-                </div>
-                <h3>Chuong</h3>
-                <p>Design</p>
-                <div class="icons">
-                    <a href="#"> <font-awesome-icon :icon="['fab', 'facebook']" /> </a>
-                    <a href="#"> <font-awesome-icon :icon="['fab', 'github']" /></a>
-                    <a href="#"> <font-awesome-icon :icon="['fass', 'envelope']" /></a>
-                </div>
-            </div>
-        </div>
-        <!-- 3 -->
-        <div class="column-team">
-            <div class="card-team">
-                <div class="img-container">
-                    <img src="/img/team1.jpg" alt="" />
-                </div>
-                <h3>Duong</h3>
-                <p>Leader</p>
-                <div class="icons">
-                    <a href="#"> <font-awesome-icon :icon="['fab', 'facebook']" /> </a>
-                    <a href="#"> <font-awesome-icon :icon="['fab', 'github']" /> </a>
-                    <a href="#"> <font-awesome-icon :icon="['fass', 'envelope']" /></a>
-                </div>
-            </div>
-        </div>
-        <!-- 4 -->
-        <div class="column-team">
-            <div class="card-team">
-                <div class="img-container">
-                    <img src="/img/team1.jpg" alt="" />
-                </div>
-                <h3>Vi</h3>
-                <p>VJ</p>
-                <div class="icons">
-                    <a href="#"> <font-awesome-icon :icon="['fab', 'facebook']" /> </a>
-                    <a href="#"> <font-awesome-icon :icon="['fab', 'github']" /> </a>
-                    <a href="#"> <font-awesome-icon :icon="['fass', 'envelope']" /></a>
-                </div>
-            </div>
-        </div>
+    <div class="team-container">
+      <div class="team-card">
+        <div class="team-card-img team-card-1"></div>
+        <h2>Christian Hall</h2>
+        <h4>Antique Furniture Master</h4>
+      </div>
+      <div class="team-card">
+        <div class="team-card-img team-card-2"></div>
+        <h2 >Eugene Rivera</h2>
+        <h4>Gilder</h4>
+      </div>
+      <div class="team-card">
+        <div class="team-card-img team-card-3"></div>
+        <h2 >John Sanders</h2>
+        <h4>Bookbinder</h4>
+      </div>
     </div>
+  </div>
 </template>
   
-<script>
+  <script>
 export default {
-    setup() {
-        return {};
-    },
+  setup() {
+    return {};
+  },
 };
 </script>
   
-<style>
-.title_team {
-    font-weight: 700;
-    font-style: normal;
-    font-family: "Libre Baskerville", serif;
-    color: #292929;
-    font-size: 55px;
-    line-height: 1.4;
-    letter-spacing: 0px;
+  <style>
+.team {
+  box-sizing: border-box;
+  padding: 50px 0 0 0;
+  margin: 0;
 }
 
-.row-team {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 2em 1em;
-    text-align: center;
-    box-sizing: border-box;
+.team-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-wrap: wrap;
 }
 
-.column-team {
-    width: 100%;
-    padding: 0.5em 0;
+.team-card {
+  width: 370px;
+  height: 505px;
+  margin: 10px 0 100px 0;
 }
 
-.card-team {
-    box-shadow: 0 0 2.2em rgba(25, 0, 58, 0.1);
-    padding: 3.5em 1em;
-    border-radius: 0.6em;
-    color: #10ddc2;
-    cursor: pointer;
-    transition: 0.3s;
-    background-color: #ffffff;
+.team-card h2 {
+  font-weight: 600;
+  font-style: normal;
+  font-family: "Montserrat", sans-serif;
+  color: #292929;
+  font-size: 28px;
+  line-height: 1.4;
+  letter-spacing: 4px;
 }
 
-.card-team .img-container {
-    width: 8em;
-    height: 8em;
-    background-color: #1de0a6;
-    padding: 0.5em;
-    border-radius: 50%;
-    margin: 0 auto 2em auto;
+
+.team-card-img {
+  height: 440px;
+  margin: 20px;
+  background-size: cover;
 }
 
-.card-team img {
-    width: 100%;
-    border-radius: 50%;
+.team-card-1 {
+  background-image: url(img/team1.jpg);
 }
 
-.card-team h3 {
-    font-weight: 500;
+.team-card-2 {
+  background-image: url(img/team3.jpg);
 }
-
-.card-team p {
-    font-weight: 300;
-    text-transform: uppercase;
-    margin: 0.5em 0 2em 0;
-    letter-spacing: 2px;
+.team-card-3 {
+  background-image: url(img/team2.jpg);
 }
-
-.icons {
-    width: 50%;
-    min-width: 180px;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-}
-
-.card-team a {
-    text-decoration: none;
-    color: inherit;
-    font-size: 1.4em;
-}
-
-.card-team:hover {
-    background: linear-gradient(#bae718, #c8f309);
-    color: #ffffff;
-}
-
-.card-team:hover .img-container {
-    transform: scale(1.15);
-}
-
-@media screen and (min-width: 768px) {
-    ::selection {
-        padding: 1em 7em;
-    }
-}
-
-@media screen and (min-width: 992px) {
-    ::selection {
-        padding: 1em;
-    }
-
-    .card-team {
-        padding: 5em 1em;
-    }
-
-    .column-team {
-        flex: 0 0 25%;
-        max-width: 25%;
-        padding: 0 1em;
-    }
-}</style>
+</style>
+  
