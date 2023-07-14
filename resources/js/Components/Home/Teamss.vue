@@ -47,6 +47,15 @@ export default {
   margin: 0;
 }
 
+.title_team {
+  font-weight: 700;
+  font-style: normal;
+  font-family: "Libre Baskerville", serif;
+  color: #292929;
+  font-size: 55px;
+  line-height: 1.4;
+}
+
 .team-container {
   display: flex;
   justify-content: center;

@@ -2,7 +2,7 @@
   <div class="services">
     <div class="row">
       <div class="col-12 d-flex justify-content-center">
-        <span class="title_team">services</span>
+        <span class="title_services">services</span>
       </div>
 
       <div class="col-12 d-flex justify-content-center">
@@ -46,6 +46,15 @@ export default {
   box-sizing: border-box;
   padding: 50px 0 0 0;
   margin: 0;
+}
+
+.title_services {
+  font-weight: 700;
+  font-style: normal;
+  font-family: "Libre Baskerville", serif;
+  color: #292929;
+  font-size: 55px;
+  line-height: 1.4;
 }
 
 .services-container {

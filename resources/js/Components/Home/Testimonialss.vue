@@ -3,7 +3,7 @@
     <div class="Testimonial">
       <div class="row">
         <div class="col-12 d-flex justify-content-center">
-          <span class="title_team">Testimonial</span>
+          <span class="title_Testimonial">Testimonial</span>
         </div>
 
         <div class="col-12 d-flex justify-content-center">
@@ -13,12 +13,12 @@
           />
         </div>
       </div>
-      <div class="container">
+      <div class="testimonial-content">
         <div class="quote-left">
-          <i class="fas fa-angle-left fa-quote" @click="rotateMessageleft()"></i>
+          <i class="fas fa-angle-left fa-quote" @click="rotateMessage()"></i>
         </div>
         <div class="quote-right">
-          <i class="fas fa-angle-right fa-quote" @click="rotateMessageright()"></i>
+          <i class="fas fa-angle-right fa-quote" @click="rotateMessagea()"></i>
         </div>
         <div class="content-wrapper">
           <p class="content">{{ currentMessage.text }}</p>
@@ -64,32 +64,45 @@ export default {
     },
   },
   mounted() {
-    setInterval(this.rotateMessage, 5000);
+    setInterval(this.rotateMessage, 3000);
   },
   methods: {
-    rotateMessageright() {
+    rotateMessage() {
       this.currentIndex++;
       if (this.currentIndex >= this.message.length) {
         this.currentIndex = 0;
       }
     },
-    rotateMessageleft() {
+    rotateMessagea() {
       this.currentIndex--;
-      if (this.currentIndex >= this.message.length) {
-        this.currentIndex = 0;
+      if (this.currentIndex <= this.message.length) {
+        this.currentIndex = this.message.length - 1;
       }
     },
   },
 };
 </script>
 
+
+
 <style>
 .Testimonial-backgroud {
-  background-image: url(/img/mt-1804-home-parallax1.jpg);
+  padding-top: 70px;
+  background-image: url(/img/mt-1804-home-parallax2.jpg);
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.title_Testimonial {
+  font-weight: 700;
+  font-style: normal;
+  font-family: "Libre Baskerville", serif;
+  color: #292929;
+  font-size: 55px;
+  line-height: 1.4;
+}
+
 .Testimonial {
   margin: 0;
   padding: 0;
@@ -103,7 +116,7 @@ export default {
   padding: 10px;
 }
 
-.container {
+.testimonial-content {
   margin: 20px auto;
   padding: 50px 80px;
   position: relative;
@@ -119,6 +132,7 @@ export default {
   left: 40px;
   top: 70px;
   font-size: 30px;
+  background-color: aqua;
 }
 
 .quote-right {
@@ -126,6 +140,8 @@ export default {
   right: 40px;
   top: 70px;
   font-size: 30px;
+  background-color: aqua;
+
 }
 
 .content-wrapper {
@@ -152,7 +168,7 @@ export default {
 }
 
 @media (max-width: 768px) {
-  .container {
+  .testimonial-content {
     padding: 20px 30px;
   }
   .quote-left,
@@ -160,4 +176,17 @@ export default {
     display: none;
   }
 }
+/* .divider {
+  height: 5px;
+  width: 100%;
+  background-color: #fff;
+  transform-origin: left;
+  animation: rise 10s linear infinite;
+} */
+
+/* @keyframes rise {
+  0% {
+    transform: scaleX(0);
+  }
+} */
 </style>
