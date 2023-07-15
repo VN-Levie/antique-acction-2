@@ -156,8 +156,8 @@ export default {
 .work-card {
   width: 300px;
   height: 415px;
-  margin: 30px 0 30px 0;
-  background-color: #f3f3f3; /* Set a background color if you want to display something behind the image */
+  margin: 30px 0;
+  background-color: #f3f3f3;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -198,23 +198,23 @@ export default {
     line-height: 1.4;
   }
   .work-container {
-    max-width: 100%; /* Đặt chiều rộng tối đa của work-container là 100% */
-    padding: 15px; /* Giảm lề cho các màn hình nhỏ hơn */
+    max-width: 100%; 
+    padding: 15px; 
   }
 
   .work-card {
-    margin: 15px 0; /* Điều chỉnh khoảng cách giữa các card */
-    align-items: center; /* Căn chỉnh hình ảnh và tiêu đề theo chiều ngang */
+    margin: 15px 0; 
+    align-items: center;
     justify-content: center;
   }
 
   .work-card h2 {
-    font-size: 16px; /* Giảm cỡ chữ cho các màn hình nhỏ hơn */
-    margin-top: 10px; /* Điều chỉnh khoảng cách giữa hình ảnh và tiêu đề */
+    font-size: 16px; 
+    margin-top: 10px; 
   }
 
   .work-card-img {
-    margin-bottom: auto; /* Điều chỉnh khoảng cách giữa hình ảnh và tiêu đề */
+    margin-bottom: auto;
   }
 }
 .ten {

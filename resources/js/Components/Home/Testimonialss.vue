@@ -76,7 +76,7 @@ export default {
     rotateMessagea() {
       this.currentIndex--;
       if (this.currentIndex <= this.message.length) {
-        this.currentIndex = this.message.length - 1;
+        this.currentIndex = 0;
       }
     },
   },
