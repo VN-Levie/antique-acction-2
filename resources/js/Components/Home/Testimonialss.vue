@@ -1,18 +1,18 @@
 <template>
   <div class="Testimonial-backgroud">
-    <div class="Testimonial">
-      <div class="row">
-        <div class="col-12 d-flex justify-content-center">
-          <span class="title_Testimonial">Testimonial</span>
-        </div>
-
-        <div class="col-12 d-flex justify-content-center">
-          <img
-            src="../../../../public/img/mt-1804-home-divider1.png"
-            alt="divider1"
-          />
-        </div>
+    <div class="row">
+      <div class="col-12 d-flex justify-content-center">
+        <span class="title_Testimonial">Testimonial</span>
       </div>
+
+      <div class="col-12 d-flex justify-content-center">
+        <img
+          src="../../../../public/img/mt-1804-home-divider1.png"
+          alt="divider1"
+        />
+      </div>
+    </div>
+    <div class="Testimonial">
       <div class="testimonial-content">
         <div class="quote-left">
           <i class="fas fa-angle-left fa-quote" @click="rotateMessage()"></i>
@@ -98,9 +98,9 @@ export default {
   font-weight: 700;
   font-style: normal;
   font-family: "Libre Baskerville", serif;
-  color: #292929;
   font-size: 55px;
   line-height: 1.4;
+  color: white;
 }
 
 .Testimonial {
@@ -114,11 +114,11 @@ export default {
   justify-content: center;
   overflow: hidden;
   padding: 10px;
+  color: white;
 }
 
 .testimonial-content {
-  margin: 20px auto;
-  padding: 50px 80px;
+  padding: 40px 80px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -141,7 +141,6 @@ export default {
   top: 70px;
   font-size: 30px;
   background-color: aqua;
-
 }
 
 .content-wrapper {
@@ -153,6 +152,16 @@ export default {
 
 .content {
   line-height: 28px;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 850px;
+}
+
+.username {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 400px;
+  line-height: 20px;
+  font-size: 32px;
+  padding-bottom: 20px;
 }
 
 .person {
@@ -169,12 +178,23 @@ export default {
 
 @media (max-width: 768px) {
   .testimonial-content {
-    padding: 20px 30px;
+    padding: 10px 30px;
   }
   .quote-left,
   .quote-right {
     display: none;
   }
+
+  .content {
+    line-height: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 350px;
+  }
+
+  .username {
+  width: 300px;
+  font-size: 20px;
+}
 }
 /* .divider {
   height: 5px;

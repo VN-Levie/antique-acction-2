@@ -1,17 +1,14 @@
 <template>
-  <div class="team">
-    <div class="row">
-      <div class="col-12 d-flex justify-content-center">
-        <span class="title_team">Team</span>
-      </div>
-
-      <div class="col-12 d-flex justify-content-center">
-        <img
-          src="../../../../public/img/mt-1804-home-divider1.png"
-          alt="divider1"
-        />
-      </div>
+  <div class="row">
+    <div class="col-12 d-flex justify-content-center">
+      <span class="title_team">Team</span>
     </div>
+
+    <div class="col-12 d-flex justify-content-center">
+      <img src="/img/mt-1804-home-divider1.png" alt="divider1" />
+    </div>
+  </div>
+  <div class="team">
     <div class="team-container">
       <div class="team-card">
         <div class="team-card-img team-card-1"></div>
@@ -20,12 +17,12 @@
       </div>
       <div class="team-card">
         <div class="team-card-img team-card-2"></div>
-        <h2 >Eugene Rivera</h2>
+        <h2>Eugene Rivera</h2>
         <h4>Gilder</h4>
       </div>
       <div class="team-card">
         <div class="team-card-img team-card-3"></div>
-        <h2 >John Sanders</h2>
+        <h2>John Sanders</h2>
         <h4>Bookbinder</h4>
       </div>
     </div>
@@ -43,7 +40,7 @@ export default {
   <style>
 .team {
   box-sizing: border-box;
-  padding: 50px 0 0 0;
+  padding: 20px 0 0 0;
   margin: 0;
 }
 
@@ -54,6 +51,7 @@ export default {
   color: #292929;
   font-size: 55px;
   line-height: 1.4;
+  margin-top: 20px;
 }
 
 .team-container {
@@ -79,7 +77,6 @@ export default {
   letter-spacing: 4px;
 }
 
-
 .team-card-img {
   height: 440px;
   margin: 20px;
@@ -95,6 +92,20 @@ export default {
 }
 .team-card-3 {
   background-image: url(img/team2.jpg);
+}
+
+@media (max-width: 768px) {
+  .title_team {
+    font-weight: 300px;
+    font-size: 30px;
+  }
+  .team img {
+    width: 180px;
+  }
+
+  .team-card {
+    margin: 10px 0 40px 0;
+  }
 }
 </style>
   

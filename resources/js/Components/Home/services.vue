@@ -6,10 +6,7 @@
       </div>
 
       <div class="col-12 d-flex justify-content-center">
-        <img
-          src="../../../../public/img/mt-1804-home-divider1.png"
-          alt="divider1"
-        />
+        <img src="/img/mt-1804-home-divider1.png" alt="divider1" />
       </div>
     </div>
     <div class="services-container">
@@ -67,7 +64,7 @@ export default {
 .services-card {
   width: 300px;
   height: 415px;
-  margin: 10px 0 30px 0;
+  margin: 30px 0 30px 0;
 }
 
 .services-card h2 {
@@ -99,6 +96,21 @@ export default {
 }
 .services-card-4 {
   background-image: url(img/services4.jpg);
+}
+@media (max-width: 768px) {
+  .title_services {
+    font-weight: 400px;
+    font-size: 40px;
+  }
+  .services img {
+    width: 200px;
+  }
+  .services-card {
+    margin: 10px 0 10px 0;
+  }
+  .services {
+  padding: 30px 0 0 0;
+}
 }
 </style>
   
