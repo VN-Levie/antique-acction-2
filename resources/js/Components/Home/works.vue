@@ -21,10 +21,12 @@
 <label for="tab2" class="tabs_label">Popular</label>
 <div class="tab-content">
   <div class="col-12 d-flex justify-content-center">
+    <div>
+
   <img  src="/img/mt-1804-home-works1.png" alt="">
-  <img src="/img/mt-1804-home-works1.png" alt="">
-  <img src="/img/mt-1804-home-works1.png" alt="">
-  <img src="/img/mt-1804-home-works1.png" alt="">
+   <p class="ten">French Empire figural</p>
+</div>    
+  
 </div>
 </div>
   </div>
@@ -89,5 +91,8 @@ cursor: pointer;
 
 .tabs_radio:checked+ .tabs_label+ .tab-content{
   display: initial;
+}
+.ten{
+  padding-bottom:50px;
 }
 </style>
