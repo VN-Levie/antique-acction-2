@@ -84,14 +84,6 @@ export default {
       (this.toggoArrivals = false), (this.toggoPopular = true);
     },
   },
-  computed: {
-    objClass: function () {
-      return {
-        toggoArrivals: true,
-        toggoPopular: false,
-      };
-    },
-  },
 };
 </script>
 
@@ -225,7 +217,7 @@ export default {
     margin-bottom: auto; /* Điều chỉnh khoảng cách giữa hình ảnh và tiêu đề */
   }
 }
-.ten{
-  padding-bottom:50px;
+.ten {
+  padding-bottom: 50px;
 }
 </style>
