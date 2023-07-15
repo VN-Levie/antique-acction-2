@@ -225,4 +225,7 @@ export default {
     margin-bottom: auto; /* Điều chỉnh khoảng cách giữa hình ảnh và tiêu đề */
   }
 }
+.ten{
+  padding-bottom:50px;
+}
 </style>
