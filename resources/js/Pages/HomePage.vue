@@ -6,8 +6,9 @@ import adsbar from "@/Components/Home/Adsbars.vue";
 import works from "@/Components/Home/works.vue";
 import services from "@/Components/Home/services.vue";
 import testimonials from "@/Components/Home/Testimonialss.vue";
-// import Team from "@/Components/Home/Teamss.vue";
+import Team from "@/Components/Home/Teamss.vue";
 import contacts from "@/Components/Home/ContactsUss.vue";
+import logo from "@/Components/Home/logo.vue";
 </script>
 
 <template>
@@ -19,6 +20,7 @@ import contacts from "@/Components/Home/ContactsUss.vue";
     <services />
     <testimonials />
     <Team />
+    <logo/>
     <contacts />
   </HomeLayout>
 </template>

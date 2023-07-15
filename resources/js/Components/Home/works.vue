@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-12 d-flex justify-content-center">
-      <span class="title_team"> Our Last Work</span>
+      <span class="title_word"> Our Last Work</span>
     </div>
     <div class="col-12 d-flex justify-content-center">
       <img src="/img/mt-1804-home-divider1.png" alt="divider1" />
@@ -47,7 +47,7 @@ export default {
 
 <style>
 
-.title_team {
+.title_word {
   font-weight: 700;
   font-style: normal;
   font-family: "Libre Baskerville", serif;

@@ -9,34 +9,54 @@
         <h2 class="text-center moto-text_system_5">
           Contact Us
         </h2>
+
         <div class="moto-widget-image moto-preset-default moto-align-center moto-spacing-top-small top-spacing-marin">
           <span class="moto-widget-image-link margin-top-logo-about">
             <img src="/img/mt-1804-home-divider2.png" />
           </span>
         </div>
+        <p class="text-center text-edit">If you have any questions related to our antique restoration services, please,
+          don`t hesitate to contact us using the information below.</p>
         <div class=" container-fluid col-sm-1 col-sm-10">
-
           <div class="form">
             <div class="contact-info">
-              <h3 class="title">Đấu giá - Khám phá giá trị thật của mọi vật</h3>
-              <p class="text-form">
-                If you have any questions related to our antique restoration services, please, don`t hesitate to contact
-                us using the information below.
-              </p>
-
-
               <div class="info">
                 <div class="information">
-                  <img src="../../../../public/img/address/location.png" class="icon" alt>
-                  <p>391 Nam Ky Khoi Nghia, Quan 3, TPHCM</p>
+                  <img src="../../../../public/img/address/location.png" class="icon icon-fix" alt>
+                  <div class="row">
+                    <div>
+                      <h1 class="h1-About-Us">Adress</h1> <br>
+                      <p class="p-rewrite">391 Nam Ky Khoi Nghia, Quan 3, TPHCM</p>
+                    </div>
+                  </div>
+
                 </div>
                 <div class="information">
-                  <img src="../../../../public/img/address/email.png" class="icon" alt="" />
-                  <p>auction@gmail.com</p>
+                  <img src="../../../../public/img/address/email.png" class="icon icon-fix" alt="" />
+                  <div class="row">
+                    <div>
+                      <h1 class="h1-About-Us">Email</h1> <br>
+                      <p class="p-rewrite">makecolor@gmail.com</p>
+                    </div>
+                  </div>
                 </div>
                 <div class="information">
-                  <img src="../../../../public/img/address/phone.png" class="icon" alt="" />
-                  <p>123-456-789</p>
+                  <img src="../../../../public/img/address/phone.png" class="icon icon-fix" alt="" />
+                  <div class="row">
+                    <div>
+                      <h1 class="h1-About-Us">Phone</h1> <br>
+                      <p class="p-rewrite">123-456-789</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="information">
+                  <img src="../../../../public/img/address/clock.png" class="icon icon-fix" alt="" />
+                  <div class="row">
+                    <div>
+                      <h1 class="h1-About-Us">Openning</h1> <br>
+                      <p class="p-rewrite">Mon-Fri: 9am-6pm; Sun: 10am-1pm</p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -71,18 +91,12 @@
                 </div>
                 <div class="input-container">
                   <input type="email" name="email" class="input" placeholder="Email" />
-
-                  <span>Email</span>
                 </div>
                 <div class="input-container">
                   <input type="tel" name="phone" class="input" placeholder="Phone" />
-
-                  <span>Phone</span>
                 </div>
                 <div class="input-container textarea">
                   <textarea name="message" placeholder="Message" class="input"></textarea>
-
-                  <span>Message</span>
                 </div>
                 <input type="submit" value="Send" class="btn" />
               </form>
@@ -110,8 +124,28 @@
   letter-spacing: 0px;
 }
 
+.text-edit {
+  margin-top: 50px;
+  font-size: 18px;
+  color: rgb(172, 170, 170);
+
+}
+
 .top-spacing-marin {
   margin-top: -12px;
+}
+
+.h1-About-Us {
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 24px;
+}
+
+.p-rewrite {
+  font-size: 20px;
+  margin-left: 24px;
+  margin-top: -23px;
+  margin-bottom: 30px;
 }
 
 .margin-top-logo-about {
@@ -121,13 +155,13 @@
 input::placeholder {
   font-weight: bold;
 
-  color: rgb(255, 255, 255);
+  color: rgb(85, 82, 82);
 }
 
 textarea::placeholder {
   font-weight: bold;
 
-  color: rgb(255, 255, 255);
+  color: rgb(85, 82, 82);
 }
 
 .form {
@@ -135,7 +169,6 @@ textarea::placeholder {
   margin-top: 38px;
   background-color: #fff;
   border-radius: 10px;
-  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   overflow: hidden;
   display: grid;
@@ -143,7 +176,7 @@ textarea::placeholder {
 }
 
 .contact-form {
-  background-color: #939643;
+  background-color: #ffffff;
   position: relative;
 }
 
@@ -152,7 +185,7 @@ textarea::placeholder {
   position: absolute;
   width: 26px;
   height: 26px;
-  background-color: #939643;
+  background-color: #ffffff;
   transform: rotate(45deg);
   top: 50px;
   left: -13px;
@@ -166,28 +199,28 @@ form {
 }
 
 .input-container {
+  background-color: #eaeaea;
   position: relative;
   margin: 1rem 0;
 }
 
 .input {
+  border-width: 0px;
   width: 100%;
   outline: none;
-  border: 3px solid #f3f3f3;
   background: none;
   padding: 0.6rem 1.2rem;
-  color: #ffffff;
+  color: #000000;
   font-weight: 500;
   font-size: 0.95rem;
   letter-spacing: 0.5px;
-  border-radius: 25px;
   transition: 0.3s;
 }
 
 textarea.input {
   padding: 0.8rem 1.2rem;
   min-height: 150px;
-  border-radius: 22px;
+
   resize: none;
   overflow-y: auto;
 }
@@ -214,11 +247,11 @@ textarea.input {
 
 .btn {
   padding: 0.6rem 1.3rem;
-  background-color: #fff;
+  background-color: #f3c95c;
   border: 2px solid #fafafa;
   font-size: 0.95rem;
   font-weight: 500;
-  color: #939643;
+  color: #000000;
   line-height: 1;
   border-radius: 25px;
   outline: none;
@@ -229,8 +262,8 @@ textarea.input {
 
 .btn:hover {
   background-color: transparent;
-  color: #ffffff;
-  border: 2px solid #fafafa;
+  color: #000000;
+  border: 2px solid #f3c95c;
 }
 
 .input-container span {
@@ -312,8 +345,8 @@ textarea.input {
 }
 
 .icon {
-  width: 28px;
-  margin-right: 0.7rem;
+  width: 50px;
+  padding-bottom: 30px;
   color: #939643;
 }
 
@@ -346,17 +379,7 @@ textarea.input {
   transform: scale(1.05);
 }
 
-.contact-info:before {
-  content: "";
-  position: absolute;
-  width: 110px;
-  height: 100px;
-  border: 22px solid #939643;
-  border-radius: 50%;
-  bottom: -77px;
-  right: 50px;
-  opacity: 0.3;
-}
+
 
 .big-circle {
   position: absolute;

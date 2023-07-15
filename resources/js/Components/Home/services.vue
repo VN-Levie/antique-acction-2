@@ -1,131 +1,104 @@
 <template>
-  <div
-    id="services"
-    class="moto-widget moto-widget-block moto-spacing-top-large moto-spacing-right-auto moto-spacing-bottom-large moto-spacing-left-auto"
-  >
-    <a class="moto-anchor" name="services"></a>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="moto-cell col-sm-12">
-          <div
-            class="moto-widget moto-widget-row row-fixed moto-spacing-top-auto moto-spacing-right-auto moto-spacing-bottom-auto moto-spacing-left-auto"
-          >
-            <div class="container-fluid">
-              <div class="row" data-container="container">
-                <div
-                  class="moto-widget moto-widget-row__column moto-cell col-sm-12 moto-spacing-top-auto moto-spacing-right-auto moto-spacing-bottom-auto moto-spacing-left-auto"
-                >
-                  <div
-                    class="moto-widget moto-widget-text moto-preset-default moto-spacing-top-auto moto-spacing-right-auto moto-spacing-bottom-small moto-spacing-left-auto"
-                  >
-                    <div
-                      class="moto-widget-text-content moto-widget-text-editable"
-                    >
-                      <p style="text-align: center" class="moto-text_system_8">
-                        WHAT WE OFFER
-                      </p>
-                      <h2 style="text-align: center" class="moto-text_system_5">
-                        Our Services
-                      </h2>
-                    </div>
-                  </div>
+  <div class="services">
+    <div class="row">
+      <div class="col-12 d-flex justify-content-center">
+        <span class="title_services">services</span>
+      </div>
 
-                  <div
-                    class="moto-widget moto-widget-image moto-widget_with-deferred-content moto-preset-default moto-align-center moto-spacing-top-small moto-spacing-right-auto moto-spacing-bottom-auto moto-spacing-left-auto"
-                  >
-                    <span class="moto-widget-image-link">
-                      <img
-                        src="/img/mt-1804-home-divider2.png"
-                        class="moto-widget-image-picture moto-widget-deferred-content lazyload"
-                      />
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="moto-widget moto-widget-row row-fixed moto-spacing-top-medium moto-spacing-right-auto moto-spacing-bottom-auto moto-spacing-left-auto"
-          >
-            <div class="container-fluid">
-              <div class="row">
-                <div
-                  class="moto-widget moto-widget-row__column moto-cell col-sm-1 moto-spacing-top-auto moto-spacing-right-auto moto-spacing-bottom-auto moto-spacing-left-auto"
-                ></div>
-
-                <div
-                  class="moto-widget moto-widget-row__column moto-cell col-sm-10 moto-spacing-top-auto moto-spacing-right-auto moto-spacing-bottom-auto moto-spacing-left-auto"
-                >
-                  <div
-                    class="moto-widget moto-widget-text moto-preset-default moto-spacing-top-auto moto-spacing-right-auto moto-spacing-bottom-auto moto-spacing-left-auto"
-                  >
-                    <div
-                      class="moto-widget-text-content moto-widget-text-editable"
-                    >
-                      <p style="text-align: center" class="moto-text_system_9">
-                        Our services include furniture refinishing and
-                        restoration; oil painting cleaning, touch up and
-                        varnishing; antique conservation; restoration of family
-                        heirlooms.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div
-                  class="moto-widget moto-widget-row__column moto-cell col-sm-1 moto-spacing-top-auto moto-spacing-right-auto moto-spacing-bottom-auto moto-spacing-left-auto"
-                ></div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="moto-widget moto-widget-row row-fixed moto-spacing-top-auto moto-spacing-right-auto moto-spacing-bottom-auto moto-spacing-left-auto"
-          >
-            <div class="container-fluid">
-              <div class="row">
-                <div
-                  class="moto-widget moto-widget-row__column moto-cell col-sm-3 moto-spacing-top-auto moto-spacing-right-auto moto-spacing-bottom-auto moto-spacing-left-auto"
-                >
-                  <div
-                    class="moto-widget moto-widget-image moto-widget_with-deferred-content moto-preset-default moto-align-center moto-spacing-top-medium moto-spacing-right-auto moto-spacing-bottom-auto moto-spacing-left-auto"
-                  >
-                    <span class="moto-widget-image-link">
-                      <img
-                        src="/img/mt-1804-home-services1.jpg"
-                        class="moto-widget-image-picture moto-widget-deferred-content lazyload"
-                      />
-                    </span>
-                  </div>
-                  <div
-                    class="moto-widget moto-widget-text moto-preset-default moto-spacing-top-small moto-spacing-right-auto moto-spacing-bottom-auto moto-spacing-left-auto"
-                  >
-                    <div
-                      class="moto-widget-text-content moto-widget-text-editable"
-                    >
-                      <h3 style="text-align: center" class="moto-text_system_7">
-                        Custom Finishing
-                      </h3>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="col-12 d-flex justify-content-center">
+        <img
+          src="../../../../public/img/mt-1804-home-divider1.png"
+          alt="divider1"
+        />
+      </div>
+    </div>
+    <div class="services-container">
+      <div class="services-card">
+        <div class="services-card-img services-card-1"></div>
+        <h2 class="title_services">Custom Finishing</h2>
+      </div>
+      <div class="services-card">
+        <div class="services-card-img services-card-2"></div>
+        <h2>Furniture Repair</h2>
+      </div>
+      <div class="services-card">
+        <div class="services-card-img services-card-3"></div>
+        <h2 class="title_services">Furniture Refinishing</h2>
+      </div>
+      <div class="services-card">
+        <div class="services-card-img services-card-4"></div>
+        <h2 class="title_services">Reproductions</h2>
       </div>
     </div>
   </div>
 </template>
-
-<script>
+  
+  <script>
 export default {
-  name: "#services",
   setup() {
     return {};
   },
 };
 </script>
+  
+  <style>
+.services {
+  box-sizing: border-box;
+  padding: 50px 0 0 0;
+  margin: 0;
+}
 
-<style>
+.title_services {
+  font-weight: 700;
+  font-style: normal;
+  font-family: "Libre Baskerville", serif;
+  color: #292929;
+  font-size: 55px;
+  line-height: 1.4;
+}
+
+.services-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.services-card {
+  width: 300px;
+  height: 415px;
+  margin: 10px 0 30px 0;
+}
+
+.services-card h2 {
+  font-weight: 600;
+  font-style: normal;
+  font-family: "Montserrat", sans-serif;
+  color: #292929;
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: 4px;
+}
+
+.services-card-img {
+  width: 270px;
+  height: 320px;
+  margin: 20px 5px;
+  background-size: cover;
+}
+
+.services-card-1 {
+  background-image: url(img/services1.jpg);
+}
+
+.services-card-2 {
+  background-image: url(img/services3.jpg);
+}
+.services-card-3 {
+  background-image: url(img/services2.jpg);
+}
+.services-card-4 {
+  background-image: url(img/services4.jpg);
+}
 </style>
+  
