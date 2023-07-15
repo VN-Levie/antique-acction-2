@@ -74,7 +74,6 @@ export default {
   color: #292929;
   font-size: 28px;
   line-height: 1.4;
-  letter-spacing: 4px;
 }
 
 .team-card-img {
