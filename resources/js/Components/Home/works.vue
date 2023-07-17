@@ -2,7 +2,7 @@
   <div class="work" id="work">
     <div class="row">
       <div class="col-12 d-flex justify-content-center">
-        <span class="title_word"> Our Last Work</span>
+        <span class="title_word">Our Last Work</span>
       </div>
       <div class="col-12 d-flex justify-content-center">
         <img

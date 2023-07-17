@@ -7,7 +7,7 @@
 
       <div class="col-12 d-flex justify-content-center">
         <img
-          src="../../../../public/img/mt-1804-home-divider1.png"
+          src="/img/mt-1804-home-divider1.png"
           alt="divider1"
         />
       </div>
@@ -19,6 +19,7 @@
         </div>
         <div class="quote-right">
           <i class="fas fa-angle-right fa-quote" @click="rotateMessagea()"></i>
+          <i class="fa-solid fa-chevron-left"></i>
         </div>
         <div class="content-wrapper">
           <p class="content">{{ currentMessage.text }}</p>
