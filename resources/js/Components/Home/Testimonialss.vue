@@ -12,10 +12,10 @@
     <div class="Testimonial">
       <div class="testimonial-content">
         <div class="quote-left">
-          <i class="fas fa-angle-left fa-quote" @click="rotateMessage()"></i>
+          <i class="fas fa-angle-left fa-quote" @click="rotateMessageright()"></i>
         </div>
         <div class="quote-right">
-          <i class="fas fa-angle-right fa-quote" @click="rotateMessagea()"></i>
+          <i class="fas fa-angle-right fa-quote" @click="rotateMessageleft()"></i>
           <i class="fa-solid fa-chevron-left"></i>
         </div>
         <div class="content-wrapper">
@@ -50,17 +50,17 @@ export default {
     },
   },
   mounted() {
-    setInterval(this.rotateMessage, 3000);
+    setInterval(this.rotateMessageleft, 3000);
     this.TestimonialApi();
   },
   methods: {
-    rotateMessage() {
+    rotateMessageleft() {
       this.currentIndex++;
       if (this.currentIndex >= this.message.length) {
         this.currentIndex = 0;
       }
     },
-    rotateMessagea() {
+    rotateMessageright() {
       this.currentIndex--;
       if (this.currentIndex < 0) {
         this.currentIndex = this.message.length - 1;
