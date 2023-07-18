@@ -42,7 +42,6 @@ export default {
     return {
       message: [],
       currentIndex: 0,
-      loading: true,
     };
   },
   computed: {
@@ -72,11 +71,9 @@ export default {
         .get("/api/data/Testimonial")
         .then((response) => {
           this.message = response.data;
-          this.loading = false;
         })
         .catch((error) => {
           console.error(error);
-          this.loading = false;
         });
     },
   },

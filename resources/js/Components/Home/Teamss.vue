@@ -33,7 +33,6 @@ export default {
   data() {
     return {
       teamMembers: [],
-      loading: true, // Thêm biến loading vào data để hiển thị trạng thái tải dữ liệu
     };
   },
   mounted() {
@@ -45,11 +44,9 @@ export default {
         .get("/api/data/team")
         .then((response) => {
           this.teamMembers = response.data;
-          this.loading = false; // Khi nhận được dữ liệu từ API, set loading thành false
         })
         .catch((error) => {
           console.error(error);
-          this.loading = false; // Nếu xảy ra lỗi, cũng set loading thành false
         });
     },
   },
