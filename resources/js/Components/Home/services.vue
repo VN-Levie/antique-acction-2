@@ -10,30 +10,37 @@
       </div>
     </div>
     <div class="services-container">
-      <div class="services-card">
-        <div class="services-card-img services-card-1"></div>
-        <h2 class="title_services">Custom Finishing</h2>
-      </div>
-      <div class="services-card">
-        <div class="services-card-img services-card-2"></div>
-        <h2>Furniture Repair</h2>
-      </div>
-      <div class="services-card">
-        <div class="services-card-img services-card-3"></div>
-        <h2 class="title_services">Furniture Refinishing</h2>
-      </div>
-      <div class="services-card">
-        <div class="services-card-img services-card-4"></div>
-        <h2 class="title_services">Reproductions</h2>
+      <div v-for="(service, index) in services" :key="index" class="services-card">
+        <img :src="service.image" :alt="service.name" />
+        <h2 class="title_services">{{ service.name }}</h2>
       </div>
     </div>
   </div>
 </template>
-  
-  <script>
+
+<script>
 export default {
-  setup() {
-    return {};
+  data() {
+    return {
+      services: [
+        {
+          name: "Custom Finishing",
+          image: "/img/services1.jpg",
+        },
+        {
+          name: "Furniture Repair",
+          image: "/img/services3.jpg",
+        },
+        {
+          name: "Furniture Refinishing",
+          image: "/img/services2.jpg",
+        },
+        {
+          name: "Reproductions",
+          image: "/img/services4.jpg",
+        },
+      ],
+    };
   },
 };
 </script>
@@ -52,6 +59,30 @@ export default {
   color: #292929;
   font-size: 55px;
   line-height: 1.4;
+}
+
+.services-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.services-card {
+  width: 300px;
+  height: 415px;
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+.services-card img {
+  width: 270px;
+  height: 320px;
+  margin: 20px 5px;
+  object-fit: cover; 
 }
 
 .services-container {
@@ -82,20 +113,6 @@ export default {
   margin: 20px 5px;
   background-size: cover;
 }
-
-.services-card-1 {
-  background-image: url(img/services1.jpg);
-}
-
-.services-card-2 {
-  background-image: url(img/services3.jpg);
-}
-.services-card-3 {
-  background-image: url(img/services2.jpg);
-}
-.services-card-4 {
-  background-image: url(img/services4.jpg);
-}
 @media (max-width: 768px) {
   .title_services {
     font-weight: 400px;
@@ -109,6 +126,13 @@ export default {
   }
   .services {
   padding: 30px 0 0 0;
+}
+
+.services-card img {
+  width: 270px;
+  height: 320px;
+  margin: 20px 5px;
+  object-fit: cover; 
 }
 }
 </style>

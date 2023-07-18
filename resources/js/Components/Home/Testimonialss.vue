@@ -6,10 +6,7 @@
       </div>
 
       <div class="col-12 d-flex justify-content-center">
-        <img
-          src="/img/mt-1804-home-divider1.png"
-          alt="divider1"
-        />
+        <img src="/img/mt-1804-home-divider1.png" alt="divider1" />
       </div>
     </div>
     <div class="Testimonial">
@@ -22,12 +19,16 @@
           <i class="fa-solid fa-chevron-left"></i>
         </div>
         <div class="content-wrapper">
-          <p class="content">{{ currentMessage.text }}</p>
+          <template v-if="message.length > 0">
+            <p class="content">{{ currentMessage.content }}</p>
+          </template>
         </div>
         <div class="person">
           <div class="user-details">
-            <h4 class="username">{{ currentMessage.name }}</h4>
-            <p class="manage">{{ currentMessage.position }}</p>
+            <template v-if="message.length > 0">
+              <h4 class="username">{{ currentMessage.name }}</h4>
+              <p class="manage">{{ currentMessage.author }}</p>
+            </template>
           </div>
         </div>
       </div>
@@ -39,24 +40,9 @@
 export default {
   data() {
     return {
-      message: [
-        {
-          name: "Gerald Welaskes",
-          position: "IT Eng",
-          text: "In forty-three years of antiquarian bookselling, we have come across many old and rare books that are in need of care and restoration. We are very grateful for the loving attention they get from Christian. ",
-        },
-        {
-          name: "Phillip Moore",
-          position: "IT Eng",
-          text: "Diana has been,  and continues to be, my binder of choice for over ten years. In reference to my specialization in 18th century books, her restoration and rebinding is state of the art was perfect!",
-        },
-        {
-          name: "Tlee",
-          position: "IT",
-          text: " Diana is  really talented, examples of her work grace the shelves of many private and institutional collections on both sides of the Atlantic. My highest recommendation for her talents and reliability. ",
-        },
-      ],
+      message: [],
       currentIndex: 0,
+      loading: true,
     };
   },
   computed: {
@@ -66,6 +52,7 @@ export default {
   },
   mounted() {
     setInterval(this.rotateMessage, 3000);
+    this.TestimonialApi();
   },
   methods: {
     rotateMessage() {
@@ -76,9 +63,21 @@ export default {
     },
     rotateMessagea() {
       this.currentIndex--;
-      if (this.currentIndex <= this.message.length) {
-        this.currentIndex = 0;
+      if (this.currentIndex < 0) {
+        this.currentIndex = this.message.length - 1;
       }
+    },
+    TestimonialApi() {
+      axios
+        .get("/api/data/Testimonial")
+        .then((response) => {
+          this.message = response.data;
+          this.loading = false;
+        })
+        .catch((error) => {
+          console.error(error);
+          this.loading = false;
+        });
     },
   },
 };
@@ -179,7 +178,10 @@ export default {
 
 @media (max-width: 768px) {
   .testimonial-content {
-    padding: 10px 30px;
+    padding: 10px 0;
+  }
+  .Testimonial {
+    height: 40vh;
   }
   .quote-left,
   .quote-right {
@@ -193,9 +195,10 @@ export default {
   }
 
   .username {
-  width: 300px;
-  font-size: 20px;
-}
+    width: 300px;
+    font-size: 20px;
+    padding-bottom: 0px;
+  }
 }
 /* .divider {
   height: 5px;

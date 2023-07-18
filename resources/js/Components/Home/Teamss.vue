@@ -10,33 +10,52 @@
   </div>
   <div class="team">
     <div class="team-container">
-      <div class="team-card">
-        <div class="team-card-img team-card-1"></div>
-        <h2>Christian Hall</h2>
-        <h4>Antique Furniture Master</h4>
-      </div>
-      <div class="team-card">
-        <div class="team-card-img team-card-2"></div>
-        <h2>Eugene Rivera</h2>
-        <h4>Gilder</h4>
-      </div>
-      <div class="team-card">
-        <div class="team-card-img team-card-3"></div>
-        <h2>John Sanders</h2>
-        <h4>Bookbinder</h4>
+      <div
+        v-for="(member, index) in teamMembers"
+        :key="index"
+        class="team-card"
+      >
+        <img
+          :src="member.avatar"
+          :alt="member.name"
+          class="team-member-image"
+        />
+        <h2>{{ member.name }}</h2>
+        <h4>{{ member.titles }}</h4>
       </div>
     </div>
   </div>
 </template>
-  
-  <script>
+
+<script>
+
 export default {
-  setup() {
-    return {};
+  data() {
+    return {
+      teamMembers: [],
+      loading: true, // Thêm biến loading vào data để hiển thị trạng thái tải dữ liệu
+    };
+  },
+  mounted() {
+    this.fetchDataFromApi();
+  },
+  methods: {
+    fetchDataFromApi() {
+      axios
+        .get("/api/data/team")
+        .then((response) => {
+          this.teamMembers = response.data;
+          this.loading = false; // Khi nhận được dữ liệu từ API, set loading thành false
+        })
+        .catch((error) => {
+          console.error(error);
+          this.loading = false; // Nếu xảy ra lỗi, cũng set loading thành false
+        });
+    },
   },
 };
 </script>
-  
+
   <style>
 .team {
   box-sizing: border-box;
@@ -50,7 +69,6 @@ export default {
   font-family: "Libre Baskerville", serif;
   color: #292929;
   font-size: 55px;
-  line-height: 1.4;
   margin-top: 20px;
 }
 
@@ -64,7 +82,19 @@ export default {
 .team-card {
   width: 370px;
   height: 505px;
-  margin: 10px 0 100px 0;
+  margin: 10px 20px 100px 20px;
+}
+.team-card img {
+  height: 440px;
+  width: 370px;
+  object-fit: cover;
+  justify-content: center;
+}
+.team-card img.team-member-image {
+  height: 440px;
+  object-fit: cover;
+  width: 100%;
+  display: inline-block;
 }
 
 .team-card h2 {
@@ -73,24 +103,12 @@ export default {
   font-family: "Montserrat", sans-serif;
   color: #292929;
   font-size: 28px;
-  line-height: 1.4;
 }
 
 .team-card-img {
   height: 440px;
   margin: 20px;
   background-size: cover;
-}
-
-.team-card-1 {
-  background-image: url(img/team1.jpg);
-}
-
-.team-card-2 {
-  background-image: url(img/team3.jpg);
-}
-.team-card-3 {
-  background-image: url(img/team2.jpg);
 }
 
 @media (max-width: 768px) {
