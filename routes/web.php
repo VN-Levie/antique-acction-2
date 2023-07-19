@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\NewsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,4 +38,8 @@ Route::inertia('/abouts', 'About');
 // })->name('products');
 Route::group(['prefix' => 'products'], function () {
     Route::get('/', [ProductController::class, 'index'])->name('product.index');
+});
+
+Route::group(['prefix' => 'News'], function () {
+    Route::get('/', [NewsController::class, 'index'])->name('News.index');
 });

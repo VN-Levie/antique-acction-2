@@ -1,5 +1,7 @@
 <template>
-  <HomeLayout title="Home"> hihii</HomeLayout>
+  <HomeLayout title="Home"> 
+    hi
+    </HomeLayout>
 </template>
 
 <script>
@@ -9,8 +11,14 @@ export default {
   setup() {
     return {};
   },
-  props: {
+  components: {
     HomeLayout
   }
 };
 </script>
+
+<style>
+h1{
+  height: 4000px;
+}
+</style>
