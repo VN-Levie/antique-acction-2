@@ -45,8 +45,13 @@ var year = new Date().getFullYear();
               class="hidden lg:flex lg:items-center lg:ml-6 mt-4"
               id="primary"
             >
-              <span class="nav-item nav-text active">
-                <a class="nav-link active" href="#">GALLERY </a>
+              <span class="nav-item nav-text">
+                <Link :href="route('product.index')">
+                    Products
+                </Link>
+              </span>
+              <span class="nav-item nav-text">
+                <a class="nav-link" href="#">GALLERY </a>
               </span>
               <span class="nav-item nav-text">
                 <a class="nav-link" href="#">WORKS </a>
