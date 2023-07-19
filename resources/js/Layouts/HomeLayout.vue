@@ -46,9 +46,7 @@ var year = new Date().getFullYear();
               id="primary"
             >
               <span class="nav-item nav-text">
-                <Link :href="route('product.index')">
-                    Products
-                </Link>
+                <Link :href="route('product.index')"> Products </Link>
               </span>
               <span class="nav-item nav-text">
                 <a class="nav-link" href="#">GALLERY </a>
