@@ -3,7 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,9 +18,7 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return Inertia::render('HomePage', [
         'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
+        'canRegister' => Route::has('register')
     ]);
 })->name('home');
 
@@ -34,3 +32,9 @@ Route::middleware([
     })->name('dashboard');
 });
 Route::inertia('/abouts', 'About');
+// Route::get('products', function () {
+//     return Inertia::render('Products/Show', []);
+// })->name('products');
+Route::group(['prefix' => 'products'], function () {
+    Route::get('/', [ProductController::class, 'index'])->name('product.index');
+});
