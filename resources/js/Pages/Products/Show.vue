@@ -13,6 +13,10 @@ import logo from "@/Components/Home/logo.vue";
 
 <template>
   <HomeLayout title="Products">
-    <!-- <h1>Hello</h1> -->
+    <div class="clear-fix"></div>
+    <h1>Hello world</h1>
   </HomeLayout>
 </template>
+<style>
+
+</style>

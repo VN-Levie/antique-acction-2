@@ -25,7 +25,7 @@ var year = new Date().getFullYear();
   <div>
     <Head :title="title" />
 
-    <Banner />
+    <!-- <Banner /> -->
 
     <div class="min-h-screen bg-gray-100">
       <nav class="bg-white navbar-expand-lg fixed-top">
@@ -258,7 +258,7 @@ var year = new Date().getFullYear();
 
       <!-- Page Content -->
       <main>
-        <slot />
+        <slot  />
       </main>
     </div>
   </div>
