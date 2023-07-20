@@ -40,6 +40,6 @@ Route::group(['prefix' => 'products'], function () {
     Route::get('/', [ProductController::class, 'index'])->name('product.index');
 });
 
-Route::group(['prefix' => 'News'], function () {
+Route::group(['prefix' => 'news'], function () {
     Route::get('/', [NewsController::class, 'index'])->name('News.index');
 });
