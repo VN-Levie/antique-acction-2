@@ -1,8 +1,9 @@
 <template>
   <HomeLayout title="New">
+    <div class="clear-fix"></div>
     <div class="News-page">
       <div class="container-new">
-        <div v-for="(post, index) in posts" :key="index" class="new-post">
+        <div v-for="post  in posts" :key="post.id" class="new-post">
           <div class="new-post_img">
             <img :src="post.imgSrc" alt="" />
           </div>
@@ -28,6 +29,7 @@ export default {
   setup() {
     const posts = [
       {
+        id: 1,
         imgSrc: "/img/services1.jpg",
         author: "Sagar Developer",
         date: "Nov 12 2021",
@@ -36,6 +38,7 @@ export default {
           "Lopx ipsum dolor sit amet consectetur adipisicing elit. Dolores a, tempore veniam quasi sint fugiat facilis, facere, amet magnam optio velit. Laudantium et temporibus soluta, esse cupiditate aliquid dicta accusantium.",
       },
       {
+        id: 2,
         imgSrc: "/img/services1.jpg",
         author: "Sagar Developer",
         date: "Nov 12 2021",
@@ -44,6 +47,7 @@ export default {
           "Lopx ipsum dolor sit amet consectetur adipisicing elit. Dolores a, tempore veniam quasi sint fugiat facilis, facere, amet magnam optio velit. Laudantium et temporibus soluta, esse cupiditate aliquid dicta accusantium.",
       },
       {
+        id: 3,
         imgSrc: "/img/services1.jpg",
         author: "Sagar Developer",
         date: "Nov 12 2021",
@@ -78,14 +82,13 @@ export default {
   padding: 0 24px;
 }
 
-.container-new {
+/* .container-new {
   margin-top: 150px;
-}
+} */
 
 .new-post {
   max-width: 900px;
   padding: 15px;
-  background-color: #dbf4ff21;
   box-shadow: 0 1.4rem 8rem rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
@@ -128,12 +131,11 @@ export default {
   color: #00000080;
   font-size: 16px;
   font-weight: 600;
-  margin: 0.5rem 0;
 }
 
 .new-post_title {
-  font-size: 25px;
-  margin: 10px 0;
+  font-size: 20px;
+  margin: 5px 0;
   text-transform: uppercase;
   color: #4facfe;
 }
@@ -156,10 +158,13 @@ export default {
 }
 
 .new-post_cta:hover {
-  /* background: linear-gradient(to right, #04a6bd 0%, #c945cf 100%); */
+  background: rgb(211, 248, 48)
 }
 
 @media screen and (max-width: 768px) {
+  .News-page {
+    margin: 10px 0 0 0;
+  }
   .new-post {
     padding: 2.5px;
     flex-direction: column;
@@ -173,5 +178,4 @@ export default {
     height: auto;
   }
 }
-
 </style>
