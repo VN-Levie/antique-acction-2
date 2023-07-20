@@ -1,13 +1,12 @@
 <template>
   <HomeLayout title="New">
-    <div class="clear-fix">
       <div class="News-page">
         <div class="container-new">
           <h2>Post</h2>
           <div class="new-post">
             <div class="new-post_img">
               <img
-                src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTU3fHx0ZWNobm9sb2d5fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                src="/img/services1.jpg"
                 alt=""
               />
             </div>
@@ -30,7 +29,7 @@
           <div class="new-post">
             <div class="new-post_img">
               <img
-                src="https://images.unsplash.com/photo-1562813733-b31f71025d54?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8Y29kaW5nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                src="/img/services1.jpg"
                 alt=""
               />
             </div>
@@ -51,7 +50,6 @@
           </div>
         </div>
       </div>
-    </div>
   </HomeLayout>
 </template>
 
