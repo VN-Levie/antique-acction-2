@@ -1,64 +1,59 @@
 <template>
   <HomeLayout title="New">
-      <div class="News-page">
-        <div class="container-new">
-          <h2>Post</h2>
-          <div class="new-post">
-            <div class="new-post_img">
-              <img
-                src="/img/services1.jpg"
-                alt=""
-              />
-            </div>
-            <div class="new-post_info">
-              <div class="new-post_date">
-                <span>Sagar Developer</span>
-                <span>Nov 12 2021</span>
-              </div>
-              <h1 class="new-post_title">Lorem ipsum dolor sit amet.</h1>
-              <p class="new-post_text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
-                a, tempore veniam quasi sint fugiat facilis, facere, amet magnam
-                optio velit. Laudantium et temporibus soluta, esse cupiditate
-                aliquid dicta accusantium.
-              </p>
-              <a href="#" class="new-post_cta">Read More</a>
-            </div>
+    <div class="News-page">
+      <div class="container-new">
+        <div v-for="(post, index) in posts" :key="index" class="new-post">
+          <div class="new-post_img">
+            <img :src="post.imgSrc" alt="" />
           </div>
-
-          <div class="new-post">
-            <div class="new-post_img">
-              <img
-                src="/img/services1.jpg"
-                alt=""
-              />
+          <div class="new-post_info">
+            <div class="new-post_date">
+              <span>{{ post.author }}</span>
+              <span>{{ post.date }}</span>
             </div>
-            <div class="new-post_info">
-              <div class="new-post_date">
-                <span>Sagar Developer</span>
-                <span>Dec 25 2021</span>
-              </div>
-              <h1 class="new-post_title">Lorem ipsum dolor sit amet.</h1>
-              <p class="new-post_text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
-                a, tempore veniam quasi sint fugiat facilis, facere, amet magnam
-                optio velit. Laudantium et temporibus soluta, esse cupiditate
-                aliquid dicta accusantium.
-              </p>
-              <a href="#" class="new-post_cta">Read More</a>
-            </div>
+            <h1 class="new-post_title">{{ post.title }}</h1>
+            <p class="new-post_text">{{ post.content }}</p>
+            <a href="#" class="new-post_cta">Read More</a>
           </div>
         </div>
       </div>
+    </div>
   </HomeLayout>
-</template>
+</template>F
 
 <script>
 import HomeLayout from "@/Layouts/HomeLayout.vue";
 
 export default {
   setup() {
-    return {};
+    const posts = [
+      {
+        imgSrc: "/img/services1.jpg",
+        author: "Sagar Developer",
+        date: "Nov 12 2021",
+        title: "Lopx ipsum dolor sit amet.",
+        content:
+          "Lopx ipsum dolor sit amet consectetur adipisicing elit. Dolores a, tempore veniam quasi sint fugiat facilis, facere, amet magnam optio velit. Laudantium et temporibus soluta, esse cupiditate aliquid dicta accusantium.",
+      },
+      {
+        imgSrc: "/img/services1.jpg",
+        author: "Sagar Developer",
+        date: "Nov 12 2021",
+        title: "Lopx ipsum dolor sit amet.",
+        content:
+          "Lopx ipsum dolor sit amet consectetur adipisicing elit. Dolores a, tempore veniam quasi sint fugiat facilis, facere, amet magnam optio velit. Laudantium et temporibus soluta, esse cupiditate aliquid dicta accusantium.",
+      },
+      {
+        imgSrc: "/img/services1.jpg",
+        author: "Sagar Developer",
+        date: "Nov 12 2021",
+        title: "Lopx ipsum dolor sit amet.",
+        content:
+          "Lopx ipsum dolor sit amet consectetur adipisicing elit. Dolores a, tempore veniam quasi sint fugiat facilis, facere, amet magnam optio velit. Laudantium et temporibus soluta, esse cupiditate aliquid dicta accusantium.",
+      },
+    ];
+
+    return { posts };
   },
   components: {
     HomeLayout,
@@ -76,38 +71,20 @@ export default {
 }
 
 .News-page {
-  width: 100%;
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #eee;
-  padding: 0 1.5rem;
+  padding: 0 24px;
 }
 
 .container-new {
   margin-top: 150px;
 }
 
-.container-new h2 {
-  letter-spacing: 1px;
-  font-size: 50px;
-  color: #6968aa;
-  border: 2px dashed #0181a0;
-  padding: 10px;
-  text-transform: uppercase;
-  border-radius: 10px;
-  display: inline-block;
-  cursor: pointer;
-  text-align: center;
-  margin-top: 90px;
-  margin-left: 375px;
-}
-
 .new-post {
-  width: 100%;
-  max-width: 98rem;
-  padding: 5rem;
+  max-width: 900px;
+  padding: 15px;
   background-color: #dbf4ff21;
   box-shadow: 0 1.4rem 8rem rgba(0, 0, 0, 0.2);
   display: flex;
@@ -116,11 +93,14 @@ export default {
   margin: 10px;
 }
 
+.new-post_info {
+  margin-left: 20px;
+}
+
 .new-post_img {
-  min-width: 35rem;
-  max-width: 35rem;
-  height: 30rem;
-  transform: translateX(-8rem);
+  width: 350px;
+  max-width: 350px;
+  height: 220px;
   position: relative;
 }
 
@@ -146,76 +126,51 @@ export default {
 .new-post_date span {
   display: block;
   color: #00000080;
-  font-size: 1.6rem;
+  font-size: 16px;
   font-weight: 600;
   margin: 0.5rem 0;
 }
 
 .new-post_title {
-  font-size: 2.5rem;
-  margin: 1.5rem 0 2rem;
+  font-size: 25px;
+  margin: 10px 0;
   text-transform: uppercase;
   color: #4facfe;
 }
 
 .new-post_text {
-  margin-bottom: 3rem;
-  font-size: 1.4rem;
+  margin-bottom: 20px;
+  font-size: 14px;
   color: #000000b3;
 }
 
 .new-post_cta {
   display: inline-block;
-  padding: 1.5rem 3rem;
+  padding: 2px 10px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  font-size: 1.2rem;
+  font-size: 16px;
   color: #fff;
   text-decoration: none;
   border-radius: 0.8rem;
-  /* background: linear-gradient(to right, #c945cf 0%, #04a6bd 100%); */
 }
 
 .new-post_cta:hover {
   /* background: linear-gradient(to right, #04a6bd 0%, #c945cf 100%); */
 }
 
-@media screen and (max-width: 1068px) {
-  .new-post {
-    max-width: 80rem;
-  }
-  .new-post_img {
-    min-width: 30rem;
-    max-width: 30rem;
-  }
-  .container-new h2 {
-    margin-top: 120px;
-    margin-left: 275px;
-  }
-}
-
-@media screen and (max-width: 868px) {
-  .new-post {
-    max-width: 70rem;
-  }
-  .container-new h2 {
-    margin-top: 20px;
-    margin-left: 142px;
-  }
-}
-
 @media screen and (max-width: 768px) {
   .new-post {
-    padding: 2.5rem;
+    padding: 2.5px;
     flex-direction: column;
-  }
-  .new-post_img {
-    min-width: 100%;
-    max-width: 100%;
-    transform: translate(0, -1rem);
   }
   .container-new {
     margin-top: auto;
+  }
+
+  .new-post_img {
+    padding-top: 10px;
+    height: auto;
   }
 }
 
