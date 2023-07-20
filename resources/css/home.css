@@ -162,10 +162,16 @@ a {
     margin-left: auto;
     margin-right: auto;
 }
-.eff-menu{
+
+.eff-menu {
     transition: all 1s ease-in-out !important;
     box-shadow: #e47846 0px 0px 1px 0px;
 }
-.eff-menu-btn{
+
+.eff-menu-btn {
     transition: all 1s ease;
+}
+
+.clear-fix {
+    margin-top: 93px;
 }
