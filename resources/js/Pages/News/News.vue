@@ -174,10 +174,4 @@ export default {
   }
 }
 
-@media screen and (max-width: 823px) {
-  .container-new h2 {
-    margin-top: 35px;
-    margin-left: 142px;
-  }
-}
 </style>
