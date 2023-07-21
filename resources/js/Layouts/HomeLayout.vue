@@ -23,6 +23,7 @@ var year = new Date().getFullYear();
 
 <template>
   <div>
+
     <Head :title="title" />
 
     <!-- <Banner /> -->
@@ -36,15 +37,12 @@ var year = new Date().getFullYear();
               <!-- Logo -->
               <div class="shrink-0 flex items-center">
                 <Link :href="route('home')">
-                  <img src="/img/mt-1804-home-logo.png" />
+                <img src="/img/mt-1804-home-logo.png" />
                 </Link>
               </div>
             </div>
 
-            <div
-              class="hidden lg:flex lg:items-center lg:ml-6 mt-4"
-              id="primary"
-            >
+            <div class="hidden lg:flex lg:items-center lg:ml-6 mt-4" id="primary">
               <span class="nav-item nav-text">
                 <Link :href="route('product.index')"> Products </Link>
               </span>
@@ -52,30 +50,17 @@ var year = new Date().getFullYear();
                 <a class="nav-link" href="#">GALLERY </a>
               </span>
               <span class="nav-item nav-text">
-                <a class="nav-link" href="#">WORKS </a>
+                <a class="moto-widget-menu-link-active moto-link nav-link" href="#">WORKS </a>
               </span>
               <span class="nav-item nav-text">
                 <a class="nav-link nav-text" href="#">CONTACTS </a>
               </span>
-              <span
-                v-if="$page.props.auth.user"
-                class="nav-item nav-text dropdown"
-              >
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  >{{ $page.props.auth.user.name }}</a
-                >
-                <ul
-                  class="dropdown-menu dropdown-menu-custom mt-2 justify-center"
-                >
+              <span v-if="$page.props.auth.user" class="nav-item nav-text dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">{{
+                  $page.props.auth.user.name }}</a>
+                <ul class="dropdown-menu dropdown-menu-custom mt-2 justify-center">
                   <span>
-                    <DropdownLink
-                      :href="route('profile.show')"
-                      :active="route().current('profile.show')"
-                    >
+                    <DropdownLink :href="route('profile.show')" :active="route().current('profile.show')">
                       Profile
                     </DropdownLink>
                   </span>
@@ -87,16 +72,8 @@ var year = new Date().getFullYear();
                 </ul>
               </span>
               <span v-else class="nav-item nav-text dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  >Account</a
-                >
-                <ul
-                  class="dropdown-menu dropdown-menu-custom mt-2 justify-center"
-                >
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Account</a>
+                <ul class="dropdown-menu dropdown-menu-custom mt-2 justify-center">
                   <span>
                     <DropdownLink :href="route('login')"> Login </DropdownLink>
                   </span>
@@ -108,10 +85,7 @@ var year = new Date().getFullYear();
                 </ul>
               </span>
             </div>
-            <div
-              class="hidden lg:flex lg:items-center lg:ml-6 mt-4"
-              id="primary"
-            >
+            <div class="hidden lg:flex lg:items-center lg:ml-6 mt-4" id="primary">
               <div class="col-1 nav-icon">
                 <i class="fa fa-twitter" aria-hidden="true"></i>
               </div>
@@ -129,34 +103,16 @@ var year = new Date().getFullYear();
             <div class="-mr-2 flex items-center lg:hidden">
               <button
                 class="eff-menu-btn inline-flex items-center justify-center p-2 rounded-lg text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
-                @click="showingNavigationDropdown = !showingNavigationDropdown"
-              >
-                <svg
-                  class="h-6 w-6 eff-menu-btn"
-                  stroke="currentColor"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    :class="{
-                      hidden: showingNavigationDropdown,
-                      'inline-flex': !showingNavigationDropdown,
-                    }"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                  <path
-                    :class="{
-                      hidden: !showingNavigationDropdown,
-                      'inline-flex': showingNavigationDropdown,
-                    }"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
+                @click="showingNavigationDropdown = !showingNavigationDropdown">
+                <svg class="h-6 w-6 eff-menu-btn" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                  <path :class="{
+                    hidden: showingNavigationDropdown,
+                    'inline-flex': !showingNavigationDropdown,
+                  }" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                  <path :class="{
+                    hidden: !showingNavigationDropdown,
+                    'inline-flex': showingNavigationDropdown,
+                  }" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             </div>
@@ -164,13 +120,10 @@ var year = new Date().getFullYear();
         </div>
 
         <!-- Responsive Navigation Menu -->
-        <div
-          :class="{
-            block: showingNavigationDropdown,
-            hidden: !showingNavigationDropdown,
-          }"
-          class="lg:hidden eff-menu mt-2"
-        >
+        <div :class="{
+          block: showingNavigationDropdown,
+          hidden: !showingNavigationDropdown,
+        }" class="lg:hidden eff-menu mt-2">
           <div class="pt-2 pb-3 space-y-1" id="primary">
             <span class="nav-item nav-text active">
               <a class="nav-link active" href="#">GALLERY </a>
@@ -181,25 +134,12 @@ var year = new Date().getFullYear();
             <span class="nav-item nav-text">
               <a class="nav-link nav-text" href="#">CONTACTS </a>
             </span>
-            <span
-              v-if="$page.props.auth.user"
-              class="nav-item nav-text dropdown"
-            >
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                >{{ $page.props.auth.user.name }}</a
-              >
-              <ul
-                class="dropdown-menu dropdown-menu-custom mt-2 justify-center"
-              >
+            <span v-if="$page.props.auth.user" class="nav-item nav-text dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">{{
+                $page.props.auth.user.name }}</a>
+              <ul class="dropdown-menu dropdown-menu-custom mt-2 justify-center">
                 <span>
-                  <DropdownLink
-                    :href="route('profile.show')"
-                    :active="route().current('profile.show')"
-                  >
+                  <DropdownLink :href="route('profile.show')" :active="route().current('profile.show')">
                     Profile
                   </DropdownLink>
                 </span>
@@ -211,16 +151,8 @@ var year = new Date().getFullYear();
               </ul>
             </span>
             <span v-else class="nav-item nav-text dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                >Account</a
-              >
-              <ul
-                class="dropdown-menu dropdown-menu-custom mt-2 justify-center"
-              >
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Account</a>
+              <ul class="dropdown-menu dropdown-menu-custom mt-2 justify-center">
                 <span>
                   <DropdownLink :href="route('login')"> Login </DropdownLink>
                 </span>
@@ -258,7 +190,7 @@ var year = new Date().getFullYear();
 
       <!-- Page Content -->
       <main>
-        <slot  />
+        <slot />
       </main>
     </div>
   </div>
@@ -299,6 +231,7 @@ var year = new Date().getFullYear();
   padding-top: 30px;
   padding-bottom: 30px;
 }
+
 .icon-footer {
   padding: 10px;
   font-size: 16px;

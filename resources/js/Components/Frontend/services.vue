@@ -1,5 +1,5 @@
 <template>
-  <div class="services">
+  <div id="services" class="services">
     <div class="row">
       <div class="col-12 d-flex justify-content-center">
         <span class="title_services">services</span>
@@ -45,7 +45,7 @@ export default {
 };
 </script>
   
-  <style>
+<style>
 .services {
   box-sizing: border-box;
   padding: 50px 0 0 0;
@@ -75,14 +75,14 @@ export default {
   margin: 30px;
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
 }
 
 .services-card img {
   width: 270px;
   height: 320px;
   margin: 20px 5px;
-  object-fit: cover; 
+  object-fit: cover;
 }
 
 .services-container {
@@ -113,27 +113,30 @@ export default {
   margin: 20px 5px;
   background-size: cover;
 }
+
 @media (max-width: 768px) {
   .title_services {
     font-weight: 400px;
     font-size: 40px;
   }
+
   .services img {
     width: 200px;
   }
+
   .services-card {
     margin: 10px 0 10px 0;
   }
-  .services {
-  padding: 30px 0 0 0;
-}
 
-.services-card img {
-  width: 270px;
-  height: 320px;
-  margin: 20px 5px;
-  object-fit: cover; 
-}
-}
-</style>
+  .services {
+    padding: 30px 0 0 0;
+  }
+
+  .services-card img {
+    width: 270px;
+    height: 320px;
+    margin: 20px 5px;
+    object-fit: cover;
+  }
+}</style>
   
