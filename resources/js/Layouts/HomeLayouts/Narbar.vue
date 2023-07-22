@@ -10,13 +10,8 @@
       ">
       <!--LoGO NAV BAR-->
       <div class="flex items-center justify-between">
-        <a href="/" class="
-            text-xl
-            font-bold
-            text-black
-            md:text-2xl
-            hover:text-indigo-400
-          "><img style="width: 80%;" src="../../../../public/img/mt-1804-home-logo.png" class=" cursor-pointer">
+        <a :href="route('home')" class="mt-0">
+            <img style="width: 80%;" src="/img/mt-1804-home-logo.png" class="cursor-pointer">
         </a>
         <!-- Mobile menu button -->
         <div @click="toggleNav" class="flex md:hidden">
@@ -45,11 +40,11 @@
           cursor-pointer">
         <li v-for="(navigation, index) in navigations" :key="index" class="text-black-100">
           <a v-if="!navigation.children" :href="navigation.href"
-            class="text-font cool-link ul-letter-spaceing py-2 pr-4 pl-3 "
+            class="navbar-text cool-link ul-letter-spaceing py-2 pr-4 pl-3 "
             :aria-current="navigation.isCurrent ? 'page' : null">
             {{ navigation.name }}
           </a>
-          <button v-else @click="toggleDropdown(index)" class=" cool-link text-font ul-letter-spaceing py-2 pr-4 pl-3"
+          <button v-else @click="toggleDropdown(index)" class=" cool-link navbar-text ul-letter-spaceing py-2 pr-4 pl-3"
             aria-haspopup="true" :aria-expanded="isOpenDropdown(index) ? 'true' : 'false'">
             {{ navigation.name }}
           </button>
@@ -190,7 +185,7 @@ export default {
   letter-spacing: 2.6px;
 }
 
-.text-font {
+.navbar-text {
   font-size: 80%;
   font-family: 'Raleway', sans-serif;
   font-weight: 700;
