@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -43,3 +44,5 @@ Route::group(['prefix' => 'products'], function () {
 Route::group(['prefix' => 'news'], function () {
     Route::get('/', [NewsController::class, 'index'])->name('News.index');
 });
+
+Route::post('/contact', ContactController::class)->name('contact');

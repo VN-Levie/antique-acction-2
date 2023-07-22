@@ -84,21 +84,29 @@
               <span class="circle one"></span>
               <span class="circle two"></span>
 
-              <form action="#" autocomplete="off">
-                <div class="input-container">
-                  <input type="text" name="name" class="input" placeholder="Name" />
-                  <span>Name</span>
+              <form @submit.prevent="submit">
+                <div v-if="showMessage" class="text-edit-success m-2 p-4 rounded-lg">
+                  Thank you for contacting
                 </div>
                 <div class="input-container">
-                  <input type="email" name="email" class="input" placeholder="Email" />
+                  <input v-model="form.name" type="text" class="input" placeholder="Name" />
+                  <span v-if="form.errors.name" class="text-sm m-2 text-red-400">{{ form.errors.name }} </span>
                 </div>
                 <div class="input-container">
-                  <input type="tel" name="phone" class="input" placeholder="Phone" />
+                  <input v-model="form.email" type="email" class="input" placeholder="Email" />
+                  <span v-if="form.errors.email" class="text-sm m-2 text-red-400">{{ form.errors.email }} </span>
+                </div>
+                <div class="input-container">
+                  <input v-model="form.phone" type="tel" class="input" placeholder="Phone" />
+                  <span v-if="form.errors.phone" class="text-sm m-2 text-red-400">{{ form.errors.phone }} </span>
                 </div>
                 <div class="input-container textarea">
-                  <textarea name="message" placeholder="Message" class="input"></textarea>
+                  <textarea v-model="form.body" placeholder="Message" class="input"></textarea>
+                  <span v-if="form.errors.body" class="text-sm m-2 text-red-400">{{ form.errors.body }} </span>
                 </div>
-                <input type="submit" value="Send" class="btn" />
+                <button class="btn btn-lg">
+                  Send Message
+                </button>
               </form>
             </div>
           </div>
@@ -109,7 +117,36 @@
   </div>
 </template>
 
-<script>
+<script setup>
+
+import { ref } from 'vue';
+import { useForm } from '@inertiajs/vue3';
+
+
+const showMessage = ref(false);
+const form = useForm({
+  name: "",
+  email: "",
+  phone: "",
+  body: ""
+})
+
+function setShowMessage(value) {
+  showMessage.value = value;
+}
+
+function cleanForm() {
+  form.reset();
+  setShowMessage(true)
+  setTimeout(() => setShowMessage(false), 2000)
+}
+
+const submit = () => {
+  form.post(route('contact'), {
+    preserveScroll: true,
+    onSuccess: () => cleanForm(),
+  })
+}
 
 </script>
 
@@ -123,6 +160,15 @@
   line-height: 1;
   letter-spacing: 0px;
 }
+
+.text-edit-success {
+  padding: 20px;
+  background-color: #ebd14f;
+  /* Red */
+  color: rgb(13, 13, 13);
+  margin-bottom: 15px;
+}
+
 
 .text-edit {
   margin-top: 50px;
