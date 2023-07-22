@@ -1,5 +1,5 @@
 <template>
-  <div id="contactUs" class="container-fluid-About  moto-spacing-top-large  moto-spacing-bottom-large ">
+  <div id="contact" class="container-fluid-About  moto-spacing-top-large  moto-spacing-bottom-large ">
 
     <div class="">
       <div>

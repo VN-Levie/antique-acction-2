@@ -1,174 +1,208 @@
 <template>
-  <div id="Navbar">
-    <nav class="bg-white navbar-expand-lg fixed-top">
-      <!-- Primary Navigation Menu -->
-      <div class="max-w-7xl mx-auto px-4 md:px-6 md:px-8 mt-1">
-        <div class="flex justify-between h-16">
-          <div class="flex">
-            <!-- Logo -->
-            <div class="shrink-0 flex items-center">
-              <Link :href="route('home')">
-                <img src="/img/mt-1804-home-logo.png" />
-              </Link>
-            </div>
-          </div>
+  <div class="bg-white ">
+    <nav class="
 
-          <div class="hidden lg:flex lg:items-center lg:ml-6 mt-4" id="primary">
-            <span class="nav-item nav-text active">
-              <a class="nav-link active" href="#">GALLERY </a>
-            </span>
-            <span class="nav-item nav-text">
-              <a class="nav-link" href="#">WORKS </a>
-            </span>
-            <span class="nav-item nav-text">
-              <a class="nav-link nav-text" href="#">CONTACTS </a>
-            </span>
-            <span class="nav-item nav-text dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                >Account</a
-              >
-              <ul class="dropdown-menu dropdown-menu-custom">
-                <span>
-                  <a class="dropdown-item dropdown-item-custom" href="#"
-                    >Login</a
-                  >
-                </span>
-                <span>
-                  <a class="dropdown-item dropdown-item-custom" href="#"
-                    >Register</a
-                  >
-                </span>
-              </ul>
-            </span>
-          </div>
-          <div class="hidden lg:flex lg:items-center lg:ml-6 mt-4" id="primary">
-            <div class="col-1 nav-icon">
-              <i class="fa fa-twitter" aria-hidden="true"></i>
-            </div>
-            <div class="col-1 nav-icon">
-              <i class="fa fa-facebook" aria-hidden="true"></i>
-            </div>
-            <div class="col-1 nav-icon">
-              <i class="fa fa-pinterest-p" aria-hidden="true"></i>
-            </div>
-            <div class="col-1 nav-icon">
-              <i class="fa fa-google-plus" aria-hidden="true"></i>
-            </div>
-          </div>
-          <!-- Hamburger -->
-          <div class="-mr-2 flex items-center lg:hidden">
-            <button
-              class="inline-flex items-center justify-center p-2 rounded-lg text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
-              @click="showingNavigationDropdown = !showingNavigationDropdown"
-            >
-              <svg
-                class="h-6 w-6"
-                stroke="currentColor"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  :class="{
-                    hidden: showingNavigationDropdown,
-                    'inline-flex': !showingNavigationDropdown,
-                  }"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-                <path
-                  :class="{
-                    hidden: !showingNavigationDropdown,
-                    'inline-flex': showingNavigationDropdown,
-                  }"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-          </div>
+        container
+        px-5
+        py-
+        mx-auto
+        md:flex md:justify-between md:items-center
+      ">
+      <!--LoGO NAV BAR-->
+      <div class="flex items-center justify-between">
+        <a href="/" class="
+            text-xl
+            font-bold
+            text-black
+            md:text-2xl
+            hover:text-indigo-400
+          "><img style="width: 80%;" src="../../../../public/img/mt-1804-home-logo.png" class=" cursor-pointer">
+        </a>
+        <!-- Mobile menu button -->
+        <div @click="toggleNav" class="flex md:hidden">
+          <button type="button" class="
+                  
+              text-gray-100
+              hover:text-gray-400
+              focus:outline-none focus:text-gray-400
+            ">
+            <svg viewBox="0 0 24 24" class="w-6 h-6 fill-current bg-black hover:after:bg-yellow-300">
+              <path fill-rule="evenodd"
+                d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z">
+              </path>
+            </svg>
+          </button>
         </div>
       </div>
 
-      <!-- Responsive Navigation Menu -->
-      <div
-        :class="{
-          block: showingNavigationDropdown,
-          hidden: !showingNavigationDropdown,
-        }"
-        class="lg:hidden"
-      >
-        <div class="pt-2 pb-3 space-y-1">
-          <ResponsiveNavLink
-            :href="route('home')"
-            :active="route().current('home')"
-          >
-            Home
-          </ResponsiveNavLink>
-        </div>
+      <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
+      <ul :class="showMenu ? 'flex' : 'hidden'" class="
+          border-after
+          flex-col
+          mt-8
+          space-y-4
+          md:flex md:space-y-0 flex-algight-end  md:flex-row md:space-x-10 md:mt-0
+          cursor-pointer">
+        <li v-for="(navigation, index) in navigations" :key="index" class="text-black-100">
+          <a v-if="!navigation.children" :href="navigation.href"
+            class="text-font cool-link ul-letter-spaceing py-2 pr-4 pl-3 "
+            :aria-current="navigation.isCurrent ? 'page' : null">
+            {{ navigation.name }}
+          </a>
+          <button v-else @click="toggleDropdown(index)" class=" cool-link text-font ul-letter-spaceing py-2 pr-4 pl-3"
+            aria-haspopup="true" :aria-expanded="isOpenDropdown(index) ? 'true' : 'false'">
+            {{ navigation.name }}
+          </button>
+          <!-- Dropdown menu -->
+          <ul v-if="navigation.children && isOpenDropdown(index)"
+            class="absolute dropdown-content mt-2 bg-white shadow-lg rounded">
+            <li v-for="(child, childIndex) in navigation.children" :key="childIndex">
+              <a :href="child.href" class="ul-letter-spaceing cool-link block px-4 py-2 text-sm ">
+                {{ child.name }}
+              </a>
+            </li>
+          </ul>
+        </li>
 
-        <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200">
-          <div class="flex items-center px-4">
-            <div>
-              <div class="font-medium text-base text-gray-800">
-                Tên (nếu đã đăng nhập)
-              </div>
-              <div class="font-medium text-sm text-gray-500">
-                email (nếu đã đăng nhập)
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-3 space-y-1">
-            <ResponsiveNavLink
-              :href="route('profile.show')"
-              :active="route().current('profile.show')"
-            >
-              Profile
-            </ResponsiveNavLink>
-
-            <ResponsiveNavLink
-              v-if="$page.props.jetstream.hasApiFeatures"
-              :href="route('api-tokens.index')"
-              :active="route().current('api-tokens.index')"
-            >
-              API Tokens
-            </ResponsiveNavLink>
-
-            <!-- Authentication -->
-            <form method="POST" @submit.prevent="logout">
-              <ResponsiveNavLink as="button"> Log Out </ResponsiveNavLink>
-            </form>
-
-            <!-- Team Management -->
-          </div>
-        </div>
-      </div>
+      </ul>
     </nav>
   </div>
 </template>
+<script>
+import { ref } from 'vue';
+export default {
+  setup() {
+    const navigations = [
 
-<script setup>
-import { ref } from "vue";
-import { Head, Link, router } from "@inertiajs/vue3";
-import ApplicationMark from "@/Components/Dashboard/ApplicationMark.vue";
+      {
+        name: 'GALLERY',
+        href: '/#gallery',
+        children: null,
+      },
+      {
+        name: 'WORK',
+        href: '/#work',
+        children: null,
+      },
+      {
+        name: 'CONTACTS',
+        href: '/#contact',
+        children: null,
+      },
+      {
+        name: 'ALL BLOCK',
+        href: '/#allblock',
+        children: [
+          {
+            name: 'ABOUT',
+            href: '/#about',
+          },
+          {
+            name: 'ADS BAR',
+            href: '/#adsbar',
+          },
+          {
+            name: 'WORKS',
+            href: '/#work',
+          },
+          {
+            name: 'GALLERY',
+            href: '/#',
+          },
+          {
+            name: 'SERVICES',
+            href: '/#services',
+          },
+          {
+            name: 'TESTIMONIALS',
+            href: '/#testimonaials',
+          },
+          {
+            name: 'TEAM',
+            href: '/#team',
+          },
+          {
+            name: 'SPONSORS',
+            href: '/#service1',
+          },
+          {
+            name: 'CONTACTS',
+            href: '/#contact',
+          },
 
-import Dropdown from "@/Components/Dashboard/Dropdown.vue";
-import DropdownLink from "@/Components/Dashboard/DropdownLink.vue";
-import NavLink from "@/Components/Dashboard/NavLink.vue";
-import ResponsiveNavLink from "@/Components/Dashboard/ResponsiveNavLink.vue";
-
-defineProps({
-  title: String,
-});
-
-const showingNavigationDropdown = ref(false);
+        ],
+      },
+      // Add more navigation items as needed
+    ];
+    const dropdownStates = ref({});
+    const isOpenDropdown = (index) => {
+      return dropdownStates.value[index] || false;
+    };
+    const toggleDropdown = (index) => {
+      dropdownStates.value[index] = !dropdownStates.value[index];
+    };
+    const setScrollBg = (value) => {
+      scrollBg.value = value;
+    };
+    let showMenu = ref(false);
+    const toggleNav = () => (showMenu.value = !showMenu.value);
+    return { showMenu, toggleNav, navigations, isOpenDropdown, toggleDropdown, setScrollBg, dropdownStates };
+  },
+};
 </script>
+<style >
+.cool-link {
+  display: inline-block;
+  color: #000;
+  text-decoration: none;
+}
+
+.cool-link::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  font-size: 0.85rem;
+  background: #f3c95c;
+  transition: width .1s;
+}
+
+.text-sm:hover {
+  font-size: 0.7rem;
+  transition: width 1000s;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.cool-link:hover::after {
+  width: 100%;
+}
+
+.border-after::after {
+  border-width: 4px;
+  --tw-border-opacity: 1;
+  border-color: rgb(14 165 233 / var(--tw-border-opacity));
+}
+
+.ul-letter-spaceing {
+  letter-spacing: 2.6px;
+}
+
+.text-font {
+  font-size: 80%;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  color: #292929;
+  text-decoration: none;
+  border-color: transparent;
+}
+
+.flex-algight-end {
+
+  align-items: flex-end;
+
+}
+</style>

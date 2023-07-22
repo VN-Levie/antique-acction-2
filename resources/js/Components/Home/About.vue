@@ -1,5 +1,5 @@
 <template>
-  <div id="About" class="container-fluid-About  moto-spacing-top-large  moto-spacing-bottom-large ">
+  <div id="about" class="container-fluid-About  moto-spacing-top-large  moto-spacing-bottom-large ">
     <div class="container-fluid">
       <p class="text moto-text_system_8">
         RESTORERS, SPECIALISTS
