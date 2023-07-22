@@ -1,5 +1,5 @@
 <template>
-  <div id="testimonaials" class="Testimonial-backgroud">
+  <div class="Testimonial-backgroud">
     <div class="row">
       <div class="col-12 d-flex justify-content-center">
         <span class="title_Testimonial">Testimonial</span>

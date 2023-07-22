@@ -1,5 +1,5 @@
 <template>
-  <div id="home" class="slider moto-widget moto-spacing-top-large moto-spacing-bottom-large moto-widget-row row-fixed   ">
+  <div class="slider moto-widget moto-spacing-top-large moto-spacing-bottom-large moto-widget-row row-fixed   ">
     <div class="moto-preset-default moto-spacing-top-medium  moto-spacing-bottom-medium ">
       <div class="moto-preset-default moto-spacing-top-medium  moto-spacing-bottom-medium ">
         <div class="height moto-widget-spacer-block"></div>>
@@ -21,8 +21,12 @@
   </div>
 </template>
 
-<script setup>
-
+<script>
+export default {
+  setup() {
+    return {};
+  },
+};
 </script>
 
 <style>

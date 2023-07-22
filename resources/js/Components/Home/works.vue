@@ -5,16 +5,26 @@
         <span class="title_word">Our Last Work</span>
       </div>
       <div class="col-12 d-flex justify-content-center">
-        <img src="/img/mt-1804-home-divider1.png" alt="divider1" class="logo-img" />
+        <img
+          src="/img/mt-1804-home-divider1.png"
+          alt="divider1"
+          class="logo-img"
+        />
       </div>
     </div>
 
     <div class="work-content">
       <ul class="tab-work">
-        <li :class="{ toggoArrivals }" @click="changetabs('ARRIVALS'), changeclassArrivals()">
+        <li
+          :class="{ toggoArrivals }"
+          @click="changetabs('ARRIVALS'), changeclassArrivals()"
+        >
           NEW ARRIVALS
         </li>
-        <li :class="{ toggoPopular }" @click="changetabs('POPULAR'), changeclassPopular()">
+        <li
+          :class="{ toggoPopular }"
+          @click="changetabs('POPULAR'), changeclassPopular()"
+        >
           POPULAR
         </li>
       </ul>
@@ -187,28 +197,26 @@ export default {
     font-size: 40px;
     line-height: 1.4;
   }
-
   .work-container {
-    max-width: 100%;
-    padding: 15px;
+    max-width: 100%; 
+    padding: 15px; 
   }
 
   .work-card {
-    margin: 15px 0;
+    margin: 15px 0; 
     align-items: center;
     justify-content: center;
   }
 
   .work-card h2 {
-    font-size: 16px;
-    margin-top: 10px;
+    font-size: 16px; 
+    margin-top: 10px; 
   }
 
   .work-card-img {
     margin-bottom: auto;
   }
 }
-
 .ten {
   padding-bottom: 50px;
 }

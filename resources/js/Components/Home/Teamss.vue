@@ -1,5 +1,5 @@
 <template>
-  <div id="team" class="row">
+  <div class="row">
     <div class="col-12 d-flex justify-content-center">
       <span class="title_team">Team</span>
     </div>

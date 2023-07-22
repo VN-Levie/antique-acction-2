@@ -1,5 +1,5 @@
 <template>
-  <div id="about" class="container-fluid-About  moto-spacing-top-large  moto-spacing-bottom-large  ">
+  <div id="About" class="container-fluid-About  moto-spacing-top-large  moto-spacing-bottom-large ">
     <div class="container-fluid">
       <p class="text moto-text_system_8">
         RESTORERS, SPECIALISTS
@@ -25,10 +25,7 @@
               <div class="">
                 <div class="moto-widget-text-content moto-widget-text-editable">
                   <p class="text moto-text_system_9">
-                    "With 35 years of experience, much of our business is from loyal repeat customers, some we have known
-                    for over twenty years, as well as word of mouth referrals and new customers from our advertising. A
-                    large portion of our many restoration projects are items of furniture that have a special sentimental
-                    value to our customers."
+                    {{ title }}
                   </p>
                 </div>
               </div>
@@ -40,12 +37,20 @@
   </div>
 </template>
 
-<script setup>
-
+<script>
+export default {
+  el: "#About",
+  data() {
+    return {
+      title:
+        "With 35 years of experience, much of our business is from loyal repeat customers, some we have known for over twenty years, as well as word of mouth referrals and new customers from our advertising. A large portion of our many restoration projects are items of furniture that have a special sentimental value to our customers.",
+    };
+  },
+};
 </script>
 
 <style>
-#about {
+#About {
   background-image: url(/img/mt-1804-home-about-bg.jpg);
   background-position: right bottom;
   background-repeat: no-repeat;
