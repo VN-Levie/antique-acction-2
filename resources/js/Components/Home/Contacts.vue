@@ -90,23 +90,30 @@
                 </div>
                 <div class="input-container">
                   <input v-model="form.name" type="text" class="input" placeholder="Name" />
-                  <span v-if="form.errors.name" class="text-sm m-2 text-red-400">{{ form.errors.name }} </span>
+                  <span v-if="form.errors.name" class="text-sm m-2">{{ form.errors.name }} </span>
                 </div>
                 <div class="input-container">
                   <input v-model="form.email" type="email" class="input" placeholder="Email" />
-                  <span v-if="form.errors.email" class="text-sm m-2 text-red-400">{{ form.errors.email }} </span>
+                  <span v-if="form.errors.email" class="text-sm m-2 ">{{ form.errors.email }} </span>
                 </div>
                 <div class="input-container">
                   <input v-model="form.phone" type="tel" class="input" placeholder="Phone" />
-                  <span v-if="form.errors.phone" class="text-sm m-2 text-red-400">{{ form.errors.phone }} </span>
+                  <span v-if="form.errors.phone" class="text-sm m-2 ">{{ form.errors.phone }}
+                  </span>
                 </div>
                 <div class="input-container textarea">
                   <textarea v-model="form.body" placeholder="Message" class="input"></textarea>
-                  <span v-if="form.errors.body" class="text-sm m-2 text-red-400">{{ form.errors.body }} </span>
+
                 </div>
+                <div class="input-container">
+                  <span v-if="form.errors.body">{{ form.errors.body }} </span>
+                </div>
+                <br>
+                <br>
                 <button class="btn btn-lg">
                   Send Message
                 </button>
+
               </form>
             </div>
           </div>
@@ -185,6 +192,10 @@ const submit = () => {
   font-size: 20px;
   font-weight: bold;
   margin-left: 24px;
+}
+
+.text-required {
+  color: red;
 }
 
 .p-rewrite {
@@ -313,17 +324,21 @@ textarea.input {
 }
 
 .input-container span {
+  height: 50%;
   position: absolute;
-  top: 0;
-  left: 25px;
+  top: -14px;
   transform: translateY(-50%);
   font-size: 0.8rem;
   padding: 0 0.4rem;
-  color: transparent;
+  color: red;
   pointer-events: fill;
   z-index: 500;
-
+  bottom: -27px;
+  left: -4px;
+  padding-bottom: 10px;
 }
+
+
 
 .input-container span:before,
 .input-container span:after {
@@ -336,7 +351,7 @@ textarea.input {
   background-color: #939643;
   top: 50%;
   transform: translateY(-50%);
-
+  padding: 20px;
 }
 
 .input-container span:before {
