@@ -1,20 +1,20 @@
 <template>
-  <HomeLayout title="New">
+  <HomeLayout title="1">
     <div class="clear-fix"></div>
     <div class="News-page">
       <div class="left">
         <div class="container-new">
-          <div v-for="newspost in posts" :key="newspost.id" class="new-post">
+          <div v-for="Newpost in posts" :key="Newpost.id" class="new-post">
             <div class="new-post_img">
-              <img :src="newspost.thumbnail" alt="" />
+              <img :src="Newpost.thumbnail" alt="" />
             </div>
             <div class="new-post_info">
               <div class="new-post_date">
-                <span>{{ newspost.name }}</span>
+                <span>{{ Newpost.name }}</span>
                 <!-- <span>{{ post.created_at }}</span> -->
               </div>
-              <h1 class="new-post_title">{{ newspost.title }}</h1>
-              <p class="new-post_text">{{ shorttext(newspost.content, 80) }}</p>
+              <h1 class="new-post_title">{{ Newpost.title }}</h1>
+              <p class="new-post_text">{{ shorttext(Newpost.content, 80) }}</p>
               <!-- <p class="new-post_text">{{ post.content  }}</p> -->
               <a href="#" class="new-post_cta">Read More</a>
             </div>
@@ -71,10 +71,6 @@ export default {
         {
           id: 6,
           nameTags: "tag6",
-        },
-        {
-          id: 7,
-          nameTags: "tag1",
         },
       ],
       posts: [],
@@ -140,6 +136,7 @@ export default {
 
 .tags-news:hover {
   border-bottom: 2px solid #f3c95c;
+  display: inline;
 }
 
 .tags-news {
