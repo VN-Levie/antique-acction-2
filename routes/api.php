@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\NewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,5 +23,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/data/team', [TeamController::class, 'index']);
+Route::get('/data/news', [NewsController::class, 'index']);
 
 Route::get('/data/Testimonial', [TestimonialController::class, 'index']);
