@@ -17,7 +17,7 @@ class NewsController extends Controller
     {
         $Datanews = DB::table('post')
         ->join('users', 'users.id', '=', "post.author")
-        ->select('post.id','post.title','post.thumbnail','post.content', 'post.description','post.created_at','users.name')->get();
+        ->select('post.id','post.title','post.thumbnail','post.content', 'post.description','post.tag','users.name')->get();
         return response()->json($Datanews);
     }
 }
