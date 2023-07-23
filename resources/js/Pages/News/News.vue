@@ -4,17 +4,17 @@
     <div class="News-page">
       <div class="left">
         <div class="container-new">
-          <div v-for="post in posts" :key="post.id" class="new-post">
+          <div v-for="newspost in posts" :key="newspost.id" class="new-post">
             <div class="new-post_img">
-              <img :src="post.thumbnail" alt="" />
+              <img :src="newspost.thumbnail" alt="" />
             </div>
             <div class="new-post_info">
               <div class="new-post_date">
-                <span>{{ post.name }}</span>
+                <span>{{ newspost.name }}</span>
                 <!-- <span>{{ post.created_at }}</span> -->
               </div>
-              <h1 class="new-post_title">{{ post.title }}</h1>
-              <p class="new-post_text">{{ shorttext(post.content, 80) }}</p>
+              <h1 class="new-post_title">{{ newspost.title }}</h1>
+              <p class="new-post_text">{{ shorttext(newspost.content, 80) }}</p>
               <!-- <p class="new-post_text">{{ post.content  }}</p> -->
               <a href="#" class="new-post_cta">Read More</a>
             </div>
@@ -29,9 +29,9 @@
               <a
                 class="tags-news"
                 href="#"
-                v-for="tag in tags"
-                :key="tag.id"
-                >{{ tag.nameTags }}</a
+                v-for="taga in tags"
+                :key="taga.id"
+                >{{ taga.nameTags }}</a
               >
             </li>
           </ul>
@@ -50,31 +50,31 @@ export default {
       tags: [
         {
           id: 1,
-          nameTags: "WritingPrompts",
+          nameTags: "tag1",
         },
         {
           id: 2,
-          nameTags: "Tình Yêu",
+          nameTags: "tag2",
         },
         {
           id: 3,
-          nameTags: "Ngôn Ngữ",
+          nameTags: "tag3",
         },
         {
           id: 4,
-          nameTags: "Bài Dịch Khác",
+          nameTags: "tag4",
         },
         {
           id: 5,
-          nameTags: "Bootstrap",
+          nameTags: "tag5",
         },
         {
           id: 6,
-          nameTags: "PHP",
+          nameTags: "tag6",
         },
         {
           id: 7,
-          nameTags: "Tài nguyên đồ họa",
+          nameTags: "tag1",
         },
       ],
       posts: [],
