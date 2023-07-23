@@ -117,6 +117,10 @@ export default {
   height: 1200px;
 }
 
+.left {
+  width: 920px;
+}
+
 .new-post_info {
   height: 180px;
   width: 570px;
