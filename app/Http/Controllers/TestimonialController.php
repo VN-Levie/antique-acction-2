@@ -10,7 +10,7 @@ class TestimonialController extends Controller
     public function index () {
         $TestimonialData = DB::table('feedback')->
         join('users', 'users.id', '=', "feedback.author")
-        ->select('feedback.*', 'users.name')->get();
+        ->select('feedback.id','feedback.author','feedback.content', 'users.name')->get();
 
         return response()->json($TestimonialData);
     }

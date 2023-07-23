@@ -6,12 +6,12 @@
         <div class="container-new">
           <div v-for="post in posts" :key="post.id" class="new-post">
             <div class="new-post_img">
-              <img :src="post.imgSrc" alt="" />
+              <img :src="post.thumbnail" alt="" />
             </div>
             <div class="new-post_info">
               <div class="new-post_date">
-                <span>{{ post.author }}</span>
-                <span>{{ post.date }}</span>
+                <span>{{ post.name }}</span>
+                <!-- <span>{{ post.created_at }}</span> -->
               </div>
               <h1 class="new-post_title">{{ post.title }}</h1>
               <p class="new-post_text">{{ shorttext(post.content, 80) }}</p>
@@ -30,7 +30,6 @@
                 class="tags-news"
                 href="#"
                 v-for="tag in tags"
-                @click="selectedTag = tag.nameTags"
                 :key="tag.id"
                 >{{ tag.nameTags }}</a
               >
@@ -47,71 +46,45 @@ import HomeLayout from "@/Layouts/HomeLayout.vue";
 
 export default {
   setup() {
-    const tags = [
-      {
-        id: 1,
-        nameTags: "WritingPrompts",
-      },
-      {
-        id: 2,
-        nameTags: "Tình Yêu",
-      },
-      {
-        id: 3,
-        nameTags: "Ngôn Ngữ",
-      },
-      {
-        id: 4,
-        nameTags: "Bài Dịch Khác",
-      },
-      {
-        id: 5,
-        nameTags: "Bootstrap",
-      },
-      {
-        id: 6,
-        nameTags: "PHP",
-      },
-      {
-        id: 7,
-        nameTags: "Tài nguyên đồ họa",
-      },
-    ];
-    const posts = [
-      {
-        id: 1,
-        imgSrc: "/img/services1.jpg",
-        author: "Sagar Developer",
-        date: "Nov 12 2021",
-        title: "Lopx ipsum dolor sit amet.",
-        content:
-          "Lopx ipsum dolor sit amet consectetur adipisicing elit. Dolores a, tempore veniam quasi sint fugiat facilis, facere, amet magnam optio velit. Laudantium et temporibus soluta, esse cupiditate aliquid dicta accusantium.",
-      },
-      {
-        id: 2,
-        imgSrc: "/img/services1.jpg",
-        author: "Sagar Developer",
-        date: "Nov 12 2021",
-        title: "Lopx ipsum dolor sit amet.",
-        content:
-          "Lopx ipsum dolor sit amet consectetur adipisicing elit. Dolores a, tempore veniam quasi sint fugiat facilis, facere, amet magnam optio velit. Laudantium et temporibus soluta, esse cupiditate aliquid dicta accusantium.",
-      },
-      {
-        id: 3,
-        imgSrc: "/img/services1.jpg",
-        author: "Sagar Developer",
-        date: "Nov 12 2021",
-        title: "Lopx ipsum dolor sit amet.",
-        content:
-          "Lopx ipsum dolor sit amet consectetur adipisicing elit. Dolores a, tempore veniam quasi sint fugiat facilis, facere, amet magnam optio velit. Laudantium et temporibus soluta, esse cupiditate aliquid dicta accusantium.",
-      },
-    ];
-
-
-    return { posts, tags, };
+    return {
+      tags: [
+        {
+          id: 1,
+          nameTags: "WritingPrompts",
+        },
+        {
+          id: 2,
+          nameTags: "Tình Yêu",
+        },
+        {
+          id: 3,
+          nameTags: "Ngôn Ngữ",
+        },
+        {
+          id: 4,
+          nameTags: "Bài Dịch Khác",
+        },
+        {
+          id: 5,
+          nameTags: "Bootstrap",
+        },
+        {
+          id: 6,
+          nameTags: "PHP",
+        },
+        {
+          id: 7,
+          nameTags: "Tài nguyên đồ họa",
+        },
+      ],
+      posts: [],
+    };
   },
   components: {
     HomeLayout,
+  },
+  mounted() {
+    this.newsDataFromApi();
   },
   methods: {
     shorttext(value, limit) {
@@ -119,8 +92,17 @@ export default {
         return value.substring(0, limit) + "...";
       }
     },
+    newsDataFromApi() {
+      axios
+        .get("/api/data/news")
+        .then((response) => {
+          this.posts = response.data;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
   },
-
 };
 </script>
 
@@ -132,6 +114,7 @@ export default {
   box-sizing: border-box;
   display: flex;
   justify-content: center;
+  height: 1200px;
 }
 
 .new-post_info {

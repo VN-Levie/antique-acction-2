@@ -15,31 +15,34 @@ class FeedbackSeeder extends Seeder
     {
         $feedbackData = [
             [
+                'id' => 1,
                 'content' => ' In forty-three years of antiquarian bookselling, we have come across many old and rare books that are in need of care and restoration. We are very grateful for the loving attention they get from Christian',
                 'pinned' => 0,
-                'author' => 1, 
+                'author' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
+                'id' => 2,
                 'content' => 'Diana has been,  and continues to be, my binder of choice for over ten years. In reference to my specialization in 18th century books, her restoration and rebinding is state of the art was perfect!',
                 'pinned' => 1,
-                'author' => 2, 
+                'author' => 2,
                 'created_at' => now(),
                 'updated_at' => now(),
-            ],[
-                'content' => 'In forty-three years of antiquarian bookselling, we have come across many old and rare books that are in need of care and restoration. We are very grateful for the loving attention they get from Christian.'
-                ,
+            ], [
+                'id' => 3,
+                'content' => 'In forty-three years of antiquarian bookselling, we have come across many old and rare books that are in need of care and restoration. We are very grateful for the loving attention they get from Christian.',
                 'pinned' => 3,
-                'author' => 3, 
+                'author' => 3,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
+                'id' => 4,
                 'content' => 'Diana has been,  and continues to be, my binder of choice for over ten years. In reference to my specialization in 18th century books, her restoration and rebinding is state of the art was perfect! "
                 ',
                 'pinned' => 4,
-                'author' => 4, 
+                'author' => 4,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
