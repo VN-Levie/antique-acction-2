@@ -1,51 +1,61 @@
 <template>
-  <HomeLayout title="1">
-    <div class="clear-fix"></div>
-    <div class="News-page">
-      <div class="left">
-        <div class="container-new">
-          <div v-for="Newpost in posts" :key="Newpost.id" class="new-post">
-            <div class="new-post_img">
-              <img :src="Newpost.thumbnail" alt="" />
+  <HomeLayout>
+  <div class="clear-fix"></div>
+  <div class="News-page">
+    <div class="left">
+      <div class="container-new">
+        <div v-for="Newpost in posts" :key="Newpost.id" class="new-post">
+          <div class="new-post_img">
+            <img :src="Newpost.thumbnail" alt="" />
+          </div>
+          <div class="new-post_info">
+            <div class="new-post_date">
+              <span>{{ Newpost.name }}</span>
+              <!-- <span>{{ post.created_at }}</span> -->
             </div>
-            <div class="new-post_info">
-              <div class="new-post_date">
-                <span>{{ Newpost.name }}</span>
-                <!-- <span>{{ post.created_at }}</span> -->
-              </div>
-              <h1 class="new-post_title">{{ Newpost.title }}</h1>
-              <p class="new-post_text">{{ shorttext(Newpost.content, 80) }}</p>
-              <!-- <p class="new-post_text">{{ post.content  }}</p> -->
-              <a href="#" class="new-post_cta">Read More</a>
-            </div>
+            <h1 class="new-post_title">{{ Newpost.title }}</h1>
+            <p class="new-post_text">{{ shorttext(Newpost.content, 80) }}</p>
+            <!-- <p class="new-post_text">{{ post.content  }}</p> -->
+            <a href="#" class="new-post_cta">Read More</a>
           </div>
         </div>
       </div>
-      <div class="right">
-        <div class="tags-narbar">
-          <h4>Các tags khác</h4>
-          <ul>
-            <li>
-              <a
-                class="tags-news"
-                href="#"
-                v-for="taga in tags"
-                :key="taga.id"
-                >{{ taga.nameTags }}</a
-              >
-            </li>
-          </ul>
-        </div>
+    </div>
+    <div class="right">
+      <div class="tags-narbar">
+        <h4>Các tags khác</h4>
+        <ul>
+          <li>
+            <a class="tags-news" href="#" v-for="taga in tags" :key="taga.id">{{
+              taga.nameTags
+            }}</a>
+          </li>
+        </ul>
       </div>
     </div>
-  </HomeLayout>
+  </div>
+</HomeLayout>
 </template>
 
 <script>
 import HomeLayout from "@/Layouts/HomeLayout.vue";
+import { defineComponent, ref } from "vue";
 
-export default {
+export default defineComponent({
   setup() {
+    const posts = ref([]);
+
+    const getposts = () => {
+      axios
+        .get("http://127.0.0.1:8000/api/news")
+        .then(function (response) {
+          posts.value = response.data;
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+    };
+    getposts();
     return {
       tags: [
         {
@@ -73,14 +83,11 @@ export default {
           nameTags: "tag6",
         },
       ],
-      posts: [],
+      posts,
     };
   },
   components: {
     HomeLayout,
-  },
-  mounted() {
-    this.newsDataFromApi();
   },
   methods: {
     shorttext(value, limit) {
@@ -88,18 +95,8 @@ export default {
         return value.substring(0, limit) + "...";
       }
     },
-    newsDataFromApi() {
-      axios
-        .get("/api/data/news")
-        .then((response) => {
-          this.posts = response.data;
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    },
   },
-};
+});
 </script>
 
 <style>
