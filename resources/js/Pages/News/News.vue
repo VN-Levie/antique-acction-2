@@ -16,7 +16,8 @@
             <h1 class="new-post_title">{{ Newpost.title }}</h1>
             <p class="new-post_text">{{ shorttext(Newpost.content, 80) }}</p>
             <!-- <p class="new-post_text">{{ post.content  }}</p> -->
-            <a href="#" class="new-post_cta">Read More</a>
+            <!-- <a :to="params: {id: Newpost.id}"" value="">" class="new-post_cta">Read More</a> -->
+            <!-- <router-link :to="'/post/' + Newpost.id" class="new-post_cta">Read More</router-link> -->
           </div>
         </div>
       </div>

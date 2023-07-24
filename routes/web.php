@@ -43,6 +43,7 @@ Route::group(['prefix' => 'products'], function () {
 
 Route::group(['prefix' => 'news'], function () {
     Route::get('/', [NewsController::class, 'index'])->name('index');
+    Route::get('/{id}', [NewsController::class, 'Detailpost'])->name('news.Detail');
 });
 
 Route::post('/contact', ContactController::class)->name('contact');

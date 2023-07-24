@@ -24,7 +24,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/data/team', [TeamController::class, 'index']);
 
+
 Route::get('/news', [NewsController::class, 'show']);
-Route::get('/news/{id}', [NewsController::class, 'store']);
+Route::get('news/{id}', [NewsController::class, 'newsDetail']);
 
 Route::get('/data/Testimonial', [TestimonialController::class, 'index']);
