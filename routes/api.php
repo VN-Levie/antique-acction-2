@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,5 @@ Route::get('/news', [NewsController::class, 'show']);
 Route::get('news/{id}', [NewsController::class, 'newsDetail']);
 
 Route::get('/data/Testimonial', [TestimonialController::class, 'index']);
+
+Route::get('/products', [ProductController::class, 'index']);

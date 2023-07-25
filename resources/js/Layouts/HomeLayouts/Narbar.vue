@@ -11,7 +11,7 @@
       <!--LoGO NAV BAR-->
       <div class="flex items-center justify-between">
         <a :href="route('home')" class="mt-0">
-            <img style="width: 80%;" src="/img/mt-1804-home-logo.png" class="cursor-pointer">
+          <img style="width: 80%;" src="/img/mt-1804-home-logo.png" class="cursor-pointer">
         </a>
         <!-- Mobile menu button -->
         <div @click="toggleNav" class="flex md:hidden">
@@ -58,9 +58,37 @@
             </li>
           </ul>
         </li>
-
+        <!--Social Media-->
+        <ul class="border-after
+        flex-col
+        mt-8
+        space-y-4
+        md:flex md:space-y-0 flex-algight-end  md:flex-row md:space-x-3 md:mt-0
+        cursor-pointer">
+          <li>
+            <a href="#" class="cool-link navbar-text" target="_self">
+              <i class="fa fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="cool-link navbar-text" target="_self">
+              <i class="fa fa-pinterest-p" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="cool-link navbar-text" target="_self">
+              <i class="fa fa-linkedin" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="cool-link navbar-text">
+              <i class="fa fa-google-plus" aria-hidden="true"></i>
+            </a>
+          </li>
+        </ul>
       </ul>
     </nav>
+
   </div>
 </template>
 <script>

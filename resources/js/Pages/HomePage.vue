@@ -13,7 +13,7 @@ import logo from "@/Components/Home/logo.vue";
 </script>
 
 <template>
-  <Head title="Home1" />
+  <Head title="Home" />
   <HomeLayout>
     <Slider />
     <About />

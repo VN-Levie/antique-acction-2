@@ -34,15 +34,7 @@
                     class="moto-widget moto-widget-social-links-extended moto-preset-3 moto-align-center moto-spacing-top-small moto-spacing-right-auto moto-spacing-bottom-auto moto-spacing-left-auto"
                   >
                     <ul class="moto-widget-social-links-extended__list">
-                      <li class="moto-widget-social-links-extended__item">
-                        <a
-                          href="#"
-                          class="moto-widget-social-links-extended__link"
-                          target="_self"
-                        >
-                          <i class="fa fa-facebook" aria-hidden="true"></i>
-                        </a>
-                      </li>
+                     
                       <li class="moto-widget-social-links-extended__item">
                         <a
                           href="#"

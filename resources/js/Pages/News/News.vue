@@ -1,41 +1,41 @@
 <template>
   <HomeLayout>
-  <div class="clear-fix"></div>
-  <div class="News-page">
-    <div class="left">
-      <div class="container-new">
-        <div v-for="Newpost in posts" :key="Newpost.id" class="new-post">
-          <div class="new-post_img">
-            <img :src="Newpost.thumbnail" alt="" />
-          </div>
-          <div class="new-post_info">
-            <div class="new-post_date">
-              <span>{{ Newpost.name }}</span>
-              <!-- <span>{{ post.created_at }}</span> -->
+    <div class="clear-fix"></div>
+    <div class="News-page">
+      <div class="left">
+        <div class="container-new">
+          <div v-for="Newpost in posts" :key="Newpost.id" class="new-post">
+            <div class="new-post_img">
+              <img :src="Newpost.thumbnail" alt="" />
             </div>
-            <h1 class="new-post_title">{{ Newpost.title }}</h1>
-            <p class="new-post_text">{{ shorttext(Newpost.content, 80) }}</p>
-            <!-- <p class="new-post_text">{{ post.content  }}</p> -->
-            <!-- <a :to="params: {id: Newpost.id}"" value="">" class="new-post_cta">Read More</a> -->
-            <!-- <router-link :to="'/post/' + Newpost.id" class="new-post_cta">Read More</router-link> -->
+            <div class="new-post_info">
+              <div class="new-post_date">
+                <span>{{ Newpost.name }}</span>
+                <!-- <span>{{ post.created_at }}</span> -->
+              </div>
+              <h1 class="new-post_title">{{ Newpost.title }}</h1>
+              <p class="new-post_text">{{ shorttext(Newpost.content, 80) }}</p>
+              <!-- <p class="new-post_text">{{ post.content  }}</p> -->
+              <!-- <a :to="params: {id: Newpost.id}"" value="">" class="new-post_cta">Read More</a> -->
+              <!-- <router-link :to="'/post/' + Newpost.id" class="new-post_cta">Read More</router-link> -->
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="right">
-      <div class="tags-narbar">
-        <h4>Các tags khác</h4>
-        <ul>
-          <li>
-            <a class="tags-news" href="#" v-for="taga in tags" :key="taga.id">{{
-              taga.nameTags
-            }}</a>
-          </li>
-        </ul>
+      <div class="right">
+        <div class="tags-narbar">
+          <h4>Các tags khác</h4>
+          <ul>
+            <li>
+              <a class="tags-news" href="#" v-for="taga in tags" :key="taga.id">{{
+                taga.nameTags
+              }}</a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
-</HomeLayout>
+  </HomeLayout>
 </template>
 
 <script>
@@ -227,10 +227,12 @@ export default defineComponent({
     margin: 10px 0 0 0;
     flex-direction: column;
   }
+
   .new-post {
     padding: 2.5px;
     flex-direction: column;
   }
+
   .container-new {
     margin-top: auto;
   }

@@ -37,8 +37,13 @@ Route::inertia('/abouts', 'About');
 // Route::get('products', function () {
 //     return Inertia::render('Products/Show', []);
 // })->name('products');
-Route::group(['prefix' => 'products'], function () {
-    Route::get('/', [ProductController::class, 'index'])->name('product.index');
+
+
+// Route::group(['prefix' => 'products'], function () {
+//     Route::get('/', [ProductController::class, 'index'])->name('product.index');
+// });
+Route::get('/products', function () {
+    return Inertia::render('Products/index');
 });
 
 Route::group(['prefix' => 'news'], function () {
