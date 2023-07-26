@@ -7,79 +7,10 @@
           <div class="margin-15">
             <div class="row">
               <div class="col-md-8">
-                <div class="post_list_style_1">
-                  <div class="alith_heading">
-                    <h2 class="alith_heading_patern_2">Recent Posts</h2>
-                  </div>
-                  <article class="row">
-                    <div class="col-md-3">
-                      <figure class="">
-                        <a href="#"><img src="/img/works1.png" alt="" /></a>
-                      </figure>
-                    </div>
-                    <div class="col-md-9">
-                      <h3 class="alith_post_title">
-                        <a href="">Magna aliqua ut enim ad minim veniam</a>
-                      </h3>
-                      <div class="post_meta">
-                        <span>name</span>
-                        <span class="meta_categories"
-                          ><a href="#">Politics</a>, <a href="#">News</a></span
-                        >
-                        <span class="meta_date">18 Sep, 2023</span>
-                      </div>
-                    </div>
-                  </article>
-                </div>
+                <RecentPosts :posts="posts" />
               </div>
               <aside class="col-md-4">
-                <div class="sidebar_right">
-                  <div class="">
-                    <div class="widget-title-cover">
-                      <h4 class="widget-title">
-                        <span>Popular Articles</span>
-                      </h4>
-                    </div>
-                    <div class="latest_style_1">
-                      <div class="latest_style_1_item">
-                        <!-- <span class="item-count vertical-align">1.</span> -->
-                        <div class="alith_post_title_small">
-                          <a href=""
-                            ><strong
-                              >Ut enim ad minima veniam, quis nostrum</strong
-                            ></a
-                          >
-                          <p class="meta">
-                            <span>2 Sep, 2023</span> <span>268 views</span>
-                          </p>
-                        </div>
-                        <figure class="alith_news_img">
-                          <a href=""><img src="/img/works1.png" alt="" /></a>
-                        </figure>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="sidebar-widget">
-                    <div class="widget-title-cover">
-                      <h4 class="widget-title"><span>Tags cloud</span></h4>
-                    </div>
-                    <div class="alith_tags_all">
-                      <a href="" class="alith_tagg">Business</a>
-                      <a href="" class="alith_tagg">Technology</a>
-                      <a href="" class="alith_tagg">Sport</a>
-                      <a href="" class="alith_tagg">Art</a>
-                      <a href="" class="alith_tagg">Lifestyle</a>
-                      <a href="" class="alith_tagg">Three</a>
-                      <a href="" class="alith_tagg">Photography</a>
-                      <a href="" class="alith_tagg">Lifestyle</a>
-                      <a href="" class="alith_tagg">Art</a>
-                      <a href="" class="alith_tagg">Education</a>
-                      <a href="" class="alith_tagg">Social</a>
-                      <a href="" class="alith_tagg">Three</a>
-                    </div>
-                  </div>
-                </div>
+                <SidebarRightnews :tags_cloud="tags_cloud" />
               </aside>
             </div>
           </div>
@@ -89,62 +20,7 @@
         <div class="container">
           <div class="bottom margin-15">
             <div class="row">
-              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-                <div class="sidebar-widget">
-                  <div class="widget-title-cover">
-                    <h4 class="widget-title"><span>Most comments</span></h4>
-                  </div>
-                  <div class="latest_style_3">
-                    <div class="latest_style_3_item">
-                      <span class="item-count vertical-align">1.</span>
-                      <div class="alith_post_title_small">
-                        <a href=""
-                          ><strong
-                            >Frtuitous spluttered unlike ouch vivid blinked far
-                            inside</strong
-                          ></a
-                        >
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-                <div class="sidebar-widget">
-                  <div class="widget-title-cover">
-                    <h4 class="widget-title"><span>Latest</span></h4>
-                  </div>
-                  <div class="latest_style_2">
-                    <div class="latest_style_2_item">
-                      <figure class="alith_news_img">
-                        <a href=""
-                          ><img alt="" src="/img/works1.png" class="hover_grey"
-                        /></a>
-                      </figure>
-                      <h3 class="alith_post_title">
-                        <a href="">Magna aliqua ut enim ad minim veniam</a>
-                      </h3>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-                <div class="sidebar-widget">
-                  <div class="widget-title-cover">
-                    <h4 class="widget-title"><span>Categories</span></h4>
-                  </div>
-                  <ul class="bottom_menu">
-                    <li><a href="" class=""> Business</a></li>
-                    <li><a href="" class=""> Entertainment</a></li>
-                    <li><a href="" class=""> Environment</a></li>
-                    <li><a href="" class=""> Health</a></li>
-                    <li><a href="" class=""> Life style</a></li>
-                    <li><a href="" class=""> Politics</a></li>
-                    <li><a href="" class=""> Technology</a></li>
-                    <li><a href="" class=""> World</a></li>
-                  </ul>
-                </div>
-              </div>
+              <SiderBotom :Categories_tags="Categories_tags" />
             </div>
           </div>
         </div>
@@ -155,11 +31,40 @@
 
 <script>
 import HomeLayout from "@/Layouts/HomeLayout.vue";
+import RecentPosts from "./Recent_Posts.vue";
+import SidebarRightnews from "./SidebarRightnews.vue";
+import SiderBotom from "./SiderBotompost.vue";
+
 import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   setup() {
     const posts = ref([]);
+
+    const Categories_tags = [
+      "Business",
+      "Entertainment",
+      "Environment",
+      "Health",
+      "Life style",
+      "Politics",
+      "Technology",
+      "World",
+    ];
+
+    const tags_cloud = [
+      "Business",
+      "Technology",
+      "Sport",
+      "Art",
+      "Lifestyle",
+      "Three",
+      "Photography",
+      "Lifestyle",
+      "Art",
+      "Education",
+      "Social",
+    ];
 
     const getposts = () => {
       axios
@@ -173,37 +78,16 @@ export default defineComponent({
     };
     getposts();
     return {
-      tags: [
-        {
-          id: 1,
-          nameTags: "tag1",
-        },
-        {
-          id: 2,
-          nameTags: "tag2",
-        },
-        {
-          id: 3,
-          nameTags: "tag3",
-        },
-        {
-          id: 4,
-          nameTags: "tag4",
-        },
-        {
-          id: 5,
-          nameTags: "tag5",
-        },
-        {
-          id: 6,
-          nameTags: "tag6",
-        },
-      ],
       posts,
+      tags_cloud,
+      Categories_tags,
     };
   },
   components: {
     HomeLayout,
+    RecentPosts,
+    SidebarRightnews,
+    SiderBotom,
   },
   methods: {
     shorttext(value, limit) {
@@ -211,12 +95,12 @@ export default defineComponent({
         return value.substring(0, limit) + "...";
       }
     },
+
   },
 });
 </script>
 
 <style>
-
 .margin-lr {
   margin: 0 100px;
 }
@@ -234,6 +118,32 @@ img.aligncenter {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+.Popular_img {
+  height: 106px;
+  width: 122px;
+}
+.alith_post_except {
+  font-size: 16px;
+  padding-right: 150px;
+}
+.alith_post_except a {
+  border-bottom: 1px solid;
+  padding-bottom: 2px;
+  text-transform: uppercase;
+}
+
+.alith_post_except {
+  font-size: 16px;
+  padding-right: 100px;
+}
+.read_more {
+  background: #fff none repeat scroll 0 0;
+  /* color: #fff; */
+  font-size: 80%;
+  padding: 0 2px;
+  text-transform: uppercase;
 }
 
 /*COLOR*/
@@ -307,10 +217,14 @@ a.link-active,
 .post_meta_date {
   text-transform: uppercase;
 }
+.meta_categories a:hover {
+  color: #e5633f;
+}
 
 .sidebar-widget {
   margin: 0 0 30px 0;
 }
+
 .vertical-align {
   position: absolute;
   top: 50%;
@@ -400,6 +314,12 @@ h4.widget-title span::before {
   width: 35%;
 }
 
+.alith_news_img {
+  height: 106px !important;
+  width: 122px p !important;
+  max-width: 100%;
+}
+
 .latest_style_2_item_first h3.alith_post_title {
   font-size: 18px;
   font-weight: 300;
@@ -487,6 +407,12 @@ h4.widget-title span::before {
 .bottom_menu li {
   float: left;
   margin: 2px 0;
+  width: 80%;
+}
+
+.bottom_menu li a {
+  float: left;
+  margin: 2px 0;
   width: 50%;
 }
 
@@ -524,11 +450,6 @@ h4.widget-title span::before {
 }
 
 /*image hover*/
-.hover_grey:hover {
-  -webkit-filter: grayscale(100%);
-  filter: grayscale(100%);
-  transition: filter 0.5s ease-in-out;
-}
 
 @media (max-width: 1024px) {
   .latest_style_1_item .alith_post_title_small {
