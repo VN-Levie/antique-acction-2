@@ -7,9 +7,7 @@
           <div class="margin-15">
             <div class="row">
               <div class="col-md-8">
-                <!-- <ArticleDetails/> -->
-                <span>{{ $attrs.content }}</span>
-                <!-- as -->
+                <ArticleDetails :content="$attrs.content" />
               </div>
               <aside class="col-md-4">
                 <SidebarRightnews :tags_cloud="tags_cloud" />

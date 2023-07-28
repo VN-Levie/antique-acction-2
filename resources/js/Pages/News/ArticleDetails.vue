@@ -3,7 +3,7 @@
     <div class="post-content">
       <div class="single-content">
         <div class="dropcap column-2">
-          <p v-for="(content, index) in paragraphs.split('. ')"
+          <p v-for="(content, index) in content.split('. ')"
           :key="index"
           >
             {{ content }}
@@ -43,15 +43,16 @@
 <script>
 import CommentsPost from "./CommentsPost.vue";
 export default {
-  setup() {
-    const paragraphs =
-      "The lemming hello and hence leapt hello more otter aerially or dear monkey much illustrative bled showed crud fox yikes but spelled far onto nudged some frog and bluebird one surreptitiously ground frenetically much far up rewrote this. And far hey much hello and bashful one save less much goldfish analogically rabbit more hello threw thanks therefore truthful unproductive strenuously concentric repaid manifestly and oh between the one jeez and hit terrier dense unwittingly shark versus inscrutably that much fit involuntary a endearingly. Knew opposite sped hey insect wow interminable telepathic far oh this to one goldfinch some under chose attractively a yet clenched one less prodigious amenably far one inset much much that hound gosh goodness articulate spitefully ape repeatedly yikes that drooled glumly some romantic lion far far wow woolly a some one meant self-consciously pangolin poorly until a dizzily morbid house. Pellentesque neque nulla cubilia enim consequat eleifend, taciti nec aenean vehicula congue dolor etiam, ornare morbi class tristique quisque mattis augue tempus semper venenatis donec ipsum cras dapibus elit, ut fusce rhoncus senectus sit lectus tristique cursus convallis. Vivamus hac faucibus primis eleifend ligula curabitur phasellus augue, quisque rhoncus purus quam per felis rhoncus viverra bibendum, habitasse sem turpis fermentum morbi ut diam elit vestibulum consectetur suscipit pellentesque commodo dictumst potenti gravida libero donec in, non tristique orci habitant ipsum diam himenaeos Ouch much until in ahead until much scallop obliquely expansive experimentally daintily more regardless wherever conjointly overslept elegant then wow extrinsically irrespective imminently and ladybug cynic hawk between a guffawed as coaxingly strictly blubbered meant much pending overheard and eagle meanly jeez untiring jeez past well far realistic on mounted a by. Jeez secure hound python slit one began indubitably much owing cackled however fabulous leapt dully across hey around due that fumed invaluably came tranquilly one jeez salamander. Against and lantern where a and gnashed nefarious far rigorous cheerfully much far owing funny lusty cantankerous dire some deliberate close condescendingly tarantula angelfish glum shut a dipped wow that jeepers much and shut discarded this. Ouch oh alas crud unnecessary invaluable some goodness opposite hello since audacious far barring and absurdly much boa until read porpoise grouped the scooped the lied save minutely gosh much this outside and much snorted dear eel resold callously flinched smoothly. Close unthinking darn as darn between naked beyond seriously guiltily chameleon and that fish lent alas spuriously winced and shuddered unlocked more some gosh darn the trustfully talkative goodness indubitably single-mindedly ouch astride. Freshly turtle took toward more much notably fearlessly resolutely tastefully thus far some hello amazingly well overthrew far youthfully where stiffly below mongoose ordered dizzy the some far cosmetically much cuddled far oh this much darn one much much cuckoo ungracefully underneath because snarling less.";
 
-    return {paragraphs};
-  },
   components: {
     CommentsPost,
   },
+  props: {
+    content: {
+      type: Object,
+      defualt: [],
+    }
+  }
 };
 </script>
 
