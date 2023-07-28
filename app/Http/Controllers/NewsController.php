@@ -22,6 +22,7 @@ class NewsController extends Controller
         return Inertia::render('News/NewsDetail', [
             'id' => $id,
             'title' => $newsDetail->title,
+            'content' => $newsDetail->content,
             'newsDetail' => $newsDetail,
         ]);
     }

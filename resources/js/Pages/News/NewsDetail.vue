@@ -8,7 +8,7 @@
             <div class="row">
               <div class="col-md-8">
                 <!-- <ArticleDetails/> -->
-                <span>{{ $attrs.newsDetail.content }}</span>
+                <span>{{ $attrs.content }}</span>
                 <!-- as -->
               </div>
               <aside class="col-md-4">
