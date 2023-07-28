@@ -7,7 +7,9 @@
           <div class="margin-15">
             <div class="row">
               <div class="col-md-8">
-                <ArticleDetails/>
+                <!-- <ArticleDetails/> -->
+                <span>{{ $attrs.newsDetail.content }}</span>
+                <!-- as -->
               </div>
               <aside class="col-md-4">
                 <SidebarRightnews :tags_cloud="tags_cloud" />
@@ -33,7 +35,7 @@ import HomeLayout from "@/Layouts/HomeLayout.vue";
 import RecentPosts from "./Recent_Posts.vue";
 import SidebarRightnews from "./SidebarRightnews.vue";
 import SiderBotom from "./SiderBotompost.vue";
-import ArticleDetails from "./ArticleDetails.vue"
+import ArticleDetails from "./ArticleDetails.vue";
 
 import { defineComponent, ref } from "vue";
 
@@ -81,6 +83,7 @@ export default defineComponent({
       posts,
       tags_cloud,
       Categories_tags,
+    //   id: attrs.id
     };
   },
   components: {
@@ -96,7 +99,6 @@ export default defineComponent({
         return value.substring(0, limit) + "...";
       }
     },
-
   },
 });
 </script>
@@ -328,8 +330,6 @@ a.link-active,
 .post_list_style_1 .post_meta {
   margin-bottom: 20px;
 }
-
-
 
 /*image hover*/
 

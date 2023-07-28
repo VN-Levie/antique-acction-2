@@ -3,7 +3,7 @@
     <div class="post-content">
       <div class="single-content">
         <div class="dropcap column-2">
-          <p v-for="(content, index) in paragraphs.split('. ')" 
+          <p v-for="(content, index) in paragraphs.split('. ')"
           :key="index"
           >
             {{ content }}
