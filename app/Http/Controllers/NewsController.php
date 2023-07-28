@@ -16,7 +16,18 @@ class NewsController extends Controller
     public function Detailpost($id)
     {
         $newsDetail = $this->newsDetail($id);
-        return Inertia::render('News/NewsDetail', ['newsDetail' => $newsDetail]);
+        $newsDetail = DB::table('post')
+        ->join('users', 'users.id', '=', "post.author")
+        ->where('post.id', $id)
+        ->first();
+        // dd($newsDetail->content);
+        // return Inertia::render('News/NewsDetail', ['content' => $newsDetail->content], ['newsDetail' => $newsDetail]);
+        return Inertia::render('News/NewsDetail', [
+            'id' => $id,
+            'title' => $newsDetail->title,
+            'content' => $newsDetail->content,
+            'newsDetail' => $newsDetail,
+        ]);
     }
 
     public function show()
