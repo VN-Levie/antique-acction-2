@@ -34,6 +34,36 @@ import { Head } from '@inertiajs/vue3';
 import HomeLayout from '@/Layouts/HomeLayout.vue';
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
+export default defineComponent({
+  setup() {
+    const posts = ref([]);
+
+    const Categories_tags = [
+      "Business",
+      "Entertainment",
+      "Environment",
+      "Health",
+      "Life style",
+      "Politics",
+      "Technology",
+      "World",
+    ];
+
+    const tags_cloud = [
+      "Business",
+      "Technology",
+      "Sport",
+      "Art",
+      "Lifestyle",
+      "Three",
+      "Photography",
+      "Lifestyle",
+      "Art",
+      "Education",
+      "Social",
+    ];
+  })
+
 
 const products = ref([]);
 onMounted(async () => {
@@ -42,8 +72,30 @@ onMounted(async () => {
         products.value = response.data;
     } catch (error) {
         console.error(error);
-    }
+    }    
 });
+getposts();
+    return {
+      posts,
+      tags_cloud,
+      Categories_tags,
+    };
+  },
+  components: {
+    HomeLayout,
+    RecentPosts,
+    SidebarRightnews,
+    SiderBotom,
+  },
+  methods: {
+    shorttext(value, limit) {
+      if (value && limit) {
+        return value.substring(0, limit) + "...";
+      }
+    },
+  }
+
+
 
 </script>
 
