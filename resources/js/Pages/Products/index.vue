@@ -1,7 +1,8 @@
 <template>
-    <Head title="Products" />
-    <HomeLayout>
-        <div class="">
+    <div>
+
+        <Head title="Products" />
+        <HomeLayout>
             <div class="row">
                 <div class="col-12 d-flex justify-content-center">
                     <span class="title_services">Products</span>
@@ -10,43 +11,70 @@
                     <img src="/img/mt-1804-home-divider1.png" alt="divider1" />
                 </div>
             </div>
-            <div class="services-container">
-                <div class="services-card">
+            <div id="index-product" class="mt-4 max-w-[1200px] mx-auto px-2">
+                <div class="grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-4">
+                    <div v-if="products" v-for="product in products" :key="product.id">
+                        <div :id="`Products${product.id}`"
+                            class="bg-white inline-block rounded hover:shadow-[0_0_10px_3px_rgba(0,0,0,0.15)] cursor-pointer">
+                            <router-link :to="`/item/${product.id}`">
+                                <img class="rounded-t" :src="product.url" :alt="product.name" />
+                                <div id="ProductDetails">
+                                    <span class="flex items-center justify-start gap-3 px-1 pt-1">
+                                        <span class="text-[#FF6674] font-semibold">
+                                            ${{ priceComputed(product.price) }}
+                                        </span>
+                                        <span class="text-black text-sm text-light line-through">
+                                            ${{ oldPriceComputed(product.price) }}
+                                        </span>
+
+                                        <span class="px-1 relative -top-1.5 text-[FF6674] text-xs font-semibold">
+                                            Extra 5%off
+                                        </span>
+                                    </span>
+                                </div>
+                                <span class=" bg-[#FD374F] text-white text-[9px] font-semibold px-1.5
+                                            rounded-sm">Welcome Deal</span>
+                                <div>
+                                </div>
+                            </router-link>
+
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div>
-            <ul class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <li v-for="product in products" :key="product.id" class="p-4 border rounded-lg shadow-md">
-                    <div class="mb-2">
-                        <strong class="text-lg">{{ product.name }}</strong>
-                    </div>
-                    <div>
-                        <span class="text-gray-600">Description: {{ product.description }}</span>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </HomeLayout>
+        </HomeLayout>
+    </div>
 </template>
+  
 <script setup>
 import { Head } from '@inertiajs/vue3';
 import HomeLayout from '@/Layouts/HomeLayout.vue';
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
-const products = ref([]);
-onMounted(async () => {
-    try {
-        const response = await axios.get("http://127.0.0.1:8000/api/products");
-        products.value = response.data;
-    } catch (error) {
-        console.error(error);
-    }
-});
+const priceComputed = (price) => {
+    return (price / 100).toFixed(2);
+};
+
+const oldPriceComputed = (price) => {
+    return ((price + (price / 20)) / 100).toFixed(2);
+};
+
+const products = ref([
+    { id: 1, title: "Title 1", description: "This is a Descruption", url: "https://picsum.photos/id/7/800/800", price: 1001 },
+    { id: 2, title: "Title 2", description: "This is a Descruption", url: "https://picsum.photos/id/71/800/800", price: 1002 },
+    { id: 3, title: "Title 3", description: "This is a Descruption", url: "https://picsum.photos/id/72/800/800", price: 1003 },
+    { id: 4, title: "Title 4", description: "This is a Descruption", url: "https://picsum.photos/id/73/800/800", price: 1004 },
+    { id: 5, title: "Title 5", description: "This is a Descruption", url: "https://picsum.photos/id/74/800/800", price: 1005 },
+    { id: 6, title: "Title 6", description: "This is a Descruption", url: "https://picsum.photos/id/75/800/800", price: 1006 },
+    { id: 7, title: "Title 7", description: "This is a Descruption", url: "https://picsum.photos/id/76/800/800", price: 1007 },
+    { id: 8, title: "Title 8", description: "This is a Descruption", url: "https://picsum.photos/id/77/800/800", price: 1008 },
+    { id: 9, title: "Title 9", description: "This is a Descruption", url: "https://picsum.photos/id/78/800/800", price: 1009 },
+    { id: 10, title: "Title 10", description: "This is a Descruption", url: "https://picsum.photos/id/79/800/800", price: 10010 },
+])
 
 </script>
-
+  
 <style>
 .title_services {
     font-weight: 700;
@@ -56,7 +84,6 @@ onMounted(async () => {
     font-size: 55px;
     line-height: 1.4;
 }
-
 
 .services-card {
     width: 300px;
@@ -97,7 +124,5 @@ onMounted(async () => {
     .services {
         padding: 30px 0 0 0;
     }
-
-
 }
 </style>
