@@ -19,18 +19,6 @@
           integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
      {{-- <link rel="preload" as="font" type="font/woff2" crossorigin href="/fontawesome-webfont.woff2?v=4.7.0" /> --}}
      <link rel="stylesheet" href="/assets.min.css" />
-     <!-- App css-->
-     <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
-     <link id="color" rel="stylesheet" href="/assets/css/color-1.css" media="screen">
-
-    <!-- Plugins css start-->
-    <link rel="stylesheet" type="text/css" href="/assets/css/animate.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/chartist.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/date-picker.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/prism.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/vector-map.css">
-     <!-- Responsive css-->
-     <link rel="stylesheet" type="text/css" href="/assets/css/responsive.css">
      <style>
           @import url(//fonts.googleapis.com/css?family=Libre+Baskerville:regular,italic,700|Montserrat:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic|Raleway:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic&subset=latin);
      </style>
@@ -50,33 +38,7 @@
 
 <body class="font-sans antialiased">
      @inertia
-     <script src="/assets/js/jquery-3.5.1.min.js"></script>
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-     <script src="/assets/js/sidebar-menu.js"></script>
-    <script src="/assets/js/config.js"></script>
-    <script src="/assets/js/bootstrap/popper.min.js"></script>
-    <script src="/assets/js/bootstrap/bootstrap.min.js"></script>
-    <!-- Theme js-->
-    <script src="/assets/js/script.js"></script>
-
-    {{-- sweetalert npm --}}
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- Plugins JS start-->
-
-    <script src="/assets/js/prism/prism.min.js"></script>
-
-    <script src="/assets/js/counter/jquery.waypoints.min.js"></script>
-    <script src="/assets/js/counter/jquery.counterup.min.js"></script>
-    <script src="/assets/js/counter/counter-custom.js"></script>
-    <script src="/assets/js/custom-card/custom-card.js"></script>
-    <script src="/assets/js/notify/bootstrap-notify.min.js"></script>
-
-    <script src="/assets/js/dashboard/default.js"></script>
-    <script src="/assets/js/notify/index.js"></script>
-    <script src="/assets/js/datepicker/date-picker/datepicker.js"></script>
-    <script src="/assets/js/datepicker/date-picker/datepicker.en.js"></script>
-    <script src="/assets/js/datepicker/date-picker/datepicker.custom.js"></script>
-
 </body>
 
 </html>
