@@ -1,5 +1,5 @@
 <template>
-  <HomeLayout>
+  <HomeLayout title="News">
     <div class="clear-fix"></div>
     <div class="margin-lr">
       <div class="container-fluid">
