@@ -3,19 +3,11 @@
     <section id="comments">
       <h4 class="single-comment-title">Comments</h4>
       <div class="comments-inner">
-        <div class="comments-title">
-          <p>There are 3 comments for this article</p>
-        </div>
         <ol class="commentlist">
           <li>
             <article class="comment">
               <div class="comment-author">
-                <img
-                  width="60"
-                  height="60"
-                  src="post-author-avatar.jpg"
-                  alt=""
-                />
+                <img width="60" height="60" src="" alt="" />
               </div>
               <div class="">
                 <header class="comment-meta">
@@ -28,52 +20,29 @@
                     greyhound prior stiff ferret unbearably cracked oh.
                   </p>
                 </div>
-                <div class="reply">
-                  <a
-                    aria-label="Reply to spadmin"
-                    href="single.html#respond"
-                    class="comment-reply-link"
-                    rel="nofollow"
-                    >Reply</a
-                  >
-                </div>
               </div>
             </article>
           </li>
         </ol>
-        <!--comment list-->
-        <nav role="navigation" class="comment-navigation">
-          <div class="col col-1"></div>
-          <div class="col">
-            <a href="#">Newer Comments →</a>
-          </div>
-        </nav>
-        <!--comment nav-->
         <div class="comment-respond">
-          <h3 class="comment-reply-title">
-            Leave a Reply
-            <small
-              ><a href="" rel="nofollow"><i class="fa fa-times"></i></a
-            ></small>
-          </h3>
+          <h3 class="comment-reply-title">Leave a Reply</h3>
           <form class="comment-form">
             <p class="comment-notes">
               <span>Your email address will not be published.</span>
             </p>
             <div class="row">
-              <div class="comment-form-author col-sm-12 col-md-6">
-                <label for="author">Name (optional)</label>
+              <div class="col-sm-12 col-md-6">
+                <label for="">Name (optional)</label>
                 <input
                   type="text"
                   size="30"
                   value=""
                   placeholder="Your name *"
                   name="author"
-                  id="author"
                 />
               </div>
               <div class="comment-form-email col-sm-12 col-md-6">
-                <label for="email">Email (optional)</label>
+                <label for="">Email (optional)</label>
                 <input
                   type="email"
                   size="30"
@@ -84,15 +53,13 @@
                 />
               </div>
             </div>
-            <p class="comment-form-comment">
-              <label for="comment">Comment</label
-              ><textarea
+            <p class="Comment_from">
+              <textarea
                 aria-required="true"
                 placeholder="Your Comment"
-                rows="8"
-                cols="45"
+                rows="5"
+                cols="88"
                 name="comment"
-                id="comment"
               ></textarea>
             </p>
 
@@ -101,25 +68,13 @@
                 type="submit"
                 value="Post Comment"
                 class="submit"
-                id="submit"
                 name="submit"
               />
-              <input
-                type="hidden"
-                id="comment_post_ID"
-                value="80"
-                name="comment_post_ID"
-              />
-              <input
-                type="hidden"
-                value="0"
-                id="comment_parent"
-                name="comment_parent"
-              />
+              <input type="hidden" value="80" />
+              <input type="hidden" value="0" />
             </p>
           </form>
         </div>
-        <!--comment form-->
       </div>
     </section>
   </div>
@@ -133,5 +88,55 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style>
+.comment-respond {
+  padding-top: 30px;
+}
+.comment-reply-title::before {
+  /* background: rgba(0, 0, 0, 0) url("../images/patern-1.png") no-repeat scroll right center; */
+  content: "";
+  display: inline-block;
+  height: 15px;
+  margin-right: 10px;
+  width: 30px;
+}
+.single-comment-title::after,
+.comment-reply-title::after {
+  /* background: rgba(0, 0, 0, 0) url("") no-repeat scroll right center; */
+  content: "";
+  display: inline-block;
+  height: 15px;
+  margin-left: 10px;
+  width: 30px;
+}
+.single-comment-title,
+.comment-reply-title {
+  font-size: 1.75rem;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+}
+.comment-form textarea,
+.comment-form input {
+  border: 1px solid #000;
+  color: #000;
+  font-size: 14px;
+  margin: 0 0 20px;
+}
+.comment-form textarea {
+  min-height: 150px;
+}
+.comment-form input.submit {
+  background: #000 none repeat scroll 0 0;
+  border: medium none;
+  color: #fff;
+  height: 50px;
+  line-height: 1;
+  padding: 10px 25px;
+  text-transform: uppercase;
+}
+.comment-notes {
+  margin-bottom: 30px;
+  text-align: center;
+}
 </style>

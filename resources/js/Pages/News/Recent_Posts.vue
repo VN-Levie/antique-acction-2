@@ -29,7 +29,7 @@
           <p class="alith_post_except">
             {{ post.content }}
           </p>
-          <a href="" class="read_more">Read More</a>
+          <a :href="'/news/newsDetail/' + post.id" class="read_more">Read More</a>
         </div>
       </article>
     </div>

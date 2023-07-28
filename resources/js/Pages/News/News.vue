@@ -95,7 +95,6 @@ export default defineComponent({
         return value.substring(0, limit) + "...";
       }
     },
-
   },
 });
 </script>
