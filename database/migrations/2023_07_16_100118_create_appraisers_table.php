@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -22,7 +23,21 @@ return new class extends Migration
             $table->text('titles');
             $table->timestamps();
         });
+        //tạo 10 chuyên gia định giá
+        $faker = Faker\Factory::create();
+        $appraisers = [];
+        for ($i = 0; $i < 10; $i++) {
+            $appraisers[] = [
+                'biography' => $faker->text(255),
+                'name' => $faker->name(),
+                'titles' => $faker->text(255),
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(),
+            ];
+        }
+        DB::table('appraisers')->insert($appraisers);
     }
+
 
     /**
      * Reverse the migrations.

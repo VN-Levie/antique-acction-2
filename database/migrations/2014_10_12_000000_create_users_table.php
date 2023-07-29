@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -22,6 +23,19 @@ return new class extends Migration
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
         });
+        //tạo 1 user
+        $faker = Faker\Factory::create();
+        $users = [];
+        for ($i = 0; $i < 1; $i++) {
+            $users[] = [
+                'name' => 'admin',
+                'email' => 'admin@admin',
+                'password' => bcrypt('123456'),
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(),
+            ];
+        }
+        DB::table('users')->insert($users);
     }
 
     /**
