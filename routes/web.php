@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\SessionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -53,3 +54,9 @@ Route::group(['prefix' => 'news'], function () {
 
 Route::post('/contact', ContactController::class)->name('contact');
 
+Route::group(['prefix' => 'session'], function () {
+    // index or id
+    Route::get('/', [SessionController::class, 'index'])->name('session.index');
+    Route::get('/{id}', [SessionController::class, 'show'])->where('id', '[0-9]+')->name('session.show');
+
+});

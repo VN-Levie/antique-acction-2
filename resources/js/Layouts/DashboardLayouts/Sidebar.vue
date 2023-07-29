@@ -2,26 +2,35 @@
   <div>
     <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
       <ul class="ul-sidebar">
+        <h2 class="text-xl font-medium text-gray-900 d-none d-lg-block">
+          Getting Started
+        </h2>
         <li
-          class="li-sidebar mt-1"
+          class="li-sidebar mt-1 text-center justify-center"
           :class="{ 'sidebar-link-active': route().current('dashboard') }"
         >
-          <Link :href="route('dashboard')" class="sidebar-link"> Link 1 </Link>
+          <Link
+            :href="route('dashboard')"
+            class="sidebar-link text-center"
+          >
+            <i class="fa fa-tachometer fa-2x d-block d-lg-none" aria-hidden="true"></i>
+            <span class="d-none d-lg-flex">Dashboard</span>
+          </Link>
         </li>
         <li
-          class="li-sidebar mt-2"
-          :class="{ 'sidebar-link-active': route().current('home') }"
+          :href="route('home')"
+          class="li-sidebar mt-2 justify-center"
+          :class="{ 'sidebar-link-active': route().current('profile.show') }"
         >
           <Link
-            :href="route('home')"
-            class="sidebar-link"
-            :class="{ 'sidebar-link-active': route().current('home') }"
+            :href="route('profile.show')"
+            class="sidebar-link d-none d-sm-block"
           >
-            Link 2
+            <i class="fa fa-user fa-2x d-block d-lg-none" aria-hidden="true"></i>
+            <span class="d-none d-lg-flex">Profile</span>
           </Link>
         </li>
       </ul>
-      <h2 class="text-xl font-medium text-gray-900">Getting Started</h2>
     </div>
   </div>
 </template>
@@ -37,6 +46,8 @@ import NavLink from "@/Components/Dashboard/NavLink.vue";
 }
 .sidebar-link-active {
   background-image: linear-gradient(195deg, #e91e63, #e91e63);
+  color: #ffff;
+  font-weight: bolder;
 }
 .li-sidebar {
   padding: 5px;
@@ -54,7 +65,7 @@ import NavLink from "@/Components/Dashboard/NavLink.vue";
   white-space: nowrap;
 }
 .li-sidebar:hover {
-  background-color: hsla(81, 94%, 49%, 0.3);
+  background-image: linear-gradient(195deg, #e91e63, #e91e63);
+  color: #ffff;
 }
-
 </style>
