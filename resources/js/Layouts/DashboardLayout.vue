@@ -7,7 +7,8 @@ import Dropdown from "@/Components/Dashboard/Dropdown.vue";
 import DropdownLink from "@/Components/Dashboard/DropdownLink.vue";
 import NavLink from "@/Components/Dashboard/NavLink.vue";
 import ResponsiveNavLink from "@/Components/Dashboard/ResponsiveNavLink.vue";
-
+import Welcome from '@/Components/Dashboard/Welcome.vue';
+import Sidebar from "./DashboardLayouts/Sidebar.vue";
 defineProps({
   title: String,
 });
@@ -40,7 +41,7 @@ const logout = () => {
     <div class="min-h-screen bg-gray-100">
       <nav class="bg-white border-b border-gray-100">
         <!-- Primary Navigation Menu -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-1">
+        <div class="max-w-12xl mx-auto px-4 sm:px-6 lg:px-8 mt-1">
           <div class="flex justify-between h-16">
             <div class="flex">
               <!-- Logo -->
@@ -330,9 +331,7 @@ const logout = () => {
               >
                 Profile
               </ResponsiveNavLink>
-              <ResponsiveNavLink
-                :href="route('home')"
-              >
+              <ResponsiveNavLink :href="route('home')">
                 Back to Home
               </ResponsiveNavLink>
 
@@ -419,16 +418,22 @@ const logout = () => {
         </div>
       </nav>
 
-      <!-- Page Heading -->
-      <header v-if="$slots.header" class="bg-white shadow">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <slot name="header" />
-        </div>
-      </header>
-
       <!-- Page Content -->
       <main>
-        <slot />
+        <div class="row">
+          <div class="col-lg-3 d-none d-lg-block">
+            <div class="py-12">
+              <div class="mx-auto px-3">
+                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                  <Sidebar />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-9 col-12">
+            <slot />
+          </div>
+        </div>
       </main>
     </div>
   </div>

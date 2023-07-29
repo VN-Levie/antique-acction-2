@@ -53,12 +53,3 @@ Route::group(['prefix' => 'news'], function () {
 
 Route::post('/contact', ContactController::class)->name('contact');
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard2', function () {
-        return Inertia::render('Dashboard2');
-    })->name('dashboard');
-});
