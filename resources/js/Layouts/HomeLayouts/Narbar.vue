@@ -65,10 +65,10 @@
             </div>
           </div>
           <div v-if="accountAndList"
-            class="bg-white md:mt-10 absolute border-[2px] hover:drop-shadow-sm border-gray-600 shadow-sm top-[70px] w-[480px] rounded-sm px-6"
-            :style="{ 'margin-left': accountAndListMarginLeft }">
+            class="bg-white  md:mt-10 border-after absolute border-[2px] hover:drop-shadow-sm border-gray-600 shadow-sm top-[70px] w-[480px] rounded-sm px-6 box-media"
+            style="margin-left: -80px; ">
             <div>
-              <div class="flex items-center justify-between py-2.5 border-b">
+              <div class="flex items-center justify-between py-2.5 border-b text-media">
                 <div class="text-[12px]">Who's Auction ? Select a profile.</div>
                 <div class="flex items-center text-sm font-bold text-teal-600 hover:text-red-600 hover:underline px-5">
                   Manager profile
@@ -282,5 +282,21 @@ export default {
 
 .flex-algight-end {
   align-items: flex-end;
+}
+
+@media (max-width: 480px) {
+  .box-media {
+    margin-left: -80px;
+    margin-top: -30px;
+    width: 70%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .text-media {
+    display: flex;
+    flex-direction: column-reverse;
+  }
 }
 </style>
