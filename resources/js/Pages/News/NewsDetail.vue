@@ -10,7 +10,7 @@
                 <ArticleDetails :content="$attrs.content" />
               </div>
               <aside class="col-md-4">
-                <SidebarRightnews :tags_cloud="tags_cloud" />
+                <SidebarRightnews :tags_cloud="tags_cloud" :Categories_tags="Categories_tags"/>
               </aside>
             </div>
           </div>
@@ -66,19 +66,19 @@ export default defineComponent({
       "Social",
     ];
 
-    const getposts = () => {
-      axios
-        .get("http://127.0.0.1:8000/api/news/newsDetail/")
-        .then(function (response) {
-          posts.value = response.data;
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    };
-    getposts();
+    // const getposts = () => {
+    //   axios
+    //     .get("http://127.0.0.1:8000/api/news/newsDetail/")
+    //     .then(function (response) {
+    //       posts.value = response.data;
+    //     })
+    //     .catch(function (error) {
+    //       console.log(error);
+    //     });
+    // };
+    // getposts();
     return {
-      posts,
+      // posts,
       tags_cloud,
       Categories_tags,
     //   id: attrs.id

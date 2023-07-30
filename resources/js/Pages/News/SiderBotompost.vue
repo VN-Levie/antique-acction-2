@@ -1,5 +1,5 @@
 <template>
-    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
       <div class="sidebar-widget">
         <div class="widget-title-cover">
           <h4 class="widget-title"><span>Most comments</span></h4>
@@ -19,7 +19,7 @@
         </div>
       </div>
     </div>
-    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
       <div class="sidebar-widget">
         <div class="widget-title-cover">
           <h4 class="widget-title"><span>Latest</span></h4>
@@ -38,7 +38,7 @@
         </div>
       </div>
     </div>
-    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+    <!-- <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
       <div class="sidebar-widget">
         <div class="widget-title-cover">
           <h4 class="widget-title"><span>Categories</span></h4>
@@ -55,7 +55,7 @@
           </li>
         </ul>
       </div>
-    </div>
+    </div> -->
 </template>
 
 <script>
