@@ -45,17 +45,13 @@
 
     <div class="sidebar-widget">
       <div class="widget-title-cover">
-        <h4 class="widget-title"><span>Categories</span></h4>
+        <h4 class="widget-title"><Link :href="route('news.index')">Categories</Link></h4>
       </div>
       <ul class="bottom_menu">
-        <li>
-          <a
-            href=""
-            class=""
-            v-for="CategoriesTag in Categories_tags"
-            :key="CategoriesTag"
-            >{{ CategoriesTag.name }}</a
-          >
+        <li v-for="CategoriesTag in Categories_tags" :key="CategoriesTag">
+          <Link :href="route('news.index', CategoriesTag.name)" class="">{{
+            CategoriesTag.name
+          }}</Link>
         </li>
       </ul>
     </div>
@@ -63,6 +59,8 @@
 </template>
 
 <script>
+import { Link } from "@inertiajs/vue3";
+
 export default {
   name: "#SidebarRightnews",
   setup() {
@@ -86,10 +84,10 @@ export default {
       const year = formattedDate.getFullYear();
       const hours = String(formattedDate.getHours()).padStart(2, "0");
       const minutes = String(formattedDate.getMinutes()).padStart(2, "0");
-
       return `${day}/${month}/${year} ${hours}:${minutes}`;
     },
   },
+  components: { Link },
 };
 </script>
 

@@ -6,14 +6,30 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use App\Models\Post;
+use App\Models\PostCategories;
 
 class NewsController extends Controller
 {
     public function index(Request $request)
     {
-        $Datanews = Post::join('users', 'users.id', '=', "post.author")
-            ->select('post.id', 'post.title', 'post.thumbnail', 'post.content', 'post.description', 'post.created_at', 'post.tag', 'users.name')
-            ->get();
+        $category_post = $request->name;
+
+
+        if ($category_post) {
+            $categoryName = PostCategories::where('post_categories.name', $category_post)
+                ->pluck('post_categories.id')
+                ->first();
+            $Datanews = Post::where('Post.category', $categoryName)
+                ->join('users', 'users.id', '=', "post.author")
+                ->select('post.id', 'post.title', 'post.thumbnail', 'post.content', 'post.description', 'post.created_at', 'post.tag', 'users.name')
+                ->get();
+        } else {
+            $Datanews = Post::join('users', 'users.id', '=', "post.author")
+                ->select('post.id', 'post.title', 'post.thumbnail', 'post.content', 'post.description', 'post.created_at', 'post.tag', 'users.name')
+                ->get();
+        }
+
+
 
         $Categories = DB::table('post_categories')->get();
 
