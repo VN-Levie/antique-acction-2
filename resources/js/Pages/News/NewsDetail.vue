@@ -7,7 +7,7 @@
           <div class="margin-15">
             <div class="row">
               <div class="col-md-8">
-                <ArticleDetails :content="$attrs.content" />
+                <ArticleDetails :content="$attrs.content" :newsDetail="newsDetail"/>
               </div>
               <aside class="col-md-4">
                 <SidebarRightnews :latestPosts="latestPosts" :Categories_tags="Categories_tags"/>
@@ -20,7 +20,7 @@
         <div class="container">
           <div class="bottom margin-15">
             <div class="row">
-              <SiderBotom :Categories_tags="Categories_tags" />
+              <SiderBotom :relatedArticles="relatedArticles" />
             </div>
           </div>
         </div>
@@ -43,10 +43,13 @@ export default defineComponent({
 
     const Categories_tags = attrs.Categories;
     const latestPosts = attrs.latestPosts;
-
+    const relatedArticles = attrs.relatedArticles;
+    const newsDetail = attrs.newsDetail;
     return {
       Categories_tags,
-      latestPosts
+      latestPosts,
+      relatedArticles,
+      newsDetail
     };
   },
   components: {

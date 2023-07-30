@@ -12,9 +12,6 @@
         <div class="post-tags">
           <div class="post-tags-inner">
             <a rel="tag" href="">#Love</a>
-            <a rel="tag" href="">#Fashion</a>
-            <a rel="tag" href="">#Lifestyle</a>
-            <a rel="tag" href="">#Politic</a>
           </div>
         </div>
         <!-- <div class="post-share">
@@ -48,7 +45,12 @@ export default {
     CommentsPost,
   },
   props: {
+    
     content: {
+      type: Object,
+      defualt: [],
+    },
+    newsDetail: {
       type: Object,
       defualt: [],
     }
