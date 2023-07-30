@@ -2,18 +2,15 @@
 
 <template>
   <HomeLayout title="Browser Session">
-    <div class="container mt-3 bg-gray rounded">
+    <div class="container-fluid bg-gray rounded p-5">
       <div class="row">
-        <Sidebar :product-categories="product_categories" :page="page" />
+        <Sidebar :product-categories="product_categories" :count="count" />
         <ListSession
           :auctionSession="auctionSession"
           :category_name="category_name"
-          :page="page"
         />
       </div>
-      <div class="row">
-        <!-- {{ $attrs.auction_session.createdBy }} -->
-      </div>
+
     </div>
   </HomeLayout>
 </template>
@@ -29,12 +26,13 @@ const auctionSession = attrs.auction_session;
 const product_categories = attrs.product_categories;
 // console.log(auctionSession.data);
 const category_name = attrs.category_name;
-const page = attrs.page;
+const count = attrs.count;
+
 // Sử dụng giá trị này trong logic của component
 // console.log(auctionSession);
 </script>
 <style>
 .bg-gray{
-    background-color: #f5f5f5;
+    background-color: #f5f5f5cb;
 }
 </style>
