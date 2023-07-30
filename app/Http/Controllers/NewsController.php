@@ -11,8 +11,10 @@ class NewsController extends Controller
 {
     public function index()
     {
+        $perPage = 5;
         $Datanews = Post::join('users', 'users.id', '=', "post.author")
-            ->select('post.id', 'post.title', 'post.thumbnail', 'post.content', 'post.description', 'post.created_at', 'post.tag', 'users.name')->get();
+            ->select('post.id', 'post.title', 'post.thumbnail', 'post.content', 'post.description', 'post.created_at', 'post.tag', 'users.name')
+            ->paginate($perPage);
 
         $Categories = DB::table('post_categories')->get();
 
