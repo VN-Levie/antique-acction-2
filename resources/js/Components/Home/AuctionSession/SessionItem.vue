@@ -3,7 +3,7 @@
     <div class="card">
       <div class="row">
         <div class="col-md-4">
-          <Link :href="route('session.show', session.id)">
+          <Link :href="route('session.show', [session.category.slug, session.slug])">
             <img
               :src="session.thumbnail"
               class="session-item-thumbnail"
@@ -17,12 +17,13 @@
               Online Auction {{ session.id }}
             </p>
             <h3 class="auction-name">
-              <Link :href="route('session.show', session.id)">
+              <Link :href="route('session.show', [session.category.slug, session.slug])">
                 {{ session.name }}
               </Link>
             </h3>
             <p>Lots: {{ session.products_count }}</p>
             <p>{{ session.description }}</p>
+            <p>{{ session.category.slug }}</p>
           </div>
         </div>
       </div>
@@ -36,7 +37,7 @@
           </div>
           <div class="col-6 col-md-6">
             <Link
-              :href="route('session.show', session.id)"
+              :href="route('session.show', [session.category.slug, session.slug])"
               class="btn btn-auction btn-sm float-end"
             >
               View Auction

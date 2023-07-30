@@ -29,11 +29,11 @@
         class="border-after flex-col mt-8 space-y-4 md:flex md:space-y-0 flex-algight-end md:flex-row md:space-x-10 md:mt-0 cursor-pointer "
         style="align-items: center;">
         <li v-for="(navigation, index) in navigations" :key="index" class="text-black-100">
-          <a v-if="!navigation.children" :href="navigation.href"
-            class="navbar-text cool-link ul-letter-spaceing py-2 pr-4 pl-3"
+          <Link v-if="!navigation.children" :href="navigation.href"
+            class="navbar-text cool-link ul-letter-spaceing py-2 pr-4 pl-3 text-uppercase"
             :aria-current="navigation.isCurrent ? 'page' : null">
             {{ navigation.name }}
-          </a>
+        </Link>
           <button v-else @click="toggleDropdown(index)" class="cool-link navbar-text ul-letter-spaceing py-2 pr-4 pl-3"
             aria-haspopup="true" :aria-expanded="isOpenDropdown(index) ? 'true' : 'false'">
             {{ navigation.name }}
@@ -135,8 +135,13 @@ export default {
   setup() {
     const navigations = [
       {
-        name: "GALLERY",
-        href: "/#gallery",
+        name: "Home",
+        href: "/",
+        children: null,
+      },
+      {
+        name: "Session",
+        href: "/session",
         children: null,
       },
       {

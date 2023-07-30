@@ -14,18 +14,20 @@ return new class extends Migration
     {
         Schema::create('auction_session', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('created_by');
+            $table->text('name');
+            $table->text('slug');
             $table->text('description');
             $table->timestamp('start_at')->nullable();
             $table->timestamp('end_at')->nullable();
             $table->text('goal');
             $table->unsignedBigInteger('level');
-            $table->text('name');
             $table->integer('num_completed')->default(0);
             $table->integer('num_lots')->default(0);
             $table->integer('num_skipped')->default(0);
+            $table->json('lots_timeline')->nullable();
             $table->text('payment_and_shipping')->nullable();
             $table->unsignedBigInteger('edit_history')->nullable();
+            $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('publish_by')->nullable();
             $table->unsignedBigInteger('started_by')->nullable();
             $table->unsignedBigInteger('ended_by')->nullable();
@@ -48,6 +50,7 @@ return new class extends Migration
                 'interrupt_by' => 1,
                 'level' => 1,
                 'name' => $faker->name,
+                'slug' => $faker->slug,
                 'num_completed' => 1,
                 'num_lots' => 1,
                 'num_skipped' => 1,
