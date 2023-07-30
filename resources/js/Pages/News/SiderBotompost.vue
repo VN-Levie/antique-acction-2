@@ -2,7 +2,7 @@
     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
       <div class="sidebar-widget">
         <div class="widget-title-cover">
-          <h4 class="widget-title"><span>Most comments</span></h4>
+          <h4 class="widget-title"><span>Related Articles</span></h4>
         </div>
         <div class="latest_style_3">
           <div class="latest_style_3_item">

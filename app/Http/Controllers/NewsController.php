@@ -9,7 +9,7 @@ use App\Models\Post;
 
 class NewsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $Datanews = Post::join('users', 'users.id', '=', "post.author")
             ->select('post.id', 'post.title', 'post.thumbnail', 'post.content', 'post.description', 'post.created_at', 'post.tag', 'users.name')
@@ -20,7 +20,6 @@ class NewsController extends Controller
         $latestPosts = Post::orderBy('created_at', 'desc')
             ->limit(5)
             ->get();
-
 
         return Inertia::render('News/News', ['Posts' => $Datanews, 'Categories' => $Categories, 'latestPosts' => $latestPosts]);
     }
