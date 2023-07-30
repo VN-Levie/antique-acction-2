@@ -1,7 +1,7 @@
 <template>
-  <div class="col-md-3 order-1 order-md-0">
+  <div class="col-md-3 order-0 d-none d-md-block">
     <div class="session-category">
-      <h2 class="text-center text-capitalize">session category</h2>
+      <h2 class="text-center text-capitalize">category</h2>
       <ul>
         <li>
           <Link
@@ -9,27 +9,84 @@
             :class="{
               'category-active': route().params.slug == null,
             }"
-            >All Session Available</Link
+            class="category-link"
           >
+            All Session Available ({{ count }})
+          </Link>
         </li>
         <li v-for="item in productCategories" v-bind:key="item.id">
           <Link
             :href="route('session.index', item.slug)"
             :class="{ 'category-active': route().params.slug == item.slug }"
-            >{{ item.name }}</Link
+            class="category-link"
           >
+            {{ item.name }} ({{ item.sessions_count }})
+          </Link>
         </li>
       </ul>
       <!-- {{ route().params.slug }} -->
+    </div>
+  </div>
+  <div class="col-12 d-block d-md-none session-category">
+    <div class="row mt-3 text-center">
+      <div class="col-12">
+        <h2 class="text-center text-capitalize">category</h2>
+      </div>
+
+      <div class="col-10 list-categorys-mobile">
+        <div class="categorys-mobile">
+          <Link
+            :href="route('session.index')"
+            :class="{
+              'category-active': route().params.slug == null,
+            }"
+            class="category-link"
+            ref="activeLink"
+          >
+            All Session Available ({{ count }})
+          </Link>
+        </div>
+        <div
+          v-for="item in productCategories"
+          v-bind:key="item.id"
+          class="categorys-mobile"
+        >
+          <Link
+            :href="route('session.index', item.slug)"
+            :class="{ 'category-active': route().params.slug == item.slug }"
+            class="category-link"
+            ref="activeLink"
+          >
+            {{ item.name }} ({{ item.sessions_count }})
+          </Link>
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="categorys-mobile-arrow">→</div>
+      </div>
     </div>
   </div>
 </template>
 <script setup>
 import { defineProps } from "vue";
 import { Link, router } from "@inertiajs/vue3";
-const props = defineProps({ productCategories: Array, page: Number });
+import { ref } from "vue";
+const props = defineProps({ productCategories: Array, count: Number });
 const productCategories = props.productCategories;
-const cr_page = props.page;
+const count = props.count;
+
+const activeLink = ref(null);
+
+function goToActiveLink() {
+  // Đợi trang tải xong
+  document.addEventListener("DOMContentLoaded", function () {
+    // Cuộn đến phần tử có class category-active
+    if (activeLink.value) {
+      activeLink.value.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  });
+}
+goToActiveLink();
 </script>
 <style>
 .session-category {
@@ -86,4 +143,10 @@ const cr_page = props.page;
   /* color: blue; */
   text-decoration: none;
 }
+.session-category a:hover {
+  color: #634236e0;
+  font-weight: bold;
+}
+
+
 </style>
