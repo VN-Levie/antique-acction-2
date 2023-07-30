@@ -5,21 +5,32 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
+use App\Models\Post;
 
 class NewsController extends Controller
 {
     public function index()
     {
-        return Inertia::render('News/News', []);
+        $Datanews = Post::join('users', 'users.id', '=', "post.author")
+            ->select('post.id', 'post.title', 'post.thumbnail', 'post.content', 'post.description', 'post.created_at', 'post.tag', 'users.name')->get();
+
+        $Categories = DB::table('post_categories')->get();
+
+        $latestPosts = Post::orderBy('created_at', 'desc')
+            ->limit(5)
+            ->get();
+
+
+        return Inertia::render('News/News', ['Posts' => $Datanews, 'Categories' => $Categories, 'latestPosts' => $latestPosts]);
     }
 
     public function Detailpost($id)
     {
         // $newsDetail = $this->newsDetail($id);
         $newsDetail = DB::table('post')
-        ->join('users', 'users.id', '=', "post.author")
-        ->where('post.id', $id)
-        ->first();
+            ->join('users', 'users.id', '=', "post.author")
+            ->where('post.id', $id)
+            ->first();
         // dd($newsDetail->content);
         // return Inertia::render('News/NewsDetail', ['content' => $newsDetail->content], ['newsDetail' => $newsDetail]);
         return Inertia::render('News/NewsDetail', [
@@ -37,14 +48,4 @@ class NewsController extends Controller
             ->select('post.id', 'post.title', 'post.thumbnail', 'post.content', 'post.description', 'post.created_at', 'post.tag', 'users.name')->get();
         return response()->json($Datanews);
     }
-
-    // public function newsDetail($id)
-    // {
-    //     $newsDetail = DB::table('post')
-    //         ->join('users', 'users.id', '=', "post.author")
-    //         ->where('post.id', $id)
-    //         ->select('post.id', 'post.title', 'post.thumbnail', 'post.content', 'post.description', 'post.tag', 'users.name')
-    //         ->first();
-    //     return response()->json($newsDetail);
-    // }
 }

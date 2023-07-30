@@ -4,7 +4,7 @@
       <div class="alith_heading">
         <h2 class="alith_heading_patern_2">Recent Posts</h2>
       </div>
-      <article class="row m-2" v-for="post in posts" :key="post.id">
+      <article class="row m-2" v-for="post in articleList" :key="post.id">
         <div class="col-md-3">
           <figure class="">
             <a href="#"><img :src="post.thumbnail" alt="aaa" /></a>
@@ -42,10 +42,9 @@
 export default {
   name: "RecentPosts",
   setup() {
-    return {};
   },
   props: {
-    posts: {
+    articleList: {
       type: Object,
       default: [],
     },
