@@ -18,7 +18,7 @@ class Session extends Model
     //mỗi phiên đấu giá có nhiều sản phẩm
     public function products(): HasMany
     {
-        return $this->hasMany(Product::class, 'product_id');
+        return $this->hasMany(Product::class, 'auction_id');
     }
     //mối quan hệ với bảng category
     public function category(): BelongsTo

@@ -29,7 +29,7 @@ return new class extends Migration
         DB::table('categories')->insert($categories);
         //tạo 100 sản phẩm
         $products = [];
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 1000; $i++) {
             //fake images. Tạo ngẫu nhiên 1 6 ảnh
             $images = [];
             for ($j = 0; $j < 6; $j++) {
@@ -47,7 +47,7 @@ return new class extends Migration
                 'images' => $images,
                 'added_by' => 1,
                 'appraised_by' => 1,
-                'auction_id' => 1,
+                'auction_id' => rand(1, 50),
                 'description' => $faker->text(200),
                 'estimate' => json_encode([
                     'form' => rand(100, 1000),

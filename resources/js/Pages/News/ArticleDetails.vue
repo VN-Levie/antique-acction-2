@@ -37,7 +37,7 @@
       <!--single content-->
     </div>
   </article>
-  <CommentsPost />
+  <!-- <CommentsPost /> -->
 </template>
 
 <script>

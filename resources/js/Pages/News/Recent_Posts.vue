@@ -27,9 +27,11 @@
             <span class="meta_date">{{ formatDate(post.created_at) }}</span>
           </div>
           <p class="alith_post_except">
-            {{ post.content }}
+            {{ shorttext(post.content, 80) }}
           </p>
-          <a :href="'/news/newsDetail/' + post.id" class="read_more">Read More</a>
+          <a :href="'/news/newsDetail/' + post.id" class="read_more"
+            >Read More</a
+          >
         </div>
       </article>
     </div>
@@ -58,6 +60,11 @@ export default {
       const minutes = String(formattedDate.getMinutes()).padStart(2, "0");
 
       return `${day}/${month}/${year} ${hours}:${minutes}`;
+    },
+    shorttext(value, limit) {
+      if (value && limit) {
+        return value.substring(0, limit) + "...";
+      }
     },
   },
 };

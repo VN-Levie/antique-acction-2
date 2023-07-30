@@ -15,7 +15,7 @@ class NewsController extends Controller
 
     public function Detailpost($id)
     {
-        $newsDetail = $this->newsDetail($id);
+        // $newsDetail = $this->newsDetail($id);
         $newsDetail = DB::table('post')
         ->join('users', 'users.id', '=', "post.author")
         ->where('post.id', $id)
@@ -38,13 +38,13 @@ class NewsController extends Controller
         return response()->json($Datanews);
     }
 
-    public function newsDetail($id)
-    {
-        $newsDetail = DB::table('post')
-            ->join('users', 'users.id', '=', "post.author")
-            ->where('post.id', $id)
-            ->select('post.id', 'post.title', 'post.thumbnail', 'post.content', 'post.description', 'post.tag', 'users.name')
-            ->first();
-        return response()->json($newsDetail);
-    }
+    // public function newsDetail($id)
+    // {
+    //     $newsDetail = DB::table('post')
+    //         ->join('users', 'users.id', '=', "post.author")
+    //         ->where('post.id', $id)
+    //         ->select('post.id', 'post.title', 'post.thumbnail', 'post.content', 'post.description', 'post.tag', 'users.name')
+    //         ->first();
+    //     return response()->json($newsDetail);
+    // }
 }
