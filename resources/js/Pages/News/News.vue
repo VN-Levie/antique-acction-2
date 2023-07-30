@@ -10,7 +10,7 @@
                 <RecentPosts :posts="posts" />
               </div>
               <aside class="col-md-4">
-                <SidebarRightnews :tags_cloud="tags_cloud" />
+                <SidebarRightnews :Categories_tags="Categories_tags"/>
               </aside>
             </div>
           </div>
@@ -90,11 +90,7 @@ export default defineComponent({
     SiderBotom,
   },
   methods: {
-    shorttext(value, limit) {
-      if (value && limit) {
-        return value.substring(0, limit) + "...";
-      }
-    },
+
   },
 });
 </script>

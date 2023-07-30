@@ -1,5 +1,5 @@
 <template>
-  <div id="SidebarRightnews" class="sidebar_right ">
+  <div id="SidebarRightnews" class="sidebar_right">
     <div class="widget-title-cover">
       <h4 class="widget-title">
         <span>Popular Articles</span>
@@ -22,7 +22,7 @@
       </div>
     </div>
 
-    <div class="sidebar-widget">
+    <!-- <div class="sidebar-widget">
       <div class="widget-title-cover">
         <h4 class="widget-title"><span>Tags cloud</span></h4>
       </div>
@@ -35,13 +35,30 @@
           >{{ tagcloud }}</a
         >
       </div>
+    </div> -->
+
+    <div class="sidebar-widget">
+      <div class="widget-title-cover">
+        <h4 class="widget-title"><span>Categories</span></h4>
+      </div>
+      <ul class="bottom_menu">
+        <li>
+          <a
+            href=""
+            class=""
+            v-for="CategoriesTag in Categories_tags"
+            :key="CategoriesTag"
+            >{{ CategoriesTag }}</a
+          >
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name:"#SidebarRightnews",
+  name: "#SidebarRightnews",
   setup() {
     return {};
   },
@@ -49,10 +66,28 @@ export default {
     tags_cloud: {
       type: Object,
       defualt: [],
-    }
-  }
+    },
+    Categories_tags: {
+      type: Object,
+      defualt: [],
+    },
+  },
 };
 </script>
 
 <style>
+.bottom_menu {
+  overflow: hidden;
+}
+.bottom_menu li {
+  float: left;
+  margin: 2px 0;
+  width: 80%;
+}
+
+.bottom_menu li a {
+  float: left;
+  margin: 2px 0;
+  width: 50%;
+}
 </style>
