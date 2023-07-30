@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
+use Illuminate\Support\Facades\DB;
 return new class extends Migration
 {
     /**
@@ -16,6 +16,12 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id')->nullable()->after('description');
             $table->foreign('category_id')->references('id')->on('categories');
         });
+        //duyệt qua bảng auction_session và gán category_id nhiên 1-10 cho các session
+        $session = DB::table('auction_session')->get();
+        foreach ($session as $item) {
+            DB::table('auction_session')->where('id', $item->id)->update(['category_id' => rand(1, 10)]);
+        }
+
     }
 
     /**
