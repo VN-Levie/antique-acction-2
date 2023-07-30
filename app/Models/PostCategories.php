@@ -12,14 +12,18 @@ class PostCategories extends Model
     protected $table = 'post_categories';
 
     protected $fillable = [
-        'id', 
-        'name', 
-        'slug', 
-        'thumbnail', 
-        'description', 
-        'parent_id', 
-        'status', 
+        'id',
+        'name',
+        'slug',
+        'thumbnail',
+        'description',
+        'parent_id',
+        'status',
         'post_count'
     ];
-}
 
+    public function category()
+    {
+        return $this->hasMany(Post::class, 'id');
+    }
+}

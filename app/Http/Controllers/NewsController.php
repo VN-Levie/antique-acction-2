@@ -12,27 +12,31 @@ class NewsController extends Controller
 {
     public function index(Request $request)
     {
-        $category_post = $request->name;
+        $category_post = $request->slug;
+    
         if ($category_post) {
-            $categoryName = PostCategories::where('post_categories.name', $category_post)
-                ->pluck('post_categories.id')
+            $categoryName = PostCategories::where('slug', $category_post)
+                ->pluck('id')
                 ->first();
-            $Datanews = Post::where('Post.category', $categoryName)
-                ->join('users', 'users.id', '=', "post.author")
+    
+            $Datanews = Post::whereHas('category', function ($query) use ($categoryName) {
+                    $query->where('id', $categoryName);
+                })
+                ->join('users', 'users.id', '=', 'post.author')
                 ->select('post.id', 'post.title', 'post.thumbnail', 'post.content', 'post.description', 'post.created_at', 'post.tag', 'users.name')
                 ->get();
         } else {
-            $Datanews = Post::join('users', 'users.id', '=', "post.author")
+            $Datanews = Post::join('users', 'users.id', '=', 'post.author')
                 ->select('post.id', 'post.title', 'post.thumbnail', 'post.content', 'post.description', 'post.created_at', 'post.tag', 'users.name')
                 ->get();
         }
-
+    
         $Categories = DB::table('post_categories')->get();
-
+    
         $latestPosts = Post::orderBy('created_at', 'desc')
             ->limit(5)
             ->get();
-
+    
         return Inertia::render('News/News', ['Posts' => $Datanews, 'Categories' => $Categories, 'latestPosts' => $latestPosts]);
     }
 
@@ -43,6 +47,13 @@ class NewsController extends Controller
             ->join('users', 'users.id', '=', "post.author")
             ->where('post.id', $id)
             ->first();
+
+        $Categories = DB::table('post_categories')->get();
+
+        $latestPosts = Post::orderBy('created_at', 'desc')
+            ->limit(5)
+            ->get();
+
         // dd($newsDetail->content);
         // return Inertia::render('News/NewsDetail', ['content' => $newsDetail->content], ['newsDetail' => $newsDetail]);
         return Inertia::render('News/NewsDetail', [
@@ -50,7 +61,8 @@ class NewsController extends Controller
             'title' => $newsDetail->title,
             'content' => $newsDetail->content,
             'newsDetail' => $newsDetail,
+            'Categories' => $Categories,
+            'latestPosts' => $latestPosts
         ]);
     }
-
 }

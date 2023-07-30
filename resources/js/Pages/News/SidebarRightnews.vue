@@ -49,7 +49,7 @@
       </div>
       <ul class="bottom_menu">
         <li v-for="CategoriesTag in Categories_tags" :key="CategoriesTag">
-          <Link :href="route('news.index', CategoriesTag.name)" class="">{{
+          <Link :href="route('news.index', CategoriesTag.slug)" class="">{{
             CategoriesTag.name
           }}</Link>
         </li>

@@ -49,7 +49,7 @@ Route::get('/products', function () {
 
 Route::group(['prefix' => 'news'], function () {
     // Route::get('/', [NewsController::class, 'index'])->name('news.index');
-    Route::get('/{name?}', [NewsController::class, 'index'])->name('news.index');
+    Route::get('/{slug?}', [NewsController::class, 'index'])->name('news.index');
     Route::get('/newsDetail/{id}', [NewsController::class, 'Detailpost'])->where('id', '[0-9]+')->name('news.Detail');
 });
 
