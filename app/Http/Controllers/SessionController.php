@@ -12,7 +12,7 @@ class SessionController extends Controller
     public function index(Request $request)
     {
         // Nạp trước model User liên quan đến model Session
-        $models = ['createdBy', 'endedBy', 'interruptedBy'];
+        $models = ['createdBy', 'endedBy', 'interruptedBy','products'];
         $category_slug = $request->slug;
         $page = $request->page ?? 1;
         $auction_session = null;

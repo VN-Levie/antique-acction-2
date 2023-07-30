@@ -2,7 +2,7 @@
 
 <template>
   <HomeLayout title="Browser Session">
-    <div class="container mt-3">
+    <div class="container mt-3 bg-gray rounded">
       <div class="row">
         <Sidebar :product-categories="product_categories" :page="page" />
         <ListSession
@@ -33,3 +33,8 @@ const page = attrs.page;
 // Sử dụng giá trị này trong logic của component
 // console.log(auctionSession);
 </script>
+<style>
+.bg-gray{
+    background-color: #f5f5f5;
+}
+</style>

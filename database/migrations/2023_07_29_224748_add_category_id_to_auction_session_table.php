@@ -30,7 +30,10 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('auction_session', function (Blueprint $table) {
-            //
+            //huỷ khóa ngoại
+            $table->dropForeign(['category_id']);
+            //huỷ cột category_id
+            $table->dropColumn('category_id');
         });
     }
 };

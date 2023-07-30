@@ -11,8 +11,7 @@
             v-bind:key="session.id"
             class="col-xl-3 col-md-4 col-sm-6 col-12"
           >
-            <!-- {{ session.id }} - {{ session.name }} -->
-            <SessionItem :auctionSession="session" />
+            <SessionItem :session="session" />
           </div>
         </div>
       </div>

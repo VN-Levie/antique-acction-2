@@ -35,7 +35,7 @@ return new class extends Migration
         //tạo 1 auction_session
         $faker = Faker\Factory::create();
         $auction_sessions = [];
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 50; $i++) {
             $auction_sessions[] = [
                 'created_by' => 1,
                 'description' => $faker->text(200),

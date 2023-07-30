@@ -7,8 +7,7 @@
           <Link
             :href="route('session.index')"
             :class="{
-              'category-active':
-                route().params.slug == null || route().params.slug == cr_page,
+              'category-active': route().params.slug == null,
             }"
             >All Session Available</Link
           >
@@ -33,8 +32,6 @@ const productCategories = props.productCategories;
 const cr_page = props.page;
 </script>
 <style>
-
-
 .session-category {
   /* import font Smythe google */
   font-family: "Smythe", cursive;
