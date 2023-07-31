@@ -2,7 +2,6 @@
     <Head title="Address" />
     <HomeLayout>
 
-
         <div class="mt-12"></div>
 
         <div class="max-w-[1000px] mx-auto text-3xl mb-10">Your Address</div>

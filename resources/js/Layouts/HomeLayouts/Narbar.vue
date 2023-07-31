@@ -31,8 +31,8 @@
           <Link v-if="!navigation.children" :href="navigation.href"
             class="navbar-text cool-link ul-letter-spaceing py-2 pr-4 pl-3 text-uppercase"
             :aria-current="navigation.isCurrent ? 'page' : null">
-            {{ navigation.name }}
-        </Link>
+          {{ navigation.name }}
+          </Link>
           <button v-else @click="toggleDropdown(index)" class="cool-link navbar-text ul-letter-spaceing py-2 pr-4 pl-3"
             aria-haspopup="true" :aria-expanded="isOpenDropdown(index) ? 'true' : 'false'">
             {{ navigation.name }}
