@@ -449,7 +449,7 @@ h4.widget-title span::before {
     font-size: 2em;
   }
 }
-@media (max-width: 480px) {
+/* @media (max-width: 480px) {
   .alith_post_title {
     font-size: 1.2em;
     margin: 0;
@@ -461,5 +461,5 @@ h4.widget-title span::before {
   .alith_heading_patern_2::after {
     height: 10px;
   }
-}
+} */
 </style>

@@ -3,15 +3,15 @@
     <div class="post-content">
       <div class="single-content">
         <div class="column-2">
-          <p v-for="(content, index) in content.split('. ')"
-          :key="index"
-          >
+          <p v-for="(content, index) in content.split('. ')" :key="index">
             {{ content }}
           </p>
         </div>
         <div class="post-tags">
           <div class="post-tags-inner">
-            <a rel="tag" href="">#Love</a>
+            <Link rel="tag" :href="route('news.index', newsDetail.categoriesSlug)">{{
+              newsDetail.categoriesName
+            }}</Link>
           </div>
         </div>
         <!-- <div class="post-share">
@@ -39,13 +39,13 @@
 
 <script>
 import CommentsPost from "./CommentsPost.vue";
-export default {
+import { Link } from "@inertiajs/vue3";
 
+export default {
   components: {
     CommentsPost,
   },
   props: {
-    
     content: {
       type: Object,
       defualt: [],
@@ -53,8 +53,9 @@ export default {
     newsDetail: {
       type: Object,
       defualt: [],
-    }
-  }
+    },
+  },
+  components: { Link },
 };
 </script>
 

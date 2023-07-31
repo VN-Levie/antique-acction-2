@@ -45,6 +45,10 @@ class NewsController extends Controller
         // Lấy thông tin chi tiết của bài viết có id tương ứng
         $newsDetail = DB::table('post')
             ->join('users', 'users.id', '=', 'post.author')
+            // ->with('author')
+            // ->with('category')
+            ->join('post_categories', 'post.category', '=', 'post_categories.id')
+            ->select('post.*', 'users.name', 'post_categories.name as categoriesName', 'post_categories.slug as categoriesSlug')
             ->where('post.id', $id)
             ->first();
 
