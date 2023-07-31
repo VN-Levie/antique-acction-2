@@ -14,21 +14,22 @@ class NewsController extends Controller
     {
         $category_post = $request->slug;
         $per_page = 5;
+        $Datanews = null;
 
         if ($category_post) {
-            $categoryName = PostCategories::where('slug', $category_post)
-                ->pluck('id')
-                ->first();
+            $category = PostCategories::where('slug', $category_post)->first();
 
-            $Datanews = Post::whereHas('category', function ($query) use ($categoryName) {
-                $query->where('id', $categoryName);
-            })
-                ->join('users', 'users.id', '=', 'post.author')
-                ->select('post.id', 'post.title', 'post.thumbnail', 'post.content', 'post.description', 'post.created_at', 'post.tag', 'users.name')
+            if (!$category) {
+                abort(404);
+            }
+
+            $Datanews = Post::where('category', $category->id)
+                ->with('author') // Nạp trước thông tin người tạo bài viết
+                ->select('id', 'title', 'thumbnail', 'content', 'description', 'created_at', 'tag', 'author')
                 ->paginate($per_page);
         } else {
-            $Datanews = Post::join('users', 'users.id', '=', 'post.author')
-                ->select('post.id', 'post.title', 'post.thumbnail', 'post.content', 'post.description', 'post.created_at', 'post.tag', 'users.name')
+            $Datanews = Post::with('author') // Nạp trước thông tin người tạo bài viết
+                ->select('id', 'title', 'thumbnail', 'content', 'description', 'created_at', 'tag', 'author')
                 ->paginate($per_page);
         }
 
@@ -39,22 +40,28 @@ class NewsController extends Controller
             ->get();
 
         return Inertia::render('News/News', [
-            'Posts' => $Datanews, 'Categories' => $Categories, 'latestPosts' => $latestPosts]);
+            'Posts' => $Datanews, 'Categories' => $Categories, 'latestPosts' => $latestPosts
+        ]);
     }
 
-    public function Detailpost($id)
+
+    public function Detailpost($id = null)
     {
         // Lấy thông tin chi tiết của bài viết có id tương ứng
-        $newsDetail = DB::table('post')
-            ->join('users', 'users.id', '=', 'post.author')
-            ->where('post.id', $id)
+        $newsDetail = Post::where('post.id', $id)
             ->first();
+
+        if ($newsDetail == null) {
+            abort(404);
+        }
 
         // Lấy giá trị category của bài viết đó
         $categoryID = $newsDetail->category;
 
         $categorytag = PostCategories::where('id', $categoryID)
             ->select('post_categories.name',)->get();
+
+
 
         // Lấy danh sách các bài viết liên quan có cùng category ID, loại trừ bài viết hiện tại
         $relatedArticles = Post::where('category', $categoryID)
@@ -63,7 +70,7 @@ class NewsController extends Controller
             ->limit(3)
             ->get();
 
-        $Categories = DB::table('post_categories')->get();
+        $Categories = PostCategories::get();
 
         $latestPosts = Post::orderBy('created_at', 'desc')
             ->limit(3)

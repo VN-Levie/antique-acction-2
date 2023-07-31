@@ -44,21 +44,7 @@ export default defineComponent({
     const Categories_tags = attrs.Categories;
     const latestPosts = attrs.latestPosts;
 
-    const tags_cloud = [
-      "Business",
-      "Technology",
-      "Sport",
-      "Art",
-      "Lifestyle",
-      "Three",
-      "Photography",
-      "Lifestyle",
-      "Art",
-      "Education",
-      "Social",
-    ];
     return {
-      tags_cloud,
       Categories_tags,
       articleList,
       latestPosts,

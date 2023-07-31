@@ -3,15 +3,13 @@
     <div class="post-content">
       <div class="single-content">
         <div class="column-2">
-          <p v-for="(content, index) in content.split('. ')"
-          :key="index"
-          >
+          <p v-for="(content, index) in content.split('. ')" :key="index">
             {{ content }}
           </p>
         </div>
         <div class="post-tags">
           <div class="post-tags-inner">
-            <a rel="tag" href="">#Love</a>
+            <a rel="tag" href="">{{ categorytag.name }}</a>
           </div>
         </div>
         <!-- <div class="post-share">
@@ -31,30 +29,23 @@
           </ul>
         </div> -->
       </div>
-      <!--single content-->
     </div>
   </article>
-  <!-- <CommentsPost /> -->
 </template>
 
 <script>
-import CommentsPost from "./CommentsPost.vue";
 export default {
-
-  components: {
-    CommentsPost,
-  },
+  components: {},
   props: {
-    
     content: {
       type: Object,
       defualt: [],
     },
-    newsDetail: {
+    categorytag: {
       type: Object,
       defualt: [],
-    }
-  }
+    },
+  },
 };
 </script>
 
