@@ -3,6 +3,7 @@
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\AddressOptionsController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -23,13 +24,7 @@ use App\Models\Session;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('HomePage', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register')
-    ]);
-})->name('home');
-
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
