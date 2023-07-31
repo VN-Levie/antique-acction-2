@@ -13,8 +13,13 @@ class HomeController extends Controller
     public function index()
     {
         $models = ['addresses'];
+        if(Auth::guest()){
+            $user_data = null;
+        }else{
+            $user_data = User::with($models)->find(Auth::id());
+        }
         $data = [
-            'user' => User::with($models)->find(Auth::id()),
+            'user' => $user_data
         ];
         return Inertia::render('HomePage', $data);
     }
