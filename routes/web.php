@@ -70,3 +70,6 @@ Route::group(['prefix' => 'session'], function () {
 
     Route::get('/{id}', [SessionController::class, 'show'])->where('id', '[0-9]+')->name('session.show');
 });
+Route::get('/address', [AddressController::class, 'index'])->name('address.index');
+Route::get('/address_options', [AddressOptionsController::class, 'index'])->name('address_options.index');
+Route::post('/address_options', [AddressOptionsController::class, 'store'])->name('address_options.store');
