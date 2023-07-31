@@ -13,7 +13,6 @@ class NewsController extends Controller
     public function index(Request $request)
     {
         $category_post = $request->slug;
-        $per_page = 5;
 
         if ($category_post) {
             $categoryName = PostCategories::where('slug', $category_post)
@@ -25,11 +24,11 @@ class NewsController extends Controller
             })
                 ->join('users', 'users.id', '=', 'post.author')
                 ->select('post.id', 'post.title', 'post.thumbnail', 'post.content', 'post.description', 'post.created_at', 'post.tag', 'users.name')
-                ->paginate($per_page);
+                ->get();
         } else {
             $Datanews = Post::join('users', 'users.id', '=', 'post.author')
                 ->select('post.id', 'post.title', 'post.thumbnail', 'post.content', 'post.description', 'post.created_at', 'post.tag', 'users.name')
-                ->paginate($per_page);
+                ->get();
         }
 
         $Categories = DB::table('post_categories')->get();
@@ -38,8 +37,7 @@ class NewsController extends Controller
             ->limit(5)
             ->get();
 
-        return Inertia::render('News/News', [
-            'Posts' => $Datanews, 'Categories' => $Categories, 'latestPosts' => $latestPosts]);
+        return Inertia::render('News/News', ['Posts' => $Datanews, 'Categories' => $Categories, 'latestPosts' => $latestPosts]);
     }
 
     public function Detailpost($id)
