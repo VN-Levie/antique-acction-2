@@ -46,6 +46,7 @@ export default {
     CommentsPost,
   },
   props: {
+    
     content: {
       type: Object,
       defualt: [],

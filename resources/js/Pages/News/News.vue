@@ -7,10 +7,10 @@
           <div class="margin-15">
             <div class="row">
               <div class="col-md-8">
-                <RecentPosts :articleList="articleList" />
+                <RecentPosts :posts="posts" />
               </div>
               <aside class="col-md-4">
-                <SidebarRightnews :Categories_tags="Categories_tags" :latestPosts="latestPosts"/>
+                <SidebarRightnews :Categories_tags="Categories_tags"/>
               </aside>
             </div>
           </div>
@@ -34,15 +34,23 @@ import HomeLayout from "@/Layouts/HomeLayout.vue";
 import RecentPosts from "./Recent_Posts.vue";
 import SidebarRightnews from "./SidebarRightnews.vue";
 import SiderBotom from "./SiderBotompost.vue";
-import { defineComponent, useAttrs } from "vue";
+
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   setup() {
-    const attrs = useAttrs();
-    const articleList = attrs.Posts;
+    const posts = ref([]);
 
-    const Categories_tags = attrs.Categories;
-    const latestPosts = attrs.latestPosts;
+    const Categories_tags = [
+      "Business",
+      "Entertainment",
+      "Environment",
+      "Health",
+      "Life style",
+      "Politics",
+      "Technology",
+      "World",
+    ];
 
     const tags_cloud = [
       "Business",
@@ -57,11 +65,22 @@ export default defineComponent({
       "Education",
       "Social",
     ];
+
+    const getposts = () => {
+      axios
+        .get("http://127.0.0.1:8000/api/news")
+        .then(function (response) {
+          posts.value = response.data;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    };
+    getposts();
     return {
+      posts,
       tags_cloud,
       Categories_tags,
-      articleList,
-      latestPosts,
     };
   },
   components: {

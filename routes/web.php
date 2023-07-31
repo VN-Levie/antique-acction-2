@@ -1,5 +1,11 @@
 <?php
 
+
+use App\Http\Controllers\AddressController;
+use App\Http\Controllers\AddressOptionsController;
+
+use App\Http\Controllers\CategoryController;
+
 use App\Http\Controllers\ContactController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -7,6 +13,8 @@ use Inertia\Inertia;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\SessionController;
+use App\Models\Session;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,7 +42,7 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 });
-Route::inertia('/abouts', 'About');
+// Route::inertia('/abouts', 'About');
 // Route::get('products', function () {
 //     return Inertia::render('Products/Show', []);
 // })->name('products');
@@ -54,9 +62,14 @@ Route::group(['prefix' => 'news'], function () {
 });
 Route::post('/contact', ContactController::class)->name('contact');
 
+
 Route::group(['prefix' => 'session'], function () {
     // index or id
-    // Route::get('/', [SessionController::class, 'index'])->where('page', '[0-9]+')->name('session.index');
+
+    Route::get('/', [SessionController::class, 'index'])->where('page', '[0-9]+')->name('session.index');
+
     Route::get('/{id}', [SessionController::class, 'show'])->where('id', '[0-9]+')->name('session.show');
-    Route::get('/{slug?}', [SessionController::class, 'index'])->where(['slug' => '[a-z0-9-]+'])->name('session.index');
 });
+Route::get('/address', [AddressController::class, 'index'])->name('address.index');
+Route::get('/address_options', [AddressOptionsController::class, 'index'])->name('address_options.index');
+Route::post('/address_options', [AddressOptionsController::class, 'store'])->name('address_options.store');

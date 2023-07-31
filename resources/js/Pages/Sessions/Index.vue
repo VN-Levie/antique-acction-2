@@ -2,7 +2,7 @@
 
 <template>
   <HomeLayout title="Browser Session">
-    <div class="container-fluid bg-gray rounded p-5">
+    <div class="container-fluid rounded p-5">
       <div class="row">
         <Sidebar :product-categories="product_categories" :count="count" />
         <ListSession
@@ -33,6 +33,6 @@ const count = attrs.count;
 </script>
 <style>
 .bg-gray{
-    background-color: #f5f5f5cb;
+    /* background-color: #f5f5f5cb; */
 }
 </style>
