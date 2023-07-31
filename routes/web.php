@@ -62,9 +62,6 @@ Route::group(['prefix' => 'session'], function () {
     // index or id
     // Route::get('/', [SessionController::class, 'index'])->where('page', '[0-9]+')->name('session.index');
 
-    Route::get('/{id}', [SessionController::class, 'show'])->where('id', '[0-9]+')->name('session.show');
-    Route::get('/{slug?}', [SessionController::class, 'index'])->where(['slug' => '[a-z0-9-]+'])->name('session.index');
-
     Route::get('/{slug}/{session_slug}', [SessionController::class, 'show'])
         ->where(['slug' => '[a-z0-9-]+', 'session_slug' => '[a-z0-9-]+'])->name('session.show');
     Route::get('/{slug?}', [SessionController::class, 'index'])
