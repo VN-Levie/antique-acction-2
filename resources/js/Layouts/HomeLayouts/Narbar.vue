@@ -55,7 +55,7 @@
             <div class="text-[12px]">
               <i class="fa fa-fw fa-user"></i>
               Hello,
-              <span v-if="$page.props.auth.users" class="text-[10px] font-extrabold">{{ $page.props.auth.users.name
+              <span v-if="$page.props.auth.user" class="text-[10px] font-extrabold">{{ $page.props.auth.user.name
               }}</span>
               <span class="text-[12px] font-extrabold" v-else>sign in</span>
             </div>
@@ -69,7 +69,7 @@
           <div v-if="accountAndList"
             class="bg-white  md:mt-10 border-after absolute border-[2px] hover:drop-shadow-sm border-gray-600 shadow-sm top-[70px] w-[480px] rounded-sm px-6 box-media"
             style="margin-left: -80px; ">
-            <div v-if="$page.props.auth.users">
+            <div v-if="$page.props.auth.user">
               <div class="flex items-center justify-between py-2.5 border-b text-media">
                 <div class="text-[12px]">Who's Auction ? Select a profile.</div>
                 <div class="flex items-center text-sm font-bold text-teal-600 hover:text-red-600 hover:underline px-5">

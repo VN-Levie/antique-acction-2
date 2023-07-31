@@ -36,7 +36,7 @@
                         class="flex items-center justify-center p-3 text-xs text-gray-600 font-extrabold border-b border-b-gray-400">
                         Default : My Address
                     </div>
-                    <div class="text-sm font-extrabold px-4 pt-4">{{ $page.props.auth.users.name }}</div>
+                    <div class="text-sm font-extrabold px-4 pt-4">{{ $page.props.auth.user.name }}</div>
                     <div class="text-sm px-4">
                         <div>{{ $page.props.auth.address.address1 }}</div>
                         <div>{{ $page.props.auth.address.address2 }}</div>

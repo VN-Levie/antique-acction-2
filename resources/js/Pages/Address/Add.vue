@@ -67,7 +67,7 @@
         </HomeLayout>
     </div>
 </template>
-  
+
 <script setup>
 import { Head, Link, useForm, usePage } from '@inertiajs/vue3';
 import HomeLayout from '@/Layouts/HomeLayout.vue';
@@ -77,7 +77,7 @@ import PlusIcon from 'vue-material-design-icons/Plus.vue';
 
 const form = useForm({
     country: 'United Kingdom',
-    name: usePage().props.auth.users.name,
+    name: usePage().props.auth.user.name,
     address1: '',
     address2: '',
     city: '',
