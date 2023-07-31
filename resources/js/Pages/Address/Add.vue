@@ -77,7 +77,7 @@ import PlusIcon from 'vue-material-design-icons/Plus.vue';
 
 const form = useForm({
     country: 'United Kingdom',
-    name: 'vi',
+    name: usePage().props.auth.users.name,
     address1: '',
     address2: '',
     city: '',
