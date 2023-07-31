@@ -17,12 +17,7 @@
           <div class="post_meta">
             <span>{{ post.name }}</span>
             <span class="meta_categories">
-              <a
-                v-for="category in post.tag.split(', ')"
-                :key="category"
-                href="#"
-                >{{ category }}</a
-              >
+              <a v-for="category in post.tag.split(', ')" :key="category" href="#">{{ category }}</a>
             </span>
             <span class="meta_date">{{ formatDate(post.created_at) }}</span>
           </div>
