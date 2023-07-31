@@ -12,11 +12,11 @@ import TextInput from '@/Components/Dashboard/TextInput.vue';
 const props = defineProps({
     user: Object,
 });
-
+console.log(props);
 const form = useForm({
     _method: 'PUT',
-    name: props.user.name,
-    email: props.user.email,
+    name: props.users.name,
+    email: props.users.email,
     photo: null,
 });
 
