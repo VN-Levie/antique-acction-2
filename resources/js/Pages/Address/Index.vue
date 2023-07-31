@@ -1,7 +1,7 @@
 <template>
     <Head title="Address" />
     <HomeLayout>
-
+        <h1>{{ $page.props.auth.users }}</h1>
 
         <div class="mt-12"></div>
 
