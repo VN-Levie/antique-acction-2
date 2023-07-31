@@ -7,10 +7,10 @@
           <div class="margin-15">
             <div class="row">
               <div class="col-md-8">
-                <RecentPosts :posts="posts" />
+                <RecentPosts :articleList="articleList" />
               </div>
               <aside class="col-md-4">
-                <SidebarRightnews :Categories_tags="Categories_tags"/>
+                <SidebarRightnews :Categories_tags="Categories_tags" :latestPosts="latestPosts"/>
               </aside>
             </div>
           </div>
@@ -34,23 +34,15 @@ import HomeLayout from "@/Layouts/HomeLayout.vue";
 import RecentPosts from "./Recent_Posts.vue";
 import SidebarRightnews from "./SidebarRightnews.vue";
 import SiderBotom from "./SiderBotompost.vue";
-
-import { defineComponent, ref } from "vue";
+import { defineComponent, useAttrs } from "vue";
 
 export default defineComponent({
   setup() {
-    const posts = ref([]);
+    const attrs = useAttrs();
+    const articleList = attrs.Posts;
 
-    const Categories_tags = [
-      "Business",
-      "Entertainment",
-      "Environment",
-      "Health",
-      "Life style",
-      "Politics",
-      "Technology",
-      "World",
-    ];
+    const Categories_tags = attrs.Categories;
+    const latestPosts = attrs.latestPosts;
 
     const tags_cloud = [
       "Business",
@@ -65,22 +57,11 @@ export default defineComponent({
       "Education",
       "Social",
     ];
-
-    const getposts = () => {
-      axios
-        .get("http://127.0.0.1:8000/api/news")
-        .then(function (response) {
-          posts.value = response.data;
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    };
-    getposts();
     return {
-      posts,
       tags_cloud,
       Categories_tags,
+      articleList,
+      latestPosts,
     };
   },
   components: {
@@ -468,7 +449,7 @@ h4.widget-title span::before {
     font-size: 2em;
   }
 }
-/* @media (max-width: 480px) {
+@media (max-width: 480px) {
   .alith_post_title {
     font-size: 1.2em;
     margin: 0;
@@ -480,5 +461,5 @@ h4.widget-title span::before {
   .alith_heading_patern_2::after {
     height: 10px;
   }
-} */
+}
 </style>
