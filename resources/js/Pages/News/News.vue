@@ -16,7 +16,7 @@
           </div>
         </div>
       </div>
-      <div class="container-fluid">
+      <!-- <div class="container-fluid">
         <div class="container">
           <div class="bottom margin-15">
             <div class="row">
@@ -24,7 +24,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </HomeLayout>
 </template>

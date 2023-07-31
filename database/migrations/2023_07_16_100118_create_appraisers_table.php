@@ -20,6 +20,7 @@ return new class extends Migration
             $table->id();
             $table->text('biography');
             $table->text('name');
+            $table->text('avatar');
             $table->text('titles');
             $table->timestamps();
         });
@@ -31,6 +32,7 @@ return new class extends Migration
                 'biography' => $faker->text(255),
                 'name' => $faker->name(),
                 'titles' => $faker->text(255),
+                'avatar' => $faker->imageUrl(640, 480, 'cats', true, 'Faker', true),
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
             ];

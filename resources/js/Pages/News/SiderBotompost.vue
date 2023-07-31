@@ -1,44 +1,47 @@
 <template>
-    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-      <div class="sidebar-widget">
-        <div class="widget-title-cover">
-          <h4 class="widget-title"><span>Related Articles</span></h4>
-        </div>
-        <div class="latest_style_3">
-          <div class="latest_style_3_item">
-            <span class="item-count vertical-align">1.</span>
-            <div class="alith_post_title_small">
-              <a href=""
-                ><strong
-                  >Frtuitous spluttered unlike ouch vivid blinked far
-                  inside</strong
-                ></a
-              >
-            </div>
+  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    <div class="sidebar-widget">
+      <div class="widget-title-cover">
+        <h4 class="widget-title"><span>Related Articles</span></h4>
+      </div>
+      <div
+        class="latest_style_3"
+        v-for="(related, index) in relatedArticles"
+        :key="related.id"
+      >
+        <div class="latest_style_3_item">
+          <span class="item-count vertical-align">{{ ++index }}.</span>
+          <div class="alith_post_title_small">
+            <a href=""
+              ><strong>{{ related.title }}</strong>
+              <br>
+            <span>{{ shorttext(related.content, 40) }}</span>
+              </a>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-      <div class="sidebar-widget">
-        <div class="widget-title-cover">
-          <h4 class="widget-title"><span>Latest</span></h4>
-        </div>
-        <div class="latest_style_2">
-          <div class="latest_style_2_item">
-            <figure class="alith_news_img">
-              <a href=""
-                ><img alt="" src="/img/works1.png" class="hover_grey"
-              /></a>
-            </figure>
-            <h3 class="alith_post_title">
-              <a href="">Magna aliqua ut enim ad minim veniam</a>
-            </h3>
-          </div>
+  </div>
+  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    <div class="sidebar-widget">
+      <div class="widget-title-cover">
+        <h4 class="widget-title"><span>Latest</span></h4>
+      </div>
+      <div class="latest_style_2">
+        <div class="latest_style_2_item">
+          <figure class="alith_news_img">
+            <a href=""
+              ><img alt="" src="/img/works1.png" class="hover_grey"
+            /></a>
+          </figure>
+          <h3 class="alith_post_title">
+            <a href="">Magna aliqua ut enim ad minim veniam</a>
+          </h3>
         </div>
       </div>
     </div>
-    <!-- <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+  </div>
+  <!-- <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
       <div class="sidebar-widget">
         <div class="widget-title-cover">
           <h4 class="widget-title"><span>Categories</span></h4>
@@ -64,11 +67,18 @@ export default {
     return {};
   },
   props: {
-    Categories_tags: {
+    relatedArticles: {
       type: Object,
-      default: []
-    }
-  }
+      default: [],
+    },
+  },
+  methods: {
+    shorttext(value, limit) {
+      if (value && limit) {
+        return value.substring(0, limit) + "...";
+      }
+    },
+  },
 };
 </script>
 
@@ -211,6 +221,4 @@ h4.widget-title span::before {
   margin: 2px 0;
   width: 50%;
 }
-
-
 </style>
