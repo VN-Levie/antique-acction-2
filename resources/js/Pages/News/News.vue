@@ -16,6 +16,15 @@
           </div>
         </div>
       </div>
+      <!-- <div class="container-fluid">
+        <div class="container">
+          <div class="bottom margin-15">
+            <div class="row">
+              <SiderBotom :Categories_tags="Categories_tags" />
+            </div>
+          </div>
+        </div>
+      </div> -->
     </div>
   </HomeLayout>
 </template>
