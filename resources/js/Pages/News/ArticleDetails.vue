@@ -3,58 +3,35 @@
     <div class="post-content">
       <div class="single-content">
         <div class="column-2">
-          <p v-for="(content, index) in content.split('. ')"
-          :key="index"
-          >
+          <p v-for="(content, index) in content.split('. ')" :key="index">
             {{ content }}
           </p>
         </div>
         <div class="post-tags">
           <div class="post-tags-inner">
-            <a rel="tag" href="">#Love</a>
+            <Link rel="tag" :href="route('news.index', categoryName.slug)" v-for="(categoryName, index) in categorytag" :key="index">{{ categoryName.name }}</Link>
           </div>
         </div>
-        <!-- <div class="post-share">
-          <ul>
-            <li class="facebook">
-              <a href="single.html"><i class="fa fa-facebook"></i></a>
-            </li>
-            <li class="twitter">
-              <a href="single.html"><i class="fa fa-twitter"></i></a>
-            </li>
-            <li class="google-plus">
-              <a href="single.html"><i class="fa fa-google-plus"></i></a>
-            </li>
-            <li class="instagram">
-              <a href="single.html"><i class="fa fa-instagram"></i></a>
-            </li>
-          </ul>
-        </div> -->
       </div>
-      <!--single content-->
     </div>
   </article>
-  <!-- <CommentsPost /> -->
 </template>
 
 <script>
-import CommentsPost from "./CommentsPost.vue";
-export default {
+import { Link } from "@inertiajs/vue3";
 
-  components: {
-    CommentsPost,
-  },
+export default {
+  components: { Link },
   props: {
-    
     content: {
       type: Object,
       defualt: [],
     },
-    newsDetail: {
+    categorytag: {
       type: Object,
       defualt: [],
-    }
-  }
+    },
+  },
 };
 </script>
 

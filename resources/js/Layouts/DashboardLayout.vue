@@ -168,8 +168,10 @@ const logout = () => {
               <div>
                 <div class="font-medium text-base text-gray-800">
                   {{ $page.props.auth.users.name }}
+                  {{ $page.props.auth.users.name }}
                 </div>
                 <div class="font-medium text-sm text-gray-500">
+                  {{ $page.props.auth.users.email }}
                   {{ $page.props.auth.users.email }}
                 </div>
               </div>
@@ -213,7 +215,7 @@ const logout = () => {
                 </ResponsiveNavLink>
 
                 <!-- Team Switcher -->
-                <template v-if="$page.props.auth.user.all_teams.length > 1">
+                <template v-if="$page.props.auth.users.all_teams.length > 1">
                   <div class="border-t border-gray-200" />
 
                   <div class="block px-4 py-2 text-xs text-gray-400">

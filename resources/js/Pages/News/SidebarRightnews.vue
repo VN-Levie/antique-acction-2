@@ -48,9 +48,9 @@
         <h4 class="widget-title"><Link :href="route('news.index')">Categories</Link></h4>
       </div>
       <ul class="bottom_menu">
-        <li v-for="CategoriesTag in Categories_tags" :key="CategoriesTag">
-          <Link :href="route('news.index', CategoriesTag.slug)" class="">{{
-            CategoriesTag.name
+        <li v-for="Categories in Categories_Sidebar" :key="Categories">
+          <Link :href="route('news.index', Categories.slug)" class="">{{
+            Categories.name
           }}</Link>
         </li>
       </ul>
@@ -67,7 +67,7 @@ export default {
     return {};
   },
   props: {
-    Categories_tags: {
+    Categories_Sidebar: {
       type: Object,
       defualt: [],
     },

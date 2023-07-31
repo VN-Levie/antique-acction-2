@@ -10,7 +10,7 @@
                 <RecentPosts :articleList="articleList" />
               </div>
               <aside class="col-md-4">
-                <SidebarRightnews :Categories_tags="Categories_tags" :latestPosts="latestPosts"/>
+                <SidebarRightnews :Categories_Sidebar="Categories_Sidebar" :latestPosts="latestPosts"/>
               </aside>
             </div>
           </div>
@@ -41,25 +41,11 @@ export default defineComponent({
     const attrs = useAttrs();
     const articleList = attrs.Posts;
 
-    const Categories_tags = attrs.Categories;
+    const Categories_Sidebar = attrs.Categories;
     const latestPosts = attrs.latestPosts;
 
-    const tags_cloud = [
-      "Business",
-      "Technology",
-      "Sport",
-      "Art",
-      "Lifestyle",
-      "Three",
-      "Photography",
-      "Lifestyle",
-      "Art",
-      "Education",
-      "Social",
-    ];
     return {
-      tags_cloud,
-      Categories_tags,
+      Categories_Sidebar,
       articleList,
       latestPosts,
     };
