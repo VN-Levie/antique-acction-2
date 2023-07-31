@@ -51,6 +51,7 @@
   </template>
 
   <script>
+  import { Head, Link, router } from "@inertiajs/vue3";
   import { defineComponent, useAttrs } from "vue";
 
   export default defineComponent({
@@ -88,6 +89,9 @@
         }
       },
     },
+    components:{
+        Link,
+    }
   });
   </script>
 
