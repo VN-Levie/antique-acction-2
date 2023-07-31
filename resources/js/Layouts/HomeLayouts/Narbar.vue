@@ -6,7 +6,6 @@
         <Link :href="route('home')">
         <img src="/img/mt-1804-home-logo.png" />
         </Link>
-
         <!-- Mobile menu button -->
         <div @click="toggleNav" class="flex md:hidden mt-3">
           <button type="button" class="text-gray-100 hover:text-gray-400 focus:outline-none focus:text-gray-400">
@@ -42,7 +41,7 @@
           <ul v-if="navigation.children && isOpenDropdown(index)"
             class="absolute dropdown-content mt-2 bg-white shadow-lg rounded">
             <li v-for="(child, childIndex) in navigation.children" :key="childIndex">
-              <a :href="child.href" class="ul-letter-spaceing cool-link block px-4 py-2 text-sm">
+              <a :href="child.href" class="ul-letter-spaceing cool-link block px-4 py-2 text-sm1">
                 {{ child.name }}
               </a>
             </li>
@@ -78,7 +77,17 @@
                 <div class="w-full md:w-1/2 border-r">
                   <div class="pb-3">
                     <div class="font-extrabold pt-3">Your List</div>
-                    <div class="text-sm hover:text-red-600 hover:underline pt-3">Create a list.</div>
+                    <div>
+                      <a :href="route('login')" class="text-sm hover:text-red-600 hover:underline pt-3">Create your
+                        list</a>
+                    </div>
+                    <div class="font-extrabold pt-3">My Address</div>
+                    <div>
+                      <i class="fa fa-map-marker" aria-hidden="true"></i>
+                      <a :href="route('address.index')" class="text-sm hover:text-red-600 hover:underline pt-3">
+                        VietNam</a>
+                      <i></i>
+                    </div>
                   </div>
                 </div>
                 <div class="w-full md:w-1/2 md:ml-5">
@@ -88,6 +97,7 @@
                       <a :href="route('login')" class="text-sm hover:text-red-600 hover:underline pt-3">Account</a>
                     </div>
                     <div class="text-sm hover:text-red-600 hover:underline pt-3">SignOut</div>
+
                   </div>
                 </div>
               </div>
@@ -131,6 +141,8 @@
 <script>
 import { ref } from "vue";
 import { Link } from "@inertiajs/vue3";
+
+
 export default {
   setup() {
     const navigations = [
@@ -247,7 +259,7 @@ export default {
   transition: width 0.1s;
 }
 
-.text-sm:hover {
+.text-sm1:hover {
   font-size: 0.7rem;
   transition: width 1000s;
 }
