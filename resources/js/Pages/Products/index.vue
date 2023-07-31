@@ -1,7 +1,6 @@
 
 <template>
     <div>
-
         <Head title="Products" />
         <HomeLayout>
             <div class="row">
@@ -44,7 +43,7 @@
                                             aria-hidden="true" />
                                     </MenuButton>
                                 </div>
-
+                                <Menu>
                                 <transition enter-active-class="transition ease-out duration-100"
                                     enter-from-class="transform opacity-0 scale-95"
                                     enter-to-class="transform opacity-100 scale-100"
@@ -89,7 +88,6 @@
                                         <a href="#">{{ category.name }}</a>
                                     </li>
                                 </ul>
-
                                 <Disclosure as="div" v-for="section in filters" :key="section.id"
                                     class="border-b border-gray-200 py-6" v-slot="{ open }">
                                     <h3 class="-my-3 flow-root">
@@ -147,22 +145,20 @@ import { Head } from '@inertiajs/vue3'
 import HomeLayout from '@/Layouts/HomeLayout.vue'
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
-import {
-    Dialog,
-    DialogPanel,
-    Disclosure,
-    DisclosureButton,
-    DisclosurePanel,
-    Menu,
-    MenuButton,
-    MenuItem,
-    MenuItems,
-    TransitionChild,
-    TransitionRoot,
-} from '@headlessui/vue'
-import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/vue/20/solid'
-
-
+// import {
+//     Dialog,
+//     DialogPanel,
+//     Disclosure,
+//     DisclosureButton,
+//     DisclosurePanel,
+//     Menu,
+//     MenuButton,
+//     MenuItem,
+//     MenuItems,
+//     TransitionChild,
+//     TransitionRoot,
+// } from '@headlessui/vue'
+// import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/vue/20/solid'
 
 const products = ref([]);
 
