@@ -7,10 +7,10 @@
           <div class="margin-15">
             <div class="row">
               <div class="col-md-8">
-                <ArticleDetails :content="$attrs.content" />
+                <ArticleDetails :content="$attrs.content" :newsDetail="newsDetail"/>
               </div>
               <aside class="col-md-4">
-                <SidebarRightnews :tags_cloud="tags_cloud" :Categories_tags="Categories_tags"/>
+                <SidebarRightnews :latestPosts="latestPosts" :Categories_tags="Categories_tags"/>
               </aside>
             </div>
           </div>
@@ -20,7 +20,7 @@
         <div class="container">
           <div class="bottom margin-15">
             <div class="row">
-              <SiderBotom :Categories_tags="Categories_tags" />
+              <SiderBotom :relatedArticles="relatedArticles" />
             </div>
           </div>
         </div>
@@ -35,53 +35,21 @@ import SidebarRightnews from "./SidebarRightnews.vue";
 import SiderBotom from "./SiderBotompost.vue";
 import ArticleDetails from "./ArticleDetails.vue";
 
-import { defineComponent, ref } from "vue";
+import { defineComponent, useAttrs } from "vue";
 
 export default defineComponent({
   setup() {
-    const posts = ref([]);
+    const attrs = useAttrs();
 
-    const Categories_tags = [
-      "Business",
-      "Entertainment",
-      "Environment",
-      "Health",
-      "Life style",
-      "Politics",
-      "Technology",
-      "World",
-    ];
-
-    const tags_cloud = [
-      "Business",
-      "Technology",
-      "Sport",
-      "Art",
-      "Lifestyle",
-      "Three",
-      "Photography",
-      "Lifestyle",
-      "Art",
-      "Education",
-      "Social",
-    ];
-
-    // const getposts = () => {
-    //   axios
-    //     .get("http://127.0.0.1:8000/api/news/newsDetail/")
-    //     .then(function (response) {
-    //       posts.value = response.data;
-    //     })
-    //     .catch(function (error) {
-    //       console.log(error);
-    //     });
-    // };
-    // getposts();
+    const Categories_tags = attrs.Categories;
+    const latestPosts = attrs.latestPosts;
+    const relatedArticles = attrs.relatedArticles;
+    const newsDetail = attrs.newsDetail;
     return {
-      // posts,
-      tags_cloud,
       Categories_tags,
-    //   id: attrs.id
+      latestPosts,
+      relatedArticles,
+      newsDetail
     };
   },
   components: {

@@ -10,6 +10,7 @@ class Post extends Model
     use HasFactory;
     protected $table = 'post';
     protected $fillable = [
+        'id',
         'title',
         'slug',
         'thumbnail',
@@ -26,5 +27,9 @@ class Post extends Model
     public function author()
     {
         return $this->belongsTo(User::class, 'author');
+    }
+    public function category()
+    {
+        return $this->belongsTo(PostCategories::class, 'category');
     }
 }

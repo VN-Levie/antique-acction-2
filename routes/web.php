@@ -52,17 +52,24 @@ Route::get('/products', function () {
 });
 
 Route::group(['prefix' => 'news'], function () {
-    Route::get('/', [NewsController::class, 'index'])->name('index');
-    Route::get('/newsDetail/{id}', [NewsController::class, 'Detailpost'])->name('news.Detail');
+    // Route::get('/', [NewsController::class, 'index'])->name('news.index');
+    Route::get('/{slug?}', [NewsController::class, 'index'])->where(['slug' => '[a-zA-Z0-9\s-]+'])->name('news.index');
+    Route::get('/newsDetail/{id}', [NewsController::class, 'Detailpost'])->where('id', '[0-9]+')->name('news.Detail');
 });
-
 Route::post('/contact', ContactController::class)->name('contact');
 
 Route::group(['prefix' => 'session'], function () {
     // index or id
     // Route::get('/', [SessionController::class, 'index'])->where('page', '[0-9]+')->name('session.index');
+
     Route::get('/{id}', [SessionController::class, 'show'])->where('id', '[0-9]+')->name('session.show');
     Route::get('/{slug?}', [SessionController::class, 'index'])->where(['slug' => '[a-z0-9-]+'])->name('session.index');
+
+    Route::get('/{slug}/{session_slug}', [SessionController::class, 'show'])
+        ->where(['slug' => '[a-z0-9-]+', 'session_slug' => '[a-z0-9-]+'])->name('session.show');
+    Route::get('/{slug?}', [SessionController::class, 'index'])
+        ->where(['slug' => '[a-z0-9-]+'])->name('session.index');
+
 });
 Route::get('/address', [AddressController::class, 'index'])->name('address.index');
 Route::get('/address_options', [AddressOptionsController::class, 'index'])->name('address_options.index');
