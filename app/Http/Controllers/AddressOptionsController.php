@@ -14,7 +14,7 @@ class AddressOptionsController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Address/Add');
+        return Inertia::render('Home/Address/Add');
     }
 
     /**

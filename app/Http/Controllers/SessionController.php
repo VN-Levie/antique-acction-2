@@ -49,7 +49,7 @@ class SessionController extends Controller
         // $test = Session::find(1)->createdBy->name;
         // dd($test);
 
-        return Inertia::render('Sessions/Index', $data);
+        return Inertia::render('Home/Sessions/Index', $data);
     }
     public function show(Request $request, $slug = null, $session_slug = null)
     {
@@ -73,6 +73,6 @@ class SessionController extends Controller
         // $test = Session::find(1)->createdBy->name;
         // dd($test);
 
-        return Inertia::render('Sessions/Show', $data);
+        return Inertia::render('Home/Sessions/Show', $data);
     }
 }

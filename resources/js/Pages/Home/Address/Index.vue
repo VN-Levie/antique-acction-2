@@ -1,12 +1,26 @@
 <template>
     <Head title="Address" />
     <HomeLayout>
-
-
-        <div class="mt-12"></div>
+        <div class="container">
+            <div class="mt-12"></div>
 
         <div class="max-w-[1000px] mx-auto text-3xl mb-10">Your Address</div>
-
+        <div class="max-w-[1000px] mx-auto text-3xl mb-10">
+            <table class="table">
+                <thead>
+                    <th>id</th>
+                    <th>addr1</th>
+                    <th>addr2</th>
+                </thead>
+                <tbody>
+                    <tr v-for="address in user_address" :key="address.id">
+                        <td>{{ address.id }}</td>
+                        <td>{{ address.address1 }}</td>
+                        <td>{{ address.address2 }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <div style="padding-bottom: 200px;">
             <div class="max-w-[1000px] mx-auto text-3xl flex gap-2 h-[270px]">
                 <div class=" border border-dotted border-gray-400 rounded-md w-1/3">
@@ -53,6 +67,9 @@
                 </div>
             </div>
         </div>
+        </div>
+
+
 
 
     </HomeLayout>
@@ -62,10 +79,10 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
 import HomeLayout from '@/Layouts/HomeLayout.vue';
-import { toRefs } from 'vue';
+import { toRefs, useAttrs } from 'vue';
 import PlusIcon from 'vue-material-design-icons/Plus.vue'
-
-
+const attrs = useAttrs();
+const user_address = attrs.user_address;
 </script>
 <style>
 .text-sm1 {

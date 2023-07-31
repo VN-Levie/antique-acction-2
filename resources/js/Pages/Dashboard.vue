@@ -15,6 +15,7 @@ import Welcome from "@/Components/Dashboard/Welcome.vue";
     <div class="py-12">
       <div class="max-w-12xl mx-auto px-3">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+            {{ $page.props.auth.user.name.addresses }}
           <Welcome/>
         </div>
       </div>

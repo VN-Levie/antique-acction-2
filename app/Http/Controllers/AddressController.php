@@ -14,7 +14,15 @@ class AddressController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Address/Index');
+        // Nạp trước model User liên quan đến model Address
+        $models = ['user'];
+        // dd(auth()->user()->id);
+        $user_address = Address::with($models)->where('user_id', auth()->user()->id)->get();
+        $data = [
+            'user_address' => $user_address,
+        ];
+
+        return Inertia::render('Home/Address/Index', $data);
     }
 
     /**
