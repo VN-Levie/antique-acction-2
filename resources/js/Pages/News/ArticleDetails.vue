@@ -9,33 +9,19 @@
         </div>
         <div class="post-tags">
           <div class="post-tags-inner">
-            <a rel="tag" href="">{{ categorytag.name }}</a>
+            <Link rel="tag" :href="route('news.index', categoryName.slug)" v-for="(categoryName, index) in categorytag" :key="index">{{ categoryName.name }}</Link>
           </div>
         </div>
-        <!-- <div class="post-share">
-          <ul>
-            <li class="facebook">
-              <a href="single.html"><i class="fa fa-facebook"></i></a>
-            </li>
-            <li class="twitter">
-              <a href="single.html"><i class="fa fa-twitter"></i></a>
-            </li>
-            <li class="google-plus">
-              <a href="single.html"><i class="fa fa-google-plus"></i></a>
-            </li>
-            <li class="instagram">
-              <a href="single.html"><i class="fa fa-instagram"></i></a>
-            </li>
-          </ul>
-        </div> -->
       </div>
     </div>
   </article>
 </template>
 
 <script>
+import { Link } from "@inertiajs/vue3";
+
 export default {
-  components: {},
+  components: { Link },
   props: {
     content: {
       type: Object,

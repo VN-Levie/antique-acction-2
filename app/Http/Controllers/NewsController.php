@@ -59,9 +59,7 @@ class NewsController extends Controller
         $categoryID = $newsDetail->category;
 
         $categorytag = PostCategories::where('id', $categoryID)
-            ->select('post_categories.name',)->get();
-
-
+            ->select('post_categories.name','post_categories.slug')->get();
 
         // Lấy danh sách các bài viết liên quan có cùng category ID, loại trừ bài viết hiện tại
         $relatedArticles = Post::where('category', $categoryID)
