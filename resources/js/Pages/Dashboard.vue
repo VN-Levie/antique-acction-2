@@ -5,7 +5,7 @@ import Welcome from "@/Components/Dashboard/Welcome.vue";
 
 <template>
   <Head title="Home" />
-  <DashboardLayout title="Dashboard"  :attrs="$attrs" >
+  <DashboardLayout title="Dashboard" >
     <!-- <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Dashboard
