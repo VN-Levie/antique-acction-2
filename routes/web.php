@@ -69,9 +69,7 @@ Route::group(['prefix' => 'session'], function () {
         ->where(['slug' => '[a-z0-9-]+', 'session_slug' => '[a-z0-9-]+'])->name('session.show');
     Route::get('/{slug?}', [SessionController::class, 'index'])
         ->where(['slug' => '[a-z0-9-]+'])->name('session.index');
-
 });
 Route::get('/address', [AddressController::class, 'index'])->name('address.index');
 Route::get('/address_options', [AddressOptionsController::class, 'index'])->name('address_options.index');
 Route::post('/address_options', [AddressOptionsController::class, 'store'])->name('address_options.store');
-    
