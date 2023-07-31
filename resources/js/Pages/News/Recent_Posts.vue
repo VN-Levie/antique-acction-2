@@ -4,7 +4,7 @@
       <div class="alith_heading">
         <h2 class="alith_heading_patern_2">Recent Posts</h2>
       </div>
-      <article class="row m-2" v-for="post in paginatedList" :key="post.id">
+      <article class="row m-2" v-for="post in articleList.data" :key="post.id">
         <div class="col-md-3">
           <figure class="">
             <a href="#"><img :src="post.thumbnail" alt="aaa" /></a>
@@ -34,82 +34,44 @@
           >
         </div>
       </article>
-      <nav class="pagination_width">
-        <ul class="pagination justify-content-center">
-          <li class="page-item" @click="prevPage" :disabled="isFirstPage">
-            <a class="page-link" href="#">Previous</a>
-          </li>
-          <li
-            class="page-item"
-            v-for="page in totalPages"
-            :key="page"
-            @click="setPage(page)"
-          >
-            <a
-              class="page-link"
-              :class="{ active: page === currentPage }"
-              href="#"
-              >{{ page }}</a
-            >
-          </li>
-          <li class="page-item" @click="nextPage" :disabled="isLastPage">
-            <a class="page-link" href="#">Next</a>
-          </li>
-        </ul>
-      </nav>
+      <ul class="pagination justify-center bottom-0 session-pagination mb-3 mt-3">
+        <li
+          v-for="page in links"
+          v-bind:key="page"
+          class="page-item session-page-item"
+          :class="{ active: page.active }"
+        >
+          <Link class="page-link session-page-link" :href="page.url">
+            <span v-html="page.label"></span>
+          </Link>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
-import { defineComponent, toRef, ref, computed } from "vue";
+import { defineComponent, useAttrs } from "vue";
 
 export default defineComponent({
   name: "RecentPosts",
-  setup(props) {
-    const article_list = toRef(props, "articleList");
-    const currentPage = ref(1);
-    const itemsPerPage = 7;
+  setup() {
+    const attrs = useAttrs();
 
-    const totalPages = computed(() =>
-      Math.ceil(article_list.value.length / itemsPerPage)
-    );
-
-    const setPage = (pageNumber) => {
-      currentPage.value = pageNumber;
-    };
-
-    const paginatedList = computed(() => {
-      const startIndex = (currentPage.value - 1) * itemsPerPage;
-      const endIndex = startIndex + itemsPerPage;
-      return article_list.value.slice(startIndex, endIndex);
-    });
-
+    const links = attrs.articleList.links;
+    const articleList = attrs.articleList
     return {
-      article_list,
-      currentPage,
-      totalPages,
-      setPage,
-      paginatedList,
+      articleList,
+      links,
     };
   },
   props: {
-    articleList: {
+    Posts: {
       type: Object,
       default: [],
     },
   },
   methods: {
-    prevPage() {
-      if (this.currentPage > 1) {
-        this.currentPage--;
-      }
-    },
-    nextPage() {
-      if (this.currentPage < this.totalPages) {
-        this.currentPage++;
-      }
-    },
     formatDate(date) {
       const formattedDate = new Date(date);
       const day = String(formattedDate.getDate()).padStart(2, "0");
@@ -130,7 +92,5 @@ export default defineComponent({
 </script>
 
 <style>
-.pagination_width {
-  margin: 50px 0 0 0;
-}
+
 </style>
