@@ -6,17 +6,23 @@
       </h4>
     </div>
     <div class="latest_style_1">
-      <div class="latest_style_1_item">
+      <div
+        class="latest_style_1_item"
+        v-for="post in latestPosts"
+        :key="post.id"
+      >
         <!-- <span class="item-count vertical-align">1.</span> -->
         <div class="alith_post_title_small">
-          <a href=""><strong>Ut enim ad minima veniam, quis nostrum</strong></a>
+          <a :href="'/news/newsDetail/' + post.id"
+            ><strong>{{ post.title }}</strong></a
+          >
           <p class="meta">
-            <span>2 Sep, 2023</span>
+            <span>{{ formatDate(post.updated_at) }}</span>
           </p>
         </div>
         <figure class="alith_news_img">
           <a href=""
-            ><img src="/img/works1.png" alt="" class="Popular_img"
+            ><img :src="post.thumbnail" alt="aaaaaaaaa" class="Popular_img"
           /></a>
         </figure>
       </div>
@@ -42,21 +48,10 @@
         <h4 class="widget-title"><Link :href="route('news.index')">Categories</Link></h4>
       </div>
       <ul class="bottom_menu">
-<<<<<<< HEAD
         <li v-for="CategoriesTag in Categories_tags" :key="CategoriesTag">
           <Link :href="route('news.index', CategoriesTag.slug)" class="">{{
             CategoriesTag.name
           }}</Link>
-=======
-        <li>
-          <a
-            href=""
-            class=""
-            v-for="CategoriesTag in Categories_tags"
-            :key="CategoriesTag"
-            >{{ CategoriesTag }}</a
-          >
->>>>>>> parent of 6edf043 (T)
         </li>
       </ul>
     </div>
@@ -72,15 +67,10 @@ export default {
     return {};
   },
   props: {
-    tags_cloud: {
-      type: Object,
-      defualt: [],
-    },
     Categories_tags: {
       type: Object,
       defualt: [],
     },
-<<<<<<< HEAD
     latestPosts: {
       type: Object,
       defualt: [],
@@ -96,8 +86,6 @@ export default {
       const minutes = String(formattedDate.getMinutes()).padStart(2, "0");
       return `${day}/${month}/${year} ${hours}:${minutes}`;
     },
-=======
->>>>>>> parent of 6edf043 (T)
   },
   components: { Link },
 };
@@ -110,7 +98,7 @@ export default {
 .bottom_menu li {
   float: left;
   margin: 2px 0;
-  width: 80%;
+  width: 110%;
 }
 
 .bottom_menu li a {

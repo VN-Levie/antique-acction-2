@@ -4,11 +4,7 @@
       <div class="alith_heading">
         <h2 class="alith_heading_patern_2">Recent Posts</h2>
       </div>
-<<<<<<< HEAD
       <article class="row m-2" v-for="post in paginatedList" :key="post.id">
-=======
-      <article class="row m-2" v-for="post in posts" :key="post.id">
->>>>>>> parent of 6edf043 (T)
         <div class="col-md-3">
           <figure class="">
             <a href="#"><img :src="post.thumbnail" alt="aaa" /></a>
@@ -21,7 +17,12 @@
           <div class="post_meta">
             <span>{{ post.name }}</span>
             <span class="meta_categories">
-              <a v-for="category in post.tag.split(', ')" :key="category" href="#">{{ category }}</a>
+              <a
+                v-for="category in post.tag.split(', ')"
+                :key="category"
+                href="#"
+                >{{ category }}</a
+              >
             </span>
             <span class="meta_date">{{ formatDate(post.created_at) }}</span>
           </div>
@@ -65,7 +66,6 @@ import { defineComponent, toRef, ref, computed } from "vue";
 
 export default defineComponent({
   name: "RecentPosts",
-<<<<<<< HEAD
   setup(props) {
     const article_list = toRef(props, "articleList");
     const currentPage = ref(1);
@@ -92,13 +92,9 @@ export default defineComponent({
       setPage,
       paginatedList,
     };
-=======
-  setup() {
-    return {};
->>>>>>> parent of 6edf043 (T)
   },
   props: {
-    posts: {
+    articleList: {
       type: Object,
       default: [],
     },
