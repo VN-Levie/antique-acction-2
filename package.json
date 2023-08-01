@@ -23,6 +23,7 @@
         "@headlessui/vue": "^1.7.15",
         "@heroicons/vue": "^2.0.18",
         "@vue-hero-icons/outline": "^1.7.2",
+        "@vue-hero-icons/solid": "^1.7.2",
         "@vuelidate/core": "^2.0.3",
         "@vuelidate/validators": "^2.0.3",
         "vue-material-design-icons": "^5.2.0"
