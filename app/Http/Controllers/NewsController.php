@@ -25,11 +25,13 @@ class NewsController extends Controller
 
             $Datanews = Post::where('category', $category->id)
                 ->with('author') // Nạp trước thông tin người tạo bài viết
-                ->select('id', 'title', 'thumbnail', 'content', 'description', 'created_at', 'tag', 'author')
+                ->with('category')
+                ->select('id', 'title', 'thumbnail', 'slug as slugNews', 'content', 'description', 'created_at', 'tag', 'author', 'category')
                 ->paginate($per_page);
         } else {
             $Datanews = Post::with('author') // Nạp trước thông tin người tạo bài viết
-                ->select('id', 'title', 'thumbnail', 'content', 'description', 'created_at', 'tag', 'author')
+                ->with('category')
+                ->select('id', 'title', 'thumbnail', 'slug as slugNews', 'content', 'description', 'created_at', 'tag', 'author', 'category')
                 ->paginate($per_page);
         }
 
@@ -40,33 +42,29 @@ class NewsController extends Controller
             ->get();
 
         return Inertia::render('News/News', [
-            'Posts' => $Datanews, 'Categories' => $Categories, 'latestPosts' => $latestPosts
+            'Posts' => $Datanews,
+            'Categories' => $Categories,
+            'latestPosts' => $latestPosts
         ]);
     }
 
 
-    public function Detailpost($id = null)
+    public function Detailpost(Request $request, $news_slug = null)
     {
-        // Lấy thông tin chi tiết của bài viết có id tương ứng
-        $newsDetail = Post::where('post.id', $id)
+        if ($news_slug == null) {
+            return redirect()->route('news.index');
+        }
+
+        // Lấy thông tin chi tiết của bài viết tương ứng
+        $newsDetail = Post::where('slug', $news_slug)
+            ->with('category')
+            ->select('id', 'title', 'thumbnail', 'slug', 'content', 'description', 'created_at', 'tag', 'author', 'category')
             ->first();
+
 
         if ($newsDetail == null) {
             abort(404);
         }
-
-        // Lấy giá trị category của bài viết đó
-        $categoryID = $newsDetail->category;
-
-        $categorytag = PostCategories::where('id', $categoryID)
-            ->select('post_categories.name','post_categories.slug')->get();
-
-        // Lấy danh sách các bài viết liên quan có cùng category ID, loại trừ bài viết hiện tại
-        $relatedArticles = Post::where('category', $categoryID)
-            // Loại trừ bài viết hiện tại khỏi danh sách bài viết liên quan
-            ->where('id', '!=', $id)
-            ->limit(3)
-            ->get();
 
         $Categories = PostCategories::get();
 
@@ -75,14 +73,10 @@ class NewsController extends Controller
             ->get();
 
         return Inertia::render('News/NewsDetail', [
-            'id' => $id,
-            'title' => $newsDetail->title,
-            'content' => $newsDetail->content,
             'newsDetail' => $newsDetail,
             'Categories' => $Categories,
             'latestPosts' => $latestPosts,
-            'relatedArticles' => $relatedArticles,
-            'categorytag' => $categorytag
+            // 'relatedArticles' => $relatedArticles,
         ]);
     }
 }

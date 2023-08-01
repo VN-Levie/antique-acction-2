@@ -1,5 +1,5 @@
 <template>
-  <HomeLayout :title="$attrs.title">
+  <HomeLayout :title="title">
     <div class="clear-fix"></div>
     <div class="margin-lr">
       <div class="container-fluid">
@@ -7,10 +7,16 @@
           <div class="margin-15">
             <div class="row">
               <div class="col-md-8">
-                <ArticleDetails :content="$attrs.content" :categorytag="categorytag"/>
+                <ArticleDetails
+                  :content="content"
+                  :categorytag="categorytag"
+                />
               </div>
               <aside class="col-md-4">
-                <SidebarRightnews :latestPosts="latestPosts" :Categories_Sidebar="Categories_Sidebar"/>
+                <SidebarRightnews
+                  :latestPosts="latestPosts"
+                  :Categories_Sidebar="Categories_Sidebar"
+                />
               </aside>
             </div>
           </div>
@@ -44,12 +50,24 @@ export default defineComponent({
     const Categories_Sidebar = attrs.Categories;
     const latestPosts = attrs.latestPosts;
     const relatedArticles = attrs.relatedArticles;
-    const categorytag = attrs.categorytag;
+    // const categorytag = attrs.categorytag;
+
+    const newsDetail = attrs.newsDetail;
+
+    const title = attrs.newsDetail.title;
+    const content = attrs.newsDetail.content;
+    const categorytag = attrs.newsDetail.category;
+
     return {
       Categories_Sidebar,
       latestPosts,
       relatedArticles,
-      categorytag
+      
+      categorytag,
+
+      newsDetail,
+      title,
+      content,
     };
   },
   components: {

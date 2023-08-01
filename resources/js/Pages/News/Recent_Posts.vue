@@ -29,8 +29,10 @@
           <p class="alith_post_except">
             {{ shorttext(post.content, 80) }}
           </p>
-          <a :href="'/news/newsDetail/' + post.id" class="read_more"
-            >Read More</a
+          <Link 
+          :href="route('news.Detail', [post.slugNews, post.category.slug])"
+          class="read_more"
+            >Read More</Link
           >
         </div>
       </article>
