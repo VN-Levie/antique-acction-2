@@ -6,16 +6,17 @@
       </div>
       <div
         class="latest_style_3"
-        v-for="(related, index) in relatedArticles"
-        :key="related.id"
+        v-for="(SimilarPosts, index) in relatedArticles"
+        :key="SimilarPosts.id"
       >
         <div class="latest_style_3_item">
           <span class="item-count vertical-align">{{ ++index }}.</span>
           <div class="alith_post_title_small">
             <Link
-              ><strong>{{ related.title }}</strong>
+              :href="route('news.Detail', [SimilarPosts.slugNews, SimilarPosts.category.slug])"
+              ><strong>{{ SimilarPosts.title }}</strong>
               <br />
-              <span>{{ shorttext(related.content, 40) }}</span>
+              <span>{{ shorttext(SimilarPosts.content, 40) }}</span>
             </Link>
           </div>
         </div>

@@ -18,7 +18,7 @@
             ><strong>{{ post.title }}</strong></Link
           >
           <p class="meta">
-            <span>{{ formatDate(post.updated_at) }}</span>
+            <span>{{ formatDate(post.created_at) }}</span>
           </p>
         </div>
         <figure class="alith_news_img">
