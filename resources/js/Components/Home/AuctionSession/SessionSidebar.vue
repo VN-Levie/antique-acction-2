@@ -26,7 +26,34 @@
       </ul>
       <!-- {{ route().params.slug }} -->
     </div>
+    <div class="session-category">
+      <h2 class="text-center text-capitalize">category</h2>
+      <ul>
+        <li>
+          <Link
+            :href="route('session.index')"
+            :class="{
+              'category-active': route().params.slug == null,
+            }"
+            class="category-link"
+          >
+            All Session Available ({{ count }})
+          </Link>
+        </li>
+        <li v-for="item in productCategories" v-bind:key="item.id">
+          <Link
+            :href="route('session.index', item.slug)"
+            :class="{ 'category-active': route().params.slug == item.slug }"
+            class="category-link"
+          >
+            {{ item.name }} ({{ item.sessions_count }})
+          </Link>
+        </li>
+      </ul>
+      <!-- {{ route().params.slug }} -->
+    </div>
   </div>
+
   <div class="col-12 d-block d-md-none session-category">
     <div class="row mt-3 text-center">
       <div class="col-12">
@@ -147,6 +174,4 @@ goToActiveLink();
   color: #634236e0;
   font-weight: bold;
 }
-
-
 </style>

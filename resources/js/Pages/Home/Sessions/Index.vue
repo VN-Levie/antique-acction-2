@@ -12,6 +12,7 @@
       </div>
 
     </div>
+
   </HomeLayout>
 </template>
 <script setup>
