@@ -14,6 +14,7 @@ import logo from "@/Components/Home/logo.vue";
 
 const attrs = useAttrs();
 const dataTeam = attrs.DataTeam;
+const TestimonialData = attrs.TestimonialData;
 </script>
 
 <template>
@@ -24,7 +25,7 @@ const dataTeam = attrs.DataTeam;
     <adsbar />
     <works />
     <services />
-    <testimonials />
+    <testimonials :TestimonialData="TestimonialData" />
     <Team :dataTeam="dataTeam" />
     <logo />
     <contacts />

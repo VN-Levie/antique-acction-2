@@ -50,15 +50,15 @@
           </svg>
         </div>
         <div class="content-wrapper">
-          <template v-if="message.length > 0">
+          <template v-if="TestimonialData.length > 0">
             <p class="content">{{ currentMessage.content }}</p>
           </template>
         </div>
         <div class="person">
           <div class="user-details">
-            <template v-if="message.length > 0">
+            <template v-if="TestimonialData.length > 0">
               <h4 class="username">{{ currentMessage.name }}</h4>
-              <p class="manage">{{ currentMessage.author }}</p>
+              <p class="manage">{{ currentMessage.author.name }}</p>
             </template>
           </div>
         </div>
@@ -71,42 +71,36 @@
 export default {
   data() {
     return {
-      message: [],
       currentIndex: 0,
     };
   },
   computed: {
     currentMessage() {
-      return this.message[this.currentIndex];
+      return this.TestimonialData[this.currentIndex];
     },
   },
   mounted() {
     setInterval(this.rotateMessageleft, 3000);
-    this.TestimonialApi();
   },
   methods: {
     rotateMessageleft() {
       this.currentIndex++;
-      if (this.currentIndex >= this.message.length) {
+      if (this.currentIndex >= this.TestimonialData.length) {
         this.currentIndex = 0;
       }
     },
     rotateMessageright() {
       this.currentIndex--;
       if (this.currentIndex < 0) {
-        this.currentIndex = this.message.length - 1;
+        this.currentIndex = this.TestimonialData.length - 1;
       }
     },
-    TestimonialApi() {
-      axios
-        .get("/api/data/Testimonial")
-        .then((response) => {
-          this.message = response.data;
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    },
+  },
+  props: {
+    TestimonialData: {
+      type: Object,
+      defualt: [],
+    }
   },
 };
 </script>
