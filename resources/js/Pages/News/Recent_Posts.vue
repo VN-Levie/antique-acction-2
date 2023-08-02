@@ -30,7 +30,7 @@
             {{ shorttext(post.content, 80) }}
           </p>
           <Link 
-          :href="route('news.Detail', [post.slugNews, post.category.slug])"
+          :href="route('news.Detail', [post.category.slug, post.slugNews])"
           class="read_more"
             >Read More</Link
           >

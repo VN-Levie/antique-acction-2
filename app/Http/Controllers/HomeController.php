@@ -18,6 +18,11 @@ class HomeController extends Controller
         }else{
             $user_data = User::with($models)->find(Auth::id());
         }
+
+
+
+
+        
         $data = [
             'user' => $user_data
         ];

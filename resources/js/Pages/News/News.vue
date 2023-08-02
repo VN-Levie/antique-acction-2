@@ -10,21 +10,15 @@
                 <RecentPosts :articleList="articleList" />
               </div>
               <aside class="col-md-4">
-                <SidebarRightnews :Categories_Sidebar="Categories_Sidebar" :latestPosts="latestPosts"/>
+                <SidebarRightnews
+                  :Categories_Sidebar="Categories_Sidebar"
+                  :latestPosts="latestPosts"
+                />
               </aside>
             </div>
           </div>
         </div>
       </div>
-      <!-- <div class="container-fluid">
-        <div class="container">
-          <div class="bottom margin-15">
-            <div class="row">
-              <SiderBotom :Categories_tags="Categories_tags" />
-            </div>
-          </div>
-        </div>
-      </div> -->
     </div>
   </HomeLayout>
 </template>
@@ -56,9 +50,7 @@ export default defineComponent({
     SidebarRightnews,
     SiderBotom,
   },
-  methods: {
-
-  },
+  methods: {},
 });
 </script>
 
@@ -259,8 +251,8 @@ h4.widget-title span::before {
 }
 .latest_style_1_item .alith_post_title_small {
   clear: none;
-  float: left;
-  left: 12%;
+  float: right;
+  right: 12%;
   margin-left: 0;
   position: absolute;
   top: 50%;
@@ -270,7 +262,7 @@ h4.widget-title span::before {
 }
 .latest_style_1_item .alith_news_img {
   display: block;
-  float: right;
+  float: left;
   margin: 0;
   position: relative;
   width: 35%;
@@ -329,7 +321,7 @@ h4.widget-title span::before {
 }
 .latest_style_3_item .alith_post_title_small {
   clear: none;
-  float: left;
+  float: right;
   left: 12%;
   margin-left: 0;
   position: absolute;
@@ -415,9 +407,13 @@ h4.widget-title span::before {
 
 @media (max-width: 1024px) {
   .latest_style_1_item .alith_post_title_small {
-    left: 16% !important;
+    left: 40% !important;
     top: 50% !important;
     width: auto !important;
+  }
+
+  .margin-lr {
+    margin: 0;
   }
 
   .post_meta {
@@ -434,6 +430,9 @@ h4.widget-title span::before {
   .alith_post_title {
     font-size: 2em;
   }
+  .margin-lr {
+    margin: 0;
+  }
 }
 @media (max-width: 480px) {
   .alith_post_title {
@@ -446,6 +445,9 @@ h4.widget-title span::before {
   .alith_heading_patern_2::before,
   .alith_heading_patern_2::after {
     height: 10px;
+  }
+  .margin-lr {
+    margin: 0;
   }
 }
 </style>

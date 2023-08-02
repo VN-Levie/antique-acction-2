@@ -50,7 +50,7 @@ class NewsController extends Controller
     }
 
 
-    public function Detailpost(Request $request, $news_slug = null)
+    public function Detailpost(Request $request, $slug = null, $news_slug = null)
     {
         if ($news_slug == null) {
             return redirect()->route('news.index');
