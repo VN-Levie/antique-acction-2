@@ -149,7 +149,7 @@
                         class="col-md-12 col-12 text-center text-capitalize mt-3"
                       >
                         <span class="text-center text-roduct-name">
-                          {{ product.name }} s
+                          {{ product.name }}
                         </span>
                       </div>
                       <div class="col-md-12 col-12">
@@ -192,7 +192,9 @@
                     </div>
                     <hr />
                     <p class="text-right">
-                      <button class="btn btn-sm btn-auction">View More</button>
+                      <button class="btn btn-sm btn-auction">
+                        View Product
+                      </button>
                     </p>
                   </div>
                 </div>
@@ -213,7 +215,7 @@ import SessionItem from "./SessionItem.vue";
 
 import { useAttrs } from "vue";
 // Lấy đối tượng attrs
-const attrs = useAttrs();
+
 const Swal = inject("$swal");
 const props = defineProps({
   auctionSession: Object,
