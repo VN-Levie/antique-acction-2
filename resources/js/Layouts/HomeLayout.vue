@@ -16,6 +16,7 @@ import { ref } from "vue";
 import { Head, Link, router } from "@inertiajs/vue3";
 import NavLink from "@/Components/Dashboard/NavLink.vue";
 import ResponsiveNavLink from "@/Components/Dashboard/ResponsiveNavLink.vue";
+
 defineProps({
   title: String,
 });

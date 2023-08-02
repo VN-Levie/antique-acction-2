@@ -10,10 +10,15 @@
         :key="SimilarPosts.id"
       >
         <div class="latest_style_3_item">
-          <span class="item-count vertical-align">{{ ++index }}.</span>
+          <span class="item-count vertical-align">{{ index + 1 }}.</span>
           <div class="alith_post_title_small">
             <Link
-              :href="route('news.Detail', [SimilarPosts.slugNews, SimilarPosts.category.slug])"
+              :href="
+                route('news.Detail', [
+                  SimilarPosts.category.slug,
+                  SimilarPosts.slugNews,
+                ])
+              "
               ><strong>{{ SimilarPosts.title }}</strong>
               <br />
               <span>{{ shorttext(SimilarPosts.content, 40) }}</span>
@@ -63,6 +68,8 @@
 </template>
 
 <script>
+import { Link } from "@inertiajs/vue3";
+
 export default {
   setup() {
     return {};
@@ -80,6 +87,7 @@ export default {
       }
     },
   },
+  components: { Link },
 };
 </script>
 

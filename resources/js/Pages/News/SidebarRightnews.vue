@@ -1,5 +1,20 @@
 <template>
   <div id="SidebarRightnews" class="sidebar_right">
+    <div class="sidebar-widget">
+      <div class="widget-title-cover">
+        <h4 class="widget-title">
+          <Link :href="route('news.index')"><span>Categories</span></Link>
+        </h4>
+      </div>
+      <ul class="bottom_menu">
+        <li v-for="Categories in Categories_Sidebar" :key="Categories">
+          <Link :href="route('news.index', Categories.slug)" class="">{{
+            Categories.name
+          }}</Link>
+        </li>
+      </ul>
+    </div>
+
     <div class="widget-title-cover">
       <h4 class="widget-title">
         <span>Popular Articles</span>
@@ -14,7 +29,7 @@
         <!-- <span class="item-count vertical-align">1.</span> -->
         <div class="alith_post_title_small">
           <Link
-            :href="route('news.Detail', [post.slugNews, post.category.slug])"
+            :href="route('news.Detail', [post.category.slug ,post.slugNews])"
             ><strong>{{ post.title }}</strong></Link
           >
           <p class="meta">
@@ -44,20 +59,6 @@
       </div>
     </div> -->
 
-    <div class="sidebar-widget">
-      <div class="widget-title-cover">
-        <h4 class="widget-title">
-          <Link :href="route('news.index')">Categories</Link>
-        </h4>
-      </div>
-      <ul class="bottom_menu">
-        <li v-for="Categories in Categories_Sidebar" :key="Categories">
-          <Link :href="route('news.index', Categories.slug)" class="">{{
-            Categories.name
-          }}</Link>
-        </li>
-      </ul>
-    </div>
   </div>
 </template>
 
