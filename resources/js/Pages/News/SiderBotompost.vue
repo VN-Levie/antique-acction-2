@@ -12,11 +12,11 @@
         <div class="latest_style_3_item">
           <span class="item-count vertical-align">{{ ++index }}.</span>
           <div class="alith_post_title_small">
-            <a href=""
+            <Link
               ><strong>{{ related.title }}</strong>
-              <br>
-            <span>{{ shorttext(related.content, 40) }}</span>
-              </a>
+              <br />
+              <span>{{ shorttext(related.content, 40) }}</span>
+            </Link>
           </div>
         </div>
       </div>

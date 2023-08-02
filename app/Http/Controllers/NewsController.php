@@ -34,10 +34,15 @@ class NewsController extends Controller
                 ->select('id', 'title', 'thumbnail', 'slug as slugNews', 'content', 'description', 'created_at', 'tag', 'author', 'category')
                 ->paginate($per_page);
         }
-
-        $Categories = DB::table('post_categories')->get();
+        $Categories = Post::with('category')
+            ->select('id', 'title', 'thumbnail', 'slug as slugNews', 'content', 'description', 'created_at', 'tag', 'author', 'category')
+            ->latest('created_at')
+            ->limit(5)
+            ->get();
 
         $latestPosts = Post::orderBy('created_at', 'desc')
+            ->with('category')
+            ->select('id', 'title', 'thumbnail', 'slug as slugNews', 'content', 'description', 'created_at', 'tag', 'author', 'category')
             ->limit(5)
             ->get();
 
@@ -61,10 +66,19 @@ class NewsController extends Controller
             ->select('id', 'title', 'thumbnail', 'slug', 'content', 'description', 'created_at', 'tag', 'author', 'category')
             ->first();
 
-
         if ($newsDetail == null) {
             abort(404);
         }
+
+        //Lấy thông tin id của post
+        $categoryID = $newsDetail->category;
+
+        //Lấy thông tin liên quan của bài viết tương ứng
+        $relatedArticles = Post::where('category', $categoryID)
+            ->with('category')
+            ->select('id', 'title', 'thumbnail', 'slug', 'content', 'description', 'created_at', 'tag', 'author', 'category')
+            ->limit(3)
+            ->get();
 
         $Categories = PostCategories::get();
 
@@ -76,7 +90,7 @@ class NewsController extends Controller
             'newsDetail' => $newsDetail,
             'Categories' => $Categories,
             'latestPosts' => $latestPosts,
-            // 'relatedArticles' => $relatedArticles,
+            'relatedArticles' => $relatedArticles,
         ]);
     }
 }

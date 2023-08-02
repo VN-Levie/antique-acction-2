@@ -13,8 +13,9 @@
       >
         <!-- <span class="item-count vertical-align">1.</span> -->
         <div class="alith_post_title_small">
-          <a :href="'/news/newsDetail/' + post.id"
-            ><strong>{{ post.title }}</strong></a
+          <Link
+            :href="route('news.Detail', [post.slugNews, post.category.slug])"
+            ><strong>{{ post.title }}</strong></Link
           >
           <p class="meta">
             <span>{{ formatDate(post.updated_at) }}</span>
@@ -45,7 +46,9 @@
 
     <div class="sidebar-widget">
       <div class="widget-title-cover">
-        <h4 class="widget-title"><Link :href="route('news.index')">Categories</Link></h4>
+        <h4 class="widget-title">
+          <Link :href="route('news.index')">Categories</Link>
+        </h4>
       </div>
       <ul class="bottom_menu">
         <li v-for="Categories in Categories_Sidebar" :key="Categories">
