@@ -11,49 +11,31 @@
   <div class="team">
     <div class="team-container">
       <div
-        v-for="(member, index) in teamMembers"
+        v-for="(member, index) in dataTeam"
         :key="index"
         class="team-card"
       >
         <img
           :src="member.avatar"
           :alt="member.name"
-          class="team-member-image"
+          class="team-member-image rounded"
         />
-        <h2>{{ member.name }}</h2>
+        <h2 class="mt-2">{{ member.name }}</h2>
         <h4>{{ member.titles }}</h4>
       </div>
     </div>
   </div>
 </template>
 
-<script>
+<script setup>
+import { defineProps } from "vue";
 
-export default {
-  data() {
-    return {
-      teamMembers: [],
-    };
-  },
-  mounted() {
-    this.fetchDataFromApi();
-  },
-  methods: {
-    fetchDataFromApi() {
-      axios
-        .get("/api/data/team")
-        .then((response) => {
-          this.teamMembers = response.data;
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    },
-  },
-};
+const props =defineProps({
+  dataTeam: Object,
+});
 </script>
 
-  <style>
+<style>
 .team {
   box-sizing: border-box;
   padding: 20px 0 0 0;
