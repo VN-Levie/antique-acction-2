@@ -50,7 +50,6 @@ export default defineComponent({
     const Categories_Sidebar = attrs.Categories;
     const latestPosts = attrs.latestPosts;
     const relatedArticles = attrs.relatedArticles;
-    // const categorytag = attrs.categorytag;
 
     const newsDetail = attrs.newsDetail;
 

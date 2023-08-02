@@ -26,19 +26,16 @@ class NewsController extends Controller
             $Datanews = Post::where('category', $category->id)
                 ->with('author') // Nạp trước thông tin người tạo bài viết
                 ->with('category')
-                ->select('id', 'title', 'thumbnail', 'slug as slugNews', 'content', 'description', 'created_at', 'tag', 'author', 'category')
                 ->paginate($per_page);
         } else {
             $Datanews = Post::with('author') // Nạp trước thông tin người tạo bài viết
                 ->with('category')
-                ->select('id', 'title', 'thumbnail', 'slug as slugNews', 'content', 'description', 'created_at', 'tag', 'author', 'category')
                 ->paginate($per_page);
         }
         $Categories = PostCategories::get();
 
         $latestPosts = Post::orderBy('created_at', 'desc')
             ->with('category')
-            ->select('id', 'title', 'thumbnail', 'slug as slugNews', 'content', 'description', 'created_at', 'tag', 'author', 'category')
             ->limit(5)
             ->get();
 
@@ -59,7 +56,6 @@ class NewsController extends Controller
         // Lấy thông tin chi tiết của bài viết tương ứng
         $newsDetail = Post::where('slug', $news_slug)
             ->with('category')
-            ->select('id', 'title', 'thumbnail', 'slug', 'content', 'description', 'created_at', 'tag', 'author', 'category')
             ->first();
 
         if ($newsDetail == null) {
@@ -72,7 +68,6 @@ class NewsController extends Controller
         //Lấy thông tin liên quan của bài viết tương ứng
         $relatedArticles = Post::where('category', $categoryID)
             ->with('category')
-            ->select('id', 'title', 'thumbnail', 'slug as slugNews', 'content', 'description', 'created_at', 'tag', 'author', 'category')
             ->limit(3)
             ->get();
 
@@ -80,7 +75,6 @@ class NewsController extends Controller
 
         $latestPosts = Post::orderBy('created_at', 'desc')
             ->with('category')
-            ->select('id', 'title', 'thumbnail', 'slug as slugNews', 'content', 'description', 'created_at', 'tag', 'author', 'category')
             ->limit(5)
             ->get();
 

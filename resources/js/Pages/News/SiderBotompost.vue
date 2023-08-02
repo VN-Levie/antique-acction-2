@@ -16,7 +16,7 @@
               :href="
                 route('news.Detail', [
                   SimilarPosts.category.slug,
-                  SimilarPosts.slugNews,
+                  SimilarPosts.slug,
                 ])
               "
               ><strong>{{ SimilarPosts.title }}</strong>

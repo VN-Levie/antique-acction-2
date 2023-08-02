@@ -26,10 +26,8 @@
         v-for="post in latestPosts"
         :key="post.id"
       >
-        <!-- <span class="item-count vertical-align">1.</span> -->
         <div class="alith_post_title_small">
-          <Link
-            :href="route('news.Detail', [post.category.slug ,post.slugNews])"
+          <Link :href="route('news.Detail', [post.category.slug, post.slug])"
             ><strong>{{ post.title }}</strong></Link
           >
           <p class="meta">
@@ -43,22 +41,6 @@
         </figure>
       </div>
     </div>
-
-    <!-- <div class="sidebar-widget">
-      <div class="widget-title-cover">
-        <h4 class="widget-title"><span>Tags cloud</span></h4>
-      </div>
-      <div class="alith_tags_all">
-        <a
-          href=""
-          class="alith_tagg"
-          v-for="tagcloud in tags_cloud"
-          :key="tagcloud"
-          >{{ tagcloud }}</a
-        >
-      </div>
-    </div> -->
-
   </div>
 </template>
 

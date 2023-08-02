@@ -15,7 +15,7 @@
             <a href="">{{ post.title }}</a>
           </h3>
           <div class="post_meta">
-            <span>{{ post.name }}</span>
+            <span>{{ post.author.name }}</span>
             <span class="meta_categories">
               <a
                 v-for="category in post.tag.split(', ')"
@@ -30,7 +30,7 @@
             {{ shorttext(post.content, 80) }}
           </p>
           <Link 
-          :href="route('news.Detail', [post.category.slug, post.slugNews])"
+          :href="route('news.Detail', [post.category.slug, post.slug])"
           class="read_more"
             >Read More</Link
           >
