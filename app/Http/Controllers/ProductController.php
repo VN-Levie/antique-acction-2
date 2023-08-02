@@ -7,7 +7,7 @@ use Inertia\Inertia;
 use App\Models\Session;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
-
+use App\Models\Product;
 class ProductController extends Controller
 {
     public function index(Request $request)

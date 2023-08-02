@@ -1,9 +1,11 @@
 
 
 <template>
-  <HomeLayout title="Browser Session">
+  <HomeLayout title="Browser All Products">
     <div class="container-fluid rounded p-5">
-      <div class="row"></div>
+      <div class="row">
+        <h1>HHH</h1>
+      </div>
     </div>
   </HomeLayout>
 </template>
