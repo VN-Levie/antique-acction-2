@@ -164,6 +164,7 @@ const end_at_month = end_at.getMonth();
   font-weight: 600;
   text-decoration: none;
   transition: all 0.3s ease-in-out;
+  font-family: "Smythe", cursive;
 }
 .btn-auction:hover {
   background-color: #fff;
@@ -178,5 +179,6 @@ const end_at_month = end_at.getMonth();
 .auction-name a:hover {
   color: #634236;
   text-shadow: 0 0 1px #634236;
+
 }
 </style>
