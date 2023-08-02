@@ -34,11 +34,7 @@ class NewsController extends Controller
                 ->select('id', 'title', 'thumbnail', 'slug as slugNews', 'content', 'description', 'created_at', 'tag', 'author', 'category')
                 ->paginate($per_page);
         }
-        $Categories = Post::with('category')
-            ->select('id', 'title', 'thumbnail', 'slug as slugNews', 'content', 'description', 'created_at', 'tag', 'author', 'category')
-            ->latest('created_at')
-            ->limit(5)
-            ->get();
+        $Categories = PostCategories::get();
 
         $latestPosts = Post::orderBy('created_at', 'desc')
             ->with('category')
@@ -76,14 +72,16 @@ class NewsController extends Controller
         //Lấy thông tin liên quan của bài viết tương ứng
         $relatedArticles = Post::where('category', $categoryID)
             ->with('category')
-            ->select('id', 'title', 'thumbnail', 'slug', 'content', 'description', 'created_at', 'tag', 'author', 'category')
+            ->select('id', 'title', 'thumbnail', 'slug as slugNews', 'content', 'description', 'created_at', 'tag', 'author', 'category')
             ->limit(3)
             ->get();
 
         $Categories = PostCategories::get();
 
         $latestPosts = Post::orderBy('created_at', 'desc')
-            ->limit(3)
+            ->with('category')
+            ->select('id', 'title', 'thumbnail', 'slug as slugNews', 'content', 'description', 'created_at', 'tag', 'author', 'category')
+            ->limit(5)
             ->get();
 
         return Inertia::render('News/NewsDetail', [
