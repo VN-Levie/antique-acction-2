@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Address;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use IntlChar;
 
@@ -14,62 +16,67 @@ class AddressController extends Controller
      */
     public function index()
     {
-        // Nạp trước model User liên quan đến model Address
-        $models = ['user'];
-        // dd(auth()->user()->id);
-        $user_address = Address::with($models)->where('user_id', auth()->user()->id)->get();
+        // // Nạp trước model User liên quan đến model Address
+        // $models = ['user'];
+        // // dd(auth()->user()->id);
+        // $user_address = Address::with($models)->where('user_id', auth()->user()->id)->get();
+        // $data = [
+        //     'user_address' => $user_address,
+        // ];
+
+        // return Inertia::render('Home/Address/Index', $data);
+        $models = ['addresses'];
+        if (Auth::guest()) {
+            $user_data = null;
+        } else {
+            $userAddresses = Auth::user()->addresses;
+            $user_data = User::with($models)->find(Auth::id());
+        }
+
         $data = [
-            'user_address' => $user_address,
+            'user' => $user_data,
+            'userAddresses' => $userAddresses ?? null,
         ];
 
         return Inertia::render('Home/Address/Index', $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function show()
     {
-        //
+
+        return Inertia::render('Home/Address/Add');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        try {
+            $address = new Address;
+
+            $address->user_id = auth()->user()->id;
+            $address->address1 = $request->get('address1');
+            $address->address2 = $request->get('address2');
+            $address->city = $request->get('city');
+            $address->postcode = $request->get('postcode');
+            $address->country = $request->get('country');
+
+            $address->save();
+
+            return redirect()->route('address.index');
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage());
+        }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Address $address)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Address $address)
+    public function destroy($id)
     {
-        //
-    }
+        try {
+            $address = Address::find($id);
+            $address->delete();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Address $address)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Address $address)
-    {
-        //
+            return redirect()->route('address.index');
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage());
+        }
     }
 }

@@ -1,28 +1,19 @@
 <template>
   <div class="bg-white">
-    <nav
-      class="container px-5 py- mx-auto md:flex md:justify-between md:items-center"
-    >
+    <nav class="container px-5 py- mx-auto md:flex md:justify-between md:items-center">
       <!--LoGO NAV BAR-->
       <div class="flex items-center justify-between flex-col">
         <Link :href="route('home')">
-          <img src="/img/mt-1804-home-logo.png" />
+        <img src="/img/mt-1804-home-logo.png" />
         </Link>
 
         <!-- Mobile menu button -->
         <div @click="toggleNav" class="flex md:hidden mt-3">
-          <button
-            type="button"
-            class="text-gray-100 hover:text-gray-400 focus:outline-none focus:text-gray-400"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              class="w-6 h-6 md:mt-20 fill-current bg-black hover:after:bg-yellow-300"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
-              ></path>
+          <button type="button" class="text-gray-100 hover:text-gray-400 focus:outline-none focus:text-gray-400">
+            <svg viewBox="0 0 24 24" class="w-6 h-6 md:mt-20 fill-current bg-black hover:after:bg-yellow-300">
+              <path fill-rule="evenodd"
+                d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z">
+              </path>
             </svg>
           </button>
         </div>
@@ -34,91 +25,54 @@
     align-items: center;
     justify-content: flex-start;-->
       <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
-      <ul
-        :class="showMenu ? 'flex' : 'hidden'"
+      <ul :class="showMenu ? 'flex' : 'hidden'"
         class="border-after flex-col mt-8 space-y-4 md:flex md:space-y-0 flex-algight-end md:flex-row md:space-x-10 md:mt-0 cursor-pointer"
-        style="align-items: center"
-      >
-        <li
-          v-for="(navigation, index) in navigations"
-          :key="index"
-          class="text-black-100"
-        >
-          <Link
-            v-if="!navigation.children"
-            :href="navigation.href"
+        style="align-items: center">
+        <li v-for="(navigation, index) in navigations" :key="index" class="text-black-100">
+          <Link v-if="!navigation.children" :href="navigation.href"
             class="navbar-text cool-link ul-letter-spaceing py-2 pr-4 pl-3 text-uppercase"
-            :aria-current="navigation.isCurrent ? 'page' : null"
-          >
-            {{ navigation.name }}
+            :aria-current="navigation.isCurrent ? 'page' : null">
+          {{ navigation.name }}
           </Link>
-          <button
-            v-else
-            @click="toggleDropdown(index)"
-            class="cool-link navbar-text ul-letter-spaceing py-2 pr-4 pl-3"
-            aria-haspopup="true"
-            :aria-expanded="isOpenDropdown(index) ? 'true' : 'false'"
-          >
+          <button v-else @click="toggleDropdown(index)" class="cool-link navbar-text ul-letter-spaceing py-2 pr-4 pl-3"
+            aria-haspopup="true" :aria-expanded="isOpenDropdown(index) ? 'true' : 'false'">
             {{ navigation.name }}
           </button>
           <!-- Dropdown menu -->
-          <ul
-            v-if="navigation.children && isOpenDropdown(index)"
-            class="absolute dropdown-content mt-2 bg-white shadow-lg rounded"
-          >
-            <li
-              v-for="(child, childIndex) in navigation.children"
-              :key="childIndex"
-            >
-              <a
-                :href="child.href"
-                class="ul-letter-spaceing cool-link block px-4 py-2 text-sm1"
-              >
+          <ul v-if="navigation.children && isOpenDropdown(index)"
+            class="absolute dropdown-content mt-2 bg-white shadow-lg rounded">
+            <li v-for="(child, childIndex) in navigation.children" :key="childIndex">
+              <a :href="child.href" class="ul-letter-spaceing cool-link block px-4 py-2 text-sm1">
                 {{ child.name }}
               </a>
             </li>
           </ul>
         </li>
         <!--   -->
-        <div
-          @mouseenter="accountAndListFunc(true)"
-          @mouseleave="accountAndListFunc(false)"
-          class="border-after mt-8 space-x-5 space-y-0 md:flex md:space-y-0 md:mt-0 cursor-pointer"
-        >
+        <div @mouseenter="accountAndListFunc(true)" @mouseleave="accountAndListFunc(false)"
+          class="border-after mt-8 space-x-5 space-y-0 md:flex md:space-y-0 md:mt-0 cursor-pointer">
           <div>
             <div class="text-[12px]">
               <i class="fa fa-fw fa-user"></i>
               Hello,
-              <span
-                v-if="$page.props.auth.user"
-                class="text-[10px] font-extrabold"
-                >{{ $page.props.auth.user.name }}</span
-              >
+              <span v-if="$page.props.auth.user" class="text-[10px] font-extrabold">{{ $page.props.auth.user.name
+              }}</span>
               <span class="text-[12px] font-extrabold" v-else>sign in</span>
             </div>
             <div class="flex items-center">
               <div class="text-[15px]">
                 Account & List
-                <i
-                  class="fa fa-caret-down text-gray-400"
-                  aria-hidden="true"
-                ></i>
+                <i class="fa fa-caret-down text-gray-400" aria-hidden="true"></i>
               </div>
             </div>
           </div>
-          <div
-            v-if="accountAndList"
+          <div v-if="accountAndList"
             class="bg-white md:mt-10 border-after absolute border-[2px] hover:drop-shadow-sm border-gray-600 shadow-sm top-[70px] w-[480px] rounded-sm px-6 box-media"
-            style="margin-left: -80px"
-          >
+            style="margin-left: -80px">
             <div v-if="$page.props.auth.user">
-              <div
-                class="flex items-center justify-between py-2.5 border-b text-media"
-              >
+              <div class="flex items-center justify-between py-2.5 border-b text-media">
                 <div class="text-[12px]">Who's Auction ? Select a profile.</div>
-                <div
-                  class="flex items-center text-sm font-bold text-teal-600 hover:text-red-600 hover:underline px-5"
-                >
+                <div class="flex items-center text-sm font-bold text-teal-600 hover:text-red-600 hover:underline px-5">
                   Manager profile
                 </div>
               </div>
@@ -126,76 +80,57 @@
                 <div class="w-full md:w-1/2 border-r">
                   <div class="pb-3">
                     <div class="font-extrabold pt-3">Your List</div>
-                    <div
-                      class="text-sm hover:text-red-600 hover:underline pt-3"
-                    >
+                    <div class="text-sm hover:text-red-600 hover:underline pt-3">
                       Create a list.
                     </div>
                     <div class="font-extrabold pt-3">My Address</div>
                     <div>
                       <i class="fa fa-map-marker" aria-hidden="true"></i>
-                      <a v-if="$page.props.user.addresses[0] !== undefined"
-                        :href="route('address.index')"
-                        class="text-sm hover:text-red-600 hover:underline pl-1 pt-3"
-                      >
+                      <a v-if="$page.props.user.addresses[0] !== undefined" :href="route('address.index')"
+                        class="text-sm hover:text-red-600 hover:underline pl-1 pt-3">
                         {{ $page.props.user.addresses[0].address1 }}
                         {{ $page.props.user.addresses[0].address2 }} <br />
                         {{ $page.props.user.addresses[0].city }}
                       </a>
-                        <a v-else
-                            :href="route('address.index')"
-                            class="text-sm hover:text-red-600 hover:underline pl-1 pt-3" >
-                            Add Address
-                        </a>
+                      <a v-else :href="route('address.index')"
+                        class="text-sm hover:text-red-600 hover:underline pl-1 pt-3">
+                        Add Address
+                      </a>
                     </div>
                   </div>
                 </div>
                 <div class="w-full md:w-1/2 md:ml-5">
                   <div class="pb-3">
-                    <div
-                      class="font-extrabold pt-3"
-                      style="padding-bottom: 13px"
-                    >
+                    <div class="font-extrabold pt-3" style="padding-bottom: 13px">
                       Your Account
                     </div>
                     <div>
-                      <Link
-                        :href="route('profile.edit')"
-                        class="text-sm hover:text-red-600 hover:underline pt-3"
-                        >Account
+                      <Link :href="route('profile.index')" class="text-sm hover:text-red-600 hover:underline pt-3">Account
                       </Link>
                     </div>
-                    <Link
-                      :href="route('logout')"
-                      method="post"
-                      as="button"
-                      class="text-sm hover:text-red-600 hover:underline pt-3"
-                      >SignOut
+                    <Link :href="route('logout')" method="post" as="button"
+                      class="text-sm hover:text-red-600 hover:underline pt-3">SignOut
                     </Link>
                   </div>
                 </div>
               </div>
             </div>
             <div v-else>
-              <div class="p4 text-center">
-                <Link :href="route('login')" class="font-extrabold">
-                  Sign in
+              <div class="p-4 text-center">
+                <Link :href="route('login')"
+                  class="text-gray-900 bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                Sign in
                 </Link>
                 <div>
-                  <Link
-                    :href="route('register')"
-                    class="text-blue-900 hover:text-red-600"
-                  >
-                    Start here.
+                  <Link :href="route('register')" class="text-blue-900 hover:text-red-600">
+                  you are not have account ! Start here .
                   </Link>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div
-          class="border-after mt-8 space-x-5 space-y-0 md:flex md:space-y-0 md:mt-0 cursor-pointer"
-        >
+        <div class="border-after mt-8 space-x-5 space-y-0 md:flex md:space-y-0 md:mt-0 cursor-pointer">
           <div>
             <div class="text-[12px]">
               <i class="fa fa-shopping-cart text-[20]" aria-hidden="true"></i>
@@ -204,19 +139,14 @@
             <div class="flex items-center">
               <div class="text-[15px]">
                 &Order
-                <i
-                  class="fa fa-caret-down text-gray-400"
-                  aria-hidden="true"
-                ></i>
+                <i class="fa fa-caret-down text-gray-400" aria-hidden="true"></i>
               </div>
             </div>
           </div>
         </div>
 
         <!--Social Media-->
-        <div
-          class="border-after mt-8 space-x-5 space-y-0 md:flex md:space-y-0 md:mt-0 cursor-pointer"
-        >
+        <div class="border-after mt-8 space-x-5 space-y-0 md:flex md:space-y-0 md:mt-0 cursor-pointer">
           <a href="#" class="cool-link navbar-text" target="_self">
             <i class="fa fa-twitter" aria-hidden="true"></i>
           </a>

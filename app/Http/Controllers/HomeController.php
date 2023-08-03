@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,13 +14,14 @@ class HomeController extends Controller
     public function index()
     {
         $models = ['addresses'];
-        if(Auth::guest()){
+        if (Auth::guest()) {
             $user_data = null;
-        }else{
+        } else {
             $user_data = User::with($models)->find(Auth::id());
         }
         $data = [
-            'user' => $user_data
+            'user' => $user_data,
+
         ];
         return Inertia::render('HomePage', $data);
     }

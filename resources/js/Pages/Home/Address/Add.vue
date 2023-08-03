@@ -57,6 +57,14 @@
                                             class="flex items-center px-5 py-2.5 font-medium tracking-wide text-white capitalize bg-yellow-500 rounded-md hover:bg-black focus:outline-none transition duration-300 transform active:scale-95 ease-in-out">
                                             <span class="pl-2 mx-1">Save</span>
                                         </button>
+
+                                    </div>
+                                    <div class="flex-initial pl-3">
+                                        <Link :href="route('address.index')"
+                                            class="flex items-center px-5 py-2.5 font-medium tracking-wide text-white capitalize bg-gray-500 rounded-md hover:bg-black focus:outline-none transition duration-300 transform active:scale-95 ease-in-out">
+                                        <span class="pl-2 mx-1">Cancel</span>
+                                        </Link>
+
                                     </div>
                                 </div>
                             </form>
@@ -86,7 +94,7 @@ const form = useForm({
 
 
 const submit = () => {
-    form.post(route('address_options.store'), {
+    form.post(route('address.store'), {
         onFinish: () => route('address.index'),
     })
 }

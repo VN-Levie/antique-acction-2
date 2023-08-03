@@ -9,9 +9,11 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\OderCartController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SessionController;
 use App\Models\Session;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +26,7 @@ use App\Models\Session;
 |
 */
 
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::middleware([
     'auth:sanctum',
@@ -33,6 +36,8 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 });
 // Route::inertia('/abouts', 'About');
 // Route::get('products', function () {
@@ -63,10 +68,19 @@ Route::group(['prefix' => 'session'], function () {
     Route::get('/{slug?}', [SessionController::class, 'index'])
         ->where(['slug' => '[a-z0-9-]+'])->name('session.index');
 });
-Route::get('/address', [AddressController::class, 'index'])->name('address.index');
-Route::get('/address_options', [AddressOptionsController::class, 'index'])->name('address_options.index');
-Route::post('/address_options', [AddressOptionsController::class, 'store'])->name('address_options.store');
-Route::delete('/address_options/{id}', [AddressOptionsController::class, 'destroy'])->name('address_options.destroy');
+// Route::get('/address', [AddressController::class, 'index'])->name('address.index');
+// Route::get('/address_add', [AddressController::class, 'show'])->name('address.show');
+// Route::post('/address_add', [AddressController::class, 'store'])->name('address.store');
+// Route::delete('/address/{id}', [AddressController::class, 'destroy'])->name('address.destroy');
 
+Route::prefix('address')->group(function () {
+    Route::get('/', [AddressController::class, 'index'])->name('address.index');
+    Route::get('/add', [AddressController::class, 'show'])->name('address.show');
+    Route::post('/add', [AddressController::class, 'store'])->name('address.store');
+    Route::delete('/{id}', [AddressController::class, 'destroy'])->name('address.destroy');
+});
 
-Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+// Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+// Route::get('/profile_edit', [ProfileController::class, 'edit'])->name('profile.edit');
+// Route::get('/oder', [OderCartController::class, 'index'])->name('oder.index');
+// Route::get('/shipping', [ProfileController::class, 'edit'])->name('profile.edit');
