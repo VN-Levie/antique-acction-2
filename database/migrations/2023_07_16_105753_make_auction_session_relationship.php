@@ -12,13 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('auction_session', function (Blueprint $table) {
-            $table->foreign('created_by')->references('id')->on('users');
-            $table->foreign('edit_history')->references('id')->on('edit_session_history');
-            $table->foreign('ended_by')->references('id')->on('users');
-            $table->foreign('interrupt_by')->references('id')->on('users');
-            $table->foreign('publish_by')->references('id')->on('users');
-            $table->foreign('started_by')->references('id')->on('users');
-            $table->foreign('terms_and_disclaimer')->references('id')->on('terms_and_disclaimer');
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
+            //khi xoá phoen6 thì xoá luôn các recode trong bảng edit_session_history
+            $table->foreign('edit_history')->references('id')->on('edit_session_history')->onDelete('cascade');
+            $table->foreign('ended_by')->references('id')->on('users')->onDelete('set default');
+            $table->foreign('interrupt_by')->references('id')->on('users')->onDelete('set default');
+            $table->foreign('publish_by')->references('id')->on('users')->onDelete('set default');
+            $table->foreign('started_by')->references('id')->on('users')->onDelete('set default');
+            $table->foreign('terms_and_disclaimer')->references('id')->on('terms_and_disclaimer')->onDelete('set default');
         });
     }
 

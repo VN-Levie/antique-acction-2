@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            //tạo cột role trong bảng users. mặc định là 1 (user)
-            $table->unsignedBigInteger('role')->default(1);
+            //tạo cột role trong bảng users. mặc định là 1 (user) thêm sau trường email
+            $table->unsignedBigInteger('role')->default(1)->after('email');
             //tạo khoá ngoại role liên kết với khoá chính id của bảng roles.
             //Khi  xóa bản ghi trong bảng roles thì sẽ cập nhật lại bản ghi trong bảng users về role = 1 (user)
             $table->foreign('role')->references('id')->on('roles')->onDelete('set default');

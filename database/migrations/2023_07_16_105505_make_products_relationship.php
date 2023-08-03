@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->foreign('added_by')->references('id')->on('users');
-            $table->foreign('appraised_by')->references('id')->on('appraisers');
-            $table->foreign('category_id')->references('id')->on('categories');
-            $table->foreign('product_owner')->references('id')->on('product_owners');
-            $table->foreign('belong_era')->references('id')->on('era_and_country');
-            $table->foreign('country')->references('id')->on('era_and_country');
+            $table->foreign('added_by')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('appraised_by')->references('id')->on('appraisers')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('product_owner')->references('id')->on('product_owners')->onDelete('set default');
+            $table->foreign('belong_era')->references('id')->on('era_and_country')->onDelete('set default');
+            $table->foreign('country')->references('id')->on('era_and_country')->onDelete('set default');
 
         });
     }

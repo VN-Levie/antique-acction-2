@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::table('auction_session', function (Blueprint $table) {
             //after description
             $table->unsignedBigInteger('category_id')->nullable()->after('description');
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
         //duyệt qua bảng auction_session và gán category_id nhiên 1-10 cho các session
         $session = DB::table('auction_session')->get();

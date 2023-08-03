@@ -31,7 +31,7 @@ return new class extends Migration
             $table->integer('num_bided');
             $table->unsignedBigInteger('product_owner')->nullable();
             $table->timestamps();
-            $table->foreign('auction_id')->references('id')->on('auction_session');
+            $table->foreign('auction_id')->references('id')->on('auction_session')->onDelete('cascade');
         });
 
     }
