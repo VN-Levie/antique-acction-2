@@ -67,7 +67,24 @@ class AddressController extends Controller
         }
     }
 
+    public function update(Request $request, $id)
+    {
+        try {
+            $address = Address::findOrFail($id);
 
+            $address->address1 = $request->get('address1');
+            $address->address2 = $request->get('address2');
+            $address->city = $request->get('city');
+            $address->postcode = $request->get('postcode');
+            $address->country = $request->get('country');
+
+            $address->save();
+
+            return redirect()->route('address.index');
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage());
+        }
+    }
     public function destroy($id)
     {
         try {

@@ -86,14 +86,13 @@
                     <div class="font-extrabold pt-3">My Address</div>
                     <div>
                       <i class="fa fa-map-marker" aria-hidden="true"></i>
-                      <a v-if="$page.props.user.addresses[0] !== undefined" :href="route('address.index')"
+                      <a v-if="$page.props.user.addresses[0] !== undefined"
                         class="text-sm hover:text-red-600 hover:underline pl-1 pt-3">
-                        {{ $page.props.user.addresses[0].address1 }}
-                        {{ $page.props.user.addresses[0].address2 }} <br />
+                        {{ $page.props.user.addresses[0].address1 }},
+                        {{ $page.props.user.addresses[0].address2 }},
                         {{ $page.props.user.addresses[0].city }}
                       </a>
-                      <a v-else :href="route('address.index')"
-                        class="text-sm hover:text-red-600 hover:underline pl-1 pt-3">
+                      <a v-else class="text-sm hover:text-red-600 hover:underline pl-1 pt-3">
                         Add Address
                       </a>
                     </div>
