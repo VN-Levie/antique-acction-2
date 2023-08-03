@@ -30,7 +30,7 @@
               </div>
               <div class="col-md-4 col-6">
                 <p class="auction-card-footer-text text-center">
-                  <i class="fa fa-wpexplorer" aria-hidden="true"></i>
+                    <i class="fa-solid fa-splotch"></i>
                   {{ auctionSession.products_count }} Lots
                 </p>
               </div>
@@ -174,7 +174,6 @@
                                 maximumSignificantDigits: 3,
                               }).format(product.last_bid)
                             }}
-
                           </span>
                         </p>
                       </div>
@@ -188,9 +187,9 @@
                   <div class="card-footer">
                     <div class="row">
                       <div class="col-md-6 col-6">
-                        <p class="text-center">
-                          <i class="fa fa-eye" aria-hidden="true"></i>
-                          {{ product.views }}
+                        <p class="text-center product-bid-info">
+                          <i class="fa-solid fa-gavel"></i>
+                          {{ product.num_bided }}
                         </p>
                       </div>
                       <div class="col-md-6 col-6">
@@ -404,5 +403,10 @@ const cal_url = `https://www.google.com/calendar/event?action=TEMPLATE&text=AAO'
 }
 .overview-tab:hover {
   text-shadow: #634236 0px 0px 0px 1px !important;
+}
+.product-bid-info {
+  font-family: "Smythe", cursive;
+  font-size: 1.4rem !important;
+  /* font-family: "Montserrat", sans-serif; */
 }
 </style>

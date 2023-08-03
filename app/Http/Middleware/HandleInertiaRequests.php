@@ -3,10 +3,12 @@
 namespace App\Http\Middleware;
 
 use App\Models\Address;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tightenco\Ziggy\Ziggy;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 class HandleInertiaRequests extends Middleware
 {
     /**
@@ -38,8 +40,35 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $models = ['addresses'];
+        if (Auth::guest()) {
+            $user = null;
+        } else {
+            $user = User::with($models)->find(Auth::id());
+        }
         return array_merge(parent::share($request), [
-            //
+            'auth' => [
+                'user' => $user,
+            ],
+            'errors' => function () {
+                return session()->get('errors')
+                    ? session()->get('errors')->getBag('default')->getMessages()
+                    : (object) [];
+            },
+            'flash' => function () {
+                return [
+                    'message' => session()->get('message'),
+                ];
+            },
+            'route' => function () {
+                return [
+                    'name' => Route::currentRouteName(),
+                    'params' => Route::current()->parameters(),
+                ];
+            },
+            'ziggy' => function () {
+                return new Ziggy;
+            },
         ]);
     }
 }

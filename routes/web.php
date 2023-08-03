@@ -71,9 +71,7 @@ Route::group([
 
 
 
-// Route::group(['prefix' => 'products'], function () {
-//     Route::get('/', [ProductController::class, 'index'])->name('product.index');
-// });
+
 
 
 Route::group(['prefix' => 'news'], function () {
@@ -96,4 +94,7 @@ Route::group(['prefix' => 'session'], function () {
         ->where(['slug' => '[a-z0-9-]+', 'session_slug' => '[a-z0-9-]+'])->name('session.show');
     Route::get('/{slug?}', [SessionController::class, 'index'])
         ->where(['slug' => '[a-z0-9-]+'])->name('session.index');
+});
+Route::group(['prefix' => 'products'], function () {
+    Route::get('/', [ProductController::class, 'index'])->name('product.index');
 });

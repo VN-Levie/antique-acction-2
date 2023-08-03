@@ -28,7 +28,7 @@ class HomeController extends Controller
         $TestimonialData = FeedBack::with('author')->limit(5)->get();
 
         $data = [
-            'user' => $user_data,
+            // 'user' => $user_data,
             'DataTeam' => $DataTeam,
             'TestimonialData' => $TestimonialData
         ];
