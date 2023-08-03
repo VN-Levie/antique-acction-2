@@ -1,5 +1,6 @@
 <script setup>
 import { Head } from "@inertiajs/vue3";
+import { useAttrs } from "vue";
 import HomeLayout from "@/Layouts/HomeLayout.vue";
 import Slider from "@/Components/Home/Sliders.vue";
 import About from "@/Components/Home/About.vue";
@@ -10,6 +11,10 @@ import testimonials from "@/Components/Home/Testimonialss.vue";
 import Team from "@/Components/Home/Teamss.vue";
 import contacts from "@/Components/Home/Contacts.vue";
 import logo from "@/Components/Home/logo.vue";
+
+const attrs = useAttrs();
+const dataTeam = attrs.DataTeam;
+const TestimonialData = attrs.TestimonialData;
 </script>
 
 <template>
@@ -20,8 +25,8 @@ import logo from "@/Components/Home/logo.vue";
     <adsbar />
     <works />
     <services />
-    <testimonials />
-    <Team />
+    <testimonials :TestimonialData="TestimonialData" />
+    <Team :dataTeam="dataTeam" />
     <logo />
     <contacts />
   </HomeLayout>

@@ -1,5 +1,20 @@
 <template>
   <div id="SidebarRightnews" class="sidebar_right">
+    <div class="sidebar-widget">
+      <div class="widget-title-cover">
+        <h4 class="widget-title">
+          <Link :href="route('news.index')"><span>Categories</span></Link>
+        </h4>
+      </div>
+      <ul class="bottom_menu">
+        <li v-for="Categories in Categories_Sidebar" :key="Categories">
+          <Link :href="route('news.index', Categories.slug)" class="">{{
+            Categories.name
+          }}</Link>
+        </li>
+      </ul>
+    </div>
+
     <div class="widget-title-cover">
       <h4 class="widget-title">
         <span>Popular Articles</span>
@@ -11,13 +26,12 @@
         v-for="post in latestPosts"
         :key="post.id"
       >
-        <!-- <span class="item-count vertical-align">1.</span> -->
         <div class="alith_post_title_small">
-          <a :href="'/news/newsDetail/' + post.id"
-            ><strong>{{ post.title }}</strong></a
+          <Link :href="route('news.Detail', [post.category.slug, post.slug])"
+            ><strong>{{ post.title }}</strong></Link
           >
           <p class="meta">
-            <span>{{ formatDate(post.updated_at) }}</span>
+            <span>{{ formatDate(post.created_at) }}</span>
           </p>
         </div>
         <figure class="alith_news_img">
@@ -26,34 +40,6 @@
           /></a>
         </figure>
       </div>
-    </div>
-
-    <!-- <div class="sidebar-widget">
-      <div class="widget-title-cover">
-        <h4 class="widget-title"><span>Tags cloud</span></h4>
-      </div>
-      <div class="alith_tags_all">
-        <a
-          href=""
-          class="alith_tagg"
-          v-for="tagcloud in tags_cloud"
-          :key="tagcloud"
-          >{{ tagcloud }}</a
-        >
-      </div>
-    </div> -->
-
-    <div class="sidebar-widget">
-      <div class="widget-title-cover">
-        <h4 class="widget-title"><Link :href="route('news.index')">Categories</Link></h4>
-      </div>
-      <ul class="bottom_menu">
-        <li v-for="Categories in Categories_Sidebar" :key="Categories">
-          <Link :href="route('news.index', Categories.slug)" class="">{{
-            Categories.name
-          }}</Link>
-        </li>
-      </ul>
     </div>
   </div>
 </template>

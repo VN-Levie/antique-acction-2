@@ -3,7 +3,7 @@
   <HomeLayout title="Home">
     <div class="container-fluid bg-gray rounded p-5">
       <div class="row">
-        <SessionDetail :auctionSession="auctionSession" />
+        <SessionDetail :auctionSession="auctionSession" :auth="auth" />
       </div>
     </div>
   </HomeLayout>
@@ -15,5 +15,5 @@ import { useAttrs } from "vue";
 // Lấy đối tượng attrs
 const attrs = useAttrs();
 const auctionSession = attrs.auction_session;
-
+const auth = attrs.auth;
 </script>

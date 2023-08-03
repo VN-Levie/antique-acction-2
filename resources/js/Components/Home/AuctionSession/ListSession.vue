@@ -30,6 +30,38 @@
       </ul>
     </div>
   </div>
+  <div class="col-md-9 d-block d-md-none">
+    <div class="session-section">
+      <h2 class="text-center text-capitalize">
+        --------------
+        {{ category_name }} 2
+      </h2>
+      <div class="container list-session">
+        <div class="row">
+          <div
+            v-for="session in auctionSession"
+            v-bind:key="session.id"
+            class="col-12"
+          >
+            <SessionItem :session="session" />
+          </div>
+        </div>
+      </div>
+
+      <ul class="pagination justify-center bottom-0 session-pagination">
+        <li
+          v-for="page in links"
+          v-bind:key="page"
+          class="page-item session-page-item"
+          :class="{ active: page.active }"
+        >
+          <Link class="page-link session-page-link" :href="page.url">
+            <span v-html="page.label"></span>
+          </Link>
+        </li>
+      </ul>
+    </div>
+  </div>
 </template>
   <script setup>
 import { defineProps } from "vue";

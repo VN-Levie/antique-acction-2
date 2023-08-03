@@ -12,6 +12,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\OderCartController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\AppraiserController;
 use App\Models\Session;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,15 +49,20 @@ Route::middleware([
 // Route::group(['prefix' => 'products'], function () {
 //     Route::get('/', [ProductController::class, 'index'])->name('product.index');
 // });
-Route::get('/products', function () {
-    return Inertia::render('Products/index');
-});
+
 
 Route::group(['prefix' => 'news'], function () {
+    Route::get('/{slug}/{news_slug}', [NewsController::class, 'Detailpost'])
+        ->where(['slug' => '[a-zA-Z0-9-]+', 'news_slug' => '[a-zA-Z0-9-]+'])->name('news.Detail');
     // Route::get('/', [NewsController::class, 'index'])->name('news.index');
     Route::get('/{slug?}', [NewsController::class, 'index'])->where(['slug' => '[a-zA-Z0-9\s-]+'])->name('news.index');
-    Route::get('/newsDetail/{id}', [NewsController::class, 'Detailpost'])->where('id', '[0-9]+')->name('news.Detail');
+    // Route::get('/newsDetail/{id}', [NewsController::class, 'Detailpost'])->where('id', '[0-9]+')->name('news.Detail');
+
 });
+Route::get('/appraiser', [AppraiserController::class, 'index'])->name('appraiser');
+
+
+
 Route::post('/contact', ContactController::class)->name('contact');
 
 Route::group(['prefix' => 'session'], function () {

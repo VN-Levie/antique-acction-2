@@ -9,7 +9,7 @@
         </div>
         <div class="post-tags">
           <div class="post-tags-inner">
-            <Link rel="tag" :href="route('news.index', categoryName.slug)" v-for="(categoryName, index) in categorytag" :key="index">{{ categoryName.name }}</Link>
+            <Link rel="tag" :href="route('news.index', categorytag.slug)">{{ categorytag.name }}</Link>
           </div>
         </div>
       </div>

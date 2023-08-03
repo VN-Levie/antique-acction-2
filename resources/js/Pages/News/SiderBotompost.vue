@@ -6,17 +6,23 @@
       </div>
       <div
         class="latest_style_3"
-        v-for="(related, index) in relatedArticles"
-        :key="related.id"
+        v-for="(SimilarPosts, index) in relatedArticles"
+        :key="SimilarPosts.id"
       >
         <div class="latest_style_3_item">
-          <span class="item-count vertical-align">{{ ++index }}.</span>
+          <span class="item-count vertical-align">{{ index + 1 }}.</span>
           <div class="alith_post_title_small">
-            <a href=""
-              ><strong>{{ related.title }}</strong>
-              <br>
-            <span>{{ shorttext(related.content, 40) }}</span>
-              </a>
+            <Link
+              :href="
+                route('news.Detail', [
+                  SimilarPosts.category.slug,
+                  SimilarPosts.slug,
+                ])
+              "
+              ><strong>{{ SimilarPosts.title }}</strong>
+              <br />
+              <span>{{ shorttext(SimilarPosts.content, 40) }}</span>
+            </Link>
           </div>
         </div>
       </div>
@@ -62,6 +68,8 @@
 </template>
 
 <script>
+import { Link } from "@inertiajs/vue3";
+
 export default {
   setup() {
     return {};
@@ -79,6 +87,7 @@ export default {
       }
     },
   },
+  components: { Link },
 };
 </script>
 

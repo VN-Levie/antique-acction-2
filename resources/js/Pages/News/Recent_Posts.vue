@@ -15,7 +15,7 @@
             <a href="">{{ post.title }}</a>
           </h3>
           <div class="post_meta">
-            <span>{{ post.name }}</span>
+            <span>{{ post.author.name }}</span>
             <span class="meta_categories">
               <a
                 v-for="category in post.tag.split(', ')"
@@ -29,8 +29,10 @@
           <p class="alith_post_except">
             {{ shorttext(post.content, 80) }}
           </p>
-          <a :href="'/news/newsDetail/' + post.id" class="read_more"
-            >Read More</a
+          <Link 
+          :href="route('news.Detail', [post.category.slug, post.slug])"
+          class="read_more"
+            >Read More</Link
           >
         </div>
       </article>
@@ -54,7 +56,7 @@
 
   <script>
 import { defineComponent, useAttrs } from "vue";
-import { Link, router } from "@inertiajs/vue3";
+import { Link } from "@inertiajs/vue3";
 
 export default defineComponent({
   name: "RecentPosts",
