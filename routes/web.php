@@ -77,10 +77,8 @@ Route::group([
 Route::group(['prefix' => 'news'], function () {
     Route::get('/{slug}/{news_slug}', [NewsController::class, 'Detailpost'])
         ->where(['slug' => '[a-zA-Z0-9-]+', 'news_slug' => '[a-zA-Z0-9-]+'])->name('news.Detail');
-    // Route::get('/', [NewsController::class, 'index'])->name('news.index');
-    Route::get('/{slug?}', [NewsController::class, 'index'])->where(['slug' => '[a-zA-Z0-9\s-]+'])->name('news.index');
-    // Route::get('/newsDetail/{id}', [NewsController::class, 'Detailpost'])->where('id', '[0-9]+')->name('news.Detail');
-
+    Route::get('/{slug?}', [NewsController::class, 'index'])
+        ->where(['slug' => '[a-zA-Z0-9\s-]+'])->name('news.index');
 });
 Route::get('/appraiser', [AppraiserController::class, 'index'])->name('appraiser');
 

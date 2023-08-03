@@ -58,15 +58,22 @@ class NewsController extends Controller
             ->with('category')
             ->first();
 
+        Post::where('id',  $newsDetail->id)
+            ->increment('count_view');
+
         if ($newsDetail == null) {
             abort(404);
         }
 
+        $topViewedPosts = Post::with('category')
+        ->orderBy('count_view', 'desc')->take(3)->get();
+
+
         //Lấy thông tin id của post
-        $categoryID = $newsDetail->category;
+        // $categoryID = $newsDetail->category;
 
         //Lấy thông tin liên quan của bài viết tương ứng
-        $relatedArticles = Post::where('category', $categoryID)
+        $relatedArticles = Post::where('category', $newsDetail->id)
             ->with('category')
             ->limit(3)
             ->get();
@@ -83,6 +90,7 @@ class NewsController extends Controller
             'Categories' => $Categories,
             'latestPosts' => $latestPosts,
             'relatedArticles' => $relatedArticles,
+            'topViewedPosts' => $topViewedPosts
         ]);
     }
 }
