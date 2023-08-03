@@ -29,18 +29,36 @@ use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-    'role:admin|editor|appraiser',
-])->group(function () {
-    Route::get('/dashboard', function () {
+// Route::middleware([
+//     'auth:sanctum',
+//     config('jetstream.auth_session'),
+//     'verified',
+//     'role:admin|editor|appraiser',
+// ])->group(function () {
+//     Route::get('/dashboard', function () {
+//         return Inertia::render('Dashboard');
+//     })->name('dashboard');
+//     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+//     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+// });
+
+Route::group([
+    'prefix' => 'dashboard',
+    'middleware' => [
+        'auth:sanctum',
+        config('jetstream.auth_session'),
+        'verified',
+        'role:admin|editor|appraiser',
+    ]
+], function () {
+    Route::get('/', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
-    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
-    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 });
+
+
+
+
 // Route::inertia('/abouts', 'About');
 // Route::get('products', function () {
 //     return Inertia::render('Products/Show', []);
