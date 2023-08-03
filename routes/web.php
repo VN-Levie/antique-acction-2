@@ -48,15 +48,13 @@ Route::group([
         'auth:sanctum',
         config('jetstream.auth_session'),
         'verified',
-        'role:admin|editor|appraiser',
+        'role:admin|editor|appraiser|user',
     ]
 ], function () {
     Route::get('/', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
-
 });
-
 
 Route::group([
     'prefix' => 'profile',
@@ -66,11 +64,12 @@ Route::group([
         'verified',
     ]
 ], function () {
-    Route::get('/', [ProfileController::class, 'index'])->name('profile.index');
-    Route::get('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
-    Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile/delete', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    Route::get('/', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/delete', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 

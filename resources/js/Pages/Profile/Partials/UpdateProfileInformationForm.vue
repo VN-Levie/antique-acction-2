@@ -101,8 +101,8 @@ const clearPhotoFileInput = () => {
         <!-- Current Profile Photo -->
         <div v-show="!photoPreview" class="mt-2">
           <img
-            :src="user.profile_photo_url"
-            :alt="user.name"
+            :src="users.profile_photo_url"
+            :alt="users.name"
             class="rounded-full h-20 w-20 object-cover"
           />
         </div>
@@ -124,7 +124,7 @@ const clearPhotoFileInput = () => {
         </SecondaryButton>
 
         <SecondaryButton
-          v-if="user.profile_photo_path"
+          v-if="users.profile_photo_path"
           type="button"
           class="mt-2"
           @click.prevent="deletePhoto"
@@ -163,7 +163,7 @@ const clearPhotoFileInput = () => {
         <div
           v-if="
             $page.props.jetstream.hasEmailVerification &&
-            user.email_verified_at === null
+            users.email_verified_at === null
           "
         >
           <p class="text-sm mt-2">
