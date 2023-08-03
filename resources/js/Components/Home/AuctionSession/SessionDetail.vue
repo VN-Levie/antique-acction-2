@@ -93,12 +93,12 @@
       <div class="container session-description mt-3 p-3">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link tabs-title" data-bs-toggle="tab" href="#home"
-              >Overviews</a
-            >
+          <li class="nav-item overview-tab">
+            <a class="nav-link tabs-title" data-bs-toggle="tab" href="#home">
+              Overview
+            </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item overview-tab">
             <a
               class="nav-link tabs-title active"
               data-bs-toggle="tab"
@@ -357,17 +357,10 @@ const cal_url = `https://www.google.com/calendar/event?action=TEMPLATE&text=AAO'
   font-size: 0.8rem;
 }
 .nav-tabs .nav-item .nav-link {
-  background-color: #634236b7;
+  /* background-color: #634236b7; */
   color: #fff;
 }
 
-.nav-tabs .nav-item .nav-link.active {
-  background-color: #634236;
-  color: #0080ff;
-}
-.nav-link.active {
-  color: #0080ff;
-}
 .tab-content {
   /* border: 1px solid #dee2e6; */
   border-top: transparent;
@@ -376,21 +369,30 @@ const cal_url = `https://www.google.com/calendar/event?action=TEMPLATE&text=AAO'
 
 .tab-content .tab-pane {
   background-color: #fff;
-  color: #0080ff;
+  /* color: #0080ff; */
   min-height: 200px;
   height: auto;
 }
 .text-product-estimate {
   color: #634236;
-  font-family: "Smythe", cursive;
   font-size: large;
 }
 .text-roduct-name {
+  font-family: "Smythe", cursive;
+  font-size: 1.5rem;
+  color: #634236;
   overflow: hidden;
 }
 .card-product {
   border: 1px solid #634236 !important;
   background-color: transparent;
+  color: #634236;
   /* box-shadow: #634236 0px 0px 0px 1px inset !important; */
+}
+.overview-tab a {
+  color: #634236 !important;
+}
+.overview-tab:hover {
+  text-shadow: #634236 0px 0px 0px 1px !important;
 }
 </style>
