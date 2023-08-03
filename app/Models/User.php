@@ -15,8 +15,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
+
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
@@ -30,7 +31,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role', 'addresses', 'test'
+        'name', 'email', 'role', 'phoneNumber', 'password', 'status', 'token',  'addresses', 'test'
     ];
 
     /**

@@ -41,4 +41,32 @@ class ProfileController extends Controller
             'addresses' => $user->addresses,
         ]);
     }
+    public function update(Request $request)
+    {
+        $user = Auth::user();
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            // Add validation rules for other fields as needed
+        ]);
+
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        // Update other fields as needed
+        $user->save();
+
+        // Optionally, you can update the addresses here if needed.
+
+        return redirect()->route('profile.index');
+    }
+    public function destroy()
+    {
+        $user = Auth::user();
+        $user->delete();
+
+        // Log out the user after deleting their account
+        Auth::logout();
+
+        return redirect()->route('home');
+    }
 }

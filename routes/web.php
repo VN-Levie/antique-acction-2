@@ -54,6 +54,9 @@ Route::group([
     Route::get('/', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+    Route::get('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile/delete', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 

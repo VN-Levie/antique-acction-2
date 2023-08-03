@@ -129,6 +129,11 @@ export default {
                 children: null,
             },
             {
+                name: "Address",
+                href: "/address",
+                children: null,
+            },
+            {
                 name: "My Oder",
                 href: "/oder",
                 children: null,
