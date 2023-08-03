@@ -9,6 +9,7 @@ import NavLink from "@/Components/Dashboard/NavLink.vue";
 import ResponsiveNavLink from "@/Components/Dashboard/ResponsiveNavLink.vue";
 import Welcome from "@/Components/Dashboard/Welcome.vue";
 import Sidebar from "./DashboardLayouts/Sidebar.vue";
+import { useAttrs } from "vue";
 defineProps({
   title: String,
 });
@@ -30,6 +31,10 @@ const switchToTeam = (team) => {
 const logout = () => {
   router.post(route("logout"));
 };
+
+// Lấy đối tượng attrs
+const attrs = useAttrs();
+console.log(attrs);
 </script>
 
 <template>
