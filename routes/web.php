@@ -54,12 +54,24 @@ Route::group([
     Route::get('/', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
-    Route::get('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
-    Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile/delete', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 });
 
 
+Route::group([
+    'prefix' => 'profile',
+    'middleware' => [
+        'auth:sanctum',
+        config('jetstream.auth_session'),
+        'verified',
+    ]
+], function () {
+    Route::get('/', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile/delete', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+});
 
 
 // Route::inertia('/abouts', 'About');
