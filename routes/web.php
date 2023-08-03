@@ -11,6 +11,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\AppraiserController;
 use App\Models\Session;
 
 /*
@@ -53,6 +54,10 @@ Route::group(['prefix' => 'news'], function () {
     // Route::get('/newsDetail/{id}', [NewsController::class, 'Detailpost'])->where('id', '[0-9]+')->name('news.Detail');
 
 });
+Route::get('/appraiser', [AppraiserController::class, 'index'])->name('appraiser');
+
+
+
 Route::post('/contact', ContactController::class)->name('contact');
 
 Route::group(['prefix' => 'session'], function () {
