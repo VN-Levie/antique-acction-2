@@ -15,7 +15,7 @@ return new class extends Migration
             $table->foreign('added_by')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('appraised_by')->references('id')->on('appraisers')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->foreign('product_owner')->references('id')->on('product_owners')->onDelete('set default');
+            $table->foreign('product_owner')->references('id')->on('product_owners')->onDelete('cascade');
             $table->foreign('belong_era')->references('id')->on('era_and_country')->onDelete('set default');
             $table->foreign('country')->references('id')->on('era_and_country')->onDelete('set default');
 

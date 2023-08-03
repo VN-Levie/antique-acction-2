@@ -167,6 +167,16 @@
                             }}
                           </span>
                         </p>
+                        <p class="text-center">
+                          <span class="text-product-estimate">
+                            Last Bid: ${{
+                              new Intl.NumberFormat("en-IN", {
+                                maximumSignificantDigits: 3,
+                              }).format(product.last_bid)
+                            }}
+
+                          </span>
+                        </p>
                       </div>
                       <div class="col-md-12 col-12">
                         <p class="text-right">
