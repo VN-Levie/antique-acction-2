@@ -7,10 +7,7 @@
           <div class="margin-15">
             <div class="row">
               <div class="col-md-8">
-                <ArticleDetails
-                  :content="content"
-                  :categorytag="categorytag"
-                />
+                <ArticleDetails :content="content" :categorytag="categorytag" />
               </div>
               <aside class="col-md-4">
                 <SidebarRightnews
@@ -26,7 +23,10 @@
         <div class="container">
           <div class="bottom margin-15">
             <div class="row">
-              <SiderBotom :relatedArticles="relatedArticles" />
+              <SiderBotom
+                :relatedArticles="relatedArticles"
+                :topViewedPosts="topViewedPosts"
+              />
             </div>
           </div>
         </div>
@@ -50,6 +50,7 @@ export default defineComponent({
     const Categories_Sidebar = attrs.Categories;
     const latestPosts = attrs.latestPosts;
     const relatedArticles = attrs.relatedArticles;
+    const topViewedPosts = attrs.topViewedPosts;
 
     const newsDetail = attrs.newsDetail;
 
@@ -61,7 +62,8 @@ export default defineComponent({
       Categories_Sidebar,
       latestPosts,
       relatedArticles,
-      
+      topViewedPosts,
+
       categorytag,
 
       newsDetail,

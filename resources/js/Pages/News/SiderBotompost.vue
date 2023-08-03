@@ -79,6 +79,10 @@ export default {
       type: Object,
       default: [],
     },
+    topViewedPosts: {
+      type: Object,
+      default: [],
+    },
   },
   methods: {
     shorttext(value, limit) {
