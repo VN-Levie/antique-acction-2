@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //tạo cột role trong bảng users. mặc định là 1 (user) thêm sau trường email
-            $table->unsignedBigInteger('role')->default(1)->after('email');
+            $table->unsignedBigInteger('role')->default(1)->nullable()->after('email');
             //tạo khoá ngoại role liên kết với khoá chính id của bảng roles.
             //Khi  xóa bản ghi trong bảng roles thì sẽ cập nhật lại bản ghi trong bảng users về role = 1 (user)
-            $table->foreign('role')->references('id')->on('roles')->onDelete('set default');
+            $table->foreign('role')->references('id')->on('roles')->onDelete('set null');
         });
     }
 
