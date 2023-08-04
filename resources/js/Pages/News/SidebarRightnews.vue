@@ -66,7 +66,7 @@
 import { Link } from "@inertiajs/vue3";
 
 export default {
-  name: "#SidebarRightnews",
+  name: "SidebarRightnews",
   setup() {
     return {};
   },
@@ -79,6 +79,9 @@ export default {
       type: Object,
       defualt: [],
     },
+  },
+  mounted() {
+    this.goToActiveLink();
   },
   methods: {
     shorttext(value, limit) {
