@@ -58,15 +58,16 @@ class NewsController extends Controller
             ->with('category')
             ->first();
 
-        Post::where('id',  $newsDetail->id)
-            ->increment('count_view');
-
         if ($newsDetail == null) {
             abort(404);
         }
 
+        Post::where('id',  $newsDetail->id)
+            ->increment('count_view');
+
+
         $topViewedPosts = Post::with('category')
-        ->orderBy('count_view', 'desc')->take(3)->get();
+            ->orderBy('count_view', 'desc')->take(3)->get();
 
 
         //Lấy thông tin id của post

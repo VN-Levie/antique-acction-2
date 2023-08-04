@@ -51,7 +51,6 @@
   <script>
 import { defineComponent, useAttrs } from "vue";
 import { Link } from "@inertiajs/vue3";
-import PostItem from "./PostItem.vue";
 
 export default defineComponent({
   name: "RecentPosts",
@@ -65,7 +64,7 @@ export default defineComponent({
       links,
     };
   },
-  components: { PostItem },
+  components: {  },
   methods: {
     formatDate(date) {
       const formattedDate = new Date(date);

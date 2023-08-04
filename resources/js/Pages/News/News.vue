@@ -29,7 +29,6 @@ import RecentPosts from "./Recent_Posts.vue";
 import SidebarRightnews from "./SidebarRightnews.vue";
 import SiderBotom from "./SiderBotompost.vue";
 import { defineComponent, useAttrs } from "vue";
-import PostItem from "./PostItem.vue";
 
 
 export default defineComponent({
@@ -51,7 +50,6 @@ export default defineComponent({
     RecentPosts,
     SidebarRightnews,
     SiderBotom,
-    PostItem,
   },
   methods: {},
 });

@@ -7,7 +7,7 @@
         </h4>
         <div class="container mt-3">
           <div class="mb-2" v-for="SimilarPosts in relatedArticles" :key="SimilarPosts.id">
-            <Link :href="route('news.Detail', [SimilarPosts.slug, SimilarPosts.category.slug])">
+            <Link :href="route('news.Detail', [ SimilarPosts.category.slug, SimilarPosts.slug])">
               <div class="row g-0">
                 <div class="col-md-2">
                   <img :src="SimilarPosts.thumbnail" alt="aaa" class="card-img-top" />
@@ -38,7 +38,7 @@
         </h4>
         <div class="container mt-3">
           <div class="mb-2" v-for="top in topViewedPosts" :key="top.id">
-            <Link :href="route('news.Detail', [top.slug, top.category.slug])">
+            <Link :href="route('news.Detail', [ top.category.slug, top.slug])">
               <div class="row g-0">
                 <div class="col-md-2">
                   <img :src="top.thumbnail" alt="aaa" class="card-img-top" />

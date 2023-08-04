@@ -17,7 +17,7 @@
           </li>
           <li
             v-for="Categories in Categories_Sidebar"
-            v-bind:key="Categories.id"
+            :key="Categories.id"
           >
             <Link
               :href="route('news.index', Categories.slug)"
@@ -40,7 +40,7 @@
       </h4>
       <div class="container mt-3">
         <div class="mb-2" v-for="post in latestPosts" :key="post.id">
-          <Link :href="route('news.Detail', [post.slug, post.category.slug])">
+          <Link :href="route('news.Detail', [ post.category.slug, post.slug])">
             <div class="row g-0">
               <div class="col-md-4">
                 <img :src="post.thumbnail" alt="aaa" class="card-img-top" />
