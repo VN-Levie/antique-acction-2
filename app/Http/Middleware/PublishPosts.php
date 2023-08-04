@@ -27,7 +27,7 @@ class PublishPosts
             }
         }
 
-        // Người dùng không có quyền, trả về lỗi 403
-        return response()->json(['error' => 'Access denied.'], 403);
+         // Người dùng không có quyền, trả về lỗi 403
+         return response()->json(['error' => 'Access denied.'], 403);
     }
 }
