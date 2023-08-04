@@ -85,7 +85,6 @@ Route::group(['prefix' => 'news'], function () {
 Route::get('/appraiser', [AppraiserController::class, 'index'])->name('appraiser');
 
 
-
 Route::post('/contact', ContactController::class)->name('contact');
 
 Route::group(['prefix' => 'session'], function () {

@@ -36,7 +36,7 @@
       <div class="single-content">
         <div class="column-2">
           <p
-            v-for="(content, index) in newsDetailData.content.split('. ')"
+            v-for="(content, index) in newsDetailData.content.split('.')"
             :key="index"
           >
             {{ content }}
