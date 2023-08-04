@@ -1,6 +1,19 @@
 <template>
     <Head title="profile" />
     <navbar />
+    <!--Click Verrifation-->
+    <div v-if="$page.props.auth.user.email_verified_at == null">
+        <form @submit.prevent="submit">
+            <div class="mt-4 font-extrabold text-red-700 hover:text-blue-500 flex items-center justify-center">Account not
+                Active ! Please click
+                this->
+
+                <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                    Active Email
+                </PrimaryButton>
+            </div>
+        </form>
+    </div>
     <div class="container rounded    bg-white mt-5 mb-5">
         <div class="row">
             <div class="col-md-3 rounded-lg shadow border-right">
@@ -16,6 +29,8 @@
                     </a>
                 </div>
             </div>
+
+
             <div class="col-md-5 rounded-lg shadow border-right">
                 <div class="p-3 py-5">
                     <div class="d-flex justify-content-between align-items-center mb-3">
@@ -35,7 +50,7 @@
                 </div>
             </div>
             <div class="col-md-3 rounded-lg shadow border-right">
-                <div class="p-3 py-5">
+                <div v-if="$page.props.user.addresses[0] !== undefined" class="p-3 py-5">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="text-right text-[20px] font-extrabold">Address Settings</h4>
                     </div>
@@ -59,7 +74,7 @@
                         </a>
                     </div>
                 </div>
-                <!-- <div v-else>
+                <div v-else>
 
                     <Link :href="route('address.show')">
                     <div
@@ -73,17 +88,19 @@
                     </div>
                     </Link>
 
-                </div> -->
+                </div>
             </div>
         </div>
     </div>
 </template>
 <script setup>
+import { computed } from 'vue';
 import { Head, useForm, usePage } from '@inertiajs/vue3';
 import { Link } from '@inertiajs/vue3';
 import PlusIcon from 'vue-material-design-icons/Plus.vue';
 import navbar from '..//Narbar.vue';
-const props = defineProps(['userAddresses', 'userName']);
+import PrimaryButton from '@/Components/Dashboard/PrimaryButton.vue';
+const props = defineProps(['userAddresses', 'userName', 'status']);
 let country = null;
 let address1 = null;
 let address2 = null;
@@ -107,6 +124,16 @@ const form = useForm({
     city: city,
     postcode: postcode,
 });
+
+
+
+const submit = () => {
+    form.post(route('verification.send'));
+};
+
+const verificationLinkSent = computed(() => props.status === 'verification-link-sent');
+
+
 </script>
 <style>
 .profile-button-edit {

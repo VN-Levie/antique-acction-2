@@ -7,7 +7,9 @@
           <div class="margin-15">
             <div class="row">
               <div class="col-md-8">
-                <ArticleDetails :content="content" :categorytag="categorytag" />
+                <ArticleDetails
+                  :newsDetail="newsDetail"
+                />
               </div>
               <aside class="col-md-4">
                 <SidebarRightnews
@@ -55,20 +57,15 @@ export default defineComponent({
     const newsDetail = attrs.newsDetail;
 
     const title = attrs.newsDetail.title;
-    const content = attrs.newsDetail.content;
-    const categorytag = attrs.newsDetail.category;
 
     return {
       Categories_Sidebar,
       latestPosts,
       relatedArticles,
       topViewedPosts,
-
-      categorytag,
-
+      
       newsDetail,
       title,
-      content,
     };
   },
   components: {

@@ -1,41 +1,39 @@
 <template>
   <div class="RecentPosts">
-    <div class="post_list_style_1">
-      <div class="alith_heading">
-        <h2 class="alith_heading_patern_2">Recent Posts</h2>
-      </div>
-      <article class="row m-2" v-for="post in articleList.data" :key="post.id">
-        <div class="col-md-3">
-          <figure class="">
-            <a href="#"><img :src="post.thumbnail" alt="aaa" /></a>
-          </figure>
-        </div>
-        <div class="col-md-9">
-          <h3 class="alith_post_title">
-            <a href="">{{ post.title }}</a>
-          </h3>
-          <div class="post_meta">
-            <span>{{ post.author.name }}</span>
-            <span class="meta_categories">
+    <div class="container">
+      <div class="card mb-2" v-for="post in articleList.data" :key="post.id">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img :src="post.thumbnail" alt="aaa" class="card-img-top" />
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h3 class="card-title font-weight-bold">
+                <strong>{{ post.title }}</strong>
+              </h3>
+              <p class="card-text">{{ formatDate(post.created_at) }}</p>
+              <p class="card-text">{{ post.author.name }}</p>
               <a
                 v-for="category in post.tag.split(', ')"
                 :key="category"
                 href="#"
                 >{{ category }}</a
               >
-            </span>
-            <span class="meta_date">{{ formatDate(post.created_at) }}</span>
+              <p class="card-text">
+                {{ shorttext(post.content, 100) }}
+              </p>
+
+              <Link
+                :href="route('news.Detail', [post.category.slug, post.slug])"
+                class="btn float-right"
+                >Read More</Link
+              >
+            </div>
           </div>
-          <p class="alith_post_except">
-            {{ shorttext(post.content, 80) }}
-          </p>
-          <Link 
-          :href="route('news.Detail', [post.category.slug, post.slug])"
-          class="read_more"
-            >Read More</Link
-          >
         </div>
-      </article>
+      </div>
+    </div>
+    <div class="row">
       <ul
         class="pagination justify-center bottom-0 session-pagination mb-3 mt-3"
       >
@@ -70,8 +68,7 @@ export default defineComponent({
       links,
     };
   },
-  props: {
-  },
+  components: {},
   methods: {
     formatDate(date) {
       const formattedDate = new Date(date);
@@ -94,4 +91,50 @@ export default defineComponent({
 </script>
 
   <style>
+.session-section {
+  /* import font Smythe google */
+
+  /* width: 300px; */
+  /* border: 1px dashed brown; thay đổi kiểu viền thành nét đứt màu nâu */
+  padding: 10px;
+}
+
+.session-section h2 {
+  font-family: "Smythe", cursive;
+  text-align: center;
+  text-transform: uppercase;
+  color: #634236;
+  font-size: 30px;
+}
+.list-session {
+  margin-top: 20px;
+  min-height: 450px;
+}
+.session-pagination {
+  font-family: "Smythe", cursive;
+  margin-top: 20px;
+  border: none;
+}
+.session-page-item {
+  border: none;
+}
+.session-page-link {
+  color: #634236;
+  /* font-size: 20px; */
+  border: none;
+}
+/* session-page-item active */
+.session-page-item.active .session-page-link {
+  background-color: #634236;
+  color: white;
+  border-radius: 5px;
+}
+.session-page-link:hover {
+  color: white;
+  /* font-size: 20px; */
+  border: none;
+  font-weight: bold;
+  background-color: #634236c9;
+  border-radius: 5px;
+}
 </style>

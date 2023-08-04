@@ -43,6 +43,8 @@ Route::group([
     Route::get('/', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+    Route::group(['prefix' => 'news'], function () {
+    });
 });
 
 Route::group([
@@ -68,12 +70,6 @@ Route::group([
 });
 
 
-
-
-
-
-
-
 Route::group(['prefix' => 'news'], function () {
     Route::get('/{slug}/{news_slug}', [NewsController::class, 'Detailpost'])
         ->where(['slug' => '[a-zA-Z0-9-]+', 'news_slug' => '[a-zA-Z0-9-]+'])->name('news.Detail');
@@ -83,11 +79,9 @@ Route::group(['prefix' => 'news'], function () {
 Route::get('/appraiser', [AppraiserController::class, 'index'])->name('appraiser');
 
 
-
 Route::post('/contact', ContactController::class)->name('contact');
 
 Route::group(['prefix' => 'session'], function () {
-
     Route::get('/{slug}/{session_slug}', [SessionController::class, 'show'])
         ->where(['slug' => '[a-z0-9-]+', 'session_slug' => '[a-z0-9-]+'])->name('session.show');
     Route::get('/{slug?}', [SessionController::class, 'index'])
@@ -99,4 +93,9 @@ Route::group(['prefix' => 'products'], function () {
         ->where(['session_slug' => '[a-z0-9-]+', 'id' => '[a-z0-9-]+'])->name('product.view');
     Route::get('/{slug?}', [ProductController::class, 'index'])
         ->where(['slug' => '[a-z0-9-]+'])->name('product.index');
+});
+
+
+Route::middleware(['auth', 'publish.posts'])->group(function () {
+   
 });

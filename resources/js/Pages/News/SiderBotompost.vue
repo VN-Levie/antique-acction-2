@@ -2,26 +2,28 @@
   <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
     <div class="sidebar-widget">
       <div class="widget-title-cover">
-        <h4 class="widget-title"><span>Related Articles</span></h4>
-      </div>
-      <div
-        class="latest_style_3"
-        v-for="(SimilarPosts, index) in relatedArticles"
-        :key="SimilarPosts.id"
-      >
-        <div class="latest_style_3_item">
-          <span class="item-count vertical-align">{{ index + 1 }}.</span>
-          <div class="alith_post_title_small">
-            <Link
-              :href="
-                route('news.Detail', [
-                  SimilarPosts.category.slug,
-                  SimilarPosts.slug,
-                ])
-              "
-              ><strong>{{ SimilarPosts.title }}</strong>
-              <br />
-              <span>{{ shorttext(SimilarPosts.content, 40) }}</span>
+        <h4 class="widget-title">
+          <span>RELATED ARTICLES</span>
+        </h4>
+        <div class="container mt-3">
+          <div class="mb-2" v-for="SimilarPosts in relatedArticles" :key="SimilarPosts.id">
+            <Link :href="route('news.Detail', [ SimilarPosts.category.slug, SimilarPosts.slug])">
+              <div class="row g-0">
+                <div class="col-md-2">
+                  <img :src="SimilarPosts.thumbnail" alt="aaa" class="card-img-top" />
+                </div>
+                <div class="col-md-6">
+                  <div class="card-body ml-2">
+                    <h3 class="card-title font-weight-bold">
+                      <strong>{{ SimilarPosts.title }}</strong>
+                    </h3>
+                    <!-- <p class="card-text">{{ formatDate(top.created_at) }}</p> -->
+                    <p class="card-text">
+                      {{ shorttext(SimilarPosts.content, 80) }}
+                    </p>
+                  </div>
+                </div>
+              </div>
             </Link>
           </div>
         </div>
@@ -31,40 +33,34 @@
   <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
     <div class="sidebar-widget">
       <div class="widget-title-cover">
-        <h4 class="widget-title"><span>Latest</span></h4>
-      </div>
-      <div class="latest_style_2">
-        <div class="latest_style_2_item">
-          <figure class="alith_news_img">
-            <a href=""
-              ><img alt="" src="/img/works1.png" class="hover_grey"
-            /></a>
-          </figure>
-          <h3 class="alith_post_title">
-            <a href="">Magna aliqua ut enim ad minim veniam</a>
-          </h3>
+        <h4 class="widget-title">
+          <span>the most views</span>
+        </h4>
+        <div class="container mt-3">
+          <div class="mb-2" v-for="top in topViewedPosts" :key="top.id">
+            <Link :href="route('news.Detail', [ top.category.slug, top.slug])">
+              <div class="row g-0">
+                <div class="col-md-2">
+                  <img :src="top.thumbnail" alt="aaa" class="card-img-top" />
+                </div>
+                <div class="col-md-6">
+                  <div class="card-body ml-2">
+                    <h3 class="card-title font-weight-bold">
+                      <strong>{{ top.title }}</strong>
+                    </h3>
+                    <!-- <p class="card-text">{{ formatDate(top.created_at) }}</p> -->
+                    <p class="card-text">
+                      {{ shorttext(top.content, 80) }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-      <div class="sidebar-widget">
-        <div class="widget-title-cover">
-          <h4 class="widget-title"><span>Categories</span></h4>
-        </div>
-        <ul class="bottom_menu">
-          <li>
-            <a
-              href=""
-              class=""
-              v-for="CategoriesTag in Categories_tags"
-              :key="CategoriesTag"
-              >{{ CategoriesTag }}</a
-            >
-          </li>
-        </ul>
-      </div>
-    </div> -->
 </template>
 
 <script>

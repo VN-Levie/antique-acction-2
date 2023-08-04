@@ -130,12 +130,12 @@ export default {
             },
             {
                 name: "Address",
-                href: "/address",
+                href: "/profile/address ",
                 children: null,
             },
             {
                 name: "My Oder",
-                href: "/oder",
+                href: "/profile/oder",
                 children: null,
             },
             {
