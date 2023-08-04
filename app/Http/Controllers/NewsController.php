@@ -56,6 +56,7 @@ class NewsController extends Controller
         // Lấy thông tin chi tiết của bài viết tương ứng
         $newsDetail = Post::where('slug', $news_slug)
             ->with('category')
+            ->with('author') // Nạp trước thông tin người tạo bài viết
             ->first();
 
         if ($newsDetail == null) {
@@ -65,7 +66,6 @@ class NewsController extends Controller
         Post::where('id',  $newsDetail->id)
             ->increment('count_view');
 
-
         $topViewedPosts = Post::with('category')
             ->orderBy('count_view', 'desc')->take(3)->get();
 
@@ -74,7 +74,7 @@ class NewsController extends Controller
         $categoryID = $newsDetail->category;
 
         //Lấy thông tin liên quan của bài viết tương ứng
-        $relatedArticles = Post::where('category', $newsDetail->id)
+        $relatedArticles = Post::where('category', $categoryID)
             ->with('category')
             ->limit(3)
             ->get();

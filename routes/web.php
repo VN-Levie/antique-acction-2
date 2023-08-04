@@ -43,6 +43,8 @@ Route::group([
     Route::get('/', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+    Route::group(['prefix' => 'news'], function () {
+    });
 });
 
 Route::group([
@@ -87,7 +89,6 @@ Route::get('/appraiser', [AppraiserController::class, 'index'])->name('appraiser
 Route::post('/contact', ContactController::class)->name('contact');
 
 Route::group(['prefix' => 'session'], function () {
-
     Route::get('/{slug}/{session_slug}', [SessionController::class, 'show'])
         ->where(['slug' => '[a-z0-9-]+', 'session_slug' => '[a-z0-9-]+'])->name('session.show');
     Route::get('/{slug?}', [SessionController::class, 'index'])

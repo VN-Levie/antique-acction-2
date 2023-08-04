@@ -77,6 +77,9 @@ console.log(attrs);
                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                   Feedback & Report
                 </NavLink>
+                <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                  Post
+                </NavLink>
               </div>
             </div>
 
