@@ -70,10 +70,10 @@ class NewsController extends Controller
 
 
         //Lấy thông tin id của post
-        // $categoryID = $newsDetail->category;
+        $categoryID = $newsDetail->category;
 
         //Lấy thông tin liên quan của bài viết tương ứng
-        $relatedArticles = Post::where('category', $newsDetail->id)
+        $relatedArticles = Post::where('category', $categoryID)
             ->with('category')
             ->limit(3)
             ->get();
