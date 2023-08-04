@@ -8,15 +8,11 @@
             Online Auction
           </p>
           <p class="text-center action-titles-type">
-            <span
-              >{{ monthNames[start_at_month] }} {{ start_at_day }} -
-              {{ start_at_hour }}H</span
-            >
+            <span>{{ monthNames[start_at_month] }} {{ start_at_day }} -
+              {{ start_at_hour }}H</span>
             to
-            <span
-              >{{ monthNames[end_at_month] }} {{ end_at_day }} -
-              {{ end_at_hour }}H</span
-            >
+            <span>{{ monthNames[end_at_month] }} {{ end_at_day }} -
+              {{ end_at_hour }}H</span>
 
             <span class="text-warning"> (GMT +7)</span>
           </p>
@@ -30,7 +26,7 @@
               </div>
               <div class="col-md-4 col-6">
                 <p class="auction-card-footer-text text-center">
-                    <i class="fa-solid fa-splotch"></i>
+                  <i class="fa-solid fa-splotch"></i>
                   {{ auctionSession.products_count }} Lots
                 </p>
               </div>
@@ -42,10 +38,7 @@
               </div>
             </div>
           </div>
-          <img
-            src="/img/mt-1804-home-divider2.png"
-            class="img-center mt-1 lazyload"
-          />
+          <img src="/img/mt-1804-home-divider2.png" class="img-center mt-1 lazyload" />
         </div>
       </div>
       <div class="col-md-4">
@@ -99,12 +92,7 @@
             </a>
           </li>
           <li class="nav-item overview-tab">
-            <a
-              class="nav-link tabs-title active"
-              data-bs-toggle="tab"
-              href="#menu1"
-              >Products</a
-            >
+            <a class="nav-link tabs-title active" data-bs-toggle="tab" href="#menu1">Products</a>
           </li>
         </ul>
 
@@ -129,25 +117,17 @@
           </div>
           <div id="menu1" class="container tab-pane active">
             <div class="row">
-              <div
-                class="col-lg-3 col-md-4 col-sm-6 col-12"
-                v-for="(product, index) in auctionSession.products"
-                :key="index"
-              >
+              <div class="col-lg-3 col-md-4 col-sm-6 col-12" v-for="(product, index) in auctionSession.products"
+                :key="index">
                 <div class="card card-product mb-3">
                   <div class="card-body">
                     <div class="row">
                       <div class="col-md-12 col-12">
                         <p class="text-center">
-                          <img
-                            :src="JSON.parse(product.images)[0]"
-                            class="img-fluid rounded img-center lazyload"
-                          />
+                          <img :src="JSON.parse(product.images)[0]" class="img-fluid rounded img-center lazyload" />
                         </p>
                       </div>
-                      <div
-                        class="col-md-12 col-12 text-center text-capitalize mt-3"
-                      >
+                      <div class="col-md-12 col-12 text-center text-capitalize mt-3">
                         <span class="text-center text-roduct-name">
                           {{ product.name }}
                         </span>
@@ -335,36 +315,45 @@ const cal_url = `https://www.google.com/calendar/event?action=TEMPLATE&text=AAO'
   margin-bottom: 10px;
   transition: all 0.3s ease-in-out;
 }
+
 .session-detail-section h2 {
   font-family: "Smythe", cursive;
   font-size: 30px;
 }
+
 .tabs-title {
   font-family: "Smythe", cursive;
   font-size: 1.2rem;
 }
+
 .action-titles-type {
   font-family: "Montserrat", sans-serif;
   font-size: 0.8rem;
 }
+
 .img-center {
   margin: 0 auto;
 }
+
 .session-description p {
   font-size: 1.5rem;
   /* font-size: 30px; */
 }
+
 .session-detail-section .card {
   border: none;
 }
+
 .session-detail-section .card-footer {
   border: none;
   background-color: white;
   font-size: 21px;
 }
+
 .auction-card-footer-text {
   font-size: 0.8rem;
 }
+
 .nav-tabs .nav-item .nav-link {
   /* background-color: #634236b7; */
   color: #fff;
@@ -382,28 +371,34 @@ const cal_url = `https://www.google.com/calendar/event?action=TEMPLATE&text=AAO'
   min-height: 200px;
   height: auto;
 }
+
 .text-product-estimate {
   color: #634236;
   font-size: large;
 }
+
 .text-roduct-name {
   font-family: "Smythe", cursive;
   font-size: 1.5rem;
   color: #634236;
   overflow: hidden;
 }
+
 .card-product {
   border: 1px solid #634236 !important;
   background-color: transparent;
   color: #634236;
   /* box-shadow: #634236 0px 0px 0px 1px inset !important; */
 }
+
 .overview-tab a {
   color: #634236 !important;
 }
+
 .overview-tab:hover {
   text-shadow: #634236 0px 0px 0px 1px !important;
 }
+
 .product-bid-info {
   font-family: "Smythe", cursive;
   font-size: 1.4rem !important;
