@@ -30,7 +30,7 @@
               </div>
               <div class="col-md-4 col-6">
                 <p class="auction-card-footer-text text-center">
-                  <i class="fa-solid fa-splotch"></i>
+                    <i class="fa-solid fa-splotch"></i>
                   {{ auctionSession.products_count }} Lots
                 </p>
               </div>
@@ -406,8 +406,7 @@ const cal_url = `https://www.google.com/calendar/event?action=TEMPLATE&text=AAO'
 }
 .product-bid-info {
   font-family: "Smythe", cursive;
-  font-size: 1.2rem !important;
+  font-size: 1.4rem !important;
   /* font-family: "Montserrat", sans-serif; */
 }
-
 </style>

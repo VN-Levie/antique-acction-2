@@ -94,5 +94,9 @@ Route::group(['prefix' => 'session'], function () {
         ->where(['slug' => '[a-z0-9-]+'])->name('session.index');
 });
 Route::group(['prefix' => 'products'], function () {
-    Route::get('/', [ProductController::class, 'index'])->name('product.index');
+    // Route::get('/', [ProductController::class, 'index'])->name('product.index');
+    Route::get('/{session_slug}/{id}', [ProductController::class, 'view'])
+        ->where(['session_slug' => '[a-z0-9-]+', 'id' => '[a-z0-9-]+'])->name('product.view');
+    Route::get('/{slug?}', [ProductController::class, 'index'])
+        ->where(['slug' => '[a-z0-9-]+'])->name('product.index');
 });

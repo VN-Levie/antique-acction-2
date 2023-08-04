@@ -253,7 +253,7 @@ export default {
         children: null,
       },
       {
-        name: "all products",
+        name: "products",
         href: "/products",
         children: null,
       },
