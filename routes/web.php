@@ -70,12 +70,6 @@ Route::group([
 });
 
 
-
-
-
-
-
-
 Route::group(['prefix' => 'news'], function () {
     Route::get('/{slug}/{news_slug}', [NewsController::class, 'Detailpost'])
         ->where(['slug' => '[a-zA-Z0-9-]+', 'news_slug' => '[a-zA-Z0-9-]+'])->name('news.Detail');
@@ -99,4 +93,9 @@ Route::group(['prefix' => 'products'], function () {
         ->where(['session_slug' => '[a-z0-9-]+', 'id' => '[a-z0-9-]+'])->name('product.view');
     Route::get('/{slug?}', [ProductController::class, 'index'])
         ->where(['slug' => '[a-z0-9-]+'])->name('product.index');
+});
+
+
+Route::middleware(['auth', 'publish.posts'])->group(function () {
+   
 });
