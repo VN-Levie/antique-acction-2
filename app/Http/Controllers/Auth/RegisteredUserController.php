@@ -29,7 +29,7 @@ class RegisteredUserController extends Controller implements MustVerifyEmail
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:' . User::class,
-            'phoneNumber' => 'required|phone|max:10',
+            'phoneNumber' => 'required|numeric|min:10',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 

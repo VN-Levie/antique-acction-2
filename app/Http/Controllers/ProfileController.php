@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,11 +17,9 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
 
-        // Load the addresses relationship
-        $user->load('addresses');
 
 
-        return Inertia::render('Home/Profile/Index', [
+        return Inertia::render('Home/Profile/ShowUser', [
             'user' => $user,
             'address' => $user->addresses, // Assuming you want to pass the first address of the user
         ]);
@@ -30,10 +29,6 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
 
-        // Load the addresses relationship
-        $user->load('addresses');
-
-        // Debugging: Check if the user and addresses data is loaded correctly
 
 
         return Inertia::render('Home/Profile/Edit', [
@@ -47,25 +42,32 @@ class ProfileController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:255',
-            // Add validation rules for other fields as needed
+            'email' => 'required|email|max:255',
         ]);
 
         $user->name = $request->input('name');
         $user->email = $request->input('email');
+        $user->phoneNumber = $request->input('phoneNumber');
         // Update other fields as needed
-        $user->save();
+        $request->user()->save();
 
         // Optionally, you can update the addresses here if needed.
 
-        return redirect()->route('profile.index');
+        return redirect()->route('profile.index')->with('success', 'Profile updated successfully.');
     }
-    public function destroy()
+    public function destroy(Request $request)
     {
-        $user = Auth::user();
+        $request->validate([
+            'password' => ['required', 'current-password'],
+        ]);
+        $user = $request->user();
+        Auth::guard('web')->logout();
+        // $user = Auth::user();
         $user->delete();
 
         // Log out the user after deleting their account
-        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
         return redirect()->route('home');
     }

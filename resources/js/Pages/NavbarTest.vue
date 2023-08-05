@@ -35,67 +35,27 @@
                     <!-- Dropdown menu -->
                 </li>
                 <!--   -->
-                <div @mouseenter="accountAndListFunc(true)" @mouseleave="accountAndListFunc(false)"
-                    class="border-after mt-8 space-x-5 space-y-0 md:flex md:space-y-0 md:mt-0 cursor-pointer">
-                    <div>
-                        <div class="text-[12px]">
-                            <i class="fa fa-fw fa-user"></i>
-                            Hello,
-                            <span v-if="$page.props.auth.user" class="text-[10px] font-extrabold">{{
-                                $page.props.auth.user.name
-                            }}</span>
-                            <span class="text-[12px] font-extrabold" v-else>sign in</span>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="text-[15px]">
-                                Account & List
-                                <i class="fa fa-caret-down text-gray-400" aria-hidden="true"></i>
-                            </div>
-                        </div>
+                <div class="mt-8 space-x-5 space-y-0 md:flex md:space-y-0 md:mt-0 cursor-pointer relative">
+                    <div @click="accountAndListFunc(!accountAndList)" class="text-[12px]">
+                        <i class="fa fa-fw fa-user"></i>
+                        Hello,
+                        <span v-if="$page.props.auth.user" class="text-[10px] font-extrabold">
+                            {{ $page.props.auth.user.name }}
+                        </span>
+                        <span class="text-[12px] font-extrabold" v-else>sign in</span>
+                        <i class="fa fa-caret-down text-gray-400" aria-hidden="true"></i>
                     </div>
                     <div v-if="accountAndList"
-                        class="bg-white md:mt-10 border-after absolute border-[2px] hover:drop-shadow-sm border-gray-600 shadow-sm top-[70px]  rounded-sm px-6 box-media">
-                        <div v-if="$page.props.auth.user">
-                            <div class="flex items-center justify-between py-2.5 text-media">
-
-                            </div>
-                            <div class=" flex-col md:flex-row">
-                                <div class="w-full md:w-1/2 ">
-                                    <div class="pb-3">
-
-                                        <Link :href="route('logout')" method="post" as="button"
-                                            class="btn btn-primary text-sm bg-gray-500 hover:bg-red-600  hover:text-white-600 ">
-                                        SignOut
-                                        </Link>
-
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div v-else>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="border-after mt-8 space-x-5 space-y-0 md:flex md:space-y-0 md:mt-0 cursor-pointer">
-                    <div>
-                        <div class="text-[12px]">
-                            <i class="fa fa-shopping-cart text-[20]" aria-hidden="true"></i>
-                            Return
-                        </div>
-                        <div class="flex items-center">
-                            <div class="text-[15px]">
-                                &Order
-                                <i class="fa fa-caret-down text-gray-400" aria-hidden="true"></i>
-                            </div>
-                        </div>
+                        class="bg-white flex border-[1px] pt-3   shadow  box-media absolute top-[100%] left-0 z-10">
+                        <Link :href="route('logout')" method="post" as="button"
+                            class="btn btn-primary text-sm bg-gray-500 hover:bg-red-600  hover:text-white-600 ">
+                        SignOut
+                        </Link>
                     </div>
                 </div>
 
                 <!--Social Media-->
-                <div class="border-after mt-8 space-x-5 space-y-0 md:flex md:space-y-0 md:mt-0 cursor-pointer">
+                <!-- <div class="border-after mt-8 space-x-5 space-y-0 md:flex md:space-y-0 md:mt-0 cursor-pointer">
                     <a href="#" class="cool-link navbar-text" target="_self">
                         <i class="fa fa-twitter" aria-hidden="true"></i>
                     </a>
@@ -108,7 +68,7 @@
                     <a href="#" class="cool-link navbar-text">
                         <i class="fa fa-google-plus" aria-hidden="true"></i>
                     </a>
-                </div>
+                </div> -->
             </ul>
         </nav>
     </div>

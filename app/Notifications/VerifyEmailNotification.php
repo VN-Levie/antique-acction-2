@@ -31,4 +31,5 @@ class VerifyEmailNotification extends VerifyEmail
             ->action(Lang::get('Verify Email Address'), $verificationUrl)
             ->line(Lang::get('If you did not create an account, no further action is required.'));
     }
+  
 }
