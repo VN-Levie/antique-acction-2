@@ -177,10 +177,30 @@ class ProductController extends Controller
 
         return Inertia::render('Home/Sessions/Show', $data);
     }
-    public function view(Request $request, $id = null)
+    public function view(Request $request, $session_slug = null, $id = null)
     {
+        if ($session_slug == null) {
+            abort(404);
+        }
+        if($id == null && $session_slug != null){
+            abort(404);
+        }
+        $session = Session::where('slug', $session_slug)->first();
+        if($session == null){
+            abort(404);
+        }
+        $models = ['session'];
+        $product = Product::with($models)
+        ->where('id', $id)
+        ->where('auction_id', $session->id)
+        ->first();
+        if($product == null){
+            abort(404);
+        }
+        $data = [
+            'product' => $product,
+        ];
 
-
-        return 'ok';
+        return Inertia::render('Home/Products/Show', $data);
     }
 }

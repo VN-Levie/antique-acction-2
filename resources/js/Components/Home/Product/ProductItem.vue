@@ -26,7 +26,14 @@
               </Link>
             </p>
             <h3 class="product-name">
-              <Link>
+              <Link
+                :href="
+                  route('product.view', {
+                    session_slug: product.session.slug,
+                    id: product.id,
+                  })
+                "
+              >
                 {{ product.name }}
               </Link>
             </h3>
@@ -45,7 +52,7 @@
                 }}
               </span>
             </p>
-            <p >
+            <p>
               <span class="text-product-estimate">
                 Last Bid: ${{
                   new Intl.NumberFormat("en-IN", {
@@ -65,7 +72,15 @@
             </p>
           </div>
           <div class="col-6 col-md-6">
-            <Link class="btn btn-auction btn-sm float-end">
+            <Link
+              :href="
+                route('product.view', {
+                  session_slug: product.session.slug,
+                  id: product.id,
+                })
+              "
+              class="btn btn-auction btn-sm float-end"
+            >
               Bid Now
             </Link>
           </div>

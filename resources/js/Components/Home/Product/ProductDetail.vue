@@ -1,5 +1,337 @@
 <template>
     <div class="container-fluid session-detail-section bg-white">
+        <div class="row">
+               <div class="col-md-4">
+                    <div class="ecommerce-gallery" data-mdb-zoom-effect="true" data-mdb-auto-height="true">
+                         <div class="row py-3 shadow-5">
+                              <div class="col-12 mb-1">
+                                   <div class="lightbox">
+                                        <img onclick="zoom(this)" src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Vertical/14a.webp" alt="Gallery image 1"
+                                             class="ecommerce-gallery-main-img active w-100 " data-action="zoom" id="main_img" />
+                                   </div>
+                              </div>
+                              <div class="col-12">
+                                   <div class="row list-img-sp">
+                                        <div class="col-3 mt-1">
+                                             <img onclick="changeimg(this)" src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Vertical/14a.webp" alt="Gallery image 1"
+                                                  class="active w-100 img-eff" />
+                                        </div>
+                                        <div class="col-3 mt-1">
+                                             <img onclick="changeimg(this)" src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Vertical/12a.webp" alt="Gallery image 2" class="w-100 img-eff" />
+                                        </div>
+                                        <div class="col-3 mt-1">
+                                             <img onclick="changeimg(this)" src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Vertical/13a.webp" class="w-100 img-eff" />
+                                        </div>
+                                        <div class="col-3 mt-1">
+                                             <img onclick="changeimg(this)" src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Vertical/15a.webp" alt="Gallery image 4" class="w-100 img-eff" />
+                                        </div>
+                                        <div class="col-3 mt-1">
+                                             <img onclick="changeimg(this)" src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Vertical/15a.webp" alt="Gallery image 4" class="w-100 img-eff" />
+                                        </div>
+                                        <div class="col-3 mt-1">
+                                             <img onclick="changeimg(this)" src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Vertical/15a.webp" alt="Gallery image 4" class="w-100 img-eff" />
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+               <div class="col-md-8 p-5">
+                    <h2 class="sec-title text-capitalize text-center">Rèm vải voan trắng màu</h2>
+                    <div class="row">
+                         <div class="col-12">
+                              <div class="description-sp mt-3">
+                                   <p>Giá bán:
+                                        <span class="sp-price-new">1.000.000đ <span class="sp-price-discount">(-10%)</span></span>
+                                   </p>
+                                   <p>Niêm yết:
+                                        <span class="sp-price-old text-dark">1.000.000đ</span>
+                                   </p>
+                              </div>
+                         </div>
+                         <div class="col-12">
+                              <div class="description-sp mt-3">
+                                   <p>
+                                        Điện thoại đặt hàng và tư vấn:
+                                        <span class="sp-price-new text-center">0123456789</span>
+                                   </p>
+
+                              </div>
+                         </div>
+                         <div class="col-12">
+                              <div class="chinh-sach mt-3">
+                                   <div class="alert alert-info">
+                                        <p class="text-center text-uppercase mt-0">Chính sách bán hàng</p>
+                                        <hr>
+                                        <p class="mt-2">
+                                             <i class="fas fa-truck"></i>
+                                             Miễn phí vận chuyển với đơn hàng trên 500.000đ
+                                        </p>
+                                        <p class="mt-2">
+                                             <i class="fa-solid fa-location-pin-lock"></i>
+                                             Tư vấn thiết kế miễn phí
+                                        </p>
+                                        <p class="mt-2">
+                                             <i class="fa-solid fa-sun"></i>
+                                             Hỗ trợ xem mẫu tại nhà
+                                        </p>
+                                        <p class="mt-2">
+                                             <i class="fa-solid fa-screwdriver-wrench"></i>
+                                             Lắp đặt - thi công tận nơi
+                                        </p>
+                                   </div>
+                              </div>
+                         </div>
+
+                    </div>
+
+               </div>
+
+               <div class="col-12">
+                    <div class="row">
+                         <div class="col-12">
+                              <div class="description-sp mt-3">
+                                   <p class="sec-title  text-uppercase">Thông tin chi tiết sản phẩm</p>
+                                   <hr>
+                                   <div class="des-sp-detail">
+                                        <p>
+                                             Màn vải họa tiết là loại vải mang đậm phong cách châu Á. Màn vải họa tiết không những đẹp mà còn có độ chống nắng cản sáng tốt.
+
+                                             Màn vải họa tiết có nhiều màu sắc và họa tiết phù hợp với phong thủy và phong cách của gia chủ. Màn vải họa tiết vừa đa dạng, vừa sang trọng làm tôn lên đẹp cho
+                                             mọi
+                                             không gian từ phòng khách, phòng ngủ, phòng bé, phòng sinh hoạt chung, tới phòng đọc sách, phòng làm việc.
+                                        </p>
+                                   </div>
+
+
+
+                              </div>
+                         </div>
+                    </div>
+               </div>
+
+               <div class="col-12 mt-5 mb-3">
+                    <div class="row gx-3 gy-3 mt-0">
+                         <h2 class="sec-title text-capitalize">Sản phẩm cùng loại</h2>
+                         <div class="col-md-4 col-sm-6 col-6">
+                              <div class="p-3 sp-item">
+                                   <a href="#">
+                                        <div class="img-list-sp">
+                                             <img src="https://product.hstatic.net/1000145303/product/1._20voan_20tr_c6_a1n_20m_c3_a0u_medium.jpg" alt="" class="img-center img-fill img-list-sp">
+                                        </div>
+                                        <div class="sp-intro-des mt-3">
+                                             <h3 class="sp-name">
+                                                  <a href="#" class="link-sp">
+                                                       Rèm vải voan trắng màu
+                                                  </a>
+                                             </h3>
+                                             <div class="sp-price mt-3">
+                                                  <span class="sp-price-new">1.000.000đ</span>
+                                                  <span class="sp-price-old">1.000.000đ</span>
+                                             </div>
+                                        </div>
+                                   </a>
+
+                              </div>
+                         </div>
+                         <div class="col-md-4 col-sm-6 col-6">
+                              <div class="p-3 sp-item">
+                                   <a href="#">
+                                        <div class="img-list-sp">
+                                             <img src="https://product.hstatic.net/1000145303/product/1._20voan_20tr_c6_a1n_20m_c3_a0u_medium.jpg" alt="" class="img-center img-fill img-list-sp">
+                                        </div>
+                                        <div class="sp-intro-des mt-3">
+                                             <h3 class="sp-name">
+                                                  <a href="#" class="link-sp">
+                                                       Rèm vải voan trắng màu
+                                                  </a>
+                                             </h3>
+                                             <div class="sp-price mt-3">
+                                                  <span class="sp-price-new">1.000.000đ</span>
+                                                  <span class="sp-price-old">1.000.000đ</span>
+                                             </div>
+                                        </div>
+                                   </a>
+
+                              </div>
+                         </div>
+                         <div class="col-md-4 col-sm-6 col-6">
+                              <div class="p-3 sp-item">
+                                   <a href="#">
+                                        <div class="img-list-sp">
+                                             <img src="https://product.hstatic.net/1000145303/product/1._20voan_20tr_c6_a1n_20m_c3_a0u_medium.jpg" alt="" class="img-center img-fill img-list-sp">
+                                        </div>
+                                        <div class="sp-intro-des mt-3">
+                                             <h3 class="sp-name">
+                                                  <a href="#" class="link-sp">
+                                                       Rèm vải voan trắng màu
+                                                  </a>
+                                             </h3>
+                                             <div class="sp-price mt-3">
+                                                  <span class="sp-price-new">1.000.000đ</span>
+                                                  <span class="sp-price-old">1.000.000đ</span>
+                                             </div>
+                                        </div>
+                                   </a>
+
+                              </div>
+                         </div>
+                         <div class="col-md-4 col-sm-6 col-6">
+                              <div class="p-3 sp-item">
+                                   <a href="#">
+                                        <div class="img-list-sp">
+                                             <img src="https://product.hstatic.net/1000145303/product/1._20voan_20tr_c6_a1n_20m_c3_a0u_medium.jpg" alt="" class="img-center img-fill img-list-sp">
+                                        </div>
+                                        <div class="sp-intro-des mt-3">
+                                             <h3 class="sp-name">
+                                                  <a href="#" class="link-sp">
+                                                       Rèm vải voan trắng màu
+                                                  </a>
+                                             </h3>
+                                             <div class="sp-price mt-3">
+                                                  <span class="sp-price-new">1.000.000đ</span>
+                                                  <span class="sp-price-old">1.000.000đ</span>
+                                             </div>
+                                        </div>
+                                   </a>
+
+                              </div>
+                         </div>
+                         <div class="col-md-4 col-sm-6 col-6">
+                              <div class="p-3 sp-item">
+                                   <a href="#">
+                                        <div class="img-list-sp">
+                                             <img src="https://product.hstatic.net/1000145303/product/1._20voan_20tr_c6_a1n_20m_c3_a0u_medium.jpg" alt="" class="img-center img-fill img-list-sp">
+                                        </div>
+                                        <div class="sp-intro-des mt-3">
+                                             <h3 class="sp-name">
+                                                  <a href="#" class="link-sp">
+                                                       Rèm vải voan trắng màu
+                                                  </a>
+                                             </h3>
+                                             <div class="sp-price mt-3">
+                                                  <span class="sp-price-new">1.000.000đ</span>
+                                                  <span class="sp-price-old">1.000.000đ</span>
+                                             </div>
+                                        </div>
+                                   </a>
+
+                              </div>
+                         </div>
+                         <div class="col-md-4 col-sm-6 col-6">
+                              <div class="p-3 sp-item">
+                                   <a href="#">
+                                        <div class="img-list-sp">
+                                             <img src="https://product.hstatic.net/1000145303/product/1._20voan_20tr_c6_a1n_20m_c3_a0u_medium.jpg" alt="" class="img-center img-fill img-list-sp">
+                                        </div>
+                                        <div class="sp-intro-des mt-3">
+                                             <h3 class="sp-name">
+                                                  <a href="#" class="link-sp">
+                                                       Rèm vải voan trắng màu
+                                                  </a>
+                                             </h3>
+                                             <div class="sp-price mt-3">
+                                                  <span class="sp-price-new">1.000.000đ</span>
+                                                  <span class="sp-price-old">1.000.000đ</span>
+                                             </div>
+                                        </div>
+                                   </a>
+
+                              </div>
+                         </div>
+                         <div class="col-md-4 col-sm-6 col-6">
+                              <div class="p-3 sp-item">
+                                   <a href="#">
+                                        <div class="img-list-sp">
+                                             <img src="https://product.hstatic.net/1000145303/product/1._20voan_20tr_c6_a1n_20m_c3_a0u_medium.jpg" alt="" class="img-center img-fill img-list-sp">
+                                        </div>
+                                        <div class="sp-intro-des mt-3">
+                                             <h3 class="sp-name">
+                                                  <a href="#" class="link-sp">
+                                                       Rèm vải voan trắng màu
+                                                  </a>
+                                             </h3>
+                                             <div class="sp-price mt-3">
+                                                  <span class="sp-price-new">1.000.000đ</span>
+                                                  <span class="sp-price-old">1.000.000đ</span>
+                                             </div>
+                                        </div>
+                                   </a>
+
+                              </div>
+                         </div>
+                         <div class="col-md-4 col-sm-6 col-6">
+                              <div class="p-3 sp-item">
+                                   <a href="#">
+                                        <div class="img-list-sp">
+                                             <img src="https://product.hstatic.net/1000145303/product/1._20voan_20tr_c6_a1n_20m_c3_a0u_medium.jpg" alt="" class="img-center img-fill img-list-sp">
+                                        </div>
+                                        <div class="sp-intro-des mt-3">
+                                             <h3 class="sp-name">
+                                                  <a href="#" class="link-sp">
+                                                       Rèm vải voan trắng màu
+                                                  </a>
+                                             </h3>
+                                             <div class="sp-price mt-3">
+                                                  <span class="sp-price-new">1.000.000đ</span>
+                                                  <span class="sp-price-old">1.000.000đ</span>
+                                             </div>
+                                        </div>
+                                   </a>
+
+                              </div>
+                         </div>
+                         <div class="col-md-4 col-sm-6 col-6">
+                              <div class="p-3 sp-item">
+                                   <a href="#">
+                                        <div class="img-list-sp">
+                                             <img src="https://product.hstatic.net/1000145303/product/1._20voan_20tr_c6_a1n_20m_c3_a0u_medium.jpg" alt="" class="img-center img-fill img-list-sp">
+                                        </div>
+                                        <div class="sp-intro-des mt-3">
+                                             <h3 class="sp-name">
+                                                  <a href="#" class="link-sp">
+                                                       Rèm vải voan trắng màu
+                                                  </a>
+                                             </h3>
+                                             <div class="sp-price mt-3">
+                                                  <span class="sp-price-new">1.000.000đ</span>
+                                                  <span class="sp-price-old">1.000.000đ</span>
+                                             </div>
+                                        </div>
+                                   </a>
+
+                              </div>
+                         </div>
+                         <div class="col-md-4 col-sm-6 col-6">
+                              <div class="p-3 sp-item">
+                                   <a href="#">
+                                        <div class="img-list-sp">
+                                             <img src="https://product.hstatic.net/1000145303/product/1._20voan_20tr_c6_a1n_20m_c3_a0u_medium.jpg" alt="" class="img-center img-fill img-list-sp">
+                                        </div>
+                                        <div class="sp-intro-des mt-3">
+                                             <h3 class="sp-name">
+                                                  <a href="#" class="link-sp">
+                                                       Rèm vải voan trắng màu
+                                                  </a>
+                                             </h3>
+                                             <div class="sp-price mt-3">
+                                                  <span class="sp-price-new">1.000.000đ</span>
+                                                  <span class="sp-price-old">1.000.000đ</span>
+                                             </div>
+                                        </div>
+                                   </a>
+
+                              </div>
+                         </div>
+
+
+
+
+
+                    </div>
+               </div>
+
+          </div>
       <div class="row">
         <div class="col-md-8">
           <div class="card">

@@ -90,12 +90,12 @@ Route::group(['prefix' => 'session'], function () {
 Route::group(['prefix' => 'products'], function () {
     // Route::get('/', [ProductController::class, 'index'])->name('product.index');
     Route::get('/{session_slug}/{id}', [ProductController::class, 'view'])
-        ->where(['session_slug' => '[a-z0-9-]+', 'id' => '[a-z0-9-]+'])->name('product.view');
+        ->where(['session_slug' => '[a-z0-9-]+', 'id' => '[0-9]+'])->name('product.view');
     Route::get('/{slug?}', [ProductController::class, 'index'])
         ->where(['slug' => '[a-z0-9-]+'])->name('product.index');
 });
 
 
 Route::middleware(['auth', 'publish.posts'])->group(function () {
-   
+
 });
