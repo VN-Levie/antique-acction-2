@@ -7,7 +7,8 @@
 
     <title inertia>{{ config('app.name', 'Laravel') }}</title>
     <meta charset="utf-8" />
-
+    {{-- CSRF --}}
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="SHORTCUT ICON" href="/img/mt-1804-favicon.ico?_build=1686913647" type="image/vnd.microsoft.icon" />
     <link rel="canonical" href="https://template80059.motopreview.com/" />
     <meta property="og:title" content="Home" />

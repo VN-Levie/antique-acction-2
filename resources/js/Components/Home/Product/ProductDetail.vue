@@ -37,50 +37,77 @@
           {{ product.name }}
         </h2>
         <div class="row">
+          <div class="row">
+            <div></div>
+            <h1>Test</h1>
+            <button class="btn btn-sm btn-success" @click="sendMEss()">
+              Send
+            </button>
+          </div>
           <div class="col-12">
             <div class="description-sp mt-3">
               <p>
                 <span class="text-product-estimate">
                   Est: ${{
                     new Intl.NumberFormat("en-IN", {
-                      maximumSignificantDigits: 3,
+                      maximumSignificantDigits: 20,
                     }).format(JSON.parse(product.estimate).form)
                   }}
                   - ${{
                     new Intl.NumberFormat("en-IN", {
-                      maximumSignificantDigits: 3,
+                      maximumSignificantDigits: 20,
                     }).format(JSON.parse(product.estimate).to)
                   }}
                 </span>
               </p>
               <p>
                 <span class="text-product-estimate">
-                  Last Bid: ${{
+                  Last Bid:
+                  <span
+                    class="text-product-estimate"
+                    v-for="(m, index) in messages"
+                    :key="index"
+                  >
+                    {{
+                      index == messages.length - 1
+                        ? "$" +
+                          new Intl.NumberFormat("en-IN", {
+                            maximumSignificantDigits: 20,
+                          }).format(m.last_bid)
+                        : null
+                    }}
+                  </span>
+                  <!-- ${{
                     new Intl.NumberFormat("en-IN", {
                       maximumSignificantDigits: 3,
                     }).format(product.last_bid)
-                  }}
+                  }} -->
                 </span>
               </p>
             </div>
           </div>
         </div>
         <div class="row mt-3">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="text-center text-uppercase product-description-h3">
-                        bid now
-                    </h3>
-                </div>
-                <div class="card-body">
-                    <form action="#" method="post">
-                        <div class="form-group">
-                            <label for="bid">Bid</label>
-                            <input type="text" class="form-control" id="bid" placeholder="Enter your bid" />
-                        </div>
-                    </form>
-                </div>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="text-center text-uppercase product-description-h3">
+                bid now
+              </h3>
             </div>
+            <div class="card-body">
+              <form action="#" method="post">
+                <div class="form-group">
+                  <label for="bid">Bid</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="bid"
+                    placeholder="Enter your bid"
+                  />
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -101,25 +128,98 @@
       </div>
     </div>
   </div>
+  <div class="row">
+    <form name="createForm" @submit.prevent="submit">
+      <div className="flex flex-col">
+        <div className="mb-4">
+          <label for="title" value="Title" > s</label>
+
+          <input
+            id="title"
+            type="text"
+            class="mt-1 block w-full"
+            v-model="form.title"
+            autofocus
+          />
+
+          <span className="text-red-600" v-if="form.errors.title">
+            {{ form.errors.title }}
+          </span>
+        </div>
+
+        <div className="mb-4">
+          <BreezeLabel for="body" value="Body" />
+
+          <BreezeTextArea
+            id="body"
+            class="mt-1 block w-full"
+            v-model="form.body"
+            autofocus
+          />
+
+          <span className="text-red-600" v-if="form.errors.body">
+            {{ form.errors.body }}
+          </span>
+        </div>
+      </div>
+
+      <div className="mt-4">
+        <button
+          type="submit"
+          className="px-6 py-2 font-bold text-white bg-green-500 rounded"
+        >
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
   <!-- {{ start_at }} -->
 </template>
 
   <script setup>
+
 import { defineProps, inject, ref } from "vue";
-import { Link, router } from "@inertiajs/vue3";
+import { Link, router, useForm } from "@inertiajs/vue3";
 
 import { useAttrs } from "vue";
 import VueMagnifier from "@websitebeaver/vue-magnifier";
 import "@websitebeaver/vue-magnifier/styles.css";
 // Lấy đối tượng attrs
+const form = useForm({
+  title: "",
+  body: "",
+});
 
 const Swal = inject("$swal");
 const props = defineProps({
   product: Object,
   category_name: String,
   auth: Object,
+  messages: Object,
+  pusher: Object,
 });
 
+//get last mess in messages
+const messages = props.messages;
+console.log("messages");
+console.log(messages);
+const submit = async () => {
+    await fetch(route("product.test", {id: 1}), {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "X-Requested-With": "XMLHttpRequest",
+        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]')
+          .content,
+        //   socket_id: props.pusher.socket_id,
+        'X-Socket-Id': props.pusher.connection.socket_id,
+      },
+      body: JSON.stringify(form.data),
+    });
+    console.log(props.pusher.connection.socket_id);
+//   form.post(route("product.test", {id: 1}));
+};
 const product = props.product;
 const imgs = JSON.parse(product.images);
 console.log(typeof imgs);

@@ -93,6 +93,8 @@ Route::group(['prefix' => 'products'], function () {
         ->where(['session_slug' => '[a-z0-9-]+', 'id' => '[0-9]+'])->name('product.view');
     Route::get('/{slug?}', [ProductController::class, 'index'])
         ->where(['slug' => '[a-z0-9-]+'])->name('product.index');
+    Route::post('/{id}', [ProductController::class, 'test'])
+        ->where(['id' => '[0-9]+'])->name('product.test');
 });
 
 

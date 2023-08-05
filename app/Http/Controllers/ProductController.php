@@ -8,6 +8,8 @@ use App\Models\Session;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use App\Models\Product;
+use App\Events\BidSent;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -182,25 +184,57 @@ class ProductController extends Controller
         if ($session_slug == null) {
             abort(404);
         }
-        if($id == null && $session_slug != null){
+        if ($id == null && $session_slug != null) {
             abort(404);
         }
         $session = Session::where('slug', $session_slug)->first();
-        if($session == null){
+        if ($session == null) {
             abort(404);
         }
         $models = ['session'];
         $product = Product::with($models)
-        ->where('id', $id)
-        ->where('auction_id', $session->id)
-        ->first();
-        if($product == null){
+            ->where('id', $id)
+            ->where('auction_id', $session->id)
+            ->first();
+        if ($product == null) {
             abort(404);
         }
         $data = [
             'product' => $product,
         ];
+        // if(Auth::user() != null){
+        //     broadcast(new BidSent(Auth::user(), $product, $session))->toOthers();
+        // }
 
         return Inertia::render('Home/Products/Show', $data);
+    }
+
+    public function test(Request $request, $id = null)
+    {
+        $session = Session::where('id', 1)->first();
+        if ($session == null) {
+            abort(404);
+        }
+        $models = ['session'];
+        $product = Product::with($models)
+            ->where('id', $id)
+            // ->where('auction_id', $session->id)
+            ->first();
+        if ($product == null) {
+            abort(404);
+        }
+        $data = [
+            'product' => $product,
+        ];
+        $a = 'ok';
+        $b = 'ok2';
+        $data_json = [
+            'last_bid' =>  1000,
+        ];
+        $c = json_encode($data_json);
+        $test = broadcast(new BidSent($a, $b, $c));
+        // $test = event(new BidSent($a, $b, $c));
+        // print_r($test);
+        return 'out';
     }
 }
