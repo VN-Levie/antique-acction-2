@@ -24,21 +24,21 @@ class ProductController extends Controller
         //search filter
         $product_name = $request->product_name ?? null;
         $date_start = $request->date_start ?? 'all';
-        if ($date_start != null) {
-            if ($date_start == 'today') {
-                $date_start = date('Y-m-d');
-            } else if ($date_start == 'next_7_days') {
-                $date_start = date('Y-m-d', strtotime('+7 days'));
-            } else if ($date_start == 'next_30_days') {
-                $date_start = date('Y-m-d', strtotime('+30 days'));
-            } else if ($date_start == 'prev_7_days') {
-                $date_start = date('Y-m-d', strtotime('-7 days'));
-            } else if ($date_start == 'prev_30_days') {
-                $date_start = date('Y-m-d', strtotime('-30 days'));
-            } else {
-                $date_start = null;
-            }
-        } // dd($date_start);
+        // if ($date_start != null) {
+        //     if ($date_start == 'today') {
+        //         $date_start = date('Y-m-d');
+        //     } else if ($date_start == 'next_7_days') {
+        //         $date_start = date('Y-m-d', strtotime('+7 days'));
+        //     } else if ($date_start == 'next_30_days') {
+        //         $date_start = date('Y-m-d', strtotime('+30 days'));
+        //     } else if ($date_start == 'prev_7_days') {
+        //         $date_start = date('Y-m-d', strtotime('-7 days'));
+        //     } else if ($date_start == 'prev_30_days') {
+        //         $date_start = date('Y-m-d', strtotime('-30 days'));
+        //     } else {
+        //         $date_start = null;
+        //     }
+        // } // dd($date_start);
         if ($category_slug) {
             $category_name = DB::table('categories')->where('slug', $category_slug)->value('name');
             if ($category_name == null) {
@@ -48,31 +48,58 @@ class ProductController extends Controller
             $products = Product::whereHas('category', function ($query) use ($category_slug) {
                 $query->where('slug', $category_slug);
             })->whereHas('session', function ($query) use ($date_start) {
-                // Thêm điều kiện cho session có ngày bắt đầu là $date_start
                 if ($date_start != null) {
-                    if ($date_start == date('Y-m-d')) {
-                        $query->whereDate('start_at', '=', $date_start);
+                    if ($date_start == 'today') {
+                        $query->whereDate('start_at', '=', date('Y-m-d'));
+                    } elseif ($date_start == 'next_7_days') {
+                        $query = $query->whereDate('start_at', '>=', date('Y-m-d'));
+                        $query = $query->whereDate('start_at', '<=', date('Y-m-d', strtotime('+7 days')));
+                    } elseif ($date_start == 'next_30_days') {
+                        $query = $query->whereDate('start_at', '>=', date('Y-m-d'));
+                        $query = $query->whereDate('start_at', '<=', date('Y-m-d', strtotime('+30 days')));
+                    } elseif ($date_start == 'prev_7_days') {
+                        $query = $query->whereDate('start_at', '<=', date('Y-m-d'));
+                        $query = $query->whereDate('start_at', '>=', date('Y-m-d', strtotime('-7 days')));
+                    } elseif ($date_start == 'prev_30_days') {
+                        $query = $query->whereDate('start_at', '<=', date('Y-m-d'));
+                        $query = $query->whereDate('start_at', '>=', date('Y-m-d', strtotime('-30 days')));
                     } else {
-                        $query->whereDate('start_at', '>=', $date_start);
+                        $query->whereDate('start_at', '>=', date('Y-m-d'));
                     }
+                } else {
+                    $query->whereDate('start_at', '>=', date('Y-m-d'));
                 }
             })->with($models)->when($product_name, function ($query, $product_name) {
                 return $query->where('name', 'like', '%' . $product_name . '%');
-            })->orderBy('created_at', 'desc')->paginate($per_page);
+            })->orderByRaw('(SELECT start_at FROM auction_session WHERE products.auction_id = auction_session.id)')->paginate($per_page);
         } else {
             $category_name = 'All Product';
+            $models = ['session', 'category', 'appraised_by'];
             $products = Product::with($models)->whereHas('session', function ($query) use ($date_start) {
-                // Thêm điều kiện cho session có ngày bắt đầu là $date_start
                 if ($date_start != null) {
-                    if ($date_start == date('Y-m-d')) {
-                        $query->whereDate('start_at', '=', $date_start);
+                    if ($date_start == 'today') {
+                        $query->whereDate('start_at', '=', date('Y-m-d'));
+                    } elseif ($date_start == 'next_7_days') {
+                        $query = $query->whereDate('start_at', '>=', date('Y-m-d'));
+                        $query = $query->whereDate('start_at', '<=', date('Y-m-d', strtotime('+7 days')));
+                    } elseif ($date_start == 'next_30_days') {
+                        $query = $query->whereDate('start_at', '>=', date('Y-m-d'));
+                        $query = $query->whereDate('start_at', '<=', date('Y-m-d', strtotime('+30 days')));
+                    } elseif ($date_start == 'prev_7_days') {
+                        $query = $query->whereDate('start_at', '<=', date('Y-m-d'));
+                        $query = $query->whereDate('start_at', '>=', date('Y-m-d', strtotime('-7 days')));
+                    } elseif ($date_start == 'prev_30_days') {
+                        $query = $query->whereDate('start_at', '<=', date('Y-m-d'));
+                        $query = $query->whereDate('start_at', '>=', date('Y-m-d', strtotime('-30 days')));
                     } else {
-                        $query->whereDate('start_at', '>=', $date_start);
+                        $query->whereDate('start_at', '>=', date('Y-m-d'));
                     }
+                } else {
+                    $query->whereDate('start_at', '>=', date('Y-m-d'));
                 }
-            })->with($models)->when($product_name, function ($query, $product_name) {
+            })->when($product_name, function ($query, $product_name) {
                 return $query->where('name', 'like', '%' . $product_name . '%');
-            })->orderBy('created_at', 'desc')->paginate($per_page);
+            })->orderByRaw('(SELECT start_at FROM auction_session WHERE products.auction_id = auction_session.id)')->paginate($per_page);
         }
         //appends để giữ lại các tham số trên url khi phân trang
         $products->appends($request->all());
@@ -101,12 +128,13 @@ class ProductController extends Controller
         // dd($products);
         // $products->loadCount('products');
         $filter_date = [
-            ['slug' => 'all', 'display_name' => 'All', 'count' => 0],
+            ['slug' => 'all', 'display_name' => 'All Available', 'count' => 0],
+            ['slug' => 'prev_30_days', 'display_name' => 'Last 30 Days', 'count' => $count_month],
+            ['slug' => 'prev_7_days', 'display_name' => 'Last 7 Days', 'count' => $count_week],
             ['slug' => 'today',  'display_name' => 'Today', 'count' => $count_today],
             ['slug' => 'next_7_days', 'display_name' => 'Next 7 Days', 'count' => $count_week],
-            ['slug' => 'next_30_days', 'display_name' => 'Next Month', 'count' => $count_month],
-            ['slug' => 'prev_7_days', 'display_name' => 'Last 7 Days', 'count' => $count_week],
-            ['slug' => 'prev_30_days', 'display_name' => 'This Month', 'count' => $count_month],
+            ['slug' => 'next_30_days', 'display_name' => 'Next 30 Days', 'count' => $count_month],
+
 
         ];
         $models = ['products'];

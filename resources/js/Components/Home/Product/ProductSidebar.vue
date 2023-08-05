@@ -27,6 +27,41 @@
       <!-- {{ route().params.slug }} -->
     </div>
     <div class="session-category">
+      <h2 class="text-center text-capitalize">search</h2>
+      <div class="row">
+        <form
+          :action="
+            route('product.index', {
+              slug: route().params.slug,
+              date_start: route().params.date_start,
+              product_name: route().params.product_name,
+            })
+          "
+          class="mb-3"
+        >
+          <div class="form-group">
+            <label for="product_name">Product Name</label>
+            <input
+              type="text"
+              class="form-control rounded"
+              id="product_name"
+              name="product_name"
+              placeholder="Product Name"
+              :value="route().params.product_name"
+            />
+            <Link
+              :href="
+                route('product.index', {
+                  slug: route().params.slug,
+                  date_start: route().params.date_start,
+                  product_name: null,
+                })
+              "
+              >Clear</Link
+            >
+          </div>
+        </form>
+      </div>
       <h2 class="text-center text-capitalize">filter</h2>
       <ul>
         <li v-for="item in filter_date" v-bind:key="item.id">
@@ -35,9 +70,12 @@
               route('product.index', {
                 slug: route().params.slug,
                 date_start: item.slug,
+                product_name: route().params.product_name,
               })
             "
-            :class="{ 'category-active': route().params.date_start == item.slug }"
+            :class="{
+              'category-active': route().params.date_start == item.slug,
+            }"
             class="category-link"
           >
             {{ item.display_name }}
@@ -86,10 +124,47 @@
         <div class="categorys-mobile-arrow">→</div>
       </div>
     </div>
-
   </div>
-   <div class="col-12 d-block d-md-none session-category">
+  <div class="col-12 d-block d-md-none session-category">
     <div class="row mt-3 text-center">
+      <div class="col-12">
+        <h2 class="text-center text-capitalize">search</h2>
+      </div>
+      <div class="row">
+        <form
+          :action="
+            route('product.index', {
+              slug: route().params.slug,
+              date_start: route().params.date_start,
+              product_name: route().params.product_name,
+            })
+          "
+          class="mb-3"
+        >
+          <div class="form-group">
+            <label for="product_name">Product Name</label>
+            <input
+              type="text"
+              class="form-control rounded"
+              id="product_name"
+              name="product_name"
+              placeholder="Product Name"
+              :value="route().params.product_name"
+            />
+            <Link
+              :href="
+                route('product.index', {
+                  slug: route().params.slug,
+                  date_start: route().params.date_start,
+                  product_name: null,
+                })
+              "
+              >Clear</Link
+            >
+          </div>
+        </form>
+      </div>
+
       <div class="col-12">
         <h2 class="text-center text-capitalize">filter</h2>
       </div>
@@ -107,7 +182,9 @@
                 date_start: item.slug,
               })
             "
-            :class="{ 'category-active': route().params.date_start == item.slug }"
+            :class="{
+              'category-active': route().params.date_start == item.slug,
+            }"
             class="category-link"
             ref="activeLink"
           >
@@ -118,8 +195,7 @@
       <div class="col-2">
         <div class="categorys-mobile-arrow">→</div>
       </div>
-     </div>
-
+    </div>
   </div>
 </template>
 <script setup>

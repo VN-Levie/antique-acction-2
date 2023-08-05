@@ -5,7 +5,7 @@
         {{ category_name }}
       </h2>
       <div class="container list-product">
-        <div class="row">
+        <div class="row" v-if="products.length > 0">
           <div
             v-for="product in products"
             v-bind:key="product.id"
@@ -14,9 +14,14 @@
             <ProductItem :product="product" />
           </div>
         </div>
+        <div class="row" v-else>
+          <div class="col-md-12">
+            <p class="alert alert-auction text-center">No products found.</p>
+          </div>
+        </div>
       </div>
 
-      <ul class="pagination justify-center bottom-0 product-pagination">
+      <ul class="pagination justify-center bottom-0 product-pagination" v-if="products.length > 0">
         <li
           v-for="page in links"
           v-bind:key="page"
@@ -95,5 +100,15 @@ console.log(props.products);
   font-weight: bold;
   background-color: #634236c9;
   border-radius: 5px;
+}
+.alert-auction{
+    background-color: #63423657;
+    font-family: "Smythe", cursive;
+    font-size: 20px;
+    color: #634236;
+    font-weight: bold;
+}
+.product-sidebar-hr{
+    border: 1px solid #634236;
 }
 </style>

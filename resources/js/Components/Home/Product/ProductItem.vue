@@ -21,18 +21,39 @@
         <div class="col-md-8">
           <div class="products-list-item">
             <p class="category-name-in-product">
-                 <Link
-                 :href="route('product.index', product.category.slug)"
-                 >
-                 # {{ product.category.name }}
-                </Link>
-                </p>
+              <Link :href="route('product.index', product.category.slug)">
+                # {{ product.category.name }}
+              </Link>
+            </p>
             <h3 class="product-name">
               <Link>
                 {{ product.name }}
               </Link>
             </h3>
-            <p>{{ product.description }}</p>
+            <p>{{ product.description.slice(0, 100) + "..." }}</p>
+            <p>
+              <span class="text-product-estimate">
+                Est: ${{
+                  new Intl.NumberFormat("en-IN", {
+                    maximumSignificantDigits: 3,
+                  }).format(JSON.parse(product.estimate).form)
+                }}
+                - ${{
+                  new Intl.NumberFormat("en-IN", {
+                    maximumSignificantDigits: 3,
+                  }).format(JSON.parse(product.estimate).to)
+                }}
+              </span>
+            </p>
+            <p >
+              <span class="text-product-estimate">
+                Last Bid: ${{
+                  new Intl.NumberFormat("en-IN", {
+                    maximumSignificantDigits: 3,
+                  }).format(product.last_bid)
+                }}
+              </span>
+            </p>
           </div>
         </div>
       </div>
@@ -45,7 +66,7 @@
           </div>
           <div class="col-6 col-md-6">
             <Link class="btn btn-auction btn-sm float-end">
-              Product Detail
+              Bid Now
             </Link>
           </div>
         </div>
@@ -205,17 +226,16 @@ function getDisplayDate(date_string) {
 .session-name-in-product-item {
   font-size: 0.9rem;
 }
-.product-name a{
+.product-name a {
   font-size: 1.2rem;
   color: #634236;
   overflow: hidden;
   font-weight: bold;
 }
-.category-name-in-product{
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #634236d8;
-    margin-bottom: 0;
+.category-name-in-product {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #634236d8;
+  margin-bottom: 0;
 }
-
 </style>

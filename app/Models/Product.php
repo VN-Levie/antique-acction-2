@@ -15,7 +15,7 @@ class Product extends Model
     //mỗi sản phẩm chỉ thuộc 1 phiên đấu giá
     public function session()
     {
-        return $this->belongsTo(Session::class, 'auction_id');
+        return $this->belongsTo(Session::class, 'auction_id')->orderBy('auction_session.start_at', 'desc');
     }
 
     //mỗi sản phẩm chỉ thuộc 1 danh mục
