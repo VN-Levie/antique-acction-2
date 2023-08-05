@@ -40,7 +40,7 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
-        $models = ['addresses'];
+        $models = ['addresses','roles'];
         if (Auth::guest()) {
             $user = null;
         } else {

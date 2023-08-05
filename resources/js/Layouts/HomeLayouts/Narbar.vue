@@ -136,7 +136,10 @@
                     <div>
                       <i class="fa fa-map-marker" aria-hidden="true"></i>
                       <a
-                        v-if="$page.props.auth.user.addresses  && $page.props.auth.user.addresses.length > 0"
+                        v-if="
+                          $page.props.auth.user.addresses &&
+                          $page.props.auth.user.addresses.length > 0
+                        "
                         class="text-sm hover:text-red-600 hover:underline pl-1 pt-3"
                       >
                         {{ $page.props.auth.user.addresses[0].address1 }},
@@ -160,20 +163,35 @@
                     >
                       Your Account
                     </div>
+
                     <div>
                       <Link
                         :href="route('profile.index')"
-                        class="text-sm hover:text-red-600 hover:underline pt-3"
+                        class="text-sm hover:text-red-600 hover:underline"
                         >Account
                       </Link>
                     </div>
-                    <Link
-                      :href="route('logout')"
-                      method="post"
-                      as="button"
-                      class="text-sm hover:text-red-600 hover:underline pt-3"
-                      >SignOut
-                    </Link>
+                    <div
+                      v-if="
+                        $page.props.auth.user.roles.name != null &&
+                        $page.props.auth.user.roles.name != 'user'
+                      "
+                    >
+                      <Link
+                        :href="route('dashboard')"
+                        class="text-sm hover:text-red-600 hover:underline"
+                        >Dashboard
+                      </Link>
+                    </div>
+                    <div>
+                      <Link
+                        :href="route('logout')"
+                        method="post"
+                        as="button"
+                        class="text-sm hover:text-red-600 hover:underline"
+                        >SignOut
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
