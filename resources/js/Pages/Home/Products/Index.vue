@@ -1,8 +1,8 @@
 
 
 <template>
-    <HomeLayout title="Browser Session">
-      <div class="container-fluid rounded p-5">
+    <HomeLayout title="Our Products">
+      <div class="container rounded mt-5">
         <div class="row">
           <Sidebar :product-categories="product_categories" :count="count" :filter_date="filter_date" />
           <ListSession

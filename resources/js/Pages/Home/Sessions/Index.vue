@@ -2,7 +2,7 @@
 
 <template>
   <HomeLayout title="Browser Session">
-    <div class="container-fluid rounded p-5">
+    <div class="container rounded mt-5">
       <div class="row">
         <Sidebar :product-categories="product_categories" :count="count" />
         <ListSession

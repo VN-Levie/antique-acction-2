@@ -2,7 +2,7 @@
   <div class="product-item bg-white">
     <div class="card">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-xl-4">
           <Link
             :href="
               route('product.view', {
@@ -18,7 +18,7 @@
             />
           </Link>
         </div>
-        <div class="col-md-8">
+        <div class="col-xl-8">
           <div class="products-list-item">
             <p class="category-name-in-product">
               <Link :href="route('product.index', product.category.slug)">
@@ -30,7 +30,7 @@
                 {{ product.name }}
               </Link>
             </h3>
-            <p>{{ product.description.slice(0, 100) + "..." }}</p>
+            <p>{{ product.description.slice(0, 85) + "..." }}</p>
             <p>
               <span class="text-product-estimate">
                 Est: ${{
@@ -163,7 +163,12 @@ function getDisplayDate(date_string) {
   white-space: nowrap;
   /* width: 300px; */
 }
-
+.list-categorys-mobile-2 {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  /* width: 300px; */
+}
 .categorys-mobile {
   display: inline-block;
 
@@ -172,6 +177,11 @@ function getDisplayDate(date_string) {
   border-radius: 5px;
 }
 .list-categorys-mobile::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.5);
+}
+.list-categorys-mobile-2::-webkit-scrollbar-thumb {
   border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.5);

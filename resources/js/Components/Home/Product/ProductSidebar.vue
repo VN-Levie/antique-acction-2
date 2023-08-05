@@ -19,6 +19,7 @@
             :href="route('product.index', item.slug)"
             :class="{ 'category-active': route().params.slug == item.slug }"
             class="category-link"
+            :id="item.slug"
           >
             {{ item.name }} ({{ item.products_count }})
           </Link>
@@ -105,10 +106,12 @@
             All Session Available ({{ count }})
           </Link>
         </div>
+
         <div
           v-for="item in productCategories"
           v-bind:key="item.id"
           class="categorys-mobile"
+          :id="item.slug"
         >
           <Link
             :href="route('product.index', item.slug)"
@@ -121,7 +124,7 @@
         </div>
       </div>
       <div class="col-2">
-        <div class="categorys-mobile-arrow">→</div>
+        <div class="categorys-mobile-arrow" @click="scroll_right()">→</div>
       </div>
     </div>
   </div>
@@ -169,7 +172,7 @@
         <h2 class="text-center text-capitalize">filter</h2>
       </div>
 
-      <div class="col-10 list-categorys-mobile">
+      <div class="col-10 list-categorys-mobile-2">
         <div
           v-for="item in filter_date"
           v-bind:key="item.id"
@@ -193,7 +196,7 @@
         </div>
       </div>
       <div class="col-2">
-        <div class="categorys-mobile-arrow">→</div>
+        <div class="categorys-mobile-arrow" @click="scroll_right_2()">→</div>
       </div>
     </div>
   </div>
@@ -209,7 +212,8 @@ const props = defineProps({
 });
 const productCategories = props.productCategories;
 const count = props.count;
-
+var last_cate_pos = 0;
+var last_cate_pos_2 = 0;
 const activeLink = ref(null);
 
 function goToActiveLink() {
@@ -222,6 +226,30 @@ function goToActiveLink() {
   });
 }
 goToActiveLink();
+function scroll_left() {
+  let content = document.querySelector(".list-categorys-mobile");
+  content.scrollLeft -= 50;
+  console.log(content.scrollLeft);
+}
+function scroll_right() {
+  let content = document.querySelector(".list-categorys-mobile");
+  content.scrollLeft += 50;
+  last_cate_pos = content.scrollLeft;
+}
+function scroll_left_2() {
+  let content = document.querySelector(".list-categorys-mobile");
+  content.scrollLeft -= 50;
+  if (content.scrollLeft < 0) {
+    content.scrollLeft = 0;
+  }
+  console.log(content.scrollLeft);
+}
+function scroll_right_2() {
+  let content = document.querySelector(".list-categorys-mobile-2");
+  content.scrollLeft += 50;
+  last_cate_pos_2 = content.scrollLeft;
+}
+
 </script>
 <style>
 .session-category {
