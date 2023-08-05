@@ -209,16 +209,13 @@ class ProductController extends Controller
         return Inertia::render('Home/Products/Show', $data);
     }
 
-    public function test(Request $request, $id = null)
+    public function test(Request $request, $id = null, $bid = null)
     {
-        $session = Session::where('id', 1)->first();
-        if ($session == null) {
-            abort(404);
-        }
+        $bid = $request->bid;
+
         $models = ['session'];
         $product = Product::with($models)
             ->where('id', $id)
-            // ->where('auction_id', $session->id)
             ->first();
         if ($product == null) {
             abort(404);
@@ -232,9 +229,9 @@ class ProductController extends Controller
             'last_bid' =>  1000,
         ];
         $c = json_encode($data_json);
-        $test = broadcast(new BidSent($a, $b, $c));
+        $test = broadcast(new BidSent(Auth::user(), $product, $product->session, $bid));
         // $test = event(new BidSent($a, $b, $c));
-        // print_r($test);
-        return 'out';
+        // dd($request);
+        return $request;
     }
 }

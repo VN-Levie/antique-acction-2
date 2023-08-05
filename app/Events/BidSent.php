@@ -20,36 +20,40 @@ class BidSent implements ShouldBroadcast
     public $user;
     public $product;
     public $session;
+    public $last_bid;
 
     /**
      * Create a new event instance.
      */
-    public function __construct(string $user, string $product, $session)
+    public function __construct(User $user, Product $product, Session $session, int $last_bid)
     {
         $this->user = $user;
         $this->product = $product;
         $this->session = $session;
+        $this->last_bid = $last_bid;
     }
 
+
+    // Channel name
     public function broadcastOn()
     {
         return new Channel('bid-sent');
     }
 
-
+    // Event name
     public function broadcastAs()
     {
         return 'bid-sent';
     }
 
+    // Event data
     public function broadcastWith()
     {
         return [
-            'last_bid' => 33333,
+            // 'user' => $this->user,
+            // 'product' => $this->product,
+            // 'session' => $this->session,
+            'last_bid' => $this->last_bid,
         ];
     }
-
-
-
-
 }
