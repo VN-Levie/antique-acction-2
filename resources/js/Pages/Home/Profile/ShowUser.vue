@@ -1,4 +1,4 @@
-<template>
+<template>  
     <Head title="profile" />
     <navbar />
     <!--Click Verrifation-->
@@ -14,9 +14,8 @@
             </div>
         </form> -->
         <form @submit.prevent="submit">
-            <div class="mt-4 font-extrabold text-red-700 hover:text-blue-500 flex items-center justify-center">
-                Account not Active ! Please click this->
-
+            <div class="mt-4 alert alert-danger text-red-600 hover:text-blue-800 flex items-center justify-center">
+                We have already sent you the verification link. Please check your email or click here to resend the link ->
                 <PrimaryButton :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing || verificationLinkSent" @click="sendVerificationLink">
                     {{ buttonText }}
@@ -149,7 +148,7 @@
                             an
                             address
                         </div>
-                        <div class="col-sm-9 text-secondary p-2" v-else>
+                        <div v-if="!$page.props.user.addresses[0]" class="col-sm-9 text-secondary p-2">
                             <Link class="" :href="route('address.show')">
                             <div>
                                 <a class="text-[20px] font-extrabold">+ <span>Add Address</span></a>

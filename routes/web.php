@@ -13,8 +13,11 @@ use App\Http\Controllers\OderCartController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\AppraiserController;
+use App\Http\Controllers\Auth\PasswordController as AuthPasswordController;
+use App\Http\Controllers\PasswordController;
 use App\Models\Session;
 use Illuminate\Support\Facades\Auth;
+use Mockery\Generator\StringManipulation\Pass\Pass;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,7 +72,6 @@ Route::group([
     });
 });
 
-
 Route::group(['prefix' => 'news'], function () {
     Route::get('/{slug}/{news_slug}', [NewsController::class, 'Detailpost'])
         ->where(['slug' => '[a-zA-Z0-9-]+', 'news_slug' => '[a-zA-Z0-9-]+'])->name('news.Detail');
@@ -99,5 +101,4 @@ Route::group(['prefix' => 'products'], function () {
 
 
 Route::middleware(['auth', 'publish.posts'])->group(function () {
-
 });

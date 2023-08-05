@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Validation\Rule;
 
 class ProfileController extends Controller
 {
@@ -16,9 +21,6 @@ class ProfileController extends Controller
     public function index()
     {
         $user = Auth::user();
-
-
-
         return Inertia::render('Home/Profile/ShowUser', [
             'user' => $user,
             'address' => $user->addresses, // Assuming you want to pass the first address of the user
@@ -43,6 +45,8 @@ class ProfileController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
+            'phoneNumber' => 'required|numeric|min:10',
+
         ]);
 
         $user->name = $request->input('name');
@@ -55,6 +59,7 @@ class ProfileController extends Controller
 
         return redirect()->route('profile.index')->with('success', 'Profile updated successfully.');
     }
+
     public function destroy(Request $request)
     {
         $request->validate([

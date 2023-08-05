@@ -47,7 +47,7 @@ import PlusIcon from 'vue-material-design-icons/Plus.vue';
 const form = useForm({
     name: usePage().props.auth.user.name,
     email: usePage().props.auth.user.email,
-    phone: usePage().props.auth.user.phoneNumber,
+    phoneNumber: usePage().props.auth.user.phoneNumber,
 });
 
 

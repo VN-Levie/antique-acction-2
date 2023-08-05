@@ -2,6 +2,8 @@
     <Head title="profile" />
     <navbar />
     <div>
+        <!--Avatar-->
+        <AvatarUser />
         <!--Profile-->
         <UpdateProfileUser />
 
@@ -18,7 +20,7 @@ import Navbar from '../Narbar.vue'
 import UpdatePasswordUser from './EditProfile/UpdatePasswordUser.vue'
 import UpdateProfileUser from './EditProfile/UpdateProfileUser.vue'
 import DeleteUser from './EditProfile/DeleteUser.vue'
-
+import AvatarUser from './EditProfile/AvatarUser.vue'
 
 </script>
 <style>

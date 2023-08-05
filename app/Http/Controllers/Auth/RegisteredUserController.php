@@ -39,8 +39,6 @@ class RegisteredUserController extends Controller implements MustVerifyEmail
             'phoneNumber' => $request->phoneNumber,
             'password' => Hash::make($request->password),
         ]);
-
-        $user->sendEmailVerificationNotification();
         event(new Registered($user));
         Auth::login($user);
         return redirect(RouteServiceProvider::HOME);
