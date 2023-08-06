@@ -13,7 +13,9 @@
             class="team-member-image rounded"
           />
           <h2 class="mt-2">{{ member.name }}</h2>
-          <h3 class="m-2"><strong>Biography: </strong>{{ member.biography }}</h3>
+          <h3 class="m-2">
+            <strong>Biography: </strong>{{ member.biography }}
+          </h3>
           <h3 class="m-2"><strong>titles: </strong>{{ member.titles }}</h3>
         </div>
       </div>
@@ -51,12 +53,58 @@ export default defineComponent({
   },
   components: {
     HomeLayout,
+    Link,
   },
-  components: { Link },
 });
 </script>
 
 <style >
+.session-section {
+  /* import font Smythe google */
+
+  /* width: 300px; */
+  /* border: 1px dashed brown; thay đổi kiểu viền thành nét đứt màu nâu */
+  padding: 10px;
+}
+
+.session-section h2 {
+  font-family: "Smythe", cursive;
+  text-align: center;
+  text-transform: uppercase;
+  color: #634236;
+  font-size: 30px;
+}
+.list-session {
+  margin-top: 20px;
+  min-height: 450px;
+}
+.session-pagination {
+  font-family: "Smythe", cursive;
+  margin-top: 20px;
+  border: none;
+}
+.session-page-item {
+  border: none;
+}
+.session-page-link {
+  color: #634236;
+  /* font-size: 20px; */
+  border: none;
+}
+/* session-page-item active */
+.session-page-item.active .session-page-link {
+  background-color: #634236;
+  color: white;
+  border-radius: 5px;
+}
+.session-page-link:hover {
+  color: white;
+  /* font-size: 20px; */
+  border: none;
+  font-weight: bold;
+  background-color: #634236c9;
+  border-radius: 5px;
+}
 .team {
   box-sizing: border-box;
   padding: 20px 0 20px 0;

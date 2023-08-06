@@ -1,22 +1,22 @@
 <template>
   <DashboardLayout>
-    <ListPost :articleList="articleList" />
+    <AppraiserPost :appraiserdata="appraiserdata"/>
   </DashboardLayout>
 </template>
 <script>
 import DashboardLayout from "@/Layouts/DashboardLayout.vue";
-import ListPost from "@/Components/Dashboard/Post/ListPost.vue";
+import AppraiserPost from "@/Components/Dashboard/Appraiser/AppraiserPost.vue";
 import { defineComponent, useAttrs } from "vue";
 import { Link, router } from "@inertiajs/vue3";
 
 export default defineComponent({
   setup() {
     const attrs = useAttrs();
-    const articleList = attrs.Posts;
+    const appraiserdata = attrs.appraiserdata;
 
-    return { articleList };
+    return { appraiserdata };
   },
-  components: { DashboardLayout, ListPost },
+  components: { DashboardLayout, AppraiserPost },
   methods: {},
 });
 </script>
