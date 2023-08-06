@@ -135,10 +135,11 @@
           <label for="title" value="Title" > s</label>
 
           <input
-            id="title"
+            id="bid"
+            name="bid"
             type="text"
             class="mt-1 block w-full"
-            v-model="form.title"
+            v-model="form.bid"
             autofocus
           />
 
@@ -186,7 +187,7 @@ import VueMagnifier from "@websitebeaver/vue-magnifier";
 import "@websitebeaver/vue-magnifier/styles.css";
 // Lấy đối tượng attrs
 const form = useForm({
-  title: "",
+  bid: "",
   body: "",
 });
 
@@ -198,27 +199,53 @@ const props = defineProps({
   messages: Object,
   pusher: Object,
 });
-
-//get last mess in messages
-const messages = props.messages;
-console.log("messages");
-console.log(messages);
+const auth = props.auth;
+const pusher = props.pusher;
 const submit = async () => {
-    await fetch(route("product.test", {id: 1}), {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "X-Requested-With": "XMLHttpRequest",
-        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]')
-          .content,
-        //   socket_id: props.pusher.socket_id,
-        'X-Socket-Id': props.pusher.connection.socket_id,
-      },
-      body: JSON.stringify(form.data),
+  if (auth.user == null) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "You need to login to abid!",
     });
-    console.log(props.pusher.connection.socket_id);
-//   form.post(route("product.test", {id: 1}));
+    return;
+  }
+  if (props.pusher == null) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Something went wrong!",
+      timer: 2000,
+    });
+    return;
+  }
+
+
+  if (form.bid == null) {
+    console.log(form);
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "You need to enter your bid!",
+    });
+    return;
+  }
+  await fetch(route("product.test", { id: 1, bid: form.bid }), {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "X-Requested-With": "XMLHttpRequest",
+      "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content,
+      //   socket_id: props.pusher.socket_id,
+      "X-Socket-Id": pusher.connection.socket_id,
+    },
+    body: {
+      bid: form.bid,
+    },
+  });
+  console.log(pusher.connection.socket_id);
+  //   form.post(route("product.test", {id: 1}));
 };
 const product = props.product;
 const imgs = JSON.parse(product.images);
