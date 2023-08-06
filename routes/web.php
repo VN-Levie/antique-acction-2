@@ -13,6 +13,7 @@ use App\Http\Controllers\OderCartController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\AppraiserController;
+use App\Http\Controllers\NewDashboardController;
 use App\Http\Controllers\Auth\PasswordController as AuthPasswordController;
 use App\Http\Controllers\PasswordController;
 use App\Models\Session;
@@ -46,7 +47,9 @@ Route::group([
     Route::get('/', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
-    Route::group(['prefix' => 'news'], function () {
+    Route::group(['prefix' => 'news', 'middleware' => 'role:admin|editor'], function () {
+        Route::get('/create', [NewDashboardController::class, 'store'])->name('New.Post.Create');
+        Route::get('/{search?}', [NewDashboardController::class, 'index'])->name('New.Dashboard');
     });
 });
 
@@ -97,8 +100,4 @@ Route::group(['prefix' => 'products'], function () {
         ->where(['slug' => '[a-z0-9-]+'])->name('product.index');
     Route::post('/{id}/{bid}', [ProductController::class, 'test'])
         ->where(['id' => '[0-9]+', 'bid' => '[0-9]+'])->name('product.test');
-});
-
-
-Route::middleware(['auth', 'publish.posts'])->group(function () {
 });

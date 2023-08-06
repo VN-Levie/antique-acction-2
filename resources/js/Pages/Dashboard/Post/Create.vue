@@ -1,22 +1,22 @@
 <template>
   <DashboardLayout>
-    <ListPost :articleList="articleList" />
+    <CreatePost :Categories="Categories" />
   </DashboardLayout>
 </template>
 <script>
 import DashboardLayout from "@/Layouts/DashboardLayout.vue";
-import ListPost from "@/Components/Dashboard/Post/ListPost.vue";
+import CreatePost from "@/Components/Dashboard/Post/Createpost.vue";
+
 import { defineComponent, useAttrs } from "vue";
 import { Link, router } from "@inertiajs/vue3";
 
 export default defineComponent({
   setup() {
     const attrs = useAttrs();
-    const articleList = attrs.Posts;
-
-    return { articleList };
+    const Categories = attrs.Categories;
+    return { Categories };
   },
-  components: { DashboardLayout, ListPost },
+  components: { DashboardLayout, CreatePost },
   methods: {},
 });
 </script>
