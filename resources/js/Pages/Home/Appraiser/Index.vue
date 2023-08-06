@@ -53,7 +53,7 @@ export default defineComponent({
   },
   components: {
     HomeLayout,
-    Link
+    Link,
   },
 });
 </script>

@@ -14,6 +14,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\AppraiserController;
 use App\Http\Controllers\NewDashboardController;
+use App\Http\Controllers\AppraiserDashboardController;
 use App\Http\Controllers\Auth\PasswordController as AuthPasswordController;
 use App\Http\Controllers\PasswordController;
 use App\Models\Session;
@@ -50,6 +51,10 @@ Route::group([
     Route::group(['prefix' => 'news', 'middleware' => 'role:admin|editor'], function () {
         Route::get('/create', [NewDashboardController::class, 'store'])->name('New.Post.Create');
         Route::get('/{search?}', [NewDashboardController::class, 'index'])->name('New.Dashboard');
+    });
+    Route::group(['prefix' => 'appraiser', 'middleware' => 'role:admin|appraiser'], function () {
+        Route::get('/create', [AppraiserDashboardController::class, 'store'])->name('appraiser.Post.Create');
+        Route::get('/{search?}', [AppraiserDashboardController::class, 'index'])->name('appraiser.Dashboard');
     });
 });
 
