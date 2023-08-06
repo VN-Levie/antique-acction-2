@@ -14,7 +14,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\AppraiserController;
 use App\Http\Controllers\Auth\PasswordController as AuthPasswordController;
+use App\Http\Controllers\EKYCController;
 use App\Http\Controllers\PasswordController;
+use App\Models\KYC;
 use App\Models\Session;
 use Illuminate\Support\Facades\Auth;
 use Mockery\Generator\StringManipulation\Pass\Pass;
@@ -63,6 +65,8 @@ Route::group([
     Route::get('/update', [ProfileController::class, 'update'])->name('profile.update');
     Route::post('/update', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/delete', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/ekyc', [EKYCController::class, 'index'])->name('KYC.index');
+    Route::post('/ekyc', [EKYCController::class, 'submit'])->name('KYC.submit');
 
     Route::prefix('address')->middleware('verified')->group(function () {
         Route::get('/', [AddressController::class, 'index'])->name('address.index');

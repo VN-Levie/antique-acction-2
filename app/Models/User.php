@@ -31,7 +31,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array<int, string>
      */
     protected $fillable = [
-        'name', 'email', 'phoneNumber', 'password', 'status', 'token',  'addresses', 'role'
+        'name', 'email', 'phoneNumber', 'password', 'status', 'token',  'addresses', 'kyc', 'role',
     ];
 
     /**
@@ -80,6 +80,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function products(): HasMany
     {
         return $this->hasMany(Product::class, 'added_by');
+    }
+    //1 user có 1 Id_cards lấy từ bảng roles
+    public function kyc(): HasMany
+    {
+        return $this->hasMany(KYC::class, 'kyc_id');
     }
 
     //1 user có nhiều phiên đấu giá
