@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('kyc', function (Blueprint $table) {
-            $table->foreign('kyc_id')->references('id')->on('users')->onDelete('cascade');;
+        Schema::table('users', function (Blueprint $table) {
+            $table->unsignedBigInteger('kyc_id')->default(null)->nullable();
+            $table->foreign('kyc_id')->references('id')->on('kyc')->onDelete('set null');;
         });
     }
 
@@ -21,9 +22,11 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('kyc', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //huỷ khóa ngoại
             $table->dropForeign(['user_id']);
+            //huy cot
+            $table->dropColumn('kyc_id');
         });
     }
 };

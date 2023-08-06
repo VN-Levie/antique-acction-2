@@ -82,9 +82,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Product::class, 'added_by');
     }
     //1 user có 1 Id_cards lấy từ bảng roles
-    public function kyc(): HasMany
+    public function kyc(): belongsTo
     {
-        return $this->hasMany(KYC::class, 'kyc_id');
+        return $this->belongsTo(KYC::class, 'kyc_id');
     }
 
     //1 user có nhiều phiên đấu giá

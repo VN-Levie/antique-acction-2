@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('kyc', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('kyc_id')->nullable();
+            // $table->unsignedBigInteger('kyc_id')->nullable();
             $table->string('full_name');
             $table->string('address');
             $table->string('id_card_path');
             $table->string('proof_of_address_path');
-            // $table->unsignedBigInteger('user_id')->default(null)->nullable();
-            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id')->default(null)->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

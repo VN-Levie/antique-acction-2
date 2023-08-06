@@ -52,6 +52,9 @@ class EKYCController extends Controller
             $ekyc->proof_of_address_path = $proofOfAddressPath;
 
             $ekyc->save();
+            $user = User::find(Auth::id());
+            $user->kyc_id = $ekyc->id;
+            $user->save();
 
             return redirect()->route('profile.index')->with('success', 'eKYC successfully.');
         } catch (\Exception $e) {
