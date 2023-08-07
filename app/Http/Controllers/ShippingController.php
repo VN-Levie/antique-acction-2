@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class OderCartController extends Controller
+class ShippingController extends Controller
 {
     public function index()
     {
 
 
-        return Inertia::render('Home/OrderCart/Index');
+        return Inertia::render('Home/Shipping/Index');
     }
 }
