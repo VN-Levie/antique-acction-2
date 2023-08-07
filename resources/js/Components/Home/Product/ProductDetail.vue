@@ -71,7 +71,7 @@
         <div class="row mt-3">
           <!-- Manual Auction and Auto Auction. Using boostrap tabs -->
           <ul class="nav nav-tabs" role="tablist">
-            <!-- <li class="nav-item overview-tab">
+            <li class="nav-item overview-tab">
               <a
                 class="nav-link tabs-title"
                 data-bs-toggle="tab"
@@ -79,7 +79,7 @@
               >
                 Auto Auction
               </a>
-            </li> -->
+            </li>
             <li class="nav-item overview-tab">
               <a
                 class="nav-link tabs-title active"
@@ -113,7 +113,7 @@
                         class="form-control rounded"
                         id="bid"
                         name="bid"
-                        v-model="form.bid"
+
                         autofocus
                         placeholder="Enter your bid increment"
                       />
