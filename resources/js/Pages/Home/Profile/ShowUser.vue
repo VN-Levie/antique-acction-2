@@ -1,7 +1,7 @@
 <template>
-    <h1>{{ $page.props.user }}</h1>
+    <!-- <h1>{{ $page.props.user }}</h1> -->
 
-    <Head title="profile" />
+    <Head :title="$page.props.auth.user.name" />
     <navbar />
     <!--Click Verrifation-->
     <div v-if="$page.props.auth.user.email_verified_at == null">
@@ -17,7 +17,7 @@
         </form> -->
         <form @submit.prevent="submit">
             <div class="mt-4 alert alert-danger text-red-600 hover:text-blue-800 flex items-center justify-center">
-                We have already sent you the verification link. Please check your email or click here to resend the link ->
+                We have already sent you the verification link. Please check your email or click here to resend the link
                 <PrimaryButton :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing || verificationLinkSent" @click="sendVerificationLink">
                     {{ buttonText }}
@@ -304,7 +304,7 @@ const form = useForm({
 
 
 
-//new code 
+//new code
 
 const verificationLinkSent = ref(false);
 const countdown = ref(0);

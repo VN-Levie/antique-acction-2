@@ -34,13 +34,9 @@ const updatePassword = () => {
 </script>
 
 <template>
-    <div class="container rounded bg-white mt-5 mb-5">
 
-        <div class="row">
-            <div class="col-md-3 border-right">
-            </div>
 
-            <form @submit.prevent="updatePassword" class="rounded-lg shadow col-md-5 border-right">
+            <form @submit.prevent="updatePassword" class="rounded-lg col-md-4 ">
                 <div class="p-3 py-5">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="text-right font-extrabold text-[30px]">Password Setting</h4>
@@ -81,8 +77,5 @@ const updatePassword = () => {
                     </div>
                 </div>
             </form>
-        </div>
 
-
-    </div>
 </template>

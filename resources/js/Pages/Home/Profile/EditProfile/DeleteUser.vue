@@ -39,11 +39,9 @@ const closeModal = () => {
 </script>
 
 <template>
-    <div class="container rounded bg-white mt-5 mb-5">
-        <div class="row">
-            <div class="col-md-3 border-right">
-            </div>
-            <div class="col-md-5 rounded-lg shadow border-right">
+
+
+            <div class="col-md-4 rounded-lg border-right">
                 <div class="p-3 py-5">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="text-right font-extrabold text-[30px]">Delete Account</h4>
@@ -90,6 +88,5 @@ const closeModal = () => {
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+
 </template>

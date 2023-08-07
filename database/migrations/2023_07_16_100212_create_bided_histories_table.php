@@ -20,7 +20,6 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('price_bided');
             $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('session_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });

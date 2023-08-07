@@ -191,7 +191,7 @@ class ProductController extends Controller
         if ($session == null) {
             abort(404);
         }
-        $models = ['session'];
+        $models = ['session', 'biddings','last_bid'];
         $product = Product::with($models)
             ->where('id', $id)
             ->where('auction_id', $session->id)
@@ -199,6 +199,7 @@ class ProductController extends Controller
         if ($product == null) {
             abort(404);
         }
+        $product->loadCount('biddings');
         $data = [
             'product' => $product,
         ];
@@ -209,16 +210,19 @@ class ProductController extends Controller
         return Inertia::render('Home/Products/Show', $data);
     }
 
-    public function test(Request $request, $id = null, $bid = null)
+    public function test(Request $request, $id = null)
     {
         $bid = $request->bid;
 
-        $models = ['session'];
+        $models = ['session', 'biddings','last_bid'];
         $product = Product::with($models)
             ->where('id', $id)
             ->first();
+
         if ($product == null) {
-            abort(404);
+            return response()->json([
+                'message' => 'Product not found',
+            ], 404);
         }
         $data = [
             'product' => $product,

@@ -31,7 +31,7 @@ var pusher = new Pusher("12d18941cde2ffd0892e", {
 });
 var channel_name = "bid-sent-" + product.id; //tên sự kiện
 var channel = pusher.subscribe(channel_name); //kênh
-var last_bid = ref(1000);
+var last_bid = ref(attrs.product.start_price);
 var last_uid = ref(0);
 channel.bind(channel_name, function (data) {
   //sự kiện

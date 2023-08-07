@@ -38,4 +38,9 @@ class Product extends Model
     {
         return $this->hasMany(Bidding::class);
     }
+    //last_bid
+    public function last_bid()
+    {
+        return $this->belongsTo(Bidding::class,'last_bid');
+    }
 }

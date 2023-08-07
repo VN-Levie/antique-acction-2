@@ -60,7 +60,9 @@
                       maximumSignificantDigits: 3,
                     }).format(last_bid)
                   }}
-                  {{ last_uid == auth.user.id ? "(You)" : "" }}
+                  <span v-if="auth.user">
+                    {{ last_uid == auth.user.id ? "(You)" : "" }}
+                  </span>
                 </span>
               </p>
             </div>
@@ -118,7 +120,7 @@
                     </div>
                     <div class="form-group">
                       <label for="">When bids go over budget</label>
-                      <br>
+                      <br />
                       <input
                         type="radio"
                         name="acction_over"
@@ -126,8 +128,10 @@
                         class="form-control"
                         checked
                       />
-                      <label for="acction_over_stop" class="p-1"> Remind me via email and stop bidding</label>
-                      <br>
+                      <label for="acction_over_stop" class="p-1">
+                        Remind me via email and stop bidding</label
+                      >
+                      <br />
                       <input
                         type="radio"
                         name="acction_over"
@@ -135,7 +139,10 @@
                         class="form-control"
                       />
 
-                      <label for="acction_over_continue" class="p-1"> Remind me via email and continue bidding (with step increment)</label>
+                      <label for="acction_over_continue" class="p-1">
+                        Remind me via email and continue bidding (with step
+                        increment)</label
+                      >
                     </div>
                     <div class="form-group mt-3">
                       <button class="btn btn-sm btn-success form-control">
@@ -282,7 +289,7 @@ const submit = async () => {
     },
   });
   const response = await fetch(
-    route("product.test", { id: 1, bid: form.bid }),
+    route("product.test", { product_id: product.id, bid: form.bid }),
     {
       method: "POST",
       headers: {
@@ -320,6 +327,25 @@ const submit = async () => {
       icon: "error",
       title: "Oops...",
       text: "Something went wrong!",
+      timer: 2000,
+    });
+    //reload page
+    location.reload();
+  }
+  if (response.status == 404) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Product not found!",
+      timer: 2000,
+    });
+    //reload page
+    // location.reload();
+  } else {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Something went wrong! Try again!",
       timer: 2000,
     });
     //reload page
