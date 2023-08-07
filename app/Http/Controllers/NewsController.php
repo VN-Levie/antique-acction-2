@@ -22,7 +22,7 @@ class NewsController extends Controller
             if (!$category) {
                 abort(404);
             }
-
+            
             $Datanews = Post::where('category', $category->id)
                 ->with('author') // Nạp trước thông tin người tạo bài viết
                 ->with('category')

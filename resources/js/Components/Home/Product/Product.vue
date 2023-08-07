@@ -198,9 +198,16 @@
 </template>
 
 <script setup>
-import { defineProps, inject } from "vue";
+import { defineProps, inject, computed } from "vue";
 import { Link, router } from "@inertiajs/vue3";
 import SessionItem from "./SessionItem.vue";
+
+
+// //thêm add Cart
+// import { useCardStore } from '@/Store/cart';
+// import { storeToRefs } from 'pinia';
+// const { cart } = storeToRefs(cartStore);
+
 
 import { useAttrs } from "vue";
 // Lấy đối tượng attrs
@@ -211,6 +218,19 @@ const props = defineProps({
   category_name: String,
   auth: Object,
 });
+
+// //Add To cart
+// const addToCart = () => {
+//   cart.value.push(product)
+// }
+
+const isAlreadyInCart = computed(() => {
+  let res = cart.value.find(c => c.id === product.value.id)
+  if (res) return true
+  return false
+})
+
+
 
 var currentLocation = window.location;
 const monthNames = [

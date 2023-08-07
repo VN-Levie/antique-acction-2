@@ -1,4 +1,6 @@
-<template>  
+<template>
+    <h1>{{ $page.props.user }}</h1>
+
     <Head title="profile" />
     <navbar />
     <!--Click Verrifation-->
@@ -29,11 +31,17 @@
                 <div class="card-body">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img :src="$page.props.auth.user.profile_photo_url" alt="Admin" class="rounded-circle" width="150">
-                        <div class="mt-2 text-blue-400 hover:text-red-500 cursor-pointer"><i class="fas fa-edit"></i>
-                            Edit Image
-                        </div>
+
                         <div class="mt-3">
-                            <h4 class="font-extrabold">{{ $page.props.auth.user.name }}</h4>
+
+                            <div class="mt-3" v-if="$page.props.user.kyc == null">
+                                <h4 class="font-extrabold">{{ $page.props.auth.user.name }} <i class="fa fa-times"
+                                        aria-hidden="true"></i></h4>
+                            </div>
+                            <div class="" v-else>
+                                <h4 class="font-extrabold">{{ $page.props.auth.user.name }}<i class="fa fa-check-circle-o"
+                                        aria-hidden="true"></i></h4>
+                            </div>
                             <div v-if="$page.props.user.addresses[0] !== undefined">
                                 <p class="text-muted font-size-sm pb-3"> <i class="fa fa-map-marker" aria-hidden="true"></i>
                                     {{
@@ -148,13 +156,29 @@
                             an
                             address
                         </div>
-                        <div v-if="!$page.props.user.addresses[0]" class="col-sm-9 text-secondary p-2">
+                        <div v-else-if="!$page.props.user.addresses[0]" class="col-sm-9 text-secondary p-2">
                             <Link class="" :href="route('address.show')">
                             <div>
                                 <a class="text-[20px] font-extrabold">+ <span>Add Address</span></a>
                             </div>
 
                             </Link>
+
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3 p-3">
+                            <h6 class="mb-0 font-extrabold">KYC</h6>
+                        </div>
+                        <div v-if="$page.props.user.kyc == null" class="col-sm-9 text-secondary p-3">
+                            <Link :href="route('KYC.index')">
+                            <i class="fa fa-exclamation-triangle text-red-600" aria-hidden="true"></i> You Need KYC
+                            </Link>
+                        </div>
+                        <div class="col-sm-9 text-secondary p-3" v-else>
+                            <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                            da KYC thanh cong
                         </div>
                     </div>
                     <hr>

@@ -3,7 +3,7 @@
     <div class="col-md-4 float-right">
       <form
         class="input-group rounded"
-        :action="route('New.Dashboard', { search: searchQuery })"
+        :action="route('appraiser.Dashboard', { search: searchQuery })"
         method="GET"
       >
         <input
@@ -13,7 +13,7 @@
           v-model="searchQuery"
         />
         <span class="input-group-text border-0">
-          <a :href="route('New.Dashboard', { search: searchQuery })"
+          <a :href="route('appraiser.Dashboard', { search: searchQuery })"
             ><i class="fas fa-search"></i
           ></a>
         </span>
@@ -29,23 +29,21 @@
     <table class="table table-striped table-bordered table-sm">
       <thead>
         <tr>
-          <th @click="sort('title')" class="th-sm">Title</th>
-          <th @click="sort('thumbnail')" class="th-sm">thumbnail</th>
-          <th @click="sort('content')" class="th-sm">content</th>
-          <th @click="sortchild('author')" class="th-sm">author</th>
-          <th @click="sortchild('category')" class="th-sm">category</th>
+          <th @click="sort('avatar')" class="th-sm">avatar</th>
+          <th @click="sort('name')" class="th-sm">name</th>
+          <th @click="sort('biography')" class="th-sm">biography</th>
+          <th @click="sort('titles')" class="th-sm">titles</th>
           <th class="th-sm">Created At</th>
           <th class="th-sm">EDIT</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(article, index) in sortedArticles" :key="index">
-          <td class="justify-content-center">{{ article.title }}</td>
-          <td><img :src="article.thumbnail" alt="Thumbnail" width="100" /></td>
-          <td>{{ article.content }}</td>
-          <td>{{ article.author.name }}</td>
-          <td>{{ article.category.name }}</td>
-          <td>{{ formatDate(article.created_at) }}</td>
+        <tr v-for="(apraiser, index) in sortedappraiserdata" :key="index">
+          <td><img :src="apraiser.avatar" alt="Thumbnail" width="100" /></td>
+          <td>{{ apraiser.name }}</td>
+          <td>{{ apraiser.biography }}</td>
+          <td>{{ apraiser.titles }}</td>
+          <td>{{ formatDate(apraiser.created_at) }}</td>
           <td>
             <i class="fa-sharp fa-light fa-pen-to-square"></i>
             <i class="fa-sharp fa-light fa-trash-xmark"></i>
@@ -57,7 +55,7 @@
   <div class="row">
     <ul class="pagination justify-center bottom-0 session-pagination mb-3 mt-3">
       <li
-        v-for="page in articleList.links"
+        v-for="page in appraiserdata.links"
         v-bind:key="page"
         class="page-item session-page-item"
         :class="{ active: page.active }"
@@ -77,27 +75,27 @@ import { Link } from "@inertiajs/vue3";
 
 export default {
   props: {
-    articleList: {
-      type: Object, // Đúng kiểu dữ liệu là Object
-      default: () => [], // k Đúng cú pháp cho giá trị mặc định là một mảng rỗng
+    appraiserdata: {
+      type: Object,
+      default: () => [],
     },
   },
   setup(props) {
-    const sortedArticles = ref([...props.articleList.data]); // Sử dụng props.articleList
+    const sortedappraiserdata = ref([...props.appraiserdata.data]);
     const searchQuery = ref("");
 
     const sort = (column) => {
-      sortedArticles.value = _.sortBy(sortedArticles.value, [column]); // Truyền column vào mảng []
+      sortedappraiserdata.value = _.sortBy(sortedappraiserdata.value, [column]); // Truyền column vào mảng []
     };
     const sortchild = (column) => {
-      sortedArticles.value = _.sortBy(sortedArticles.value, [
+      sortedappraiserdata.value = _.sortBy(sortedappraiserdata.value, [
         (article) =>
           _.get(article, column) && _.get(article, column).name.toLowerCase(),
       ]);
     };
 
     return {
-      sortedArticles,
+      sortedappraiserdata,
       sort,
       sortchild,
       searchQuery,

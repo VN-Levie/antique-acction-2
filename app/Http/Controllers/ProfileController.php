@@ -23,7 +23,8 @@ class ProfileController extends Controller
         $user = Auth::user();
         return Inertia::render('Home/Profile/ShowUser', [
             'user' => $user,
-            'address' => $user->addresses, // Assuming you want to pass the first address of the user
+            'address' => $user->addresses,
+            'kyc' => $user->kyc,
         ]);
     }
 
@@ -31,11 +32,10 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
 
-
-
         return Inertia::render('Home/Profile/Edit', [
             'user' => $user,
             'addresses' => $user->addresses,
+
         ]);
     }
     public function update(Request $request)
