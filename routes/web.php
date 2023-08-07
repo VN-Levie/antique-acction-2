@@ -16,9 +16,11 @@ use App\Http\Controllers\AppraiserController;
 use App\Http\Controllers\NewDashboardController;
 use App\Http\Controllers\AppraiserDashboardController;
 use App\Http\Controllers\Auth\PasswordController as AuthPasswordController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\EKYCController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ShippingController;
 use App\Models\KYC;
 use App\Models\Session;
 use Illuminate\Support\Facades\Auth;
@@ -120,3 +122,6 @@ Route::middleware(['auth', 'publish.posts'])->group(function () {
 });
 
 Route::get('/payment', [PaymentController::class, 'index'])->name('payment.index');
+
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::get('/shipping', [ShippingController::class, 'index'])->name('shipping.index');
