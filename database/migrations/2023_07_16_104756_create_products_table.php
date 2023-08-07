@@ -23,7 +23,7 @@ return new class extends Migration
             $table->json('estimate');
             $table->bigInteger('hammer_price');
             $table->json('images');
-            $table->unsignedBigInteger('last_bid')->nullable();
+            $table->unsignedBigInteger('last_bid_id')->nullable();
             $table->text('lot_location');
             $table->integer('lot_order');
             $table->integer('min_per_bid');

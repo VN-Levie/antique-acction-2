@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Product;
 use App\Events\BidSent;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Bidding;
 
 class ProductController extends Controller
 {
@@ -191,7 +192,7 @@ class ProductController extends Controller
         if ($session == null) {
             abort(404);
         }
-        $models = ['session', 'biddings','last_bid'];
+        $models = ['session', 'biddings', 'last_bid'];
         $product = Product::with($models)
             ->where('id', $id)
             ->where('auction_id', $session->id)
@@ -212,30 +213,63 @@ class ProductController extends Controller
 
     public function test(Request $request, $id = null)
     {
+        $user = Auth::user();
+        if ($user == null) {
+            return response()->json([
+                'status_code' => 'error',
+                'message' => 'You must login to bid',
+            ], 200);
+        }
+        //TODO: check user is verified and ekyc
         $bid = $request->bid;
 
-        $models = ['session', 'biddings','last_bid'];
+        $models = ['session', 'biddings', 'last_bid'];
         $product = Product::with($models)
             ->where('id', $id)
             ->first();
 
         if ($product == null) {
             return response()->json([
+                'status_code' => 'error',
                 'message' => 'Product not found',
             ], 404);
         }
-        $data = [
-            'product' => $product,
-        ];
-        $a = 'ok';
-        $b = 'ok2';
-        $data_json = [
-            'last_bid' =>  1000,
-        ];
-        $c = json_encode($data_json);
-        $test = broadcast(new BidSent(Auth::user(), $product, $product->session, $bid));
-        // $test = event(new BidSent($a, $b, $c));
-        // dd($request);
-        return $request;
+        if ($product->status != 1) {
+            return response()->json([
+                'status_code' => 'error',
+                'message' => 'Product currently not available. Please try again later',
+            ], 200);
+        }
+        if ($bid < $product->start_price) {
+            return response()->json([
+                'status_code' => 'error',
+                'message' => 'Bid must be greater than current price',
+            ], 200);
+        }
+        if ($product->last_bid != null && $bid < $product->last_bid->price_bided) {
+            return response()->json([
+                'status_code' => 'error',
+                'message' => 'Bid must be greater than current price',
+            ], 200);
+        }
+
+        $now = date('Y-m-d H:i:s');
+        $bidding = new Bidding();
+        $bidding->user_id = $user->id;
+        $bidding->product_id = $product->id;
+        $bidding->price_bided = $bid;
+        $bidding->created_at = $now;
+        $bidding->updated_at = $now;
+        $bidding->save();
+
+        $product->last_bid_id = $bidding->id;
+        $product->save();
+
+        broadcast(new BidSent(Auth::user(), $product, $product->session, $bid));
+        return response()->json([
+            'status_code' => 'success',
+            'message' => 'Place bid successfully',
+        ], 200);
+
     }
 }

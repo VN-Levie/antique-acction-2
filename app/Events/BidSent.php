@@ -37,13 +37,13 @@ class BidSent implements ShouldBroadcast
     // Channel name
     public function broadcastOn()
     {
-        return new Channel('bid-sent');
+        return new Channel('bid-sent-' . $this->product->id);
     }
 
     // Event name
     public function broadcastAs()
     {
-        return 'bid-sent';
+        return 'bid-sent-' . $this->product->id;
     }
 
     // Event data
@@ -52,7 +52,7 @@ class BidSent implements ShouldBroadcast
         return [
             // 'user' => $this->user,
             // 'product' => $this->product,
-            // 'session' => $this->session,
+            'last_uid' => $this->user->id,
             'last_bid' => $this->last_bid,
         ];
     }

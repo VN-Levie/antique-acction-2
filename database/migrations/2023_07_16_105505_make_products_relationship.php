@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreign('product_owner')->references('id')->on('product_owners')->onDelete('cascade');
             $table->foreign('belong_era')->references('id')->on('era_and_country')->onDelete('cascade');
             $table->foreign('country')->references('id')->on('era_and_country')->onDelete('cascade');
-            $table->foreign('last_bid')->references('id')->on('bided_histories')->onDelete('set null');
+            $table->foreign('last_bid_id')->references('id')->on('bided_histories')->onDelete('set null');
 
         });
     }
@@ -36,7 +36,7 @@ return new class extends Migration
             $table->dropForeign(['product_owner']);
             $table->dropForeign(['belong_era']);
             $table->dropForeign(['country']);
-            $table->dropForeign(['last_bid']);
+            $table->dropForeign(['last_bid_id']);
 
 
 

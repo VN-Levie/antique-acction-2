@@ -31,11 +31,17 @@ var pusher = new Pusher("12d18941cde2ffd0892e", {
 });
 var channel_name = "bid-sent-" + product.id; //tên sự kiện
 var channel = pusher.subscribe(channel_name); //kênh
-var last_bid = ref(attrs.product.start_price);
+var last_bid = ref(0);
+if(attrs.product.last_bid){
+    last_bid.value = attrs.product.last_bid.price_bided;
+}else{
+    last_bid.value = attrs.product.start_price;
+}
 var last_uid = ref(0);
 channel.bind(channel_name, function (data) {
   //sự kiện
   messages.value.push(data);
+  console.log(data);
   last_bid.value = data.last_bid;
   last_uid.value = data.last_uid;
 });

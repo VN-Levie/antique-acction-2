@@ -21,17 +21,17 @@ class Product extends Model
     //mỗi sản phẩm chỉ thuộc 1 danh mục
     public function category()
     {
-        return $this->belongsTo(Category::class,'category_id');
+        return $this->belongsTo(Category::class, 'category_id');
     }
     //mỗi sản phẩm được tạo mởi 1 người dùng | added_by
     public function user()
     {
-        return $this->belongsTo(User::class,'added_by');
+        return $this->belongsTo(User::class, 'added_by');
     }
     //mỡi sản phẩm chỉ được kiểm duyệt bởi 1 chuyên gia | appraised_by
     public function appraised_by()
     {
-        return $this->belongsTo(Appraiser::class,'appraised_by');
+        return $this->belongsTo(Appraiser::class, 'appraised_by');
     }
     //một sản phẩm có nhiều lượt đấu giá
     public function biddings(): HasMany
@@ -41,6 +41,6 @@ class Product extends Model
     //last_bid
     public function last_bid()
     {
-        return $this->belongsTo(Bidding::class,'last_bid');
+        return $this->belongsTo(Bidding::class);
     }
 }
