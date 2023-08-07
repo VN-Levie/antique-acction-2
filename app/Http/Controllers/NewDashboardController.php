@@ -71,7 +71,6 @@ class NewDashboardController extends Controller
         $post->thumbnail = $thumbnailPath ?? null;
         $post->author = $user->id;
         $post->save();
-
         return redirect()->route('post.index')->with('success', 'add successfully.');;
     }
 }

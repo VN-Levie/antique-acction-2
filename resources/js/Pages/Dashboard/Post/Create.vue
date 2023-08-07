@@ -124,7 +124,7 @@ export default defineComponent({
       formData.append("content", content.value);
       formData.append("thumbnail", thumbnail.value);
 
-      const response = await fetch(route("post.store"), {
+      const response = await fetch("\create", {
         method: "post",
         headers: {
           "X-CSRF-TOKEN": document

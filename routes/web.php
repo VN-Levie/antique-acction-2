@@ -55,8 +55,8 @@ Route::group([
         return Inertia::render('Dashboard');
     })->name('dashboard');
     Route::group(['prefix' => 'news', 'middleware' => 'role:admin|editor'], function () {
-        Route::get('/create', [NewDashboardController::class, 'Create'])->name('post.create');
         Route::post('/create', [NewDashboardController::class, 'store'])->name('post.store');
+        Route::get('/create', [NewDashboardController::class, 'create'])->name('post.create');
         Route::get('/{search?}', [NewDashboardController::class, 'index'])->name('post.index');
     });
     Route::group(['prefix' => 'appraiser', 'middleware' => 'role:admin|appraiser'], function () {
