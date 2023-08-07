@@ -18,6 +18,7 @@ use App\Http\Controllers\AppraiserDashboardController;
 use App\Http\Controllers\Auth\PasswordController as AuthPasswordController;
 use App\Http\Controllers\EKYCController;
 use App\Http\Controllers\PasswordController;
+use App\Http\Controllers\PaymentController;
 use App\Models\KYC;
 use App\Models\Session;
 use Illuminate\Support\Facades\Auth;
@@ -73,6 +74,8 @@ Route::group([
     Route::get('/update', [ProfileController::class, 'update'])->name('profile.update');
     Route::post('/update', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/delete', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/password_update', [ProfileController::class, 'update_password'])->name('profile.update_password');
+    Route::post('/password_update', [ProfileController::class, 'update_password'])->name('profile.update_password');
     Route::get('/ekyc', [EKYCController::class, 'index'])->name('KYC.index');
     Route::post('/ekyc', [EKYCController::class, 'submit'])->name('KYC.submit');
 
@@ -118,3 +121,5 @@ Route::get('test', function () {
     event(new App\Events\StatusLiked('Someone'));
     return "Event has been sent!";
 });
+
+Route::get('/payment', [PaymentController::class, 'index'])->name('payment.index');
