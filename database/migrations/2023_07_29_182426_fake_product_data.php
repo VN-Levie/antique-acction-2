@@ -59,7 +59,7 @@ return new class extends Migration
                 'min_per_bid' => rand(1, 100),
                 'hammer_price' => rand(10000, 1000000),
                 'num_bided' => 0,
-                'last_bid' => 0,
+                'last_bid_id' => null,
                 'category_id' => rand(1, 10),
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),

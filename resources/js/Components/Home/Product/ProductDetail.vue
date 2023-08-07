@@ -71,7 +71,7 @@
         <div class="row mt-3">
           <!-- Manual Auction and Auto Auction. Using boostrap tabs -->
           <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item overview-tab">
+            <!-- <li class="nav-item overview-tab">
               <a
                 class="nav-link tabs-title"
                 data-bs-toggle="tab"
@@ -79,7 +79,7 @@
               >
                 Auto Auction
               </a>
-            </li>
+            </li> -->
             <li class="nav-item overview-tab">
               <a
                 class="nav-link tabs-title active"
@@ -306,33 +306,43 @@ const submit = async () => {
       },
     }
   );
+  const data = await response.json();
+//   console.log("data", data);
   if (response.status == 200) {
-    Swal.fire({
-      icon: "success",
-      title: "Success",
-      text: "You have successfully bid!",
-      timer: 2000,
-    });
-  }
-  if (response.status == 500) {
+    if(data.status_code == 'error'){
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: data.message,
+            // timer: 2000,
+        });
+    }else{
+        Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: data.message,
+            timer: 2000,
+        });
+        // last_bid_var = data.bid;
+        // last_uid_var = data.uid;
+    }
+  } else if (response.status == 500) {
     Swal.fire({
       icon: "error",
       title: "Oops...",
       text: "Something went wrong!",
       timer: 2000,
     });
-  }
-  if (response.status == 419) {
+  } else if (response.status == 419) {
     Swal.fire({
       icon: "error",
       title: "Oops...",
-      text: "Something went wrong!",
+      text: "Token expired! Reload page!",
       timer: 2000,
     });
     //reload page
     location.reload();
-  }
-  if (response.status == 404) {
+  } else if (response.status == 404) {
     Swal.fire({
       icon: "error",
       title: "Oops...",
@@ -344,14 +354,14 @@ const submit = async () => {
   } else {
     Swal.fire({
       icon: "error",
-      title: "Oops...",
+      title: response.status,
       text: "Something went wrong! Try again!",
       timer: 2000,
     });
     //reload page
-    location.reload();
+    // location.reload();
   }
-  console.log(response);
+//   console.log(response);
   //   form.post(route("product.test", {id: 1}));
 };
 

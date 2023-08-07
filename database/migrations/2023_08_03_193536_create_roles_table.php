@@ -19,10 +19,11 @@ return new class extends Migration
         });
         //tạo 4 role mặc định: user, editor, appraiser, admin
         DB::table('roles')->insert([
-            ['name' => 'user', 'display_name' => 'Người dùng'],
-            ['name' => 'editor', 'display_name' => 'Biên tập viên'],
-            ['name' => 'appraiser', 'display_name' => 'Chuyên gia'],
-            ['name' => 'admin', 'display_name' => 'Quản trị viên'],
+            ['name' => 'user', 'display_name' => 'User'],
+            ['name' => 'editor', 'display_name' => 'Editor'],
+            ['name' => 'appraiser', 'display_name' => 'Appraiser'],
+            ['name' => 'seller', 'display_name' => 'Seller'],
+            ['name' => 'admin', 'display_name' => 'Admin'],
         ]);
     }
 
