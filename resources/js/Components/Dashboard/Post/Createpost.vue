@@ -1,39 +1,42 @@
 <template>
-  <form :action="route('New.Post.store')"
-  method="post"
-  enctype="multipart/form-data">
-  @csrf
-    <div class="form-row">
-      <div class="col-md-5 form-group">
-        <label for="title">Title</label>
-        <input
-          type="text"
-          class="form-control"
-          name="title"
-          placeholder="Title"
-        />
+  <form enctype="multipart/form-data">
+      <div class="row">
+        <div class="col-12">
+          <div class="col-md-5">
+            <label for="title">Title</label>
+            <input
+              v-model="formData.title"
+              type="text"
+              class="form-control"
+              id="title"
+              placeholder="Title"
+              required
+            />
+          </div>
+          <div class="col-md-4">
+            <label for="category">Category</label>
+            <select
+              v-model="formData.category"
+              id="category"
+              class="form-control"
+              required
+            >
+              <option
+                v-for="category in Categories"
+                :key="category.id"
+                :value="category.id"
+              >
+                {{ category.name }}
+              </option>
+            </select>
+          </div>
+        </div>
       </div>
-      <div class="col-md-4 form-group">
-        <label for="category">Category</label>
-        <select
-          name="category"
-          class="form-control"
-        >
-          <option
-            v-for="category in Categories"
-            :key="category.id"
-            :value="category.id"
-          >
-            {{ category.name }}
-          </option>
-        </select>
-      </div>
-    </div>
     <div class="form-group">
       <label for="image">Image</label>
       <input
         type="file"
-        name="image"
+        id="image"
         ref="imageInput"
         @change="handleImageChange"
       />
@@ -41,9 +44,11 @@
     <div class="form-group">
       <label for="content">Content</label>
       <textarea
+        v-model="formData.content"
         class="form-control"
-        name="content"
+        id="content"
         placeholder="Content"
+        required
       ></textarea>
     </div>
     <button type="submit" class="btn btn-success mr-3">Create Post</button>
@@ -54,6 +59,12 @@
 export default {
   data() {
     return {
+      formData: {
+        title: "",
+        category: null,
+        content: "",
+        image: null,
+      },
     };
   },
   methods: {
