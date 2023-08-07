@@ -1,21 +1,22 @@
 <template>
-  <form enctype="multipart/form-data">
+  <form :action="route('New.Post.store')"
+  method="post"
+  enctype="multipart/form-data">
+  @csrf
     <div class="form-row">
       <div class="col-md-5 form-group">
         <label for="title">Title</label>
         <input
-          v-model="formData.title"
           type="text"
           class="form-control"
-          id="title"
+          name="title"
           placeholder="Title"
         />
       </div>
       <div class="col-md-4 form-group">
         <label for="category">Category</label>
         <select
-          v-model="formData.category_id"
-          id="category"
+          name="category"
           class="form-control"
         >
           <option
@@ -32,7 +33,7 @@
       <label for="image">Image</label>
       <input
         type="file"
-        id="image"
+        name="image"
         ref="imageInput"
         @change="handleImageChange"
       />
@@ -40,9 +41,8 @@
     <div class="form-group">
       <label for="content">Content</label>
       <textarea
-        v-model="formData.content"
         class="form-control"
-        id="content"
+        name="content"
         placeholder="Content"
       ></textarea>
     </div>
@@ -54,12 +54,6 @@
 export default {
   data() {
     return {
-      formData: {
-        title: "",
-        category_id: null,
-        content: "",
-        image: null,
-      },
     };
   },
   methods: {
