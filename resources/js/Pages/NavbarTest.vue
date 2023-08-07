@@ -96,7 +96,7 @@ export default {
             },
             {
                 name: "My Oder",
-                href: "/profile/oder",
+                href: "/cart",
                 children: null,
             },
             {

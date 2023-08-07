@@ -6,13 +6,14 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Post;
 use App\Models\PostCategories;
+use Illuminate\Support\Facades\Auth;
+
 
 class NewDashboardController extends Controller
 {
     public function index($search = null)
     {
         $per_page = 20;
-
         $query = Post::with('author')
             ->with('category');
 
@@ -34,14 +35,16 @@ class NewDashboardController extends Controller
         return Inertia::render('Dashboard/Post/Index', ['Posts' => $Datanews,]);
     }
 
-    public function store(Request $request)
+    public function Create()
     {
         $Categories = PostCategories::all();
-        return Inertia::render('Dashboard/Post/Create', ['Categories'=> $Categories]);
+        return Inertia::render('Dashboard/Post/Create', ['Categories' => $Categories]);
     }
 
-    // public function store(Request $request)
-    // {
-    //     // Phương thức lưu thông tin từ form tạo mới
-    // }
+    public function store(Request $request)
+    {
+        $user = Auth::user();
+
+
+    }
 }

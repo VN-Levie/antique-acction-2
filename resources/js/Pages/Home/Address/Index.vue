@@ -64,7 +64,7 @@
 <script setup>
 
 import { Head, Link, usePage } from '@inertiajs/vue3';
-import navbar from '../Narbar.vue'
+import navbar from '../../NavbarTest.vue';
 import PlusIcon from 'vue-material-design-icons/Plus.vue';
 import { defineProps } from 'vue';
 const props = defineProps(['userAddresses', 'userName']);

@@ -76,4 +76,17 @@ class ProfileController extends Controller
 
         return redirect()->route('home');
     }
+    public function update_password(Request $request)
+    {
+        $request->validate([
+            'current_password' => ['required', 'string', 'current_password:web'],
+            'password' => 'required|string|confirmed|min:6'
+        ]);
+
+        $request->user()->update([
+            'password' => Hash::make($request['password']),
+        ]);
+        dd($request);
+        return redirect()->route('home');
+    }
 }

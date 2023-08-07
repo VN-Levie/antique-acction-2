@@ -16,9 +16,12 @@ use App\Http\Controllers\AppraiserController;
 use App\Http\Controllers\NewDashboardController;
 use App\Http\Controllers\AppraiserDashboardController;
 use App\Http\Controllers\Auth\PasswordController as AuthPasswordController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\EKYCController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\SessionManagerController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ShippingController;
 use App\Models\KYC;
 use App\Models\Session;
 use Illuminate\Support\Facades\Auth;
@@ -52,12 +55,19 @@ Route::group([
         return Inertia::render('Dashboard');
     })->name('dashboard');
     Route::group(['prefix' => 'news', 'middleware' => 'role:admin|editor'], function () {
-        Route::get('/create', [NewDashboardController::class, 'store'])->name('New.Post.Create');
-        Route::get('/{search?}', [NewDashboardController::class, 'index'])->name('New.Dashboard');
+        Route::get('/create', [NewDashboardController::class, 'Create'])->name('post.create');
+        Route::post('/create', [NewDashboardController::class, 'store'])->name('post.store');
+        Route::get('/{search?}', [NewDashboardController::class, 'index'])->name('post.index');
     });
     Route::group(['prefix' => 'appraiser', 'middleware' => 'role:admin|appraiser'], function () {
-        Route::get('/create', [AppraiserDashboardController::class, 'store'])->name('appraiser.Post.Create');
-        Route::get('/{search?}', [AppraiserDashboardController::class, 'index'])->name('appraiser.Dashboard');
+        Route::get('/create', [AppraiserDashboardController::class, 'store'])->name('appraiser.create');
+        Route::get('/{search?}', [AppraiserDashboardController::class, 'index'])->name('appraiser.index');
+    });
+
+
+    Route::group(['prefix' => 'session', 'middleware' => 'role:admin|seller'], function () {
+        Route::get('/', [SessionManagerController::class, 'index'])->name('dashboard.session.index');
+        Route::get('/create', [SessionManagerController::class, 'create'])->name('dashboard.session.create');
     });
 
 
@@ -80,6 +90,8 @@ Route::group([
     Route::get('/update', [ProfileController::class, 'update'])->name('profile.update');
     Route::post('/update', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/delete', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/password_update', [ProfileController::class, 'update_password'])->name('profile.update_password');
+    Route::post('/password_update', [ProfileController::class, 'update_password'])->name('profile.update_password');
     Route::get('/ekyc', [EKYCController::class, 'index'])->name('KYC.index');
     Route::post('/ekyc', [EKYCController::class, 'submit'])->name('KYC.submit');
 
@@ -121,7 +133,8 @@ Route::group(['prefix' => 'products'], function () {
 
 Route::middleware(['auth', 'publish.posts'])->group(function () {
 });
-Route::get('test', function () {
-    event(new App\Events\StatusLiked('Someone'));
-    return "Event has been sent!";
-});
+
+Route::get('/payment', [PaymentController::class, 'index'])->name('payment.index');
+
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::get('/shipping', [ShippingController::class, 'index'])->name('shipping.index');

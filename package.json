@@ -34,7 +34,9 @@
         "@websitebeaver/vue-magnifier": "^1.1.0",
         "lodash": "^4.17.21",
         "pinia-plugin-persistedstate": "^3.2.0",
+        "vue-ccard": "^1.0.7",
         "vue-material-design-icons": "^5.2.0",
+        "vue-paycard": "^0.7.0",
         "vue-sweetalert2": "^5.0.5"
     }
 }

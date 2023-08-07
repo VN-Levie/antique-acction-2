@@ -15,17 +15,17 @@ class PasswordController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request)
-    {
-        $validated = $request->validate([
-            'current_password' => ['required', 'current_password'],
-            'password' => ['required', Password::defaults(), 'confirmed'],
-        ]);
+    // public function update(Request $request)
+    // {
+    //     $validated = $request->validate([
+    //         'current_password' => ['required', 'current_password'],
+    //         'password' => ['required', Password::defaults(), 'confirmed'],
+    //     ]);
 
-        $request->user()->update([
-            'password' => Hash::make($validated['password']),
-        ]);
+    //     $request->user()->update([
+    //         'password' => Hash::make($validated['password']),
+    //     ]);
 
-        return back();
-    }
+    //     return back();
+    // }
 }
