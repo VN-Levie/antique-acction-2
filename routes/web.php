@@ -102,3 +102,7 @@ Route::group(['prefix' => 'products'], function () {
 
 Route::middleware(['auth', 'publish.posts'])->group(function () {
 });
+Route::get('test', function () {
+    event(new App\Events\StatusLiked('Someone'));
+    return "Event has been sent!";
+});

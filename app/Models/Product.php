@@ -33,4 +33,9 @@ class Product extends Model
     {
         return $this->belongsTo(Appraiser::class,'appraised_by');
     }
+    //một sản phẩm có nhiều lượt đấu giá
+    public function biddings(): HasMany
+    {
+        return $this->hasMany(Bidding::class);
+    }
 }

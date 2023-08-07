@@ -10,9 +10,9 @@
                   :src="main_img"
                   id="main_img"
                   class="main_img img-responsive img-center"
-                  zoomFactor="1.8"
-                  mgWidth="200"
-                  mgHeight="200"
+                  zoomFactor="1.7"
+                  mgWidth="170"
+                  mgHeight="170"
                 />
               </div>
             </div>
@@ -20,10 +20,10 @@
               <div class="row">
                 <div class="col-3 mt-1" v-for="img in imgs" :key="img.id">
                   <img
-                    @click="changeimg(img)"
+                    @click="swap_img(img)"
                     :src="img"
                     alt="Gallery image 2"
-                    class="w-100 img-eff"
+                    class="img-fluid img-eff"
                     :class="{ active: img == main_img }"
                   />
                 </div>
@@ -37,13 +37,6 @@
           {{ product.name }}
         </h2>
         <div class="row">
-          <div class="row">
-            <div></div>
-            <h1>Test</h1>
-            <button class="btn btn-sm btn-success" @click="sendMEss()">
-              Send
-            </button>
-          </div>
           <div class="col-12">
             <div class="description-sp mt-3">
               <p>
@@ -62,50 +55,121 @@
               </p>
               <p>
                 <span class="text-product-estimate">
-                  Last Bid:
-                  <span
-                    class="text-product-estimate"
-                    v-for="(m, index) in messages"
-                    :key="index"
-                  >
-                    {{
-                      index == messages.length - 1
-                        ? "$" +
-                          new Intl.NumberFormat("en-IN", {
-                            maximumSignificantDigits: 20,
-                          }).format(m.last_bid)
-                        : null
-                    }}
-                  </span>
-                  <!-- ${{
+                  Last Bid: ${{
                     new Intl.NumberFormat("en-IN", {
                       maximumSignificantDigits: 3,
-                    }).format(product.last_bid)
-                  }} -->
+                    }).format(last_bid)
+                  }}
+                  {{ last_uid == auth.user.id ? "(You)" : "" }}
                 </span>
               </p>
             </div>
           </div>
         </div>
         <div class="row mt-3">
-          <div class="card">
-            <div class="card-header">
-              <h3 class="text-center text-uppercase product-description-h3">
-                bid now
-              </h3>
-            </div>
-            <div class="card-body">
-              <form action="#" method="post">
-                <div class="form-group">
-                  <label for="bid">Bid</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="bid"
-                    placeholder="Enter your bid"
-                  />
+          <!-- Manual Auction and Auto Auction. Using boostrap tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item overview-tab">
+              <a
+                class="nav-link tabs-title"
+                data-bs-toggle="tab"
+                href="#auto-auction"
+              >
+                Auto Auction
+              </a>
+            </li>
+            <li class="nav-item overview-tab">
+              <a
+                class="nav-link tabs-title active"
+                data-bs-toggle="tab"
+                href="#manual-auction"
+                >Manual Auction</a
+              >
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div id="auto-auction" class="container tab-pane fade text-dark">
+              <div class="card">
+                <div class="card-body">
+                  <form action="#" method="post" @submit.prevent="submit">
+                    <div class="form-group">
+                      <label for="bid">Max Price</label>
+                      <input
+                        type="text"
+                        class="form-control rounded"
+                        id="bid"
+                        name="bid"
+                        v-model="form.bid"
+                        autofocus
+                        placeholder="Enter your max price"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="bid">Bid Increment per Turn</label>
+                      <input
+                        type="text"
+                        class="form-control rounded"
+                        id="bid"
+                        name="bid"
+                        v-model="form.bid"
+                        autofocus
+                        placeholder="Enter your bid increment"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="">When bids go over budget</label>
+                      <br>
+                      <input
+                        type="radio"
+                        name="acction_over"
+                        id="acction_over_stop"
+                        class="form-control"
+                        checked
+                      />
+                      <label for="acction_over_stop" class="p-1"> Remind me via email and stop bidding</label>
+                      <br>
+                      <input
+                        type="radio"
+                        name="acction_over"
+                        id="acction_over_continue"
+                        class="form-control"
+                      />
+
+                      <label for="acction_over_continue" class="p-1"> Remind me via email and continue bidding (with step increment)</label>
+                    </div>
+                    <div class="form-group mt-3">
+                      <button class="btn btn-sm btn-success form-control">
+                        Save
+                      </button>
+                    </div>
+                  </form>
                 </div>
-              </form>
+              </div>
+            </div>
+            <div id="manual-auction" class="container tab-pane active">
+              <div class="card">
+                <div class="card-body">
+                  <form action="#" method="post" @submit.prevent="submit">
+                    <div class="form-group">
+                      <label for="bid">Bid</label>
+                      <input
+                        type="text"
+                        class="form-control rounded"
+                        id="bid"
+                        name="bid"
+                        v-model="form.bid"
+                        autofocus
+                        placeholder="Enter your bid"
+                      />
+                    </div>
+                    <div class="form-group mt-3">
+                      <button class="btn btn-sm btn-success form-control">
+                        Send
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -128,57 +192,11 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <form name="createForm" @submit.prevent="submit">
-      <div className="flex flex-col">
-        <div className="mb-4">
-          <label for="title" value="Title" > s</label>
 
-          <input
-            id="bid"
-            name="bid"
-            type="text"
-            class="mt-1 block w-full"
-            v-model="form.bid"
-            autofocus
-          />
-
-          <span className="text-red-600" v-if="form.errors.title">
-            {{ form.errors.title }}
-          </span>
-        </div>
-
-        <div className="mb-4">
-          <BreezeLabel for="body" value="Body" />
-
-          <BreezeTextArea
-            id="body"
-            class="mt-1 block w-full"
-            v-model="form.body"
-            autofocus
-          />
-
-          <span className="text-red-600" v-if="form.errors.body">
-            {{ form.errors.body }}
-          </span>
-        </div>
-      </div>
-
-      <div className="mt-4">
-        <button
-          type="submit"
-          className="px-6 py-2 font-bold text-white bg-green-500 rounded"
-        >
-          Save
-        </button>
-      </div>
-    </form>
-  </div>
   <!-- {{ start_at }} -->
 </template>
 
   <script setup>
-
 import { defineProps, inject, ref } from "vue";
 import { Link, router, useForm } from "@inertiajs/vue3";
 
@@ -198,9 +216,17 @@ const props = defineProps({
   auth: Object,
   messages: Object,
   pusher: Object,
+  last_bid: Number,
+  last_uid: Number,
 });
 const auth = props.auth;
 const pusher = props.pusher;
+const product = props.product;
+const messages = props.messages;
+var last_bid_var = props.last_bid;
+var last_uid_var = props.last_uid;
+//get last bid
+
 const submit = async () => {
   if (auth.user == null) {
     Swal.fire({
@@ -220,8 +246,7 @@ const submit = async () => {
     return;
   }
 
-
-  if (form.bid == null) {
+  if (form.bid == null || form.bid == "") {
     console.log(form);
     Swal.fire({
       icon: "error",
@@ -230,30 +255,84 @@ const submit = async () => {
     });
     return;
   }
-  await fetch(route("product.test", { id: 1, bid: form.bid }), {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      "X-Requested-With": "XMLHttpRequest",
-      "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content,
-      //   socket_id: props.pusher.socket_id,
-      "X-Socket-Id": pusher.connection.socket_id,
-    },
-    body: {
-      bid: form.bid,
+  if (form.bid <= last_bid_var) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Your bid must be greater than the highest bid!",
+    });
+    return;
+  }
+  if (last_uid_var == auth.user.id) {
+    Swal.fire({
+      icon: "warning",
+      title: "Oops...",
+      text: "You are currently the highest bidder!",
+    });
+    return;
+  }
+  //show loading
+  Swal.fire({
+    title: "Loading...",
+    text: "Please wait",
+    allowOutsideClick: false,
+    showConfirmButton: false,
+    willOpen: () => {
+      Swal.showLoading();
     },
   });
-  console.log(pusher.connection.socket_id);
+  const response = await fetch(
+    route("product.test", { id: 1, bid: form.bid }),
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "X-Requested-With": "XMLHttpRequest",
+        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]')
+          .content,
+        //   socket_id: props.pusher.socket_id,
+        "X-Socket-Id": pusher.connection.socket_id,
+      },
+      body: {
+        bid: form.bid,
+      },
+    }
+  );
+  if (response.status == 200) {
+    Swal.fire({
+      icon: "success",
+      title: "Success",
+      text: "You have successfully bid!",
+      timer: 2000,
+    });
+  }
+  if (response.status == 500) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Something went wrong!",
+      timer: 2000,
+    });
+  }
+  if (response.status == 419) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Something went wrong!",
+      timer: 2000,
+    });
+    //reload page
+    location.reload();
+  }
+  console.log(response);
   //   form.post(route("product.test", {id: 1}));
 };
-const product = props.product;
+
 const imgs = JSON.parse(product.images);
-console.log(typeof imgs);
 var main_img = ref(imgs[0]);
-function changeimg(img) {
+function swap_img(img) {
   main_img.value = img;
-  console.log(main_img);
 }
 </script>
   <style>

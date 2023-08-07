@@ -27,8 +27,8 @@
     </style>
     <link rel="stylesheet" href="/style.css" id="moto-website-style" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-
+    <script src="https://js.pusher.com/beams/1.0/push-notifications-cdn.js"></script>
+    {{-- <script src="/service-worker.js"></script> --}}
     <!-- Fonts -->
 
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -44,6 +44,10 @@
 <body class="font-sans antialiased">
     @inertia
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    {{-- <script src="//js.pusher.com/3.1/pusher.min.js"></script> --}}
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 
 </body>
 

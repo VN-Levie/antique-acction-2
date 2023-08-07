@@ -26,3 +26,7 @@ createInertiaApp({
         color: '#634236e0',
     },
 });
+
+navigator.serviceWorker.register('../../service-worker.js', {
+    scope: './app'
+});
