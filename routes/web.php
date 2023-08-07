@@ -70,7 +70,6 @@ Route::group([
         Route::get('/create', [SessionManagerController::class, 'create'])->name('dashboard.session.create');
     });
 
-
     Route::group(['prefix' => 'session', 'middleware' => 'role:admin|seller'], function () {
         Route::get('/', [SessionManagerController::class, 'index'])->name('dashboard.session.index');
         Route::get('/create', [SessionManagerController::class, 'create'])->name('dashboard.session.create');

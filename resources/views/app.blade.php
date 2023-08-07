@@ -23,6 +23,7 @@
     {{-- <link rel="preload" as="font" type="font/woff2" crossorigin href="/fontawesome-webfont.woff2?v=4.7.0" /> --}}
     <link rel="stylesheet" href="/assets.min.css" />
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
         @import url(//fonts.googleapis.com/css?family=Libre+Baskerville:regular,italic,700|Montserrat:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic|Raleway:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic&subset=latin);
     </style>
