@@ -3,7 +3,7 @@
     <div class="col-md-4 float-right">
       <form
         class="input-group rounded"
-        :action="route('New.Dashboard', { search: searchQuery })"
+        :action="route('post.index', { search: searchQuery })"
         method="GET"
       >
         <input
@@ -13,14 +13,14 @@
           v-model="searchQuery"
         />
         <span class="input-group-text border-0">
-          <a :href="route('New.Dashboard', { search: searchQuery })"
+          <a :href="route('post.index', { search: searchQuery })"
             ><i class="fas fa-search"></i
           ></a>
         </span>
       </form>
     </div>
     <div class="col-md-8 text-end">
-      <a :href="route('New.Post.Create')" class="btn btn-success mr-3"
+      <a :href="route('post.create')" class="btn btn-success mr-3"
         >add new</a
       >
     </div>

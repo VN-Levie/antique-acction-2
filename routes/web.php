@@ -52,12 +52,13 @@ Route::group([
         return Inertia::render('Dashboard');
     })->name('dashboard');
     Route::group(['prefix' => 'news', 'middleware' => 'role:admin|editor'], function () {
-        Route::get('/create', [NewDashboardController::class, 'store'])->name('New.Post.Create');
-        Route::get('/{search?}', [NewDashboardController::class, 'index'])->name('New.Dashboard');
+        Route::get('/create', [NewDashboardController::class, 'Create'])->name('post.create');
+        Route::post('/create', [NewDashboardController::class, 'store'])->name('post.store');
+        Route::get('/{search?}', [NewDashboardController::class, 'index'])->name('post.index');
     });
     Route::group(['prefix' => 'appraiser', 'middleware' => 'role:admin|appraiser'], function () {
-        Route::get('/create', [AppraiserDashboardController::class, 'store'])->name('appraiser.Post.Create');
-        Route::get('/{search?}', [AppraiserDashboardController::class, 'index'])->name('appraiser.Dashboard');
+        Route::get('/create', [AppraiserDashboardController::class, 'store'])->name('appraiser.create');
+        Route::get('/{search?}', [AppraiserDashboardController::class, 'index'])->name('appraiser.index');
     });
 });
 
@@ -116,10 +117,6 @@ Route::group(['prefix' => 'products'], function () {
 
 
 Route::middleware(['auth', 'publish.posts'])->group(function () {
-});
-Route::get('test', function () {
-    event(new App\Events\StatusLiked('Someone'));
-    return "Event has been sent!";
 });
 
 Route::get('/payment', [PaymentController::class, 'index'])->name('payment.index');

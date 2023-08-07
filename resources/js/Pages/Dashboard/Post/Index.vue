@@ -1,8 +1,22 @@
 <template>
-  <DashboardLayout>
-    <ListPost :articleList="articleList" />
+  <Head title="Home" />
+  <DashboardLayout title="Dashboard z">
+    <!-- <template #header>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                Dashboard
+            </h2>
+        </template> -->
+
+    <div class="py-12">
+      <div class="max-w-12xl mx-auto px-3">
+        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+          <ListPost :articleList="articleList" />
+        </div>
+      </div>
+    </div>
   </DashboardLayout>
 </template>
+
 <script>
 import DashboardLayout from "@/Layouts/DashboardLayout.vue";
 import ListPost from "@/Components/Dashboard/Post/ListPost.vue";
