@@ -18,6 +18,7 @@ use App\Http\Controllers\AppraiserDashboardController;
 use App\Http\Controllers\Auth\PasswordController as AuthPasswordController;
 use App\Http\Controllers\EKYCController;
 use App\Http\Controllers\PasswordController;
+use App\Http\Controllers\SessionManagerController;
 use App\Models\KYC;
 use App\Models\Session;
 use Illuminate\Support\Facades\Auth;
@@ -44,7 +45,7 @@ Route::group([
         'auth:sanctum',
         config('jetstream.auth_session'),
         // 'verified',
-        'role:admin|editor|appraiser|user',
+        'role:admin|editor|appraiser|seller|user',
     ]
 ], function () {
     Route::get('/', function () {
@@ -57,6 +58,12 @@ Route::group([
     Route::group(['prefix' => 'appraiser', 'middleware' => 'role:admin|appraiser'], function () {
         Route::get('/create', [AppraiserDashboardController::class, 'store'])->name('appraiser.Post.Create');
         Route::get('/{search?}', [AppraiserDashboardController::class, 'index'])->name('appraiser.Dashboard');
+    });
+
+
+    Route::group(['prefix' => 'session', 'middleware' => 'role:admin|seller'], function () {
+        Route::get('/', [SessionManagerController::class, 'index'])->name('dashboard.session.index');
+        Route::get('/create', [SessionManagerController::class, 'create'])->name('dashboard.session.create');
     });
 });
 
