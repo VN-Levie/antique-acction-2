@@ -22,7 +22,6 @@ class NewsController extends Controller
             if (!$category) {
                 abort(404);
             }
-            
             $Datanews = Post::where('category', $category->id)
                 ->with('author') // Nạp trước thông tin người tạo bài viết
                 ->with('category')
@@ -45,7 +44,6 @@ class NewsController extends Controller
             'latestPosts' => $latestPosts
         ]);
     }
-
 
     public function Detailpost(Request $request, $slug = null, $news_slug = null)
     {

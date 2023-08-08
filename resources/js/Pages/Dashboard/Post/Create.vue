@@ -21,19 +21,21 @@
                       class="form-control rounded"
                       placeholder="Title Post"
                       aria-describedby="helpId"
-                      v-model="Title_Post"
+                      v-model="Title"
                     />
                   </div>
                   <div class="form-group mt-3">
                     <div class="row">
                       <div class="col-md-6 col-12">
-                        <label for="category_Post" class="text-capitalize mb-2"
+                        <label for="category" class="text-capitalize mb-2"
                           >category Post</label
                         >
                         <select
                           name="product_categories"
                           id="product_categories"
                           class="form-control rounded"
+                          v-model="category"
+                          required
                         >
                           <option
                             v-for="category in Categories"
@@ -101,12 +103,13 @@ import DashboardLayout from "@/Layouts/DashboardLayout.vue";
 import CreatePost from "@/Components/Dashboard/Post/Createpost.vue";
 import { defineComponent, useAttrs, ref } from "vue";
 import { Link, router } from "@inertiajs/vue3";
+import { Inertia } from "@inertiajs/inertia";
 
 export default defineComponent({
   setup() {
     const attrs = useAttrs();
     const Categories = attrs.Categories;
-    const title = ref("");
+    const Title = ref("");
     const category = ref("");
     const content = ref("");
     const thumbnail = ref(null);
@@ -119,24 +122,20 @@ export default defineComponent({
 
     const handleSubmit = async () => {
       const formData = new FormData();
-      formData.append("title", title.value);
+      formData.append("title", Title.value);
       formData.append("category", category.value);
       formData.append("content", content.value);
       formData.append("thumbnail", thumbnail.value);
 
-      const response = await fetch("\create", {
-        method: "post",
-        headers: {
-          "X-CSRF-TOKEN": document
-            .querySelector('meta[name="csrf-token"]')
-            .getAttribute("content"),
+      await Inertia.post(route("post.store"), formData, {
+        onSuccess: () => {
+          Inertia.get(route("post.index"));
         },
-        body: formData,
       });
     };
 
     return {
-      title,
+      Title,
       category,
       content,
       thumbnail,
