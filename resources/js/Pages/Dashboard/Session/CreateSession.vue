@@ -90,13 +90,15 @@
                           >Date Start</label
                         >
                         <input
-                          type="date"
+                          type="datetime-local"
                           name="date_start"
                           id="date_start"
                           class="form-control rounded"
                           placeholder="Date Start"
                           aria-describedby="helpId"
                           v-model="form.date_start"
+                          :min="minDate()"
+                          @change="resetEdnday()"
                         />
                       </div>
                       <div class="col-md-6 col-12">
@@ -104,13 +106,14 @@
                           >Date End</label
                         >
                         <input
-                          type="date"
+                          type="datetime-local"
                           name="date_end"
                           id="date_end"
                           class="form-control rounded"
                           placeholder="Date End"
                           aria-describedby="helpId"
                           v-model="form.date_end"
+                          :min="formatDate(form.date_start)"
                         />
                       </div>
                     </div>
@@ -211,25 +214,38 @@ import { useAttrs, inject } from "vue";
 defineProps({
   title: String,
 });
-const editor = ref(ClassicEditor);
-const editorData = ref("<p>Content of the editor.</p>");
-const editorConfig = ref({
-  toolbar: [
-    "heading",
-    "|",
-    "bold",
-    "italic",
-    "link",
-    "bulletedList",
-    "numberedList",
-    "blockQuote",
-    "insertTable",
-    "mediaEmbed",
-    "undo",
-    "redo",
-  ],
-});
-
+//min day start
+const today = new Date();
+const minDate_time = ref(formatDate(today));
+function formatDate(date) {
+  var d = new Date(date),
+    month = "" + (d.getMonth() + 1),
+    day = "" + d.getDate(),
+    year = "" + d.getFullYear(),
+    hour = "" + d.getHours(),
+    minute = "" + d.getMinutes();
+  if (month.length < 2) month = "0" + month;
+  if (day.length < 2) day = "0" + day;
+  if (hour.length < 2) hour = "0" + hour;
+  if (minute.length < 2) minute = "0" + minute;
+  return [year, month, day].join("-") + "T" + [hour, minute].join(":");
+}
+function minDate() {
+  var d = new Date(),
+    month = "" + (d.getMonth() + 1),
+    day = "" + d.getDate(),
+    year = "" + d.getFullYear(),
+    hour = "" + d.getHours(),
+    minute = "" + d.getMinutes();
+  if (month.length < 2) month = "0" + month;
+  if (day.length < 2) day = "0" + day;
+  if (hour.length < 2) hour = "0" + hour;
+  if (minute.length < 2) minute = "0" + minute;
+  return [year, month, day].join("-") + "T" + [hour, minute].join(":");
+}
+function resetEdnday() {
+  form.date_end = "";
+}
 // Lấy đối tượng attrs
 const form = useForm({
   session_name: "",
@@ -242,14 +258,16 @@ const form = useForm({
   goal: "",
   thumbnail: "",
 });
+const minDate_2 = ref(form.date_start);
 const attrs = useAttrs();
 const product_categories = attrs.product_categories;
 
 const auth = attrs.auth;
 const Swal = inject("$swal");
+
 const submit_create = async () => {
   var thumbnail = document.querySelector('input[type="file"]').files[0];
-  console.log(thumbnail.name);
+  
   // return;
   if (auth.user == null) {
     Swal.fire({
@@ -300,6 +318,26 @@ const submit_create = async () => {
     });
     return;
   }
+  //check date start
+  var date_start = new Date(form.date_start);
+  if (date_start < today) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Date start must be greater than today!",
+    });
+    return;
+  }
+  //day end and day start
+  var date_end = new Date(form.date_end);
+  if (date_end < date_start) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Date end must be greater than date start!",
+    });
+    return;
+  }
   if (form.date_end == "") {
     Swal.fire({
       icon: "error",
@@ -341,16 +379,16 @@ const submit_create = async () => {
     return;
   }
 
-  //   //show loading
-  //   Swal.fire({
-  //     title: "Loading...",
-  //     text: "Please wait",
-  //     allowOutsideClick: false,
-  //     showConfirmButton: false,
-  //     willOpen: () => {
-  //       Swal.showLoading();
-  //     },
-  //   });
+  //show loading
+  Swal.fire({
+    title: "Loading...",
+    text: "Please wait",
+    allowOutsideClick: false,
+    showConfirmButton: false,
+    willOpen: () => {
+      Swal.showLoading();
+    },
+  });
   var data_send = {
     session_name: form.session_name,
     session_slug: form.session_slug,
@@ -373,7 +411,20 @@ const submit_create = async () => {
     },
     body: JSON.stringify(data_send),
   });
+  if(response.status == 500){
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Something went wrong! Please try again!",
+      timer: 2000,
+    });
+    return;
+  }
+  console.log("response", response);
   const data = await response.json();
+ 
+  //close loading
+  Swal.close();
   //   console.log("data", data);
   if (response.status == 200) {
     if (data.status_code == 0) {

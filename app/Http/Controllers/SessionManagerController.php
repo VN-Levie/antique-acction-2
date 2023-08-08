@@ -91,13 +91,25 @@ class SessionManagerController extends Controller
         $thumbnail = $request->thumbnail;
         $thumb_base64 = $thumbnail['result'];
         $thumbnail_name = $request->thumbnail_name;
-        
+        // dd($thumbnail_name);
         if ($session_name == null || $session_slug == null || $description == null || $category_id == null || $start_time == null || $end_time == null || $payment_and_shipping == null || $goal == null || $thumbnail == null) {
             return response()->json([
                 'message' => 'Please fill all the fields',
                 'status_code' => 0,
             ]);
         }
+        //check date today
+        $today = date('Y-m-d H:i:s');
+        if ($start_time < $today) {
+            return response()->json(['status_code' => 0, 'message' => "Start time can't be before today."]);
+        }
+        //check date
+        $start_time_check = strtotime($start_time);
+        $end_time_check = strtotime($end_time);
+        if ($start_time_check >= $end_time_check) {
+            return response()->json(['status_code' => 0, 'message' => "Start time must be before end time."]);
+        }
+
         try {
             //check slug
             $check_slug = Session::where('slug', $session_slug)->first();
