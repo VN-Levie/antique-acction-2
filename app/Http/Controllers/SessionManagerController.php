@@ -104,6 +104,35 @@ class SessionManagerController extends Controller
 
         return Inertia::render('Dashboard/Session/EditSession', $data);
     }
+    public function show(Request $request, $id = null)
+    {
+        if ($id == null) {
+            return redirect()->route('dashboard.session.index');
+        }
+        $per_page = 50;
+        $models = ['createdBy', 'endedBy', 'interruptedBy', 'products', 'category'];
+        $session = Session::with($models)->find($id);
+        
+        if ($session == null) {
+            // dd('ss null id'.$id);
+            return redirect()->route('dashboard.session.index');
+        }
+        $list_products = $session->products()->with('category')->paginate($per_page);
+
+
+        $models = [];
+        $product_categories = Category::with($models)->get();
+
+        $data = [
+            'product_categories' => $product_categories,
+            'session' => $session,
+            'id' => $id,
+            'list_products' => $list_products,
+        ];
+
+
+        return Inertia::render('Dashboard/Session/Show', $data);
+    }
     public function update(Request $request, $id = null)
     {
         

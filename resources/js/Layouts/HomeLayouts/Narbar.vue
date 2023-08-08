@@ -276,8 +276,8 @@ export default {
         children: null,
       },
       {
-        name: "CONTACTS",
-        href: "/#contact",
+        name: "News",
+        href: "/news",
         children: null,
       },
       {

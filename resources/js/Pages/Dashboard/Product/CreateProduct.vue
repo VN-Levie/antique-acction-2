@@ -1,5 +1,5 @@
 <template>
-  <DashboardLayout title="Create New Session">
+  <DashboardLayout title="Create New Product">
     <!-- <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Dashboard
@@ -12,7 +12,7 @@
           <div class="container">
             <div class="row mt-3 mb-3">
               <h1 class="text-center session-manager-title">
-                Create New Session
+                Add product for {{ session.name }}'s
               </h1>
               <hr class="mt-3 mb-3" />
               <div>
@@ -22,39 +22,40 @@
                   id="create_pin"
                   enctype="multipart/form-data"
                   @submit.prevent="submit_create"
+                  
                 >
                   <div class="form-group">
-                    <label for="session_name" class="text-capitalize mb-2"
-                      >Session Name</label
+                    <label for="product_name" class="text-capitalize mb-2"
+                      >Product Name</label
                     >
                     <input
                       type="text"
-                      name="session_name"
-                      id="session_name"
+                      name="product_name"
+                      id="product_name"
                       class="form-control rounded"
-                      placeholder="Session Name"
+                      placeholder="Product Name"
                       aria-describedby="helpId"
-                      v-model="form.session_name"
-                      @keyup="gen_slug(form.session_name)"
+                      v-model="form.product_name"
+                      @keyup="gen_slug(form.product_name)"
                     />
                   </div>
                   <div class="form-group">
-                    <label for="session_slug" class="text-capitalize mb-2"
-                      >Session Slug</label
+                    <label for="product_slug" class="text-capitalize mb-2"
+                      >Product Slug</label
                     >
                     <input
                       type="text"
-                      name="session_slug"
-                      id="session_slug"
+                      name="product_slug"
+                      id="product_slug"
                       class="form-control rounded"
-                      placeholder="Session Name"
+                      placeholder="Product Name"
                       aria-describedby="helpId"
-                      v-model="form.session_slug"
+                      v-model="form.product_slug"
                     />
                   </div>
                   <div class="form-group mt-3">
                     <label for="product_categories" class="text-capitalize mb-2"
-                      >Main category</label
+                      >category</label
                     >
                     <select
                       name="product_categories"
@@ -83,111 +84,21 @@
                       v-model="form.description"
                     ></textarea>
                   </div>
+            
                   <div class="form-group mt-3">
-                    <div class="row">
-                      <div class="col-md-6 col-12">
-                        <label for="description" class="text-capitalize mb-2"
-                          >Date Start</label
-                        >
-                        <input
-                          type="datetime-local"
-                          name="date_start"
-                          id="date_start"
-                          class="form-control rounded"
-                          placeholder="Date Start"
-                          aria-describedby="helpId"
-                          v-model="form.date_start"
-                          :min="minDate()"
-                          @change="resetEdnday()"
-                        />
-                      </div>
-                      <div class="col-md-6 col-12">
-                        <label for="description" class="text-capitalize mb-2"
-                          >Date End</label
-                        >
-                        <input
-                          type="datetime-local"
-                          name="date_end"
-                          id="date_end"
-                          class="form-control rounded"
-                          placeholder="Date End"
-                          aria-describedby="helpId"
-                          v-model="form.date_end"
-                          :min="formatDate(form.date_start)"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group mt-3">
-                    <label
-                      for="payment_and_shipping"
-                      class="text-capitalize mb-2"
-                      >payment and shipping</label
-                    >
-                    <textarea
-                      name="payment_and_shipping"
-                      id="payment_and_shipping"
-                      class="form-control rounded"
-                      rows="3"
-                      placeholder="payment_and_shipping"
-                      v-model="form.payment_and_shipping"
-                    ></textarea>
-                  </div>
-                  <div class="form-group mt-3">
-                    <label for="goal" class="text-capitalize mb-2">goal</label>
-                    <textarea
-                      name="goal"
-                      id="goal"
-                      class="form-control rounded"
-                      rows="3"
-                      placeholder="goal"
-                      v-model="form.goal"
-                    ></textarea>
-                  </div>
-                  <div class="form-group mt-3">
-                    <label for="thumbnail" class="text-capitalize mb-2"
-                      >thumbnail</label
+                    <label for="images" class="text-capitalize mb-2"
+                      >Images</label
                     >
                     <br />
-                    <div
-                      class="fileinput fileinput-new text-center"
-                      data-provides="fileinput"
-                    >
-                      <div class="fileinput-new thumbnail img-raised">
-                        <img
-                          src="/img/image_placeholder.jpg"
-                          alt="..."
-                          class="img-center rounded"
-                        />
-                      </div>
-                      <div
-                        class="fileinput-preview fileinput-exists thumbnail img-raised img-center rounded"
-                      ></div>
-                      <div>
-                        <span
-                          class="btn btn-raised btn-round btn-default btn-file"
-                        >
-                          <span class="fileinput-new btn btn-info"
-                            >Select image</span
-                          >
-                          <span class="fileinput-exists btn btn-warning"
-                            >Change</span
-                          >
-                          <input
-                            type="file"
-                            name="thumbnail"
-                            accept="image/png, image/gif, image/jpeg"
-                            ref="fileInput"
-                          />
-                        </span>
-                        <a
-                          href="#pablo"
-                          class="btn btn-danger btn-round fileinput-exists"
-                          data-dismiss="fileinput"
-                          ><i class="fa fa-times"></i> Remove</a
-                        >
-                      </div>
-                    </div>
+                    <input
+                      type="file"
+                      name="images[]"
+                      id="images"
+                      class="form-control rounded border-1"
+                      placeholder="Images"
+                      aria-describedby="helpId"
+                      multiple
+                     >
                   </div>
                   <div class="form-group mt-3">
                     <button type="submit" class="btn btn-success bg-success">
@@ -248,26 +159,26 @@ function resetEdnday() {
 }
 // Lấy đối tượng attrs
 const form = useForm({
-  session_name: "",
-  session_slug: "",
+  product_name: "",
+  product_slug: "",
   product_categories: "",
   description: "",
   date_start: "",
   date_end: "",
   payment_and_shipping: "",
   goal: "",
-  thumbnail: "",
+  images: "",
 });
 const minDate_2 = ref(form.date_start);
 const attrs = useAttrs();
 const product_categories = attrs.product_categories;
-
+const session = attrs.session;
 const auth = attrs.auth;
 const Swal = inject("$swal");
 
 const submit_create = async () => {
-  var thumbnail = document.querySelector('input[type="file"]').files[0];
-  
+  var images = document.querySelector('input[type="file"]').files;
+    console.log(images);
   // return;
   if (auth.user == null) {
     Swal.fire({
@@ -278,22 +189,15 @@ const submit_create = async () => {
     location.href = route("login");
     return;
   }
-  if (form.session_name == "") {
+  if (form.product_name == "") {
     Swal.fire({
       icon: "error",
       title: "Oops...",
-      text: "Session name is required!",
+      text: "Product name is required!",
     });
     return;
   }
-  if (form.session_slug == "") {
-    Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "Session slug is required!",
-    });
-    return;
-  }
+  
   if (form.category_id == "") {
     Swal.fire({
       icon: "error",
@@ -310,59 +214,8 @@ const submit_create = async () => {
     });
     return;
   }
-  if (form.date_start == "") {
-    Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "Date start is required!",
-    });
-    return;
-  }
-  //check date start
-  var date_start = new Date(form.date_start);
-  if (date_start < today) {
-    Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "Date start must be greater than today!",
-    });
-    return;
-  }
-  //day end and day start
-  var date_end = new Date(form.date_end);
-  if (date_end < date_start) {
-    Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "Date end must be greater than date start!",
-    });
-    return;
-  }
-  if (form.date_end == "") {
-    Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "Date end is required!",
-    });
-    return;
-  }
-  if (form.payment_and_shipping == "") {
-    Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "Payment and shipping is required!",
-    });
-    return;
-  }
-  if (form.goal == "") {
-    Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "Goal is required!",
-    });
-    return;
-  }
-  if (!thumbnail) {
+
+  if (!images) {
     Swal.fire({
       icon: "error",
       title: "Oops...",
@@ -370,14 +223,7 @@ const submit_create = async () => {
     });
     return;
   }
-  if (thumbnail.result == null) {
-    Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "Thumbnail is required!",
-    });
-    return;
-  }
+  
 
   //show loading
   Swal.fire({
@@ -390,18 +236,18 @@ const submit_create = async () => {
     },
   });
   var data_send = {
-    session_name: form.session_name,
-    session_slug: form.session_slug,
+    product_name: form.product_name,
+    product_slug: form.product_slug,
     category_id: form.category_id,
     description: form.description,
     date_start: form.date_start,
     date_end: form.date_end,
     payment_and_shipping: form.payment_and_shipping,
     goal: form.goal,
-    thumbnail: thumbnail,
-    thumbnail_name: thumbnail.name,
+    images: images,
+    images_name: images.name,
   };
-  const response = await fetch(route("dashboard.session.store"), {
+  const response = await fetch(route("dashboard.product.store"), {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -411,7 +257,7 @@ const submit_create = async () => {
     },
     body: JSON.stringify(data_send),
   });
-  if(response.status == 500){
+  if (response.status == 500) {
     Swal.fire({
       icon: "error",
       title: "Oops...",
@@ -422,7 +268,7 @@ const submit_create = async () => {
   }
   console.log("response", response);
   const data = await response.json();
-  
+
   //close loading
   Swal.close();
   //   console.log("data", data);
@@ -442,7 +288,7 @@ const submit_create = async () => {
         timer: 2000,
       });
       //remlod page
-        
+
       // last_bid_var = data.bid;
       // last_uid_var = data.uid;
     }
@@ -498,7 +344,7 @@ function gen_slug(val) {
   if (slug.length > 0) {
     slug = slug + "-" + random;
   }
-  form.session_slug = slug;
+  form.product_slug = slug;
 }
 //hàm xoá dấu tiếng việt
 function removeAccents(str) {
@@ -557,7 +403,7 @@ function removeAccents(str) {
   cursor: text;
 }
 
-.fileinput .thumbnail {
+.fileinput .images {
   display: inline-block;
   margin-bottom: 10px;
   overflow: hidden;
@@ -566,12 +412,12 @@ function removeAccents(str) {
   max-width: 360px;
 }
 
-.fileinput .thumbnail.img-circle {
+.fileinput .images.img-circle {
   border-radius: 50%;
   max-width: 100px;
 }
 
-.fileinput .thumbnail > img {
+.fileinput .images > img {
   max-height: 100%;
   width: 100%;
 }
@@ -637,7 +483,7 @@ function removeAccents(str) {
   color: #ff9800;
 }
 
-.form-group.has-warning .fileinput .thumbnail {
+.form-group.has-warning .fileinput .images {
   border-color: #ff9800;
 }
 
@@ -645,7 +491,7 @@ function removeAccents(str) {
   color: #f44336;
 }
 
-.form-group.has-error .fileinput .thumbnail {
+.form-group.has-error .fileinput .images {
   border-color: #f44336;
 }
 
@@ -653,7 +499,7 @@ function removeAccents(str) {
   color: #4caf50;
 }
 
-.form-group.has-success .fileinput .thumbnail {
+.form-group.has-success .fileinput .images {
   border-color: #4caf50;
 }
 
@@ -661,7 +507,7 @@ function removeAccents(str) {
   border-left: 0;
 }
 
-.thumbnail {
+.images {
   border: 0 none;
   border-radius: 0;
   padding: 0;

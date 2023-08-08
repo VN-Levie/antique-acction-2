@@ -98,7 +98,7 @@ class ProductController extends Controller
                         $query->whereDate('start_at', '>=', date('Y-m-d'));
                     }
                 } else {
-                    $query->whereDate('start_at', '>=', date('Y-m-d'));
+                    // $query->whereDate('start_at', '>=', date('Y-m-d'));
                 }
             })->when($product_name, function ($query, $product_name) {
                 return $query->where('name', 'like', '%' . $product_name . '%');

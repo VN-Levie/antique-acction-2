@@ -68,10 +68,10 @@
             </div>
           </div>
         </div>
-        <div class="row mt-3">
+        <div class="row mt-3" v-if="product.status == 1">
           <!-- Manual Auction and Auto Auction. Using boostrap tabs -->
           <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item overview-tab">
+            <!-- <li class="nav-item overview-tab">
               <a
                 class="nav-link tabs-title"
                 data-bs-toggle="tab"
@@ -79,7 +79,7 @@
               >
                 Auto Auction
               </a>
-            </li>
+            </li> -->
             <li class="nav-item overview-tab">
               <a
                 class="nav-link tabs-title active"
@@ -113,7 +113,6 @@
                         class="form-control rounded"
                         id="bid"
                         name="bid"
-
                         autofocus
                         placeholder="Enter your bid increment"
                       />
@@ -177,6 +176,24 @@
                   </form>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+        <div v-else-if="2" class="row">
+          <div class="col-12">
+            <div class="alert alert-danger">
+              <h3 class="text-center text-uppercase">
+                Auction is has been ended
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div v-else class="row">
+          <div class="col-12">
+            <div class="alert alert-danger">
+              <h3 class="text-center text-uppercase">
+                Auction is not started yet
+              </h3>
             </div>
           </div>
         </div>
@@ -252,9 +269,18 @@ const submit = async () => {
     });
     return;
   }
+  //check bid is number
+    if (isNaN(form.bid)) {
+        Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Your bid must be a number!",
+        });
+        return;
+    }
 
   if (form.bid == null || form.bid == "") {
-    console.log(form);
+    
     Swal.fire({
       icon: "error",
       title: "Oops...",
@@ -307,24 +333,24 @@ const submit = async () => {
     }
   );
   const data = await response.json();
-//   console.log("data", data);
+  //   console.log("data", data);
   if (response.status == 200) {
-    if(data.status_code == 'error'){
-        Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: data.message,
-            // timer: 2000,
-        });
-    }else{
-        Swal.fire({
-            icon: "success",
-            title: "Success",
-            text: data.message,
-            timer: 2000,
-        });
-        // last_bid_var = data.bid;
-        // last_uid_var = data.uid;
+    if (data.status_code == "error") {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: data.message,
+        // timer: 2000,
+      });
+    } else {
+      Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: data.message,
+        timer: 2000,
+      });
+      // last_bid_var = data.bid;
+      // last_uid_var = data.uid;
     }
   } else if (response.status == 500) {
     Swal.fire({
@@ -361,7 +387,7 @@ const submit = async () => {
     //reload page
     // location.reload();
   }
-//   console.log(response);
+  //   console.log(response);
   //   form.post(route("product.test", {id: 1}));
 };
 

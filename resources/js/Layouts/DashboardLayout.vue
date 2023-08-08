@@ -70,36 +70,7 @@ const attrs = useAttrs();
                 >
                   Session
                 </NavLink>
-                <NavLink
-                  :href="route('dashboard')"
-                  :active="route().current('dashboard')"
-                >
-                  Product
-                </NavLink>
-                <NavLink
-                  :href="route('dashboard')"
-                  :active="route().current('dashboard')"
-                >
-                  User
-                </NavLink>
-                <NavLink
-                  :href="route('dashboard')"
-                  :active="route().current('dashboard')"
-                >
-                  Shipping
-                </NavLink>
-                <NavLink
-                  :href="route('dashboard')"
-                  :active="route().current('dashboard')"
-                >
-                  Feedback & Report
-                </NavLink>
-                <NavLink
-                  :href="route('dashboard')"
-                  :active="route().current('dashboard')"
-                >
-                  Post
-                </NavLink>
+                
               </div>
             </div>
 

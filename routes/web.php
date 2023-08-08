@@ -21,6 +21,7 @@ use App\Http\Controllers\EKYCController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\SessionManagerController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ProductManagerController;
 use App\Http\Controllers\ShippingController;
 use App\Models\KYC;
 use App\Models\Session;
@@ -77,7 +78,17 @@ Route::group([
         Route::post('/del', [SessionManagerController::class, 'del'])->name('dashboard.session.del');
         Route::get('/edit/{session_id}', [SessionManagerController::class, 'edit'])->name('dashboard.session.edit');
         Route::post('/edit/{session_id}', [SessionManagerController::class, 'update'])->name('dashboard.session.edit');
-        Route::get('/{session_id}', [SessionManagerController::class, 'create'])->name('dashboard.session.show');
+        Route::get('/{session_id}', [SessionManagerController::class, 'show'])->name('dashboard.session.show');
+    });
+    Route::group(['prefix' => 'product', 'middleware' => 'role:admin|seller'], function () {
+        Route::get('/', [ProductManagerController::class, 'index'])->name('dashboard.product.index');
+        Route::get('/{product_id}', [ProductManagerController::class, 'show'])->name('dashboard.product.index');
+        Route::get('/create', [ProductManagerController::class, 'create'])->name('dashboard.product.create');
+        Route::post('/create', [ProductManagerController::class, 'store'])->name('dashboard.product.store');
+        Route::post('/del', [ProductManagerController::class, 'del'])->name('dashboard.product.del');
+        Route::get('/edit/{product_id}', [ProductManagerController::class, 'edit'])->name('dashboard.product.edit');
+        Route::post('/edit/{product_id}', [ProductManagerController::class, 'update'])->name('dashboard.product.edit');
+        Route::get('/{product_id}', [ProductManagerController::class, 'create'])->name('dashboard.product.show');
     });
 });
 

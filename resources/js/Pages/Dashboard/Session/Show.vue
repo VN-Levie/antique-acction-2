@@ -12,16 +12,16 @@
           <div class="container">
             <div class="row mt-3 mb-3">
               <h1 class="text-center session-manager-title">
-                Sessions Manager
+                {{ session.name }}
               </h1>
               <hr class="mt-3 mb-3" />
               <div class="col-md-4 col-12 mt-3">
                 <p class="text-center">
                   <Link
-                    :href="route('dashboard.session.create')"
+                    :href="route('dashboard.product.create', {session_id : session.id})"
                     class="btn btn-success rounded"
                   >
-                    <i class="fa-solid fa-plus"></i> Create New Seesion
+                    <i class="fa-solid fa-plus"></i> Add Product
                   </Link>
                 </p>
               </div>
@@ -97,7 +97,7 @@
             <hr class="" />
             <div class="row mb-3">
               <h1 class="text-center session-manager-title">
-                {{ category_name }}
+                Products of {{ session.name }}
               </h1>
               <hr class="mt-1 mb-1" />
               <div class="p-3 table-responsive">
@@ -105,46 +105,27 @@
                   <thead>
                     <th>ID</th>
                     <th>Name</th>
-                    <th>Main Category</th>
-                    <th class="text-center">Date</th>
+                    <th>Category</th>
                     <th class="text-center">Status</th>
                     <th class="text-center">Action</th>
                   </thead>
                   <tbody>
-                    <tr
-                      v-for="auction_session in auctionSession"
-                      :key="auction_session.id"
-                    >
-                      <td>{{ auction_session.id }}</td>
-                      <td>{{ auction_session.name }}</td>
+                    <tr v-for="product in list_products.data" :key="product.id">
+                      <td>{{ product.id }}</td>
+                      <td>{{ product.name }}</td>
                       <td>
-                        <Link
-                          :href="
-                            route('dashboard.session.index', {
-                              category_slug: auction_session.category.slug,
-                            })
-                          "
-                        >
-                          {{ auction_session.category.name }}
-                        </Link>
+                        {{ product.category.name }}
+                    
+                      </td>
+
+                      <td class="text-center">
+                        {{ get_status(product.status) }}
                       </td>
                       <td class="text-center">
-                        {{ format_date(auction_session.start_at) }} -
-                        {{ format_date(auction_session.end_at) }}
-                      </td>
-                      <td class="text-center">
-                        {{
-                          get_status(
-                            auction_session.start_at,
-                            auction_session.end_at
-                          )
-                        }}
-                      </td>
-                      <td>
                         <Link
                           :href="
-                            route('dashboard.session.edit', {
-                              session_id: auction_session.id,
+                            route('dashboard.product.edit', {
+                              product_id: product.id,
                             })
                           "
                           class="btn btn-sm btn-info mr-1"
@@ -154,20 +135,10 @@
 
                         <button
                           class="btn btn-sm btn-danger mr-1"
-                          @click="delete_session(auction_session.id)"
+                          @click="delete_product(product.id)"
                         >
                           <i class="fa-solid fa-trash"></i>
                         </button>
-                        <Link
-                          :href="
-                            route('dashboard.session.show', {
-                              session_id: auction_session.id,
-                            })
-                          "
-                          class="btn btn-sm btn-secondary mr-1"
-                        >
-                          Products ({{ auction_session.products_count }})
-                        </Link>
                       </td>
                     </tr>
                   </tbody>
@@ -200,19 +171,18 @@ import Welcome from "@/Components/Dashboard/Welcome.vue";
 import { ref } from "vue";
 import { Head, Link, router } from "@inertiajs/vue3";
 import { useAttrs, inject } from "vue";
-defineProps({
-  title: String,
-});
-// Khia báo
+
+import { ckeditor } from "@ckeditor/ckeditor5-vue";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+
 const attrs = useAttrs();
 const product_categories = attrs.product_categories;
-var category_slug = ref(attrs.category_slug);
-var search = ref(attrs.search);
-const count = attrs.count;
-const auctionSession = attrs.auction_sessions.data;
-const category_name = attrs.category_name;
-const links = attrs.auction_sessions.links;
+
+const session = attrs.session;
+const id = attrs.id;
+const links = attrs.session.links;
 const Swal = inject("$swal");
+const list_products = attrs.list_products;
 //Hàm
 function change_category() {
   console.log(route().params.category_slug);
@@ -251,9 +221,9 @@ function doSearch(e) {
     })
   );
 }
-function delete_session(id) {
+function delete_product(id) {
   Swal.fire({
-    title: "Are you sure?",
+    title: "Delete this product?",
     text: "You won't be able to revert this!",
     icon: "warning",
     showCancelButton: true,
@@ -271,7 +241,7 @@ async function doDetele(id) {
   const data_send = {
     id: id,
   };
-  const response = await fetch(route("dashboard.session.del"), {
+  const response = await fetch(route("dashboard.product.del"), {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -370,16 +340,15 @@ function format_date(date) {
   return " " + n + " " + day;
 }
 //function get status base on start date and end date
-function get_status(start_date, end_date) {
-  var now = new Date();
-  var start = new Date(start_date);
-  var end = new Date(end_date);
-  if (now < start) {
-    return "Upcoming";
-  } else if (now > start && now < end) {
-    return "Ongoing";
-  } else {
-    return "Ended";
+function get_status(status) {
+  if (status == 0) {
+    return "Not started";
+  } else if (status == 1) {
+    return "In progress";
+  } else if (status == 2) {
+    return "Finished";
+  } else if (status == 3) {
+    return "Canceled";
   }
 }
 </script>

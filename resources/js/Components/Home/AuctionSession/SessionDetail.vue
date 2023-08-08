@@ -55,37 +55,35 @@
           </p>
         </div>
         <div v-else-if="int_status == 1">
-          <p class="mt-3">
+          <!-- <p class="mt-3">
             <button href="#" class="btn btn-sm btn-warning" @click="join()">
               <i class="fa fa-sign-in" aria-hidden="true"></i>
               Request to join
             </button>
-          </p>
+          </p> -->
         </div>
         <div v-else-if="int_status == 2" class="gy-3 gx-3">
           <p class="mt-3">
-            <i class="fa fa-bell-o" aria-hidden="true"></i> Pre-Register
-          </p>
-          <p class="mt-3">
             <a :href="cal_url" target="_blank" class="btn btn-sm btn-success">
-              <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
+              <i class="fa-regular fa-calendar-plus"></i>
               Add to calendar
             </a>
           </p>
         </div>
         <div v-else-if="int_status == 3">
-          <p><i class="fa fa-repeat" aria-hidden="true"></i> View Report</p>
+          <!-- <p><i class="fa fa-repeat" aria-hidden="true"></i> View Report</p> -->
+          <i class="fa fa-eye-slash" aria-hidden="true"></i> Not Available
         </div>
         <div v-else>
           <p>
             <i class="fa fa-eye-slash" aria-hidden="true"></i> Not Available
           </p>
         </div>
-        <div>
+        <!-- <div>
           <p class="mt-3">
             <i class="fa fa-share-alt" aria-hidden="true"></i> Share
           </p>
-        </div>
+        </div> -->
       </div>
     </div>
 
@@ -122,9 +120,9 @@
               {{ auctionSession.payment_and_shipping }}
             </p>
             <hr />
-            <h2 class="text-dark mt-5">Terms And Disclaimer</h2>
+            <h2 class="text-dark mt-5">Goal</h2>
             <p class="text-dark">
-              {{ auctionSession.terms_and_disclaimer }}
+              {{ auctionSession.goal }}
             </p>
           </div>
           <div id="menu1" class="container tab-pane active">
@@ -167,7 +165,7 @@
                             }}
                           </span>
                         </p>
-                        <p class="text-center">
+                        <!-- <p class="text-center">
                           <span class="text-product-estimate">
                             Last Bid: ${{
                               new Intl.NumberFormat("en-IN", {
@@ -175,7 +173,7 @@
                               }).format(product.last_bid)
                             }}
                           </span>
-                        </p>
+                        </p> -->
                       </div>
                       <div class="col-md-12 col-12">
                         <p class="text-right">
@@ -201,9 +199,17 @@
                     </div>
                     <hr />
                     <p class="text-right">
-                      <button class="btn btn-sm btn-auction">
-                        View Product
-                      </button>
+                      <Link
+                        :href="
+                          route('product.view', {
+                            session_slug: auctionSession.slug,
+                            id: product.id,
+                          })
+                        "
+                        class="btn btn-auction btn-sm float-end"
+                      >
+                        Bid Now
+                      </Link>
                     </p>
                   </div>
                 </div>
@@ -409,5 +415,4 @@ const cal_url = `https://www.google.com/calendar/event?action=TEMPLATE&text=AAO'
   font-size: 1.2rem !important;
   /* font-family: "Montserrat", sans-serif; */
 }
-
 </style>
