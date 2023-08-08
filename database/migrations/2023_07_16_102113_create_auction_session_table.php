@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('name');
             $table->text('slug');
             $table->text('description');
+            $table->integer('status')->default(0);
             $table->timestamp('start_at')->nullable();
             $table->timestamp('end_at')->nullable();
             $table->text('goal');

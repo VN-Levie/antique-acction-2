@@ -31,6 +31,7 @@ createInertiaApp({
                 .use(ZiggyVue, Ziggy)
                 .use(VueSweetalert2)
                 .use(ckeditor)
+                
                 .mount(el)
         );
     },
