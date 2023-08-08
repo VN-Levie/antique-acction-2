@@ -1,5 +1,5 @@
 <template>
-  <DashboardLayout title="Create New Session">
+  <DashboardLayout title="Update Session">
     <!-- <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Dashboard
@@ -11,9 +11,7 @@
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
           <div class="container">
             <div class="row mt-3 mb-3">
-              <h1 class="text-center session-manager-title">
-                Create New Session
-              </h1>
+              <h1 class="text-center session-manager-title">Update Session</h1>
               <hr class="mt-3 mb-3" />
               <div>
                 <form
@@ -23,6 +21,17 @@
                   enctype="multipart/form-data"
                   @submit.prevent="submit_create"
                 >
+                  <div class="form-group">
+                    <label for="session_name" class="text-capitalize mb-2"
+                      >Session ID</label
+                    >
+                    <input
+                      type="text"
+                      :value="id"
+                      disabled
+                      class="form-control rounded"
+                    />
+                  </div>
                   <div class="form-group">
                     <label for="session_name" class="text-capitalize mb-2"
                       >Session Name</label
@@ -155,7 +164,7 @@
                     >
                       <div class="fileinput-new thumbnail img-raised">
                         <img
-                          src="/img/image_placeholder.jpg"
+                          :src="form.thumbnail"
                           alt="..."
                           class="img-center rounded"
                         />
@@ -190,6 +199,11 @@
                     </div>
                   </div>
                   <div class="form-group mt-3">
+                    <Link 
+                        :href="route('dashboard.session.index')"
+                    type="submit" class="btn btn-danger bg-danger mr-5">
+                      <i class="fa fa-arrow-left"></i> Back
+                    </Link>
                     <button type="submit" class="btn btn-success bg-success">
                       Save
                     </button>
@@ -214,8 +228,16 @@ import { useAttrs, inject } from "vue";
 defineProps({
   title: String,
 });
+const attrs = useAttrs();
+const product_categories = attrs.product_categories;
+
+const session = attrs.session;
+const id = attrs.id;
+
 //min day start
 const today = new Date();
+const day_start = new Date(session.start_at);
+const day_end = new Date(session.end_at);
 const minDate_time = ref(formatDate(today));
 function formatDate(date) {
   var d = new Date(date),
@@ -248,26 +270,24 @@ function resetEdnday() {
 }
 // Lấy đối tượng attrs
 const form = useForm({
-  session_name: "",
-  session_slug: "",
-  product_categories: "",
-  description: "",
-  date_start: "",
-  date_end: "",
-  payment_and_shipping: "",
-  goal: "",
-  thumbnail: "",
+  session_name: session.name,
+  session_slug: session.slug,
+  category_id: session.category_id,
+  description: session.description,
+  date_start: formatDate(session.start_at),
+  date_end: formatDate(session.end_at),
+  payment_and_shipping: session.payment_and_shipping,
+  goal: session.goal,
+  thumbnail: session.thumbnail,
 });
 const minDate_2 = ref(form.date_start);
-const attrs = useAttrs();
-const product_categories = attrs.product_categories;
 
 const auth = attrs.auth;
 const Swal = inject("$swal");
 
 const submit_create = async () => {
   var thumbnail = document.querySelector('input[type="file"]').files[0];
-  
+
   // return;
   if (auth.user == null) {
     Swal.fire({
@@ -362,21 +382,15 @@ const submit_create = async () => {
     });
     return;
   }
-  if (!thumbnail) {
-    Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "Thumbnail is required!",
-    });
-    return;
-  }
-  if (thumbnail.result == null) {
-    Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "Thumbnail is required!",
-    });
-    return;
+  if (thumbnail != null) {
+    if (thumbnail.result == null) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Thumbnail is required!",
+      });
+      return;
+    }
   }
 
   //show loading
@@ -399,19 +413,25 @@ const submit_create = async () => {
     payment_and_shipping: form.payment_and_shipping,
     goal: form.goal,
     thumbnail: thumbnail,
-    thumbnail_name: thumbnail.name,
+    thumbnail_name: thumbnail != null ? thumbnail.name : "",
   };
-  const response = await fetch(route("dashboard.session.store"), {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      "X-Requested-With": "XMLHttpRequest",
-      "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content,
-    },
-    body: JSON.stringify(data_send),
-  });
-  if(response.status == 500){
+  const response = await fetch(
+    route("dashboard.session.edit", {
+      id: session.id,
+    }),
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "X-Requested-With": "XMLHttpRequest",
+        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]')
+          .content,
+      },
+      body: JSON.stringify(data_send),
+    }
+  );
+  if (response.status == 500) {
     Swal.fire({
       icon: "error",
       title: "Oops...",
@@ -422,7 +442,7 @@ const submit_create = async () => {
   }
   console.log("response", response);
   const data = await response.json();
-  
+
   //close loading
   Swal.close();
   //   console.log("data", data);
@@ -442,7 +462,7 @@ const submit_create = async () => {
         timer: 2000,
       });
       //remlod page
-        
+
       // last_bid_var = data.bid;
       // last_uid_var = data.uid;
     }

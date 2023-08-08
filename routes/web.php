@@ -74,7 +74,9 @@ Route::group([
         Route::get('/', [SessionManagerController::class, 'index'])->name('dashboard.session.index');
         Route::get('/create', [SessionManagerController::class, 'create'])->name('dashboard.session.create');
         Route::post('/create', [SessionManagerController::class, 'store'])->name('dashboard.session.store');
-        Route::get('/edit/{session_id}', [SessionManagerController::class, 'create'])->name('dashboard.session.edit');
+        Route::post('/del', [SessionManagerController::class, 'del'])->name('dashboard.session.del');
+        Route::get('/edit/{session_id}', [SessionManagerController::class, 'edit'])->name('dashboard.session.edit');
+        Route::post('/edit/{session_id}', [SessionManagerController::class, 'update'])->name('dashboard.session.edit');
         Route::get('/{session_id}', [SessionManagerController::class, 'create'])->name('dashboard.session.show');
     });
 });
