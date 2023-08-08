@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\PostCategories;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 
 class NewDashboardController extends Controller
@@ -44,33 +45,84 @@ class NewDashboardController extends Controller
 
     public function store(Request $request)
     {
-        $user = Auth::user();
+        try {
+            $user = Auth::user();
 
-        // Retrieve data from the request
-        $title = $request->input('title');
-        $category = $request->input('category');
-        $content = $request->input('content');
+            $request->validate([
+                'title' => 'required|max:255',
+                'category' => 'required', // Thay bằng các validation rules phù hợp cho category
+                'content' => 'required',
+                'thumbnail' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Kiểm tra tệp ảnh
+            ]);
 
-        // Create a slug from the title
-        $slug = Str::slug($title);
+            $title = $request->input('title');
+            $category = $request->input('category');
+            $content = $request->input('content');
 
-        dd($title);
+            $slug = Str::slug($title);
 
-        // Process the thumbnail image
+            $thumbnailPath = null;
+            if ($request->hasFile('thumbnail')) {
+                $thumbnail = $request->file('thumbnail');
+                $thumbnailPath = $thumbnail->store('thumbnails', 'public');
+
+                // Move the thumbnail to the desired directory
+                $thumbnail->move(public_path('img/post'), $thumbnail->getClientOriginalName());
+            }
+
+            $post = new Post();
+            $post->title = $title;
+            $post->slug = $slug;
+            $post->category = $category;
+            $post->content = $content;
+            $post->thumbnail = $thumbnailPath;
+            $post->author = $user->id;
+            $post->save();
+
+            return to_route('post.index');;
+        } catch (\Exception $e) {
+            return back()->withErrors(['message' => 'An error occurred while adding the post.']);
+        }
+    }
+
+
+    public function editpost($id)
+    {
+        $post = Post::with('author')
+            ->with('category')
+            ->findOrFail($id);
+        $Categories = PostCategories::all();
+        return Inertia::render('Dashboard/Post/EditPost', ['post' => $post, 'Categories' => $Categories]);
+    }
+
+
+    public function edit(Request $request)
+    {
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'category' => 'required|integer',
+            'content' => 'required',
+            'thumbnail' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Example image file types
+        ]);
+
+        $id =  $validatedData['id'];
+        // Find the post to update
+        $post = Post::findOrFail($id);
+
+        // Update post data
+        $post->title = $validatedData['title'];
+        $post->category = $validatedData['category'];
+        $post->content = $validatedData['content'];
+
         if ($request->hasFile('thumbnail')) {
-            $thumbnail = $request->file('thumbnail');
-            $thumbnailPath = $thumbnail->store('thumbnails', 'public');
+            // Handle thumbnail upload
+            $thumbnailPath = $validatedData['thumbnail']->store('thumbnails', 'public');
+            $post->thumbnail = $thumbnailPath;
         }
 
-        // Create a new post in the database
-        $post = new Post();
-        $post->title = $title;
-        $post->slug = $slug;
-        $post->category = $category;
-        $post->content = $content;
-        $post->thumbnail = $thumbnailPath ?? null;
-        $post->author = $user->id;
         $post->save();
-        return redirect()->route('post.index')->with('success', 'add successfully.');;
+
+        return redirect()->route('post.index')->with('success', 'Post updated successfully.');
     }
 }

@@ -20,9 +20,7 @@
       </form>
     </div>
     <div class="col-md-8 text-end">
-      <a :href="route('post.create')" class="btn btn-success mr-3"
-        >add new</a
-      >
+      <a :href="route('post.create')" class="btn btn-success mr-3">add new</a>
     </div>
   </div>
   <div class="table-container">
@@ -41,7 +39,13 @@
       <tbody>
         <tr v-for="(article, index) in sortedArticles" :key="index">
           <td class="justify-content-center">{{ article.title }}</td>
-          <td><img :src="article.thumbnail" alt="Thumbnail" width="100" /></td>
+          <td>
+            <img
+              :src="article.thumbnail"
+              alt="Thumbnail"
+              width="100"
+            />
+          </td>
           <td>{{ article.content }}</td>
           <td>{{ article.author.name }}</td>
           <td>{{ article.category.name }}</td>

@@ -13,12 +13,6 @@
               </h3>
               <p class="card-text">{{ formatDate(post.created_at) }}</p>
               <p class="card-text">{{ post.author.name }}</p>
-              <a
-                v-for="category in post.tag.split(', ')"
-                :key="category"
-                href="#"
-                >{{ category }}</a
-              >
               <p class="card-text">
                 {{ shorttext(post.content, 100) }}
               </p>
